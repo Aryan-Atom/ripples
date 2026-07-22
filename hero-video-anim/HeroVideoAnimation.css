@@ -1,0 +1,165 @@
+.hva {
+  --hva-bg: #050505;
+  --hva-fg: #f5f2eb;
+  --hva-muted: rgba(245, 242, 235, 0.55);
+  --hva-accent: #c8ff4d;
+
+  position: relative;
+  background: var(--hva-bg);
+  color: var(--hva-fg);
+}
+
+.hva-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 2px;
+  background: var(--hva-accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+.hva-pin {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hva-media {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  transform: translateZ(0);
+  contain: strict;
+}
+
+.hva-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: translateZ(0);
+}
+
+.hva-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    rgba(5, 5, 5, 0.75) 100%
+  );
+  pointer-events: none;
+}
+
+.hva-bg-load {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 3;
+  width: 2rem;
+  height: 2px;
+  background: rgba(245, 242, 235, 0.12);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hva-bg-load-bar {
+  width: 100%;
+  height: 100%;
+  background: rgba(200, 255, 77, 0.45);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+.hva-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hva-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--hva-bg);
+  color: var(--hva-fg);
+}
+
+.hva-loader-label {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--hva-muted);
+}
+
+.hva-loader-track {
+  width: min(16rem, 70vw);
+  height: 2px;
+  background: rgba(245, 242, 235, 0.12);
+  overflow: hidden;
+}
+
+.hva-loader-bar {
+  width: 100%;
+  height: 100%;
+  background: var(--hva-accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+.hva-loader-pct {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--hva-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.hva-loader--error {
+  color: #ff6b6b;
+}
+
+.hva-hint {
+  position: absolute;
+  bottom: clamp(1.25rem, 3vw, 2.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--hva-muted);
+  animation: hva-float 2.4s ease-in-out infinite;
+}
+
+.hva-hint-line {
+  width: 1px;
+  height: 3rem;
+  background: linear-gradient(to bottom, var(--hva-fg), transparent);
+}
+
+@keyframes hva-float {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
+}

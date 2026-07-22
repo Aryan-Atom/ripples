@@ -1,0 +1,12 @@
+{
+  "name": "hero-video-anim",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Drop-in scroll-driven frame animation hero for React",
+  "peerDependencies": {
+    "gsap": ">=3.12.0",
+    "lenis": ">=1.3.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  }
+}

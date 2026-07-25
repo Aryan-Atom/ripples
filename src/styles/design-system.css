@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Color — black hero seam, cool blue depth mid-page */
+  --color-bg: #000000;
+  --color-bg-mid: #060b12;
+  --color-bg-lift: #0b1520;
+  --color-text: #f3efe6;
+  --color-text-muted: rgba(243, 239, 230, 0.52);
+  --color-text-soft: rgba(243, 239, 230, 0.78);
+  --color-accent: #8eb8d4;
+  --color-accent-soft: rgba(142, 184, 212, 0.32);
+  --color-glow: rgba(70, 130, 180, 0.08);
+  --color-border: rgba(243, 239, 230, 0.08);
+  --color-border-strong: rgba(243, 239, 230, 0.14);
+
+  /* Pure black at the top (hero end frame), then soft blue lift */
+  --page-gradient: linear-gradient(
+    180deg,
+    #000000 0%,
+    #000000 12%,
+    #04080e 28%,
+    #08121c 48%,
+    #0c1824 62%,
+    #070e16 78%,
+    #000000 100%
+  );
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+
+  --text-xs: clamp(0.62rem, 0.9vw, 0.72rem);
+  --text-sm: clamp(0.78rem, 1.1vw, 0.88rem);
+  --text-base: clamp(0.95rem, 1.45vw, 1.08rem);
+  --text-lg: clamp(1.1rem, 1.8vw, 1.25rem);
+  --text-xl: clamp(1.35rem, 2.4vw, 1.75rem);
+  --text-2xl: clamp(2rem, 4vw, 3rem);
+  --text-3xl: clamp(2.75rem, 6.2vw, 4.75rem);
+  --text-hero: clamp(3rem, 8vw, 6.5rem);
+
+  /* Spacing */
+  --space-page-x: clamp(1.5rem, 5vw, 4.5rem);
+  --space-section-y: clamp(5.5rem, 11vw, 9rem);
+  --space-block: clamp(2.25rem, 4.5vw, 3.75rem);
+  --max-width: 76rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 0.25s;
+  --duration-base: 0.45s;
+  --duration-slow: 0.8s;
+}
+
+/* Base */
+
+.r-shell {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+.r-container {
+  width: min(var(--max-width), 100%);
+  margin-inline: auto;
+  padding-inline: var(--space-page-x);
+}
+
+/* Typography */
+
+.r-label {
+  display: block;
+  margin-bottom: 1.15rem;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.r-display {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.r-display em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-text-muted);
+}
+
+.r-lead {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--color-text-soft);
+}
+
+.r-body {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--color-text-muted);
+  max-width: 38rem;
+}
+
+.r-stat {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Links (kept for future pages / CTAs) */
+
+.r-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.r-link:hover {
+  color: var(--color-accent);
+}
+
+.r-link__arrow {
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.r-link:hover .r-link__arrow {
+  transform: translateX(4px);
+}
+
+/* Sections */
+
+.r-section {
+  padding-block: var(--space-section-y);
+}

@@ -59,18 +59,39 @@
 }
 
 .site-nav--hero {
-  position: absolute;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.78) 0%,
-    rgba(0, 0, 0, 0.28) 65%,
-    transparent 100%
-  );
+  position: fixed;
+  top: clamp(0.75rem, 2.2vw, 1.25rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: min(84rem, 96%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.45rem 0.95rem;
+  background: rgba(11, 21, 32, 0.16);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+  border-radius: 999px;
+  border: 1px solid rgba(142, 184, 212, 0.08);
+  box-shadow: 0 8px 30px rgba(2, 8, 15, 0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+  z-index: 60;
 }
 
 .site-nav--solid {
   background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(14px);
+}
+
+/* Transparent glass variant — allows background video to show through and be blurred */
+.site-nav--transparent {
+  background: rgba(11, 21, 32, 0.18);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+  border-radius: 12px;
+  border: 1px solid rgba(142, 184, 212, 0.08);
+  box-shadow: 0 6px 30px rgba(2, 8, 15, 0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+  padding: 0.45rem 1rem;
 }
 
 .site-nav__logo {
@@ -89,12 +110,60 @@
   gap: clamp(1.25rem, 3.5vw, 2.75rem);
 }
 
+.site-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.site-nav--hero .site-nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: clamp(1rem, 2.2vw, 1.5rem);
+  padding-left: 0.5rem;
+  padding-right: 0.35rem;
+}
+
+.site-nav--hero .site-nav__links {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.9rem, 2.2vw, 1.35rem);
+}
+
+/* For hero variant, make the inner wrapper center and compact */
+.site-nav--hero .site-nav__inner {
+  justify-content: center;
+  gap: clamp(0.6rem, 1.6vw, 1rem);
+  width: auto;
+}
+
+/* Nav item hover: subtle motion + light grey highlight to match design */
 .site-nav__item {
   font-size: var(--text-xs);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-text-soft);
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.5rem;
+  transition: background 180ms var(--ease-out), color 180ms var(--ease-out), transform 180ms var(--ease-out);
+}
+
+.site-nav__item:hover {
+  background: rgba(142, 184, 212, 0.12);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(142, 184, 212, 0.06);
+}
+
+.site-nav__item:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(142, 184, 212, 0.08);
 }
 
 /* Footer — no hard rule; sits in the same wash */
@@ -322,15 +391,36 @@
   transform: scale(1.35);
 }
 
-/* Home CTA — single GRU-style panel, Ripples tokens */
+/* Home CTA — side-by-side card + video panel */
+
+.home-cta {
+  padding-inline: var(--space-page-x);
+}
+
+.cta-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.5rem, 2.5vw, 2.2rem);
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding-inline: 0;
+}
+
+.home-cta > .r-container {
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 0;
+}
 
 .cta-card {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: clamp(22rem, 38vw, 30rem);
-  padding: clamp(2rem, 4.5vw, 3.5rem);
+  min-height: clamp(26rem, 36vw, 32rem);
+  padding: clamp(2rem, 4vw, 3.25rem);
   border-radius: clamp(1.35rem, 2.8vw, 2rem);
   overflow: hidden;
   background:
@@ -413,6 +503,35 @@
 .cta-card__btn:hover span {
   transform: translateX(3px);
 }
+
+.cta-video-card {
+  display: flex;
+   align-items: stretch;
+   justify-content: stretch;
+ }
+ 
+ .cta-video-card__frame {
+   width: 100%;
+   height: 100%;
+   min-height: clamp(26rem, 36vw, 32rem);
+   border-radius: clamp(1.35rem, 2.8vw, 2rem);
+   overflow: hidden;
+   background: linear-gradient(155deg, #05080d 0%, #08121e 42%, #040709 100%);
+   border: 1px solid rgba(142, 184, 212, 0.1);
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+ }
+ 
+ .cta-video-card__video {
+   width: 100%;
+   height: 100%;
+   display: block;
+   object-fit: cover;
+ }
+   .home-cta {
+     padding-inline: var(--space-page-x);
+   }
+  
+
 
 @media (max-width: 900px) {
   .site-footer__inner {

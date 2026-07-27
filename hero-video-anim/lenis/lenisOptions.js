@@ -1,7 +1,7 @@
 export const DEFAULT_LENIS_OPTIONS = {
-  lerp: 0.085,
+  lerp: 0.12,
   smoothWheel: true,
-  wheelMultiplier: 3,
-  touchMultiplier: 2.2,
-  syncTouch: true,
+  wheelMultiplier: 1,
+  touchMultiplier: 1,
+  syncTouch: false,
 }

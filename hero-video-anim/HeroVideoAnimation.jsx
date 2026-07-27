@@ -20,6 +20,7 @@ function HeroVideoAnimationInner({
   showProgressBar = true,
   showHint = true,
   showVignette = true,
+  loaderLabel = 'Loading frames',
   className = '',
   id = 'hero-video-anim',
   children,
@@ -124,13 +125,29 @@ function HeroVideoAnimationInner({
   return (
     <div className={`hva ${className}`.trim()} id={id} ref={rootRef}>
       {showLoader && loading && (
-        <div className="hva-loader" aria-live="polite">
+        <div className="hva-loader" aria-live="polite" aria-busy="true">
+          <p className="hva-loader-label">{loaderLabel}</p>
           <div className="hva-loader-track">
             <div
               className="hva-loader-bar"
               style={{ transform: `scaleX(${loadProgress})` }}
             />
           </div>
+          <p className="hva-loader-pct">{Math.round(loadProgress * 100)}%</p>
+        </div>
+      )}
+
+      {showLoader && isReady && !isFullyLoaded && (
+        <div className="hva-frame-load" aria-live="polite" aria-busy="true">
+          <div className="hva-frame-load-track">
+            <div
+              className="hva-frame-load-bar"
+              style={{ transform: `scaleX(${loadProgress})` }}
+            />
+          </div>
+          <span className="hva-frame-load-label">
+            {Math.round(loadProgress * 100)}%
+          </span>
         </div>
       )}
 
@@ -146,7 +163,7 @@ function HeroVideoAnimationInner({
         <div className="hva-media">
           <canvas ref={canvasRef} className="hva-canvas" aria-hidden="true" />
           {showVignette && <div className="hva-vignette" aria-hidden="true" />}
-          {!isFullyLoaded && isReady && (
+          {!isFullyLoaded && isReady && !showLoader && (
             <div className="hva-bg-load" aria-hidden="true">
               <div
                 className="hva-bg-load-bar"

@@ -15,6 +15,7 @@ export function useScrollFrameSequence(userOptions = {}) {
     stride = DEFAULT_FRAME_SEQUENCE.stride,
     maxConcurrent = DEFAULT_FRAME_SEQUENCE.maxConcurrent,
     maxDpr = DEFAULT_FRAME_SEQUENCE.maxDpr,
+    maxCacheSize = DEFAULT_FRAME_SEQUENCE.maxCacheSize,
     smoothness = 0,
   } = userOptions
 
@@ -46,7 +47,7 @@ export function useScrollFrameSequence(userOptions = {}) {
       priorityCount,
       stride,
       maxConcurrent,
-      maxDpr,
+      maxCacheSize,
     }
 
     const start = async () => {
@@ -104,6 +105,7 @@ export function useScrollFrameSequence(userOptions = {}) {
     stride,
     maxConcurrent,
     maxDpr,
+    maxCacheSize,
     smoothness,
   ])
 

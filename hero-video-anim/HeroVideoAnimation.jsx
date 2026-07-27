@@ -1,10 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useScrollFrameSequence } from './scroll-frames'
 import { LenisProvider, useLenis } from './lenis'
 import { DEFAULT_FRAMES, DEFAULT_SCROLL } from './defaults'
-import { HeroScrollContext } from './HeroScrollContext'
+import { getAdaptiveProfile, isCoarsePointer } from './device'
+import {
+  HeroScrollContext,
+  HeroScrollNotifierContext,
+  createScrollNotifier,
+} from './HeroScrollContext'
 import './HeroVideoAnimation.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -29,7 +34,10 @@ function HeroVideoAnimationInner({
   const progressRef = useRef(null)
   const hintRef = useRef(null)
   const lenisRef = useLenis()
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const scrollNotifierRef = useRef(null)
+  if (!scrollNotifierRef.current) {
+    scrollNotifierRef.current = createScrollNotifier()
+  }
 
   const frameOptions = { ...DEFAULT_FRAMES, ...frames }
 
@@ -53,6 +61,10 @@ function HeroVideoAnimationInner({
   useEffect(() => {
     if (!isReady) return
 
+    if (isCoarsePointer()) {
+      ScrollTrigger.config({ limitCallbacks: true })
+    }
+
     const root = rootRef.current
     const pin = pinRef.current
     const progress = progressRef.current
@@ -74,7 +86,7 @@ function HeroVideoAnimationInner({
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             setProgress(self.progress)
-            setScrollProgress(self.progress)
+            scrollNotifierRef.current?.notify(self.progress)
             if (progress) {
               progress.style.transform = `scaleX(${self.progress})`
             }
@@ -105,6 +117,7 @@ function HeroVideoAnimationInner({
 
     ScrollTrigger.refresh()
     setProgress(0)
+    scrollNotifierRef.current?.notify(0)
 
     return () => {
       gsapCtx?.revert()
@@ -157,9 +170,11 @@ function HeroVideoAnimationInner({
         </div>
 
         <div className="hva-overlay">
-          <HeroScrollContext.Provider value={scrollProgress}>
-            {children}
-          </HeroScrollContext.Provider>
+          <HeroScrollNotifierContext.Provider value={scrollNotifierRef}>
+            <HeroScrollContext.Provider value={0}>
+              {children}
+            </HeroScrollContext.Provider>
+          </HeroScrollNotifierContext.Provider>
           {showHint && (
             <div className="hva-hint" ref={hintRef}>
               <div className="hva-hint-line" />
@@ -180,17 +195,37 @@ function HeroVideoAnimationInner({
  */
 export default function HeroVideoAnimation({
   frames = {},
-  lenis = true,
+  lenis: lenisProp,
   lenisOptions,
+  scrollLength: scrollLengthProp,
+  scrub: scrubProp,
   ...props
 }) {
-  if (!lenis) {
-    return <HeroVideoAnimationInner frames={frames} {...props} />
+  const profile = getAdaptiveProfile()
+  const mergedFrames = { ...profile.frames, ...frames }
+  const useLenis = lenisProp ?? profile.useLenis
+  const scrollLength = scrollLengthProp ?? DEFAULT_SCROLL.scrollLength
+  const scrub = scrubProp ?? profile.scroll.scrub ?? DEFAULT_SCROLL.scrub
+
+  if (!useLenis) {
+    return (
+      <HeroVideoAnimationInner
+        frames={mergedFrames}
+        scrollLength={scrollLength}
+        scrub={scrub}
+        {...props}
+      />
+    )
   }
 
   return (
     <LenisProvider options={lenisOptions}>
-      <HeroVideoAnimationInner frames={frames} {...props} />
+      <HeroVideoAnimationInner
+        frames={mergedFrames}
+        scrollLength={scrollLength}
+        scrub={scrub}
+        {...props}
+      />
     </LenisProvider>
   )
 }

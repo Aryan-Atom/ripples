@@ -1,5 +1,5 @@
 export { default, default as HeroVideoAnimation, HeroVideoAnimationInner } from './HeroVideoAnimation'
-export { HeroScrollContext, useHeroScrollProgress } from './HeroScrollContext'
+export { HeroScrollContext, useHeroScrollProgress, useHeroScrollSubscribe, createScrollNotifier } from './HeroScrollContext'
 export { DEFAULT_FRAMES, DEFAULT_SCROLL } from './defaults'
 export { LenisProvider, useLenis, DEFAULT_LENIS_OPTIONS } from './lenis'
 export {

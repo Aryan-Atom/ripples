@@ -850,6 +850,19 @@
   }
 }
 
+@media (max-width: 768px) {
+  .site-nav--hero {
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
+    backdrop-filter: blur(10px) saturate(130%);
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .site-nav__mobile-backdrop {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+}
+
 @media (max-width: 520px) {
   .site-nav--mobile.site-nav--hero {
     top: 0.5rem;

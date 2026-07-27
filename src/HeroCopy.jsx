@@ -1,4 +1,5 @@
-import { useHeroScrollProgress } from "hero-video-anim";
+import { useCallback, useRef } from "react";
+import { useHeroScrollSubscribe } from "hero-video-anim";
 
 const PHASES = [
   {
@@ -63,28 +64,38 @@ function phaseOpacity(progress, phase, index, total) {
 }
 
 export default function HeroCopy() {
-  const progress = useHeroScrollProgress();
+  const slideRefs = useRef([]);
+
+  const updateSlides = useCallback((progress) => {
+    PHASES.forEach((phase, index) => {
+      const slide = slideRefs.current[index];
+      if (!slide) return;
+
+      const opacity = phaseOpacity(progress, phase, index, PHASES.length);
+      slide.style.opacity = String(opacity);
+      slide.setAttribute("aria-hidden", opacity <= 0.5 ? "true" : "false");
+    });
+  }, []);
+
+  useHeroScrollSubscribe(updateSlides);
 
   return (
     <div className="home-hero">
       <div className="home-hero__backdrop" aria-hidden="true" />
       <div className="home-hero__stack">
-        {PHASES.map((phase, index) => {
-          const opacity = phaseOpacity(progress, phase, index, PHASES.length);
-          const isActive = opacity > 0.5;
-
-          return (
-            <div
-              key={phase.title}
-              className="home-hero__slide"
-              style={{ opacity }}
-              aria-hidden={!isActive}
-            >
-              <h1 className="home-hero__title">{phase.title}</h1>
-              <p className="home-hero__description">{phase.description}</p>
-            </div>
-          );
-        })}
+        {PHASES.map((phase, index) => (
+          <div
+            key={phase.title}
+            ref={(node) => {
+              slideRefs.current[index] = node;
+            }}
+            className="home-hero__slide"
+            aria-hidden={index !== 0}
+          >
+            <h1 className="home-hero__title">{phase.title}</h1>
+            <p className="home-hero__description">{phase.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

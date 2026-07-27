@@ -1,4 +1,5 @@
 import { SITE } from '../data/site'
+import LazyVideo from './LazyVideo.jsx'
 
 export default function HomeCta() {
   return (
@@ -31,14 +32,13 @@ export default function HomeCta() {
 
           <div className="cta-video-card">
             <div className="cta-video-card__frame">
-              <video
+              <LazyVideo
                 className="cta-video-card__video"
                 src="/assets/Logo_construction_animation.mp4"
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
               />
             </div>
           </div>

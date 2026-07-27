@@ -9,9 +9,6 @@ export const DEFAULT_FRAME_SEQUENCE = {
   stride: 10,
   maxConcurrent: 10,
   maxDpr: 2,
-  maxCachedFrames: 72,
-  bitmapResizeWidth: 0,
-  prioritizeRadius: 24,
 }
 
 export function buildFramePath(index, options = {}) {

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
 :root {
   /* Color — black hero seam, cool blue depth mid-page */
@@ -27,8 +27,8 @@
   );
 
   /* Typography */
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
 
   --text-xs: clamp(0.62rem, 0.9vw, 0.72rem);
   --text-sm: clamp(0.78rem, 1.1vw, 0.88rem);

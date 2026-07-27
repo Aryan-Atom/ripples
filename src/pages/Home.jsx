@@ -12,8 +12,8 @@ const FRAME_COUNT = 241
 export default function Home() {
   return (
     <div className="home-page">
-      <HeroVideoAnimation frames={{ frameCount: FRAME_COUNT }}>
-        <SiteNav variant="hero" />
+      <SiteNav variant="hero" />
+      <HeroVideoAnimation frames={{ frameCount: FRAME_COUNT }} showProgressBar={false}>
         <HeroCopy />
       </HeroVideoAnimation>
 

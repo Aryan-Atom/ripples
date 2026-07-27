@@ -24,7 +24,7 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: 'Creations' },
   { label: 'Practice' },
-  { label: 'Buzz' },
+  { label: 'Worldwide' },
   { label: 'Contact' },
 ]
 

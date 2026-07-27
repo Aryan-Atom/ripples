@@ -1,5 +1,4 @@
 import { DEFAULT_FRAME_SEQUENCE } from './config'
-import { isIOS } from './device'
 
 function findNearestLoadedFrame(frames, targetIndex) {
   if (frames[targetIndex]) return targetIndex
@@ -17,10 +16,7 @@ function findNearestLoadedFrame(frames, targetIndex) {
 export function createScrollFrameRenderer(canvas, getFrames, options = {}) {
   const { maxDpr = DEFAULT_FRAME_SEQUENCE.maxDpr, smoothness = 0 } = options
 
-  const ctx = canvas.getContext('2d', {
-    alpha: false,
-    desynchronized: !isIOS(),
-  })
+  const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true })
   let displayW = window.innerWidth
   let displayH = window.innerHeight
   let dpr = Math.min(window.devicePixelRatio || 1, maxDpr)

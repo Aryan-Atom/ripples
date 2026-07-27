@@ -2,7 +2,7 @@
   --hva-bg: #050505;
   --hva-fg: #f5f2eb;
   --hva-muted: rgba(245, 242, 235, 0.55);
-  --hva-accent: #8eb8d4;
+  --hva-accent: #c8ff4d;
 
   position: relative;
   background: var(--hva-bg);
@@ -72,49 +72,9 @@
 .hva-bg-load-bar {
   width: 100%;
   height: 100%;
-  background: rgba(142, 184, 212, 0.65);
+  background: rgba(200, 255, 77, 0.45);
   transform-origin: left center;
   transform: scaleX(0);
-}
-
-.hva-frame-load {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 120;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  width: 100%;
-  padding: 0.65rem 1rem;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(8px);
-  pointer-events: none;
-}
-
-.hva-frame-load-track {
-  flex: 1;
-  height: 2px;
-  background: rgba(245, 242, 235, 0.12);
-  overflow: hidden;
-}
-
-.hva-frame-load-bar {
-  width: 100%;
-  height: 100%;
-  background: var(--hva-accent);
-  transform-origin: left center;
-  transform: scaleX(0);
-}
-
-.hva-frame-load-label {
-  flex-shrink: 0;
-  min-width: 2.5rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--hva-muted);
-  font-variant-numeric: tabular-nums;
-  text-align: right;
 }
 
 .hva-overlay {

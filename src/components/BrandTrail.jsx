@@ -1,7 +1,7 @@
-import { BRAND_LOGOS } from '../data/brands'
+import { BRAND_LOGOS } from "../data/brands";
 
 export default function BrandTrail() {
-  const items = [...BRAND_LOGOS, ...BRAND_LOGOS]
+  const items = [...BRAND_LOGOS, ...BRAND_LOGOS];
 
   return (
     <section className="brand-trail home-section" aria-label="Trusted partners">
@@ -21,12 +21,17 @@ export default function BrandTrail() {
           <div className="brand-trail__set">
             {items.map((logo, i) => (
               <div className="brand-trail__item" key={`${logo.alt}-${i}`}>
-                <img src={logo.src} alt={logo.alt} loading="lazy" decoding="async" />
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

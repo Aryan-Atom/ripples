@@ -81,8 +81,8 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 
 | Role | Font | Where |
 |---|---|---|
-| Display | Cormorant Garamond | `.r-display`, `.home-hero__title`, logo |
-| Body / UI | Outfit | `.r-body`, nav, footer, taglines |
+| Display | Poppins | `.r-display`, `.home-hero__title`, logo |
+| Body / UI | Poppins | `.r-body`, nav, footer, taglines |
 
 ### Scale
 

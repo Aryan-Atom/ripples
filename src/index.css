@@ -23,6 +23,7 @@ body {
   margin: 0;
   background: var(--color-bg, #000000);
   color: var(--color-text, #f3efe6);
+  font-family: var(--font-body);
 }
 
 img {

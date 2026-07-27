@@ -5,16 +5,9 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem var(--space-page-x);
-  text-align: center;
-  pointer-events: none;
-}
-
-.home-hero__backdrop {
-  position: absolute;
-  inset: 0;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 2rem 1.75rem clamp(2rem, 4vw, 3rem) 1.75rem;
   background:
     radial-gradient(
       ellipse 70% 55% at 50% 48%,
@@ -37,15 +30,15 @@
   position: relative;
   z-index: 1;
   display: grid;
-  place-items: center;
-  width: min(48rem, 100%);
+  place-items: start;
+  width: min(44rem, 78vw);
 }
 
 .home-hero__slide {
   grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   transition: opacity 0.08s linear;
   will-change: opacity;
@@ -53,11 +46,12 @@
 
 .home-hero__title {
   margin: 0;
+  max-width: 100%;
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 9vw, 6.5rem);
+  font-size: clamp(1.45rem, 3.5vw, 2.35rem);
   font-weight: 300;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   color: var(--color-text);
   text-shadow:
     0 0 40px rgba(0, 0, 0, 0.95),
@@ -66,10 +60,24 @@
 }
 
 .home-hero__tagline {
-  margin: clamp(1rem, 2.5vw, 1.5rem) auto 0;
-  max-width: 28rem;
+  margin: clamp(0.8rem, 2vw, 1.2rem) auto 0;
+  max-width: 26rem;
   font-family: var(--font-body);
-  font-size: clamp(0.82rem, 1.4vw, 0.98rem);
+  font-size: clamp(0.78rem, 1.2vw, 0.92rem);
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+  color: rgba(245, 240, 230, 0.82);
+  text-shadow:
+    0 0 20px rgba(0, 0, 0, 0.95),
+    0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.home-hero__description {
+  margin: clamp(0.75rem, 2vw, 1rem) 0 0;
+  max-width: 100%;
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.6vw, 1.08rem);
   font-weight: 300;
   line-height: 1.6;
   letter-spacing: 0.04em;
@@ -92,7 +100,9 @@
   height: 2px;
   border-radius: 1px;
   background: rgba(245, 240, 230, 0.22);
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .home-hero__dot.is-past {
@@ -102,4 +112,138 @@
 .home-hero__dot.is-active {
   background: var(--color-accent);
   transform: scaleX(1.35);
+}
+
+@media (max-width: 900px) {
+  .home-hero {
+    justify-content: flex-end;
+    padding: 0 0.9rem 1rem;
+  }
+
+  .home-hero__stack {
+    width: 100%;
+  }
+
+  .home-hero__slide {
+    max-width: 100%;
+  }
+
+  .home-hero__title {
+    font-size: clamp(1.4rem, 5.2vw, 1.75rem);
+    line-height: 1.15;
+  }
+
+  .home-hero__tagline {
+    margin: 0.75rem 0 0;
+    max-width: calc(100% - 0.5rem);
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  .home-hero__description {
+    max-width: 100%;
+    margin-top: 0.75rem;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .home-hero__progress {
+    left: 0.9rem;
+    bottom: 1rem;
+    transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-hero {
+    justify-content: flex-end;
+    padding: 0 0.8rem 0.9rem;
+  }
+
+  .home-hero__stack {
+    width: 100%;
+  }
+
+  .home-hero__slide {
+    max-width: 100%;
+  }
+
+  .home-hero__title {
+    font-size: clamp(1.35rem, 5vw, 1.65rem);
+    line-height: 1.15;
+  }
+
+  .home-hero__tagline {
+    margin: 0.7rem 0 0;
+    max-width: calc(100% - 0.5rem);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  .home-hero__description {
+    max-width: 100%;
+    margin-top: 0.7rem;
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  .home-hero__progress {
+    left: 0.85rem;
+    bottom: 0.95rem;
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-hero {
+    padding: 0 0.75rem 1.1rem;
+  }
+
+  .home-hero__title {
+    font-size: clamp(1.28rem, 5.5vw, 1.5rem);
+    line-height: 1.15;
+  }
+
+  .home-hero__tagline {
+    font-size: 0.76rem;
+    line-height: 1.45;
+  }
+
+  .home-hero__description {
+    margin-top: 0.65rem;
+    font-size: 0.76rem;
+    line-height: 1.45;
+  }
+
+  .home-hero__progress {
+    left: 0.75rem;
+    bottom: 0.85rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-hero {
+    padding: 0 0.85rem 1.2rem;
+  }
+
+  .home-hero__title {
+    font-size: clamp(1.28rem, 5.2vw, 1.52rem);
+    line-height: 1.15;
+  }
+
+  .home-hero__tagline {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .home-hero__description {
+    margin-top: 0.65rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .home-hero__progress {
+    bottom: 0.85rem;
+    left: 0.85rem;
+  }
 }

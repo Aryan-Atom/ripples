@@ -2,7 +2,7 @@ import { buildFramePath, DEFAULT_FRAME_SEQUENCE } from './config'
 
 const bitmapCache = new Map()
 
-async function fetchBitmap(url, signal) {
+async function fetchBitmap(url, signal, resizeWidth = 0) {
   if (bitmapCache.has(url)) {
     return bitmapCache.get(url)
   }
@@ -13,7 +13,14 @@ async function fetchBitmap(url, signal) {
   }
 
   const blob = await response.blob()
-  const bitmap = await createImageBitmap(blob)
+  const bitmap =
+    resizeWidth > 0
+      ? await createImageBitmap(blob, {
+          resizeWidth,
+          resizeQuality: 'medium',
+        })
+      : await createImageBitmap(blob)
+
   bitmapCache.set(url, bitmap)
   return bitmap
 }
@@ -50,36 +57,81 @@ function buildLoadOrder(frameCount, priorityCount, stride) {
   return order
 }
 
+function countCachedFrames(frames) {
+  return frames.reduce((count, frame) => (frame ? count + 1 : count), 0)
+}
+
 export async function loadFrameSequence(userOptions = {}, callbacks = {}) {
   const options = { ...DEFAULT_FRAME_SEQUENCE, ...userOptions }
-  const { frameCount, priorityCount, stride, maxConcurrent } = options
+  const {
+    frameCount,
+    priorityCount,
+    stride,
+    maxConcurrent,
+    maxCachedFrames = Infinity,
+    bitmapResizeWidth = 0,
+    prioritizeRadius = 24,
+  } = options
   const { signal, onProgress, onReady, onFrameLoaded } = callbacks
 
   const frames = Array.from({ length: frameCount }, () => null)
   const queue = buildLoadOrder(frameCount, priorityCount, stride)
-  let loadedCount = 0
+  let everLoadedCount = 0
+  let focusIndex = 0
   let pumping = false
 
   const loader = {
     frames,
     frameCount,
     prioritize: null,
-    isComplete: () => loadedCount >= frameCount,
+    releaseAll: null,
+    isComplete: () => everLoadedCount >= frameCount,
+  }
+
+  const releaseFrame = (index) => {
+    if (!frames[index]) return
+
+    const url = buildFramePath(index, options)
+    const bitmap = frames[index]
+    bitmap?.close?.()
+    bitmapCache.delete(url)
+    frames[index] = null
+  }
+
+  const evictDistantFrames = () => {
+    if (!Number.isFinite(maxCachedFrames)) return
+
+    const cachedIndices = frames
+      .map((frame, index) => (frame ? index : -1))
+      .filter((index) => index >= 0)
+
+    if (cachedIndices.length <= maxCachedFrames) return
+
+    cachedIndices.sort(
+      (a, b) => Math.abs(b - focusIndex) - Math.abs(a - focusIndex),
+    )
+
+    const candidates = cachedIndices.filter((index) => index !== focusIndex)
+
+    while (countCachedFrames(frames) > maxCachedFrames && candidates.length > 0) {
+      releaseFrame(candidates.shift())
+    }
   }
 
   const loadIndex = async (index) => {
     if (signal?.aborted || frames[index]) return
 
     const url = buildFramePath(index, options)
-    const bitmap = await fetchBitmap(url, signal)
+    const bitmap = await fetchBitmap(url, signal, bitmapResizeWidth)
     if (signal?.aborted) return
 
     frames[index] = bitmap
-    loadedCount += 1
-    onProgress?.(loadedCount / frameCount)
+    everLoadedCount += 1
+    onProgress?.(everLoadedCount / frameCount)
     onFrameLoaded?.(index, bitmap)
+    evictDistantFrames()
 
-    if (loadedCount === 1) {
+    if (everLoadedCount === 1) {
       onReady?.(frames, loader)
     }
   }
@@ -89,6 +141,8 @@ export async function loadFrameSequence(userOptions = {}, callbacks = {}) {
     pumping = true
 
     while (queue.length > 0 && !signal?.aborted) {
+      evictDistantFrames()
+
       const batch = queue.splice(0, maxConcurrent).filter((index) => !frames[index])
       if (batch.length === 0) continue
       await Promise.all(batch.map((index) => loadIndex(index)))
@@ -98,12 +152,14 @@ export async function loadFrameSequence(userOptions = {}, callbacks = {}) {
   }
 
   loader.prioritize = (targetIndex) => {
-    const clamped = Math.max(0, Math.min(frameCount - 1, Math.round(targetIndex)))
+    focusIndex = Math.max(0, Math.min(frameCount - 1, Math.round(targetIndex)))
+    evictDistantFrames()
+
     const urgent = []
 
-    for (let offset = 0; offset < 24; offset += 1) {
-      const before = clamped - offset
-      const after = clamped + offset
+    for (let offset = 0; offset < prioritizeRadius; offset += 1) {
+      const before = focusIndex - offset
+      const after = focusIndex + offset
 
       if (before >= 0 && !frames[before] && !urgent.includes(before)) {
         urgent.push(before)
@@ -120,6 +176,12 @@ export async function loadFrameSequence(userOptions = {}, callbacks = {}) {
     queue.length = 0
     queue.push(...urgent, ...rest)
     void pump()
+  }
+
+  loader.releaseAll = () => {
+    for (let index = 0; index < frameCount; index += 1) {
+      releaseFrame(index)
+    }
   }
 
   await loadIndex(0)

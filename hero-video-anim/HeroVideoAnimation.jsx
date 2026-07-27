@@ -5,6 +5,7 @@ import { useScrollFrameSequence } from './scroll-frames'
 import { LenisProvider, useLenis } from './lenis'
 import { DEFAULT_FRAMES, DEFAULT_SCROLL } from './defaults'
 import { HeroScrollContext } from './HeroScrollContext'
+import { shouldUseLenis, isIOS } from './scroll-frames/device'
 import './HeroVideoAnimation.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -30,12 +31,15 @@ function HeroVideoAnimationInner({
   const hintRef = useRef(null)
   const lenisRef = useLenis()
   const [scrollProgress, setScrollProgress] = useState(0)
+  const scrollProgressRef = useRef(0)
+  const scrollRafRef = useRef(null)
 
   const frameOptions = { ...DEFAULT_FRAMES, ...frames }
 
   const {
     canvasRef,
     setProgress,
+    releaseFrames,
     loadProgress,
     isReady,
     isFullyLoaded,
@@ -70,11 +74,22 @@ function HeroVideoAnimationInner({
           end: scrollLength,
           scrub,
           pin: true,
+          pinType: isIOS() ? 'transform' : 'fixed',
           anticipatePin: 1,
+          fastScrollEnd: true,
           invalidateOnRefresh: true,
+          onLeave: () => {
+            releaseFrames()
+          },
           onUpdate: (self) => {
             setProgress(self.progress)
-            setScrollProgress(self.progress)
+            scrollProgressRef.current = self.progress
+            if (scrollRafRef.current === null) {
+              scrollRafRef.current = requestAnimationFrame(() => {
+                setScrollProgress(scrollProgressRef.current)
+                scrollRafRef.current = null
+              })
+            }
             if (progress) {
               progress.style.transform = `scaleX(${self.progress})`
             }
@@ -107,11 +122,16 @@ function HeroVideoAnimationInner({
     setProgress(0)
 
     return () => {
+      if (scrollRafRef.current !== null) {
+        cancelAnimationFrame(scrollRafRef.current)
+        scrollRafRef.current = null
+      }
       gsapCtx?.revert()
     }
   }, [
     isReady,
     setProgress,
+    releaseFrames,
     scrollLength,
     scrub,
     scaleFrom,
@@ -180,7 +200,7 @@ function HeroVideoAnimationInner({
  */
 export default function HeroVideoAnimation({
   frames = {},
-  lenis = true,
+  lenis = shouldUseLenis(),
   lenisOptions,
   ...props
 }) {

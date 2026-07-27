@@ -2,8 +2,11 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import { loadFrameSequence } from './frameLoader'
 import { createScrollFrameRenderer } from './frameRenderer'
 import { DEFAULT_FRAME_SEQUENCE } from './config'
+import { getDeviceFrameOptions } from './device'
 
 export function useScrollFrameSequence(userOptions = {}) {
+  const deviceOptions = getDeviceFrameOptions()
+
   const {
     basePath = DEFAULT_FRAME_SEQUENCE.basePath,
     frameCount = DEFAULT_FRAME_SEQUENCE.frameCount,
@@ -13,10 +16,13 @@ export function useScrollFrameSequence(userOptions = {}) {
     startIndex = DEFAULT_FRAME_SEQUENCE.startIndex,
     priorityCount = DEFAULT_FRAME_SEQUENCE.priorityCount,
     stride = DEFAULT_FRAME_SEQUENCE.stride,
-    maxConcurrent = DEFAULT_FRAME_SEQUENCE.maxConcurrent,
-    maxDpr = DEFAULT_FRAME_SEQUENCE.maxDpr,
+    maxConcurrent = deviceOptions.maxConcurrent,
+    maxDpr = deviceOptions.maxDpr,
+    maxCachedFrames = deviceOptions.maxCachedFrames,
+    bitmapResizeWidth = deviceOptions.bitmapResizeWidth,
+    prioritizeRadius = deviceOptions.prioritizeRadius,
     smoothness = 0,
-  } = userOptions
+  } = { ...deviceOptions, ...userOptions }
 
   const canvasRef = useRef(null)
   const framesRef = useRef([])
@@ -47,6 +53,9 @@ export function useScrollFrameSequence(userOptions = {}) {
       stride,
       maxConcurrent,
       maxDpr,
+      maxCachedFrames,
+      bitmapResizeWidth,
+      prioritizeRadius,
     }
 
     const start = async () => {
@@ -104,6 +113,9 @@ export function useScrollFrameSequence(userOptions = {}) {
     stride,
     maxConcurrent,
     maxDpr,
+    maxCachedFrames,
+    bitmapResizeWidth,
+    prioritizeRadius,
     smoothness,
   ])
 
@@ -119,9 +131,15 @@ export function useScrollFrameSequence(userOptions = {}) {
     [frameCount],
   )
 
+  const releaseFrames = useCallback(() => {
+    loaderRef.current?.releaseAll?.()
+    rendererRef.current?.forceRedraw()
+  }, [])
+
   return {
     canvasRef,
     setProgress,
+    releaseFrames,
     loadProgress,
     isReady,
     isFullyLoaded,

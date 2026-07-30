@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import gsap from 'gsap'
 import { NAV_LINKS, SITE } from '../data/site'
 
@@ -134,10 +134,14 @@ export default function SiteNav({ variant = 'solid' }) {
 
         {!isMobile && (
           <nav className="site-nav__links" aria-label="Primary">
-            {NAV_LINKS.map(({ label }) => (
-              <span key={label} className="site-nav__item">
+            {NAV_LINKS.map(({ label, to }) => (
+              <NavLink
+                key={label}
+                to={to}
+                className={({ isActive }) => `site-nav__item${isActive ? ' is-active' : ''}`}
+              >
                 {label}
-              </span>
+              </NavLink>
             ))}
           </nav>
         )}
@@ -173,17 +177,20 @@ export default function SiteNav({ variant = 'solid' }) {
             aria-hidden={!menuOpen}
           >
             <nav className="site-nav__mobile-links" aria-label="Mobile primary">
-              {NAV_LINKS.map(({ label }, index) => (
-                <span
+              {NAV_LINKS.map(({ label, to }, index) => (
+                <NavLink
                   key={label}
+                  to={to}
                   ref={(node) => {
                     itemsRef.current[index] = node
                   }}
-                  className="site-nav__mobile-item"
+                  className={({ isActive }) =>
+                    `site-nav__mobile-item${isActive ? ' is-active' : ''}`
+                  }
                   onClick={closeMenu}
                 >
                   {label}
-                </span>
+                </NavLink>
               ))}
             </nav>
           </div>

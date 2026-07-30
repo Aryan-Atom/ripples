@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
-
 :root {
   /* Color — black hero seam, cool blue depth mid-page */
   --color-bg: #000000;
@@ -27,8 +25,9 @@
   );
 
   /* Typography */
-  --font-display: 'Poppins', system-ui, sans-serif;
-  --font-body: 'Poppins', system-ui, sans-serif;
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
 
   --text-xs: clamp(0.62rem, 0.9vw, 0.72rem);
   --text-sm: clamp(0.78rem, 1.1vw, 0.88rem);
@@ -38,6 +37,7 @@
   --text-2xl: clamp(2rem, 4vw, 3rem);
   --text-3xl: clamp(2.75rem, 6.2vw, 4.75rem);
   --text-hero: clamp(3rem, 8vw, 6.5rem);
+  --text-mega: clamp(3.25rem, 11vw, 9.5rem);
 
   /* Spacing */
   --space-page-x: clamp(1.5rem, 5vw, 4.5rem);
@@ -88,10 +88,19 @@
   letter-spacing: -0.025em;
 }
 
-.r-display em {
+.r-display em,
+.r-serif {
+  font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 300;
-  color: var(--color-text-muted);
+  font-weight: 400;
+  font-size: 1.05em;
+  letter-spacing: -0.01em;
+  color: var(--color-accent);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #04080e;
 }
 
 .r-lead {

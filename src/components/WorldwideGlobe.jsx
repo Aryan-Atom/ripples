@@ -3,7 +3,7 @@ import Globe from 'react-globe.gl'
 import { WORLDWIDE_GEOJSON_URL, WORLDWIDE_PRESENCE } from '../data/worldwide'
 
 const MOBILE_QUERY = '(max-width: 768px)'
-const ACCENT_DIM = 'rgba(142, 184, 212, 0.45)'
+const ACCENT_DIM = 'rgba(83, 210, 219, 0.45)'
 const GLOW_PAD = 1.08
 
 const GPS_PIN_SVG = `
@@ -124,7 +124,7 @@ export default function WorldwideGlobe() {
             globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
             bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
             showAtmosphere
-            atmosphereColor="rgba(142, 184, 212, 0.28)"
+            atmosphereColor="rgba(83, 210, 219, 0.28)"
             atmosphereAltitude={0.14}
             hexPolygonsData={countries}
             hexPolygonResolution={hexResolution}

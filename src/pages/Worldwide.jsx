@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import SiteFooter from '../components/SiteFooter.jsx'
 import WorldwideHero from '../components/WorldwideHero.jsx'
 import TextMarquee from '../components/TextMarquee.jsx'
+import VideoShowcase from '../VideoShowcase/VideoShowcase.jsx'
 import { WORLDWIDE_REGIONS, WORLDWIDE_CITIES } from '../data/worldwide'
 import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
@@ -12,6 +13,7 @@ export default function Worldwide() {
       <div className="worldwide-page__atmosphere" aria-hidden="true" />
       <main className="worldwide-page__main">
         <WorldwideHero />
+        <VideoShowcase />
 
         <section className="worldwide-regions" aria-label="Regional presence">
           <div className="r-container">

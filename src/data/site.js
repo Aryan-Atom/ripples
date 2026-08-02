@@ -27,10 +27,6 @@ export const NAV_LINKS = [
   { label: 'Our Journey', to: '/our-journey' },
   { label: 'Client Login', to: '/client-login' },
   { label: 'Contact', to: '/contact' },
-  { label: 'Creations' },
-  { label: 'Practice' },
-  { label: 'Worldwide' },
-  { label: 'Contact' },
 ]
 
 export const HOME_STATS = [

@@ -46,8 +46,13 @@ const PHASES = [
   },
 ];
 
-/** Absolute progress width for crossfades — phases meet at 0.5, never both 0. */
-const FADE = 0.035;
+/** Absolute progress width for crossfades — wide enough to feel soft under scrub. */
+const FADE = 0.065;
+
+function smoothstep(t) {
+  const x = Math.max(0, Math.min(1, t));
+  return x * x * (3 - 2 * x);
+}
 
 function phaseOpacity(progress, phase, index, total) {
   const { start, end } = phase;
@@ -58,10 +63,10 @@ function phaseOpacity(progress, phase, index, total) {
 
   let opacity = 1;
   if (index > 0 && progress < start + FADE) {
-    opacity = Math.min(opacity, (progress - (start - FADE)) / (2 * FADE));
+    opacity = Math.min(opacity, smoothstep((progress - (start - FADE)) / (2 * FADE)));
   }
   if (index < total - 1 && progress > end - FADE) {
-    opacity = Math.min(opacity, (end + FADE - progress) / (2 * FADE));
+    opacity = Math.min(opacity, smoothstep((end + FADE - progress) / (2 * FADE)));
   }
   return Math.max(0, Math.min(1, opacity));
 }
@@ -75,7 +80,10 @@ export default function HeroCopy() {
       if (!slide) return;
 
       const opacity = phaseOpacity(progress, phase, index, PHASES.length);
+      // Soft dissolve + slight rise; keeps switches feeling continuous while scrubbing.
+      const y = (1 - opacity) * 14;
       slide.style.opacity = String(opacity);
+      slide.style.transform = `translate3d(0, ${y}px, 0)`;
       slide.setAttribute("aria-hidden", opacity <= 0.5 ? "true" : "false");
     });
   }, []);

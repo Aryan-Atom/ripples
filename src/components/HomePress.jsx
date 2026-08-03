@@ -10,7 +10,7 @@ export default function HomePress() {
       <div className="r-container">
         <header className="home-press__head">
           <div>
-            <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+            <FadeUp as="p" className="r-label">
               Press &amp; media
             </FadeUp>
             <SplitLines as="h2" className="r-display">

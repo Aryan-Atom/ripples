@@ -10,7 +10,7 @@ export default function HomeCreations() {
       <div className="r-container">
         <header className="home-creations__head">
           <div>
-            <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+            <FadeUp as="p" className="r-label">
               Selected creations
             </FadeUp>
             <SplitLines as="h2" className="r-display">

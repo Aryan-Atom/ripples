@@ -9,34 +9,49 @@ import FadeUp from '../motion/FadeUp'
 
 export default function SiteFooter() {
   const markRef = useRef(null)
+  const markWrapRef = useRef(null)
 
   useLayoutEffect(() => {
     const el = markRef.current
-    if (!el || prefersReducedMotion()) return undefined
+    const wrap = markWrapRef.current
+    if (!el) return undefined
+
+    if (prefersReducedMotion()) {
+      wrap?.classList.add('is-armed')
+      showElement(el)
+      return undefined
+    }
 
     let split
     let scrollTrigger
     let cancelled = false
 
+    // Keep mark invisible until chars sit under the mask.
+    gsap.set(el, { autoAlpha: 0 })
+    wrap?.classList.remove('is-armed')
+
     const run = () => {
       if (cancelled) return
       split = safeSplitText(el, { type: 'chars', mask: 'chars', charsClass: 'footer-mark-char' })
       if (!split?.chars?.length) {
+        wrap?.classList.add('is-armed')
         showElement(el)
         return
       }
 
+      gsap.set(split.chars, { yPercent: 110 })
+      wrap?.classList.add('is-armed')
       showElement(el)
-      gsap.set(split.chars, { yPercent: 104 })
 
       const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
       tl.to(split.chars, {
         yPercent: 0,
         duration: 1.1,
         stagger: 0.045,
+        delay: 0.12,
       })
 
-      scrollTrigger = attachScrollReveal(tl, el, { start: 'top 94%' })
+      scrollTrigger = attachScrollReveal(tl, el, { start: 'top 92%' })
     }
 
     const cancelFonts = whenFontsReady(run)
@@ -46,6 +61,7 @@ export default function SiteFooter() {
       cancelFonts()
       scrollTrigger?.kill()
       split?.revert?.()
+      wrap?.classList.remove('is-armed')
       showElement(el)
     }
   }, [])
@@ -109,7 +125,7 @@ export default function SiteFooter() {
         </FadeUp>
       </div>
 
-      <div className="site-footer__mark" aria-hidden="true">
+      <div className="site-footer__mark" ref={markWrapRef} aria-hidden="true">
         <span ref={markRef}>RIPPLES</span>
       </div>
 

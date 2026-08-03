@@ -36,7 +36,7 @@
   z-index: 1;
   display: grid;
   place-items: center;
-  width: min(30rem, 86vw);
+  width: min(42rem, 90vw);
   text-align: center;
 }
 
@@ -51,12 +51,12 @@
 
 .home-hero__title {
   margin: 0;
-  max-width: 26ch;
+  max-width: 22ch;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 3.2vw, 2.2rem);
-  font-weight: 300;
-  line-height: 1.42;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.85rem, 5.2vw, 3.65rem);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
   color: #6d9ea8;
   text-shadow: 0 1px 28px rgba(0, 0, 0, 0.55);
 }
@@ -75,14 +75,14 @@
 }
 
 .home-hero__description {
-  margin: clamp(0.65rem, 1.6vw, 0.85rem) 0 0;
-  max-width: 38ch;
+  margin: clamp(1rem, 2vw, 1.35rem) 0 0;
+  max-width: 40ch;
   font-family: var(--font-body);
-  font-size: clamp(0.72rem, 1.05vw, 0.82rem);
+  font-size: clamp(1rem, 1.7vw, 1.28rem);
   font-weight: 300;
-  line-height: 1.72;
-  letter-spacing: 0.03em;
-  color: var(--color-text-muted);
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--color-text-soft);
   text-shadow: 0 1px 18px rgba(0, 0, 0, 0.45);
 }
 
@@ -121,13 +121,13 @@
   }
 
   .home-hero__stack {
-    width: min(28rem, 92vw);
+    width: min(36rem, 92vw);
   }
 
   .home-hero__title {
-    max-width: 24ch;
-    font-size: clamp(1rem, 3.8vw, 1.28rem);
-    line-height: 1.4;
+    max-width: 20ch;
+    font-size: clamp(1.55rem, 6vw, 2.4rem);
+    line-height: 1.2;
   }
 
   .home-hero__tagline {
@@ -136,9 +136,9 @@
   }
 
   .home-hero__description {
-    max-width: 34ch;
-    font-size: 0.74rem;
-    line-height: 1.65;
+    max-width: 36ch;
+    font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+    line-height: 1.55;
   }
 
   .home-hero__progress {
@@ -154,12 +154,12 @@
   }
 
   .home-hero__title {
-    font-size: clamp(0.98rem, 4.2vw, 1.15rem);
+    font-size: clamp(1.4rem, 7vw, 1.85rem);
   }
 
   .home-hero__description {
-    font-size: 0.72rem;
-    line-height: 1.62;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
   .home-hero__progress {

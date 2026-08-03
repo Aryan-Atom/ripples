@@ -56,14 +56,14 @@ export default function WorldwideShowcase() {
         if (!panel) return
 
         const tl = createRevealTimeline(panel, {
-          y: 36,
-          duration: 0.85,
+          y: 22,
+          duration: 0.45,
           ease: 'power2.out',
           clearProps: 'transform,opacity',
         })
         if (!tl) return
 
-        attachScrollReveal(tl, slide, { start: 'top 88%' })
+        attachScrollReveal(tl, slide)
       })
     }, wrapRef)
 

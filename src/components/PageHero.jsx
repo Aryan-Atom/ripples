@@ -53,7 +53,7 @@ export default function PageHero({ eyebrow, title, lead, children, className }) 
     <header className={"page-hero" + (className ? ` ${className}` : '')}>
       <div className="page-hero__inner r-container">
         {eyebrow && (
-          <FadeUp as="p" className="page-hero__eyebrow r-label" y={18} duration={0.9}>
+          <FadeUp as="p" className="page-hero__eyebrow r-label">
             {eyebrow}
           </FadeUp>
         )}

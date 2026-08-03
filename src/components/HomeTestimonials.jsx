@@ -8,7 +8,7 @@ export default function HomeTestimonials() {
     <section className="home-testimonials home-section" aria-label="Client testimonials">
       <div className="r-container">
         <header className="home-testimonials__head">
-          <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+          <FadeUp as="p" className="r-label">
             Testimonials
           </FadeUp>
           <SplitLines as="h2" className="r-display">

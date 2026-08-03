@@ -85,7 +85,7 @@ export default function CapabilityPage({ slug: slugProp }) {
         {isWaterHub && (
           <section className="capability-categories home-section" aria-label="Water feature categories">
             <div className="r-container">
-              <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+              <FadeUp as="p" className="r-label">
                 Categories
               </FadeUp>
               <FadeUp className="capability-more__list" stagger={0.06} y={22}>
@@ -109,7 +109,7 @@ export default function CapabilityPage({ slug: slugProp }) {
               id={section.id}
             >
               <div className="r-container">
-                <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+                <FadeUp as="p" className="r-label">
                   {section.label}
                 </FadeUp>
                 <FadeUp as="h2" className="r-display capability-section__title" y={24}>
@@ -136,7 +136,7 @@ export default function CapabilityPage({ slug: slugProp }) {
         {!isWaterHub && !isPrefab && page.gallery?.length > 0 && (
           <section className="capability-gallery home-section" aria-label={`${page.label} gallery`}>
             <div className="r-container">
-              <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+              <FadeUp as="p" className="r-label">
                 Selected work — {page.gallery.length} frames
               </FadeUp>
               <FadeUp className="capability-gallery__wrap" y={32} delay={0.08}>
@@ -149,7 +149,7 @@ export default function CapabilityPage({ slug: slugProp }) {
         {related.length > 0 && !isWaterHub && (
           <section className="capability-more home-section" aria-label="More capabilities">
             <div className="r-container">
-              <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+              <FadeUp as="p" className="r-label">
                 {isWaterCategory ? 'More water features' : 'Also explore'}
               </FadeUp>
               <FadeUp className="capability-more__list" stagger={0.06} y={22}>
@@ -167,7 +167,7 @@ export default function CapabilityPage({ slug: slugProp }) {
         {isWaterHub && (
           <section className="capability-more home-section" aria-label="More capabilities">
             <div className="r-container">
-              <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+              <FadeUp as="p" className="r-label">
                 Also explore
               </FadeUp>
               <FadeUp className="capability-more__list" stagger={0.06} y={22}>

@@ -18,7 +18,7 @@ export default function Worldwide() {
 
         <section className="worldwide-regions" aria-label="Regional presence">
           <div className="r-container">
-            <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+            <FadeUp as="p" className="r-label">
               Where the water moves
             </FadeUp>
             <SplitLines as="h2" className="r-display worldwide-regions__title">

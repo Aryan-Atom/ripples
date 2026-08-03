@@ -30,7 +30,7 @@ export default function Practice() {
 
         <section className="practice-values" aria-label="Values">
           <div className="r-container">
-            <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+            <FadeUp as="p" className="r-label">
               What we hold
             </FadeUp>
             <div className="practice-values__list">
@@ -64,7 +64,7 @@ export default function Practice() {
 
         <section className="practice-process" aria-label="Process">
           <div className="r-container">
-            <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+            <FadeUp as="p" className="r-label">
               How a show is made
             </FadeUp>
             <SplitLines as="h2" className="r-display practice-process__title">
@@ -88,7 +88,7 @@ export default function Practice() {
         <section className="practice-capabilities" aria-label="Capabilities">
           <div className="r-container practice-capabilities__inner">
             <div>
-              <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+              <FadeUp as="p" className="r-label">
                 Capabilities
               </FadeUp>
               <SplitLines as="h2" className="r-display">

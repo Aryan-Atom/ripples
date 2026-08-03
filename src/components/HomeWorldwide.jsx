@@ -8,7 +8,7 @@ export default function HomeWorldwide() {
   return (
     <section className="home-worldwide home-section" aria-label="Worldwide presence">
       <div className="r-container home-worldwide__head">
-        <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+        <FadeUp as="p" className="r-label">
           Worldwide
         </FadeUp>
         <SplitLines as="h2" className="r-display">
@@ -18,7 +18,7 @@ export default function HomeWorldwide() {
           Thirty countries, six continents, one workshop. Every system ships from our
           own factory floor and arrives with the team that built it.
         </FadeUp>
-        <FadeUp delay={0.25}>
+        <FadeUp delay={0.08}>
           <Link className="r-link" to="/worldwide">
             Explore the globe <span className="r-link__arrow" aria-hidden="true">
               &rarr;

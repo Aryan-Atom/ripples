@@ -997,6 +997,12 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Hidden until chars are masked below — prevents R/RIPPLES flash before motion */
+  visibility: hidden;
+}
+
+.site-footer__mark.is-armed span {
+  visibility: visible;
 }
 
 /* SplitText wraps each char — reapply the gradient per char so it survives the split */

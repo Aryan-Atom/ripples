@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef } from "react";
 import { useHeroScrollSubscribe } from "hero-video-anim";
 
 const PHASES = [
@@ -46,21 +46,24 @@ const PHASES = [
   },
 ];
 
-const FADE_EDGE = 0.12;
+/** Absolute progress width for crossfades — phases meet at 0.5, never both 0. */
+const FADE = 0.035;
 
 function phaseOpacity(progress, phase, index, total) {
-  const span = phase.end - phase.start;
-  if (span <= 0) return 0;
+  const { start, end } = phase;
+  const fadeInFrom = index === 0 ? start : start - FADE;
+  const fadeOutTo = index === total - 1 ? end : end + FADE;
 
-  const local = (progress - phase.start) / span;
-  if (local < 0 || local > 1) return 0;
+  if (progress < fadeInFrom || progress > fadeOutTo) return 0;
 
-  const isFirst = index === 0;
-  const isLast = index === total - 1;
-
-  if (!isFirst && local < FADE_EDGE) return local / FADE_EDGE;
-  if (!isLast && local > 1 - FADE_EDGE) return (1 - local) / FADE_EDGE;
-  return 1;
+  let opacity = 1;
+  if (index > 0 && progress < start + FADE) {
+    opacity = Math.min(opacity, (progress - (start - FADE)) / (2 * FADE));
+  }
+  if (index < total - 1 && progress > end - FADE) {
+    opacity = Math.min(opacity, (end + FADE - progress) / (2 * FADE));
+  }
+  return Math.max(0, Math.min(1, opacity));
 }
 
 export default function HeroCopy() {
@@ -79,6 +82,11 @@ export default function HeroCopy() {
 
   useHeroScrollSubscribe(updateSlides);
 
+  // First paint: show phase 0 immediately (CSS defaults slides to opacity 0).
+  useLayoutEffect(() => {
+    updateSlides(0);
+  }, [updateSlides]);
+
   return (
     <div className="home-hero">
       <div className="home-hero__backdrop" aria-hidden="true" />
@@ -90,6 +98,7 @@ export default function HeroCopy() {
               slideRefs.current[index] = node;
             }}
             className="home-hero__slide"
+            style={index === 0 ? { opacity: 1 } : undefined}
             aria-hidden={index !== 0}
           >
             <h1 className="home-hero__title">{phase.title}</h1>

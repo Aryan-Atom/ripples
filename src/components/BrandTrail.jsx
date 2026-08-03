@@ -9,7 +9,7 @@ export default function BrandTrail() {
     <section className="brand-trail home-section" aria-label="Trusted partners">
       <div className="brand-trail__head r-container">
         <div>
-          <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+          <FadeUp as="p" className="r-label">
             Backed by
           </FadeUp>
           <SplitLines as="h2" className="r-display">

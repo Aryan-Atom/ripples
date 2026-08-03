@@ -7,7 +7,7 @@ export default function HomeIntro() {
   return (
     <section className="home-intro home-section" aria-label="About Ripples">
       <div className="home-intro__inner r-container">
-        <FadeUp as="p" className="r-label" y={18} duration={0.9}>
+        <FadeUp as="p" className="r-label">
           Ripples Engineering — est. 1989
         </FadeUp>
 
@@ -25,7 +25,7 @@ export default function HomeIntro() {
 
           <div className="home-intro__stats">
             {HOME_STATS.map((stat) => (
-              <FadeUp className="home-intro__stat" key={stat.label} y={28} duration={0.9}>
+              <FadeUp className="home-intro__stat" key={stat.label} y={28}>
                 <StatCounter value={stat.value} className="home-intro__stat-value" />
                 <span className="home-intro__stat-label">{stat.label}</span>
               </FadeUp>

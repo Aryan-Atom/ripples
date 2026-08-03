@@ -29,7 +29,7 @@ export default function WorldwideHero() {
           <SplitLines as="h1" id="worldwide-hero-title" className="worldwide-hero__title">
             Experiences delivered <em>worldwide.</em>
           </SplitLines>
-          <FadeUp as="p" className="worldwide-hero__lead" delay={0.3}>
+          <FadeUp as="p" className="worldwide-hero__lead" delay={0.08}>
             Building iconic fountain experiences across continents — from civic
             plazas to landmark destinations worldwide.
           </FadeUp>

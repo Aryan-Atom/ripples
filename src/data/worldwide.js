@@ -49,6 +49,34 @@ export const WORLDWIDE_REGIONS = [
   },
 ]
 
+/** Scroll-driven event showcase — videos live in /public/events. */
+export const WORLDWIDE_EVENTS = [
+  {
+    index: '01',
+    title: 'Dubai Fountain District',
+    description:
+      'A landmark lake show engineered for desert heat — programmable arcs, chromatic lighting, and synchronized music across one of the Gulf\u2019s most visible waterfront destinations.',
+    video: '/events/Dubai.mp4',
+    align: 'right',
+  },
+  {
+    index: '02',
+    title: 'Guangzhou Civic Plaza',
+    description:
+      'An interactive water matrix for a growing Chinese metropolis — precision nozzles, dynamic patterns, and a basin designed for year-round public spectacle.',
+    video: '/events/Guangzhou.mp4',
+    align: 'left',
+  },
+  {
+    index: '03',
+    title: 'IAAPA Expo Showcase',
+    description:
+      'Live demonstration at the global attractions industry stage — Ripples engineering on display, from programmable choreography to field-ready control systems.',
+    video: '/events/IAAPA.mp4',
+    align: 'right',
+  },
+]
+
 export const WORLDWIDE_CITIES = [
   'New Delhi',
   'Dubai',

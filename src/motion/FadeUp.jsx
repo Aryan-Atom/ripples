@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from './gsap'
+import { attachScrollReveal, createRevealTimeline, REVEAL_START } from './scrollReveal'
 
 /** Generic scroll-in reveal: rise + fade, optionally staggering direct children. */
 export default function FadeUp({
@@ -10,7 +11,7 @@ export default function FadeUp({
   y = 44,
   duration = 1.1,
   stagger = 0,
-  start = 'top 88%',
+  start = REVEAL_START,
   ...rest
 }) {
   const ref = useRef(null)
@@ -20,20 +21,15 @@ export default function FadeUp({
     if (!el || prefersReducedMotion()) return undefined
 
     const targets = stagger > 0 ? Array.from(el.children) : el
-    const tween = gsap.from(targets, {
-      autoAlpha: 0,
-      y,
-      duration,
-      delay,
-      ease: 'power3.out',
-      stagger,
-      clearProps: 'transform,opacity,visibility',
-      scrollTrigger: { trigger: el, start, once: true },
-    })
+    const tl = createRevealTimeline(targets, { y, duration, stagger, delay })
+    if (!tl) return undefined
+
+    const scrollTrigger = attachScrollReveal(tl, el, { start })
 
     return () => {
-      tween.scrollTrigger?.kill()
-      tween.kill()
+      scrollTrigger?.kill()
+      tl.kill()
+      gsap.set(gsap.utils.toArray(targets), { clearProps: 'all' })
     }
   }, [delay, y, duration, stagger, start])
 

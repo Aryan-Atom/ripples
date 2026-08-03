@@ -1,41 +1,40 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Globe from 'react-globe.gl'
-import { WORLDWIDE_GEOJSON_URL, WORLDWIDE_PRESENCE } from '../data/worldwide'
+import * as THREE from 'three'
+import { WORLDWIDE_GEOJSON_URL } from '../data/worldwide'
 
-const MOBILE_QUERY = '(max-width: 768px)'
-const ACCENT_DIM = 'rgba(142, 184, 212, 0.45)'
-const GLOW_PAD = 1.08
+const MOBILE_QUERY = '(max-width: 960px)'
 
-const GPS_PIN_SVG = `
-  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
-    <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
-  </svg>
-`
+/** Dim — soft ice-white dots (active). */
+const LAND_DOT = 'rgba(142, 184, 212, 0.26)'
 
-function createGpsPin(label) {
-  const el = document.createElement('div')
-  el.className = 'worldwide-gps-pin'
-  el.innerHTML = GPS_PIN_SVG
-  el.title = label
-  return el
-}
+/** Bright — vivid cyan glow; swap with LAND_DOT above to enable. */
+// const LAND_DOT = 'rgba(168, 208, 232, 0.78)'
 
-export default function WorldwideGlobe() {
+const RENDERER_CONFIG = { alpha: true, antialias: true, powerPreference: 'high-performance' }
+
+export default function WorldwideGlobe({ variant = 'ambient' }) {
+  const isAmbient = variant === 'ambient'
   const containerRef = useRef(null)
   const globeRef = useRef(null)
-  const pinCacheRef = useRef(new Map())
   const [size, setSize] = useState({ width: 0, height: 0 })
   const [countries, setCountries] = useState([])
   const [isVisible, setIsVisible] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  const getHtmlElement = useCallback((d) => {
-    const key = d.label
-    if (!pinCacheRef.current.has(key)) {
-      pinCacheRef.current.set(key, createGpsPin(key))
-    }
-    return pinCacheRef.current.get(key)
-  }, [])
+  const globeMaterial = useMemo(
+    () =>
+      new THREE.MeshPhongMaterial({
+        color: '#0c1a28',
+        emissive: '#061018',
+        emissiveIntensity: 0.35,
+        specular: '#1a3044',
+        shininess: 18,
+        transparent: true,
+        opacity: isAmbient ? 0.55 : 0.85,
+      }),
+    [isAmbient],
+  )
 
   useEffect(() => {
     const media = window.matchMedia(MOBILE_QUERY)
@@ -56,7 +55,7 @@ export default function WorldwideGlobe() {
           observer.disconnect()
         }
       },
-      { rootMargin: '120px 0px' },
+      { rootMargin: '80px 0px' },
     )
 
     observer.observe(container)
@@ -91,57 +90,66 @@ export default function WorldwideGlobe() {
     return () => observer.disconnect()
   }, [])
 
+  const configureGlobe = useCallback(() => {
+    const globe = globeRef.current
+    if (!globe) return
+
+    const renderer = globe.renderer?.()
+    if (renderer) {
+      renderer.setClearColor(0x000000, 0)
+      renderer.domElement.style.background = 'transparent'
+    }
+
+    globe.pointOfView({ lat: 22, lng: -35, altitude: isAmbient ? 1.75 : 2.1 }, 0)
+
+    const controls = globe.controls()
+    if (controls) {
+      controls.autoRotate = true
+      controls.autoRotateSpeed = isAmbient ? (isMobile ? 0.12 : 0.18) : isMobile ? 0.35 : 0.5
+      controls.enableZoom = false
+      controls.enablePan = false
+      controls.enableRotate = !isAmbient && !isMobile
+    }
+  }, [isAmbient, isMobile])
+
   useEffect(() => {
     if (!globeRef.current || !isVisible) return undefined
-
-    const controls = globeRef.current.controls()
-    if (!controls) return undefined
-
-    controls.autoRotate = true
-    controls.autoRotateSpeed = isMobile ? 0.35 : 0.5
-    controls.enableZoom = false
-    controls.enablePan = false
-    controls.enableRotate = !isMobile
-
+    configureGlobe()
     return () => {
-      controls.autoRotate = false
+      const controls = globeRef.current?.controls()
+      if (controls) controls.autoRotate = false
     }
-  }, [isVisible, isMobile, size.width, size.height])
+  }, [isVisible, isMobile, size.width, size.height, configureGlobe])
 
-  const hexResolution = 3
-  const renderW = Math.round(size.width * GLOW_PAD)
-  const renderH = Math.round(size.height * GLOW_PAD)
+  const hexDotResolution = isAmbient ? (isMobile ? 8 : 10) : isMobile ? 6 : 7
 
   return (
-    <div ref={containerRef} className="worldwide-globe" aria-hidden="true">
+    <div ref={containerRef} className="worldwide-globe worldwide-globe--ambient" aria-hidden="true">
       {isVisible && size.width > 0 && size.height > 0 && (
         <div className="worldwide-globe__stage">
           <Globe
             ref={globeRef}
-            width={renderW}
-            height={renderH}
+            width={size.width}
+            height={size.height}
+            rendererConfig={RENDERER_CONFIG}
+            globeOffset={isAmbient ? [0.52, 0.32, 0] : [0, 0, 0]}
             backgroundColor="rgba(0,0,0,0)"
-            globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
-            bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
+            showGlobe
+            globeMaterial={globeMaterial}
             showAtmosphere
-            atmosphereColor="rgba(142, 184, 212, 0.28)"
-            atmosphereAltitude={0.14}
+            atmosphereColor="rgba(142, 184, 212, 0.08)"
+            atmosphereAltitude={0.12}
+            onGlobeReady={configureGlobe}
             hexPolygonsData={countries}
-            hexPolygonResolution={hexResolution}
-            hexPolygonMargin={0.18}
+            hexPolygonResolution={3}
+            hexPolygonMargin={isAmbient ? 0.22 : 0.18}
             hexPolygonUseDots
-            hexPolygonColor={() => ACCENT_DIM}
-            hexPolygonDotResolution={isMobile ? 6 : 7}
-            hexPolygonAltitude={0.002}
+            hexPolygonColor={() => LAND_DOT}
+            hexPolygonDotResolution={hexDotResolution}
+            hexPolygonAltitude={0.006}
             hexPolygonCurvatureResolution={4}
             hexPolygonsTransitionDuration={0}
-            htmlElementsData={WORLDWIDE_PRESENCE}
-            htmlLat="lat"
-            htmlLng="lng"
-            htmlAltitude={0.012}
-            htmlElement={getHtmlElement}
-            htmlTransitionDuration={400}
-            enablePointerInteraction={!isMobile}
+            enablePointerInteraction={false}
           />
         </div>
       )}

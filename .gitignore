@@ -2,3 +2,6 @@ node_modules
 dist
 .DS_Store
 *.local
+
+# Event showcase videos — add locally in public/events/ (too large for GitHub)
+public/events/*.mp4

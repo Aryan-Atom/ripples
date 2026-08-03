@@ -1,10 +1,11 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from './gsap'
 import { safeSplitText, showElement } from './safeSplitText'
+import { attachScrollReveal, REVEAL_START, whenFontsReady } from './scrollReveal'
 
 /**
  * Masked line-by-line text reveal (SplitText + ScrollTrigger).
- * Waits for fonts so line breaks are computed against the final metrics.
+ * Text stays visible until split is ready — no empty container flash.
  */
 export default function SplitLines({
   as: Tag = 'h2',
@@ -12,7 +13,7 @@ export default function SplitLines({
   className,
   delay = 0,
   stagger = 0.09,
-  start = 'top 85%',
+  start = REVEAL_START,
   ...rest
 }) {
   const ref = useRef(null)
@@ -22,11 +23,13 @@ export default function SplitLines({
     if (!el || prefersReducedMotion()) return undefined
 
     let split
-    let tween
+    let tl
+    let scrollTrigger
     let cancelled = false
 
     const run = () => {
       if (cancelled) return
+
       split = safeSplitText(el, { type: 'lines', mask: 'lines', linesClass: 'split-line' })
       if (!split?.lines?.length) {
         showElement(el)
@@ -34,27 +37,26 @@ export default function SplitLines({
       }
 
       showElement(el)
-      tween = gsap.from(split.lines, {
-        yPercent: 115,
+      gsap.set(split.lines, { yPercent: 115 })
+
+      tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
+      tl.to(split.lines, {
+        yPercent: 0,
         duration: 1.15,
-        ease: 'power4.out',
         stagger,
         delay,
-        scrollTrigger: { trigger: el, start, once: true },
       })
+
+      scrollTrigger = attachScrollReveal(tl, el, { start })
     }
 
-    gsap.set(el, { autoAlpha: 0 })
-    if (document.fonts?.ready) {
-      document.fonts.ready.then(run).catch(run)
-    } else {
-      run()
-    }
+    const cancelFonts = whenFontsReady(run)
 
     return () => {
       cancelled = true
-      tween?.scrollTrigger?.kill()
-      tween?.kill()
+      cancelFonts()
+      scrollTrigger?.kill()
+      tl?.kill()
       split?.revert?.()
       showElement(el)
     }

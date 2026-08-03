@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
 import { safeSplitText, showElement } from '../motion/safeSplitText'
+import { whenFontsReady } from '../motion/scrollReveal'
 import FadeUp from '../motion/FadeUp'
 
 /**
@@ -27,8 +28,9 @@ export default function PageHero({ eyebrow, title, lead, children }) {
       }
 
       showElement(el)
-      tween = gsap.from(split.chars, {
-        yPercent: 108,
+      gsap.set(split.chars, { yPercent: 108 })
+      tween = gsap.to(split.chars, {
+        yPercent: 0,
         duration: 1.2,
         ease: 'power4.out',
         stagger: { each: 0.02, from: 'start' },
@@ -36,15 +38,11 @@ export default function PageHero({ eyebrow, title, lead, children }) {
       })
     }
 
-    gsap.set(el, { autoAlpha: 0 })
-    if (document.fonts?.ready) {
-      document.fonts.ready.then(run).catch(run)
-    } else {
-      run()
-    }
+    const cancelFonts = whenFontsReady(run)
 
     return () => {
       cancelled = true
+      cancelFonts()
       tween?.kill()
       split?.revert?.()
       showElement(el)

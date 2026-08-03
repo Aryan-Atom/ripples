@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
-import { safeSplitText } from '../motion/safeSplitText'
+import { safeSplitText, showElement } from '../motion/safeSplitText'
+import { attachScrollReveal, whenFontsReady } from '../motion/scrollReveal'
 import { NAV_LINKS, SITE } from '../data/site'
 import FadeUp from '../motion/FadeUp'
 
@@ -13,33 +14,38 @@ export default function SiteFooter() {
     if (!el || prefersReducedMotion()) return undefined
 
     let split
-    let tween
+    let scrollTrigger
     let cancelled = false
 
     const run = () => {
       if (cancelled) return
       split = safeSplitText(el, { type: 'chars', mask: 'chars', charsClass: 'footer-mark-char' })
-      if (!split?.chars?.length) return
-      tween = gsap.from(split.chars, {
-        yPercent: 104,
+      if (!split?.chars?.length) {
+        showElement(el)
+        return
+      }
+
+      showElement(el)
+      gsap.set(split.chars, { yPercent: 104 })
+
+      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
+      tl.to(split.chars, {
+        yPercent: 0,
         duration: 1.1,
-        ease: 'power4.out',
         stagger: 0.045,
-        scrollTrigger: { trigger: el, start: 'top 94%', once: true },
       })
+
+      scrollTrigger = attachScrollReveal(tl, el, { start: 'top 94%' })
     }
 
-    if (document.fonts?.ready) {
-      document.fonts.ready.then(run).catch(run)
-    } else {
-      run()
-    }
+    const cancelFonts = whenFontsReady(run)
 
     return () => {
       cancelled = true
-      tween?.scrollTrigger?.kill()
-      tween?.kill()
+      cancelFonts()
+      scrollTrigger?.kill()
       split?.revert?.()
+      showElement(el)
     }
   }, [])
 

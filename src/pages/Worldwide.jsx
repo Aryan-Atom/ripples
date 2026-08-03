@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import SiteFooter from '../components/SiteFooter.jsx'
 import WorldwideHero from '../components/WorldwideHero.jsx'
+import WorldwideShowcase from '../components/WorldwideShowcase.jsx'
 import TextMarquee from '../components/TextMarquee.jsx'
 import { WORLDWIDE_REGIONS, WORLDWIDE_CITIES } from '../data/worldwide'
 import SplitLines from '../motion/SplitLines'
@@ -12,6 +13,7 @@ export default function Worldwide() {
       <div className="worldwide-page__atmosphere" aria-hidden="true" />
       <main className="worldwide-page__main">
         <WorldwideHero />
+        <WorldwideShowcase />
 
         <section className="worldwide-regions" aria-label="Regional presence">
           <div className="r-container">

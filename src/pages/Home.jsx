@@ -13,7 +13,14 @@ const FRAME_COUNT = 241
 export default function Home() {
   return (
     <div className="home-page">
-      <HeroVideoAnimation frames={{ frameCount: FRAME_COUNT }} showProgressBar={false}>
+      <HeroVideoAnimation
+        className="hva--split"
+        frames={{ frameCount: FRAME_COUNT }}
+        showProgressBar={false}
+        showVignette={false}
+        showHint={false}
+        scaleFrom={1}
+      >
         <HeroCopy />
       </HeroVideoAnimation>
 

@@ -11,17 +11,28 @@
   --color-bg: var(--color-seaside-black);
   --color-bg-mid: #071828;
   --color-bg-lift: #0c2240;
-  --color-text: var(--color-seaside-sand);
+  --color-text: #ffffff;
   --color-text-muted: var(--color-seaside-gray);
-  --color-text-soft: rgba(255, 227, 179, 0.82);
+  --color-text-soft: rgba(255, 255, 255, 0.85);
   --color-accent: var(--color-seaside-cyan);
   --color-accent-soft: rgba(83, 210, 219, 0.28);
   --color-accent-medium: var(--color-seaside-medium);
   --color-accent-deep: var(--color-seaside-deep);
+  /* Hero palette */
+  --color-hero-shadow: #0f243e;
+  --color-hero-surface: #1b3848;
+  --color-hero-mid: #244e68;
+  --color-hero-accent: #366a91;
+  --color-hero-muted: #52768d;
+  --color-hero-glass: #608ea8;
+  --color-hero-blue: #5eabcd;
+  --color-hero-blue-deep: #244e68;
+  --color-hero-glow: #9ee8ff;
+  --color-hero-glow-soft: rgba(158, 232, 255, 0.35);
   --color-glow: rgba(79, 143, 191, 0.1);
   --color-glow-deep: rgba(23, 78, 141, 0.14);
-  --color-border: rgba(255, 227, 179, 0.08);
-  --color-border-strong: rgba(255, 227, 179, 0.14);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
   --color-surface-border: rgba(83, 210, 219, 0.1);
   --color-on-accent: #071828;
 

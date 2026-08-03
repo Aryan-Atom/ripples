@@ -16,5 +16,13 @@ export default defineConfig({
     port: 5173,
     host: true,
     strictPort: false,
+    proxy: {
+      // Fallback if frontend uses relative /api (default fetches hit Render directly)
+      '/api': {
+        target: 'https://ripples-backend.onrender.com',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
 })

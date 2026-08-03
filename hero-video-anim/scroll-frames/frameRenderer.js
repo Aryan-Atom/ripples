@@ -28,8 +28,9 @@ export function createScrollFrameRenderer(canvas, getFrames, options = {}) {
 
   const resize = () => {
     dpr = Math.min(window.devicePixelRatio || 1, maxDpr)
-    displayW = window.innerWidth
-    displayH = window.innerHeight
+    const parent = canvas.parentElement
+    displayW = Math.max(1, parent?.clientWidth || window.innerWidth)
+    displayH = Math.max(1, parent?.clientHeight || window.innerHeight)
     canvas.width = Math.round(displayW * dpr)
     canvas.height = Math.round(displayH * dpr)
     canvas.style.width = `${displayW}px`

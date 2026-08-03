@@ -163,3 +163,53 @@
     transform: translateX(-50%) translateY(8px);
   }
 }
+
+/* Soft merge: full-bleed video with deep navy (#0F243E) wash from the left */
+.hva--split .hva-pin {
+  background: #0f243e;
+}
+
+.hva--split .hva-media {
+  inset: 0;
+  transform-origin: center center;
+  overflow: hidden;
+}
+
+.hva--split .hva-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #0f243e 0%,
+    #0f243e 16%,
+    rgba(15, 36, 62, 0.82) 32%,
+    rgba(15, 36, 62, 0.35) 48%,
+    transparent 68%
+  );
+}
+
+.hva--split .hva-canvas {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hva--split .hva-overlay {
+  display: flex;
+  align-items: stretch;
+}
+
+@media (max-width: 860px) {
+  .hva--split .hva-media::after {
+    background: linear-gradient(
+      to top,
+      #0f243e 0%,
+      rgba(15, 36, 62, 0.82) 35%,
+      rgba(15, 36, 62, 0.28) 60%,
+      transparent 85%
+    );
+  }
+}

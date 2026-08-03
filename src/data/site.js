@@ -26,7 +26,15 @@ export const NAV_LINKS = [
   { label: 'Worldwide', to: '/worldwide' },
   { label: 'Our Journey', to: '/our-journey' },
   { label: 'Client Login', to: '/client-login' },
-  { label: 'Contact', to: '/contact' },
+]
+
+export const NAV_CTA = { label: 'Contact', to: '/contact' }
+
+export const HERO_PILLARS = [
+  { title: 'Precision', subtitle: 'Engineered', icon: 'precision' },
+  { title: 'Creative', subtitle: 'Driven', icon: 'creative' },
+  { title: 'Timeless', subtitle: 'Execution', icon: 'timeless' },
+  { title: 'Worldwide', subtitle: 'Impact', icon: 'worldwide' },
 ]
 
 export const HOME_STATS = [

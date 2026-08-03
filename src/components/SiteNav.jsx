@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import gsap from 'gsap'
-import { NAV_LINKS, SITE } from '../data/site'
+import { NAV_CTA, NAV_LINKS, SITE } from '../data/site'
 
-const MOBILE_QUERY = '(max-width: 768px)'
+const MOBILE_QUERY = '(max-width: 900px)'
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(() =>
@@ -119,31 +119,37 @@ export default function SiteNav({ variant = 'solid' }) {
   }, [menuOpen, isMobile])
 
   const closeMenu = () => setMenuOpen(false)
+  const mobileLinks = [...NAV_LINKS, NAV_CTA]
 
   return (
     <header
       ref={headerRef}
       className={`site-nav site-nav--${variant}${menuOpen ? ' site-nav--open' : ''}${isMobile ? ' site-nav--mobile' : ''}`}
-      style={isHero ? { '--nav-items': NAV_LINKS.length } : undefined}
     >
       <div className={`site-nav__inner${isHero ? '' : ' r-container'}`}>
         <Link to="/" className="site-nav__logo" onClick={closeMenu}>
-          <img src="/assets/logo.png" alt="Ripples logo" className="site-nav__logo-icon" />
-          {SITE.name}
+          <img src="/assets/logo.png" alt="" className="site-nav__logo-icon" />
+          <span>{SITE.name}</span>
         </Link>
 
         {!isMobile && (
-          <nav className="site-nav__links" aria-label="Primary">
-            {NAV_LINKS.map(({ label, to }) => (
-              <NavLink
-                key={label}
-                to={to}
-                className={({ isActive }) => `site-nav__item${isActive ? ' is-active' : ''}`}
-              >
-                {label}
-              </NavLink>
-            ))}
-          </nav>
+          <>
+            <nav className="site-nav__links" aria-label="Primary">
+              {NAV_LINKS.map(({ label, to }) => (
+                <NavLink
+                  key={label}
+                  to={to}
+                  className={({ isActive }) => `site-nav__item${isActive ? ' is-active' : ''}`}
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </nav>
+            <Link to={NAV_CTA.to} className="site-nav__cta">
+              {NAV_CTA.label}
+              <span aria-hidden="true">→</span>
+            </Link>
+          </>
         )}
 
         {isMobile && (
@@ -177,7 +183,7 @@ export default function SiteNav({ variant = 'solid' }) {
             aria-hidden={!menuOpen}
           >
             <nav className="site-nav__mobile-links" aria-label="Mobile primary">
-              {NAV_LINKS.map(({ label, to }, index) => (
+              {mobileLinks.map(({ label, to }, index) => (
                 <NavLink
                   key={label}
                   to={to}

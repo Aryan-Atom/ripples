@@ -21,9 +21,11 @@ export const SITE = {
 }
 
 export const NAV_LINKS = [
-  { label: 'Creations', to: '/creations' },
+  { label: 'Multimedia', to: '/multimedia' },
   { label: 'Practice', to: '/practice' },
   { label: 'Worldwide', to: '/worldwide' },
+  { label: 'Our Journey', to: '/our-journey' },
+  { label: 'Client Login', to: '/client-login' },
   { label: 'Contact', to: '/contact' },
 ]
 

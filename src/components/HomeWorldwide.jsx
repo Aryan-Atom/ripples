@@ -12,7 +12,7 @@ export default function HomeWorldwide() {
           Worldwide
         </FadeUp>
         <SplitLines as="h2" className="r-display">
-          From Noida, <em>to the world.</em>
+          From India, <em>to the world.</em>
         </SplitLines>
         <FadeUp as="p" className="r-body home-worldwide__body" delay={0.15}>
           Thirty countries, six continents, one workshop. Every system ships from our

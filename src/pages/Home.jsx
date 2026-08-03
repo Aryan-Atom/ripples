@@ -25,8 +25,8 @@ export default function Home() {
           <HomeCreations />
           <HomeVideo />
           <HomeWorldwide />
-          <BrandTrail />
           <HomeCta />
+          <BrandTrail />
         </main>
 
         <SiteFooter />

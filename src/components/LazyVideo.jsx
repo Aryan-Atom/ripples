@@ -1,32 +1,113 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function LazyVideo({ className, src, ...props }) {
+const activePlayers = new Set()
+const DEFAULT_MAX_CONCURRENT = 0
+
+function tryPlay(video, maxConcurrent) {
+  if (!maxConcurrent) {
+    video.play().catch(() => {})
+    return
+  }
+
+  activePlayers.add(video)
+
+  if (activePlayers.size > maxConcurrent) {
+    const oldest = activePlayers.values().next().value
+    if (oldest && oldest !== video) {
+      activePlayers.delete(oldest)
+      oldest.pause()
+    }
+  }
+
+  video.play().catch(() => {})
+}
+
+function stopPlay(video) {
+  activePlayers.delete(video)
+  video.pause()
+}
+
+export default function LazyVideo({
+  className,
+  src,
+  autoPlay,
+  loadDelay = 0,
+  maxConcurrent = DEFAULT_MAX_CONCURRENT,
+  ...props
+}) {
   const videoRef = useRef(null)
   const [shouldLoad, setShouldLoad] = useState(false)
+  const isVisibleRef = useRef(false)
+  const loadTimerRef = useRef(null)
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return undefined
 
+    const syncPlayback = () => {
+      if (!video.src) return
+      if (isVisibleRef.current && autoPlay) {
+        tryPlay(video, maxConcurrent)
+      } else {
+        stopPlay(video)
+      }
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return
-        setShouldLoad(true)
-        observer.disconnect()
+        isVisibleRef.current = entry.isIntersecting && entry.intersectionRatio >= 0.15
+
+        if (isVisibleRef.current && !shouldLoad) {
+          if (loadDelay > 0) {
+            loadTimerRef.current = window.setTimeout(() => {
+              setShouldLoad(true)
+            }, loadDelay)
+          } else {
+            setShouldLoad(true)
+          }
+        }
+
+        if (!isVisibleRef.current && loadTimerRef.current) {
+          window.clearTimeout(loadTimerRef.current)
+          loadTimerRef.current = null
+        }
+
+        syncPlayback()
       },
-      { rootMargin: '240px 0px' },
+      { rootMargin: '32px 0px', threshold: [0, 0.15, 0.4] },
     )
 
     observer.observe(video)
-    return () => observer.disconnect()
-  }, [])
+    return () => {
+      observer.disconnect()
+      if (loadTimerRef.current) window.clearTimeout(loadTimerRef.current)
+      stopPlay(video)
+    }
+  }, [autoPlay, loadDelay, maxConcurrent, shouldLoad])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !shouldLoad || !src) return undefined
+
+    const handleReady = () => {
+      if (isVisibleRef.current && autoPlay) {
+        tryPlay(video, maxConcurrent)
+      }
+    }
+
+    video.addEventListener('loadeddata', handleReady)
+    if (video.readyState >= 2) handleReady()
+
+    return () => video.removeEventListener('loadeddata', handleReady)
+  }, [shouldLoad, src, autoPlay, maxConcurrent])
 
   return (
     <video
       ref={videoRef}
       className={className}
       src={shouldLoad ? src : undefined}
-      preload={shouldLoad ? 'metadata' : 'none'}
+      preload={shouldLoad ? 'auto' : 'none'}
+      autoPlay={false}
       {...props}
     />
   )

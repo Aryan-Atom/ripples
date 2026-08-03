@@ -23,14 +23,14 @@ export default function HomeIntro() {
             imagines is the show it gets, for decades.
           </FadeUp>
 
-          <FadeUp className="home-intro__stats" stagger={0.09} delay={0.1}>
+          <div className="home-intro__stats">
             {HOME_STATS.map((stat) => (
-              <div className="home-intro__stat" key={stat.label}>
+              <FadeUp className="home-intro__stat" key={stat.label} y={28} duration={0.9}>
                 <StatCounter value={stat.value} className="home-intro__stat-value" />
                 <span className="home-intro__stat-label">{stat.label}</span>
-              </div>
+              </FadeUp>
             ))}
-          </FadeUp>
+          </div>
         </div>
       </div>
     </section>

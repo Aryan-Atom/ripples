@@ -8,7 +8,7 @@ import FadeUp from '../motion/FadeUp'
  * Interior page opener: eyebrow, mega title (char reveal), optional lead.
  * `title` accepts JSX so accent words can be wrapped in <em>.
  */
-export default function PageHero({ eyebrow, title, lead, children }) {
+export default function PageHero({ eyebrow, title, lead, children, className }) {
   const titleRef = useRef(null)
 
   useLayoutEffect(() => {
@@ -50,7 +50,7 @@ export default function PageHero({ eyebrow, title, lead, children }) {
   }, [])
 
   return (
-    <header className="page-hero">
+    <header className={"page-hero" + (className ? ` ${className}` : '')}>
       <div className="page-hero__inner r-container">
         {eyebrow && (
           <FadeUp as="p" className="page-hero__eyebrow r-label" y={18} duration={0.9}>

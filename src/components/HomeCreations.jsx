@@ -18,8 +18,8 @@ export default function HomeCreations() {
             </SplitLines>
           </div>
           <FadeUp delay={0.2}>
-            <Link className="r-link" to="/creations">
-              All creations <span className="r-link__arrow" aria-hidden="true">&rarr;</span>
+              <Link className="r-link" to="/multimedia">
+                All multimedia <span className="r-link__arrow" aria-hidden="true">&rarr;</span>
             </Link>
           </FadeUp>
         </header>

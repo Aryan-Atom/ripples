@@ -18,6 +18,7 @@ export default function Practice() {
       <div className="interior-page__atmosphere" aria-hidden="true" />
       <main className="interior-page__main">
         <PageHero
+          className="page-hero--practice"
           eyebrow="The practice — est. 1989"
           title={
             <>

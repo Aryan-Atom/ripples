@@ -10,6 +10,8 @@ export default function ScrollToTop() {
   useLayoutEffect(() => {
     disableBrowserScrollRestoration()
     resetScroll()
+    // Nav stays mounted across routes — clear leftover drag-selection highlights
+    window.getSelection()?.removeAllRanges()
 
     requestAnimationFrame(() => {
       resetScroll()

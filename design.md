@@ -31,7 +31,7 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 - **One canvas.** The page is a single deep wash that shifts subtly top → bottom. Sections are spacing + type only, never boxed slabs.
 - **Hero first.** The scroll animation carries emotion; below it, quieter support.
 - **One idea per section.** Intro = who we are. Trail = who trusts us. Footer = reach us.
-- **Brand visible.** “Ripples” in the nav is a hero-level signal; ice-blue labels never overpower display type.
+- **Brand visible.** “Ripples” in the nav is a hero-level signal; cyan labels never overpower display type.
 - **Restraint.** No cards, pills, floating badges, purple glows, or newspaper rules.
 - **Shared horizontal rhythm.** Text uses `.r-container` + `--space-page-x`.
 
@@ -39,20 +39,33 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 
 ## Color & atmosphere
 
+**Palette: Sea Side**
+
+| Swatch | Hex | Token |
+|---|---|---|
+| Deep blue | `#174e8d` | `--color-seaside-deep` |
+| Medium blue | `#4f8fbf` | `--color-seaside-medium` |
+| Cyan (muted) | `#6d9ea8` | `--color-seaside-cyan` |
+| Sand | `#ffe3b3` | `--color-seaside-sand` |
+| Black | `#000000` | `--color-seaside-black` |
+| Gray | `#b4b4b4` | `--color-seaside-gray` |
+
 | Token | Value | Role |
 |---|---|---|
-| `--color-bg` | `#000000` | Matches hero end-frame black |
-| `--color-bg-mid` | `#060b12` | Cool blue-ink mid |
-| `--color-bg-lift` | `#0b1520` | Soft blue lift |
-| `--color-text` | `#f3efe6` | Primary type |
-| `--color-text-soft` | `rgba(243,239,230,0.78)` | Nav |
-| `--color-text-muted` | `rgba(243,239,230,0.52)` | Body / captions |
-| `--color-accent` | `#8eb8d4` | Labels, section headers, active hero dots |
-| `--color-accent-soft` | `rgba(142,184,212,0.32)` | Soft accent borders / hover washes |
-| `--color-glow` | `rgba(70,130,180,0.08)` | Soft blue depth mid-page |
-| `--page-gradient` | black → blue-ink → black | Full post-hero wash |
+| `--color-bg` | `#000000` | Page / hero base |
+| `--color-bg-mid` | `#071828` | Deep blue-ink mid |
+| `--color-bg-lift` | `#0c2240` | Lifted blue panel |
+| `--color-text` | `#ffe3b3` | Primary type (sand) |
+| `--color-text-soft` | `rgba(255,227,179,0.82)` | Nav, lead copy |
+| `--color-text-muted` | `#b4b4b4` | Body / captions |
+| `--color-accent` | `#6d9ea8` | Labels, links, emphasis (muted teal) |
+| `--color-accent-soft` | `rgba(109,158,168,0.28)` | Borders / hover washes |
+| `--color-accent-medium` | `#4f8fbf` | Secondary blue accent |
+| `--color-accent-deep` | `#174e8d` | Depth / gradient lift |
+| `--color-glow` | `rgba(79,143,191,0.1)` | Atmospheric radial glow |
+| `--page-gradient` | black → deep blue → black | Full post-hero wash |
 
-**Accent rule:** Ice blue (`--color-accent`) is for **labels and interaction only** — never large fills. It sits in the same cool family as the page gradient (no gold).
+**Accent rule:** Muted teal (`--color-accent` / `#6d9ea8`) is for **labels and interaction only** — never large fills, never neon/shiny cyan. Keep it dull enough to sit quietly on black next to sand type.
 
 ### Page shell
 
@@ -69,20 +82,23 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 
 - `.home-page__below` applies `--page-gradient`.
 - Gradient **starts and holds pure `#000`** so it locks to the hero’s last black frame.
-- Mid-page lift is **cool blue**, not warm/orange.
+- Mid-page lift is **Sea Side deep blue**, not warm/orange.
 - Atmosphere keeps the top edge black; blue glow sits mid/lower only.
 - Brand trail and footer stay transparent.
 
-**Accent rule:** Ice blue is for labels and interaction only — never large fills.
+**Accent rule:** Muted teal is for labels and interaction only — never large fills.
 
 ---
 
 ## Typography
 
-| Role | Font | Where |
-|---|---|---|
-| Display | Poppins | `.r-display`, `.home-hero__title`, logo |
-| Body / UI | Poppins | `.r-body`, nav, footer, taglines |
+| Role | Font | Weight | Where |
+|---|---|---|---|
+| Display / headings | Archivo | 300 | `.r-display`, hero titles, stats |
+| Body / UI | Archivo | 300–500 | `.r-body`, nav, footer, labels |
+| Emphasis / italic | Instrument Serif | 400 italic | `<em>` in display headings |
+
+Fonts loaded via `@fontsource` in `src/main.jsx`.
 
 ### Scale
 
@@ -104,9 +120,9 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 <span class="r-stat">36+</span>
 ```
 
-- Labels: uppercase, wide tracking, accent ice blue.
-- Display italics: second line in `<em>` — muted, quieter than the main line.
-- Hero titles: 2–4 words. Taglines: one line. No eyebrows.
+- Labels: uppercase, wide tracking, muted teal accent.
+- Display emphasis in `<em>`: Instrument Serif italic, accent color.
+- Hero titles: light Archivo. Body: Archivo regular/light.
 
 ---
 
@@ -115,7 +131,7 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 | Token | Use |
 |---|---|
 | `--space-page-x` | Horizontal padding |
-| `--space-section-y` | Vertical section padding (generous) |
+| `--space-section-y` | Vertical section padding — same on every major section (`clamp(3.75rem, 7.5vw, 6rem)`) |
 | `--space-block` | Trail head → marquee gap |
 | `--max-width` | `76rem` |
 
@@ -168,8 +184,8 @@ Hero bottom scrim should ease into the page gradient (darken toward ink), not a 
 - Component: `HomeCta`
 - One full-width interactive card (no image / no dual layout)
 - Soft blue radial lift on a dark panel — inspired by [GRU Space](https://www.gru.space/)
-- Label + display headline (ice-blue italic emphasis) + supporting copy + mailto button
-- Button: high-contrast cream fill, soft radius
+- Label + display headline (Instrument Serif italic emphasis) + supporting copy + mailto button
+- Button: sand fill (`--color-seaside-sand`), dark text
 
 ### 5. Footer
 

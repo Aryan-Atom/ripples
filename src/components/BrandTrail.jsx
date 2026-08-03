@@ -1,4 +1,6 @@
 import { BRAND_LOGOS } from "../data/brands";
+import SplitLines from "../motion/SplitLines";
+import FadeUp from "../motion/FadeUp";
 
 export default function BrandTrail() {
   const items = [...BRAND_LOGOS, ...BRAND_LOGOS];
@@ -7,12 +9,12 @@ export default function BrandTrail() {
     <section className="brand-trail home-section" aria-label="Trusted partners">
       <div className="brand-trail__head r-container">
         <div>
-          <span className="r-label">Backed by</span>
-          <h2 className="r-display">
-            Institutions &amp; brands
-            <br />
-            <em>that demand excellence</em>
-          </h2>
+          <FadeUp as="p" className="r-label">
+            Backed by
+          </FadeUp>
+          <SplitLines as="h2" className="r-display">
+            Institutions &amp; brands <em>that demand excellence</em>
+          </SplitLines>
         </div>
       </div>
 

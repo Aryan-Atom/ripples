@@ -1,11 +1,12 @@
-import { SITE } from '../data/site'
+import { Link } from 'react-router-dom'
 import LazyVideo from './LazyVideo.jsx'
+import FadeUp from '../motion/FadeUp'
 
 export default function HomeCta() {
   return (
     <section className="home-cta home-section" aria-label="Get in touch">
       <div className="r-container">
-        <div className="cta-row">
+        <FadeUp className="cta-row" y={50}>
           <article className="cta-card">
             <div className="cta-card__body">
               <span className="r-label">Start a project</span>
@@ -23,10 +24,10 @@ export default function HomeCta() {
                 Tell us about the site, the scale, and the feeling you want water
                 to create. We&rsquo;ll take it from there.
               </p>
-              <a className="cta-card__btn" href={`mailto:${SITE.email.work}`}>
+              <Link className="cta-card__btn" to="/contact">
                 Begin the conversation
                 <span aria-hidden="true">&rarr;</span>
-              </a>
+              </Link>
             </div>
           </article>
 
@@ -42,7 +43,7 @@ export default function HomeCta() {
               />
             </div>
           </div>
-        </div>
+        </FadeUp>
       </div>
     </section>
   )

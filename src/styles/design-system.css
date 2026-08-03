@@ -1,34 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
-
 :root {
-  /* Color — black hero seam, cool blue depth mid-page */
-  --color-bg: #000000;
-  --color-bg-mid: #060b12;
-  --color-bg-lift: #0b1520;
-  --color-text: #f3efe6;
-  --color-text-muted: rgba(243, 239, 230, 0.52);
-  --color-text-soft: rgba(243, 239, 230, 0.78);
-  --color-accent: #8eb8d4;
-  --color-accent-soft: rgba(142, 184, 212, 0.32);
-  --color-glow: rgba(70, 130, 180, 0.08);
-  --color-border: rgba(243, 239, 230, 0.08);
-  --color-border-strong: rgba(243, 239, 230, 0.14);
+  /* Sea Side palette */
+  --color-seaside-deep: #174e8d;
+  --color-seaside-medium: #4f8fbf;
+  --color-seaside-cyan: #6d9ea8;
+  --color-seaside-sand: #ffffff;
+  --color-seaside-black: #000000;
+  --color-seaside-gray: #b4b4b4;
 
-  /* Pure black at the top (hero end frame), then soft blue lift */
+  /* Semantic color */
+  --color-bg: var(--color-seaside-black);
+  --color-bg-mid: #071828;
+  --color-bg-lift: #0c2240;
+  --color-text: #ffffff;
+  --color-text-muted: var(--color-seaside-gray);
+  --color-text-soft: rgba(255, 255, 255, 0.82);
+  --color-accent: var(--color-seaside-cyan);
+  --color-accent-soft: rgba(109, 158, 168, 0.28);
+  --color-accent-medium: var(--color-seaside-medium);
+  --color-accent-deep: var(--color-seaside-deep);
+  --color-glow: rgba(79, 143, 191, 0.1);
+  --color-glow-deep: rgba(23, 78, 141, 0.14);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+  --color-surface-border: rgba(109, 158, 168, 0.12);
+  --color-on-accent: #071828;
+
   --page-gradient: linear-gradient(
     180deg,
     #000000 0%,
-    #000000 12%,
-    #04080e 28%,
-    #08121c 48%,
-    #0c1824 62%,
-    #070e16 78%,
+    #000000 10%,
+    #061220 26%,
+    #0a1e38 44%,
+    #102848 58%,
+    #081828 76%,
     #000000 100%
   );
 
-  /* Typography */
-  --font-display: 'Poppins', system-ui, sans-serif;
-  --font-body: 'Poppins', system-ui, sans-serif;
+  /* Typography — UI_mod */
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
 
   --text-xs: clamp(0.62rem, 0.9vw, 0.72rem);
   --text-sm: clamp(0.78rem, 1.1vw, 0.88rem);
@@ -38,10 +49,12 @@
   --text-2xl: clamp(2rem, 4vw, 3rem);
   --text-3xl: clamp(2.75rem, 6.2vw, 4.75rem);
   --text-hero: clamp(3rem, 8vw, 6.5rem);
+  --text-mega: clamp(3.25rem, 11vw, 9.5rem);
 
   /* Spacing */
   --space-page-x: clamp(1.5rem, 5vw, 4.5rem);
-  --space-section-y: clamp(5.5rem, 11vw, 9rem);
+  /* Shared rhythm between every major section (top + bottom padding) */
+  --space-section-y: clamp(3.75rem, 7.5vw, 6rem);
   --space-block: clamp(2.25rem, 4.5vw, 3.75rem);
   --max-width: 76rem;
 
@@ -88,10 +101,75 @@
   letter-spacing: -0.025em;
 }
 
-.r-display em {
+.r-display em,
+.r-serif {
+  font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 300;
-  color: var(--color-text-muted);
+  font-weight: 400;
+  font-size: 1.05em;
+  letter-spacing: -0.01em;
+  color: var(--color-accent);
+}
+
+/* SplitText line masks (mask: 'lines') — parent clips, child rises. */
+.split-line-mask {
+  display: block;
+  overflow: clip;
+}
+
+.split-line {
+  display: block;
+  padding-bottom: 0.35em;
+  margin-bottom: 0;
+  line-height: inherit;
+}
+
+/* GSAP SplitText default wrappers for words/chars — ensure they don't clip descenders */
+.split-word,
+.split-words,
+.split-char,
+.split-chars {
+  display: inline-block;
+  line-height: inherit;
+  padding-bottom: 0.25em;
+  margin-bottom: 0;
+  overflow: visible;
+  vertical-align: baseline;
+}
+
+/* PageHero-specific split masks need a touch more room */
+.page-hero__title .split-word,
+.page-hero__title .split-char,
+.page-hero__title .split-words,
+.page-hero__title .split-chars {
+  padding-bottom: 0.6em;
+  display: inline-block;
+  margin-bottom: 0;
+  overflow: visible;
+}
+
+/* Nudge the split masks slightly upward so descenders (g, y) sit clear of
+   the container edge. This affects PageHero titles and the Practice process
+   title below to keep visual alignment consistent. */
+.page-hero__title .split-word,
+.page-hero__title .split-char,
+.practice-process__title .split-word,
+.practice-process__title .split-char {
+  transform: translateY(-0.4em);
+  will-change: transform;
+}
+
+/* Larger display breakpoints may need slightly more room for descenders */
+@media (min-width: 900px) {
+  .split-line {
+    padding-bottom: 0.6em;
+    margin-bottom: 0;
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
 }
 
 .r-lead {

@@ -20,12 +20,14 @@ export const SITE = {
   ],
 }
 
-/** Labels only for now — routes land when those pages are built. */
 export const NAV_LINKS = [
-  { label: 'Creations' },
-  { label: 'Practice' },
-  { label: 'Worldwide' },
-  { label: 'Contact' },
+  { label: 'Multimedia', to: '/multimedia' },
+  { label: 'Practice', to: '/practice' },
+  { label: 'Worldwide', to: '/worldwide' },
+  { label: 'Our Journey', to: '/our-journey' },
+  { label: 'Press', to: '/press' },
+  { label: 'Client Login', to: '/client-login' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export const HOME_STATS = [

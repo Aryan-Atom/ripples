@@ -1,0 +1,24 @@
+import { useEffect, useState } from 'react'
+
+function detectWebGL() {
+  try {
+    const canvas = document.createElement('canvas')
+    return !!(
+      canvas.getContext('webgl2') ||
+      canvas.getContext('webgl') ||
+      canvas.getContext('experimental-webgl')
+    )
+  } catch {
+    return false
+  }
+}
+
+export function useWebGLSupport() {
+  const [supported, setSupported] = useState(true)
+
+  useEffect(() => {
+    setSupported(detectWebGL())
+  }, [])
+
+  return supported
+}

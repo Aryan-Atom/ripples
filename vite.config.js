@@ -12,4 +12,9 @@ export default defineConfig({
       'hero-video-anim': path.resolve(__dirname, 'hero-video-anim'),
     },
   },
+  server: {
+    port: 5173,
+    host: true,
+    strictPort: false,
+  },
 })

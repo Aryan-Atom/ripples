@@ -1,6 +1,10 @@
 @import './styles/design-system.css';
 @import './styles/components.css';
 @import './styles/hero.css';
+@import './styles/worldwide.css';
+@import './styles/pages.css';
+@import './styles/press.css';
+@import './styles/capabilities.css';
 
 *,
 *::before,
@@ -22,7 +26,7 @@ html {
 body {
   margin: 0;
   background: var(--color-bg, #000000);
-  color: var(--color-text, #f3efe6);
+  color: var(--color-text, #ffffff);
   font-family: var(--font-body);
 }
 

@@ -10,8 +10,6 @@ import FadeUp from '../motion/FadeUp'
 import PressFilters from '../components/press/PressFilters'
 import PressGrid from '../components/press/PressGrid'
 import PressLightbox from '../components/press/PressLightbox'
-import PressLogoStrip from '../components/press/PressLogoStrip'
-
 /** Full press gallery with filters and lightbox — scans from legacy press archive. */
 export default function Press() {
   const [publicationFilter, setPublicationFilter] = useState('all')
@@ -70,10 +68,6 @@ export default function Press() {
         <section className="press-page" aria-label="Press clippings">
           <div className="r-container">
             <FadeUp>
-              <PressLogoStrip />
-            </FadeUp>
-
-            <FadeUp delay={0.1}>
               <PressFilters
                 publications={PRESS_PUBLICATIONS}
                 years={PRESS_YEARS}

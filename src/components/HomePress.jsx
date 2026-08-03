@@ -1,30 +1,12 @@
-import { useCallback, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FEATURED_PRESS } from '../data/press'
+import { PRESS_LOGOS } from '../data/press'
 import FadeUp from '../motion/FadeUp'
 import SplitLines from '../motion/SplitLines'
-import PressGrid from './press/PressGrid'
-import PressLightbox from './press/PressLightbox'
-import PressLogoStrip from './press/PressLogoStrip'
 
-/** Homepage “In the News” teaser — featured clippings + link to full gallery. */
+/** Homepage “Featured in” — publication names only; full clippings live on /press. */
 export default function HomePress() {
-  const [activeIndex, setActiveIndex] = useState(null)
-
-  const openClipping = useCallback((clipping) => {
-    const index = FEATURED_PRESS.findIndex((item) => item.id === clipping.id)
-    setActiveIndex(index >= 0 ? index : 0)
-  }, [])
-
-  const navigate = useCallback((delta) => {
-    setActiveIndex((current) => {
-      if (current == null || !FEATURED_PRESS.length) return current
-      return (current + delta + FEATURED_PRESS.length) % FEATURED_PRESS.length
-    })
-  }, [])
-
   return (
-    <section className="home-press home-section" aria-label="In the news">
+    <section className="home-press home-section" aria-label="Featured in">
       <div className="r-container">
         <header className="home-press__head">
           <div>
@@ -32,11 +14,10 @@ export default function HomePress() {
               Press &amp; media
             </FadeUp>
             <SplitLines as="h2" className="r-display">
-              In the <em>news.</em>
+              Featured <em>in.</em>
             </SplitLines>
             <FadeUp as="p" className="r-body home-press__lead" delay={0.15}>
-              Coverage of the systems, shows, and craft behind Ripples — from national dailies
-              to regional press.
+              National and regional coverage of Ripples systems, shows, and craft.
             </FadeUp>
           </div>
           <FadeUp delay={0.2}>
@@ -48,27 +29,14 @@ export default function HomePress() {
           </FadeUp>
         </header>
 
-        <FadeUp className="home-press__logos" delay={0.1}>
-          <PressLogoStrip />
-        </FadeUp>
-
-        <FadeUp delay={0.15}>
-          <PressGrid items={FEATURED_PRESS} onOpen={openClipping} />
-        </FadeUp>
-
-        <FadeUp className="home-press__footer" delay={0.2}>
-          <Link className="press-all-btn" to="/press">
-            View all coverage <span aria-hidden="true">→</span>
-          </Link>
+        <FadeUp as="ul" className="home-press__featured" stagger={0.06} delay={0.1} aria-label="Publications">
+          {PRESS_LOGOS.map((logo) => (
+            <li className="home-press__featured-item" key={logo.publicationId}>
+              {logo.alt}
+            </li>
+          ))}
         </FadeUp>
       </div>
-
-      <PressLightbox
-        items={FEATURED_PRESS}
-        index={activeIndex}
-        onClose={() => setActiveIndex(null)}
-        onNavigate={navigate}
-      />
     </section>
   )
 }

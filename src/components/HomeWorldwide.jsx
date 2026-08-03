@@ -20,7 +20,9 @@ export default function HomeWorldwide() {
         </FadeUp>
         <FadeUp delay={0.25}>
           <Link className="r-link" to="/worldwide">
-            Explore the globe <span className="r-link__arrow" aria-hidden="true">&rarr;</span>
+            Explore the globe <span className="r-link__arrow" aria-hidden="true">
+              &rarr;
+            </span>
           </Link>
         </FadeUp>
       </div>

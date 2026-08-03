@@ -6,6 +6,8 @@ import HomeIntro from '../components/HomeIntro.jsx'
 import HomeCreations from '../components/HomeCreations.jsx'
 import HomeVideo from '../components/HomeVideo.jsx'
 import HomeWorldwide from '../components/HomeWorldwide.jsx'
+import HomePress from '../components/HomePress.jsx'
+import HomeTestimonials from '../components/HomeTestimonials.jsx'
 import HomeCta from '../components/HomeCta.jsx'
 
 const FRAME_COUNT = 241
@@ -25,6 +27,8 @@ export default function Home() {
           <HomeCreations />
           <HomeVideo />
           <HomeWorldwide />
+          <HomeTestimonials />
+          <HomePress />
           <HomeCta />
           <BrandTrail />
         </main>

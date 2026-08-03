@@ -3,7 +3,7 @@
   --color-seaside-deep: #174e8d;
   --color-seaside-medium: #4f8fbf;
   --color-seaside-cyan: #6d9ea8;
-  --color-seaside-sand: #ffe3b3;
+  --color-seaside-sand: #ffffff;
   --color-seaside-black: #000000;
   --color-seaside-gray: #b4b4b4;
 
@@ -11,17 +11,17 @@
   --color-bg: var(--color-seaside-black);
   --color-bg-mid: #071828;
   --color-bg-lift: #0c2240;
-  --color-text: var(--color-seaside-sand);
+  --color-text: #ffffff;
   --color-text-muted: var(--color-seaside-gray);
-  --color-text-soft: rgba(255, 227, 179, 0.82);
+  --color-text-soft: rgba(255, 255, 255, 0.82);
   --color-accent: var(--color-seaside-cyan);
   --color-accent-soft: rgba(109, 158, 168, 0.28);
   --color-accent-medium: var(--color-seaside-medium);
   --color-accent-deep: var(--color-seaside-deep);
   --color-glow: rgba(79, 143, 191, 0.1);
   --color-glow-deep: rgba(23, 78, 141, 0.14);
-  --color-border: rgba(255, 227, 179, 0.08);
-  --color-border-strong: rgba(255, 227, 179, 0.14);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
   --color-surface-border: rgba(109, 158, 168, 0.12);
   --color-on-accent: #071828;
 
@@ -111,19 +111,17 @@
   color: var(--color-accent);
 }
 
-/* SplitText line mask fix: allow a small padding to accommodate glyph descenders
-   without altering visual line rhythm. This keeps the GSAP "mask: lines"
-   animation intact while preventing characters like 'g' and 'y' from being
-   clipped at the bottom. */
+/* SplitText line masks (mask: 'lines') — parent clips, child rises. */
+.split-line-mask {
+  display: block;
+  overflow: clip;
+}
+
 .split-line {
   display: block;
-  /* small padding to give extra mask room for descenders */
-  padding-bottom: 0.45em;
-  /* do not use negative margin — keep layout stable and avoid clipping */
+  padding-bottom: 0.35em;
   margin-bottom: 0;
   line-height: inherit;
-  /* Allow descenders to be visible; GSAP masks will still animate lines. */
-  overflow: visible;
 }
 
 /* GSAP SplitText default wrappers for words/chars — ensure they don't clip descenders */

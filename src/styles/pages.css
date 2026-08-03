@@ -329,6 +329,74 @@
   margin-top: clamp(3rem, 6vw, 5rem);
 }
 
+/* Home — testimonials */
+
+.home-testimonials__head {
+  max-width: 40rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.home-testimonials__lead {
+  margin: 1.15rem 0 0;
+  max-width: 32rem;
+}
+
+.home-testimonials__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 52rem;
+}
+
+.home-testimonial {
+  margin: 0;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.home-testimonial:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.home-testimonial__quote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+  font-weight: 300;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+}
+
+.home-testimonial__quote::before {
+  content: '“';
+  color: var(--color-accent);
+  margin-right: 0.08em;
+}
+
+.home-testimonial__byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.home-testimonial__org {
+  font-style: normal;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+}
+
+.home-testimonial__place {
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
 /* Text marquee */
 
 .text-marquee {
@@ -877,7 +945,7 @@
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
   gap: clamp(2rem, 4vw, 3rem);
 }
 
@@ -925,7 +993,7 @@
   letter-spacing: 0.01em;
   line-height: 0.8;
   transform: translateY(0.08em);
-  background: linear-gradient(180deg, rgba(255, 227, 179, 0.85) 0%, var(--color-accent-soft) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, var(--color-accent-soft) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -933,7 +1001,7 @@
 
 /* SplitText wraps each char — reapply the gradient per char so it survives the split */
 .site-footer__mark .footer-mark-char {
-  background: linear-gradient(180deg, rgba(255, 227, 179, 0.85) 0%, var(--color-accent-soft) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, var(--color-accent-soft) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

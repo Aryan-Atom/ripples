@@ -25,6 +25,7 @@ export const NAV_LINKS = [
   { label: 'Practice', to: '/practice' },
   { label: 'Worldwide', to: '/worldwide' },
   { label: 'Our Journey', to: '/our-journey' },
+  { label: 'Press', to: '/press' },
   { label: 'Client Login', to: '/client-login' },
   { label: 'Contact', to: '/contact' },
 ]

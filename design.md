@@ -46,7 +46,7 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 | Deep blue | `#174e8d` | `--color-seaside-deep` |
 | Medium blue | `#4f8fbf` | `--color-seaside-medium` |
 | Cyan (muted) | `#6d9ea8` | `--color-seaside-cyan` |
-| Sand | `#ffe3b3` | `--color-seaside-sand` |
+| White | `#ffffff` | `--color-seaside-sand` (legacy token name) |
 | Black | `#000000` | `--color-seaside-black` |
 | Gray | `#b4b4b4` | `--color-seaside-gray` |
 
@@ -55,8 +55,8 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 | `--color-bg` | `#000000` | Page / hero base |
 | `--color-bg-mid` | `#071828` | Deep blue-ink mid |
 | `--color-bg-lift` | `#0c2240` | Lifted blue panel |
-| `--color-text` | `#ffe3b3` | Primary type (sand) |
-| `--color-text-soft` | `rgba(255,227,179,0.82)` | Nav, lead copy |
+| `--color-text` | `#ffffff` | Primary type (white) |
+| `--color-text-soft` | `rgba(255,255,255,0.82)` | Nav, lead copy |
 | `--color-text-muted` | `#b4b4b4` | Body / captions |
 | `--color-accent` | `#6d9ea8` | Labels, links, emphasis (muted teal) |
 | `--color-accent-soft` | `rgba(109,158,168,0.28)` | Borders / hover washes |
@@ -65,7 +65,7 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 | `--color-glow` | `rgba(79,143,191,0.1)` | Atmospheric radial glow |
 | `--page-gradient` | black → deep blue → black | Full post-hero wash |
 
-**Accent rule:** Muted teal (`--color-accent` / `#6d9ea8`) is for **labels and interaction only** — never large fills, never neon/shiny cyan. Keep it dull enough to sit quietly on black next to sand type.
+**Accent rule:** Muted teal (`--color-accent` / `#6d9ea8`) is for **labels and interaction only** — never large fills, never neon/shiny cyan. Keep it dull enough to sit quietly on black next to white type.
 
 ### Page shell
 
@@ -185,7 +185,7 @@ Hero bottom scrim should ease into the page gradient (darken toward ink), not a 
 - One full-width interactive card (no image / no dual layout)
 - Soft blue radial lift on a dark panel — inspired by [GRU Space](https://www.gru.space/)
 - Label + display headline (Instrument Serif italic emphasis) + supporting copy + mailto button
-- Button: sand fill (`--color-seaside-sand`), dark text
+- Button: white fill (`--color-seaside-sand`), dark text
 
 ### 5. Footer
 

@@ -76,7 +76,7 @@ function VideoCard({ item, isActive, onHoverStart, onHoverEnd, containerStyles }
     overlayControls.start({ y: 16, opacity: 0.88, transition: { duration: 0.35, ease: 'easeOut' } })
     glowControls.start({ opacity: 0, transition: { duration: 0.35, ease: 'easeOut' } })
     shineControls.stop()
-    borderControls.start({ borderColor: 'rgba(255, 227, 179, 0.08)', transition: { duration: 0.35, ease: 'easeOut' } })
+    borderControls.start({ borderColor: 'rgba(255, 255, 255, 0.08)', transition: { duration: 0.35, ease: 'easeOut' } })
     setTimeout(() => resetVideo(), 80)
     onHoverEnd(id)
   }, [borderControls, controls, glowControls, onHoverEnd, overlayControls, resetMotion, resetVideo, id, shineControls])
@@ -154,7 +154,7 @@ function VideoCard({ item, isActive, onHoverStart, onHoverEnd, containerStyles }
         <div className="video-card__surface" aria-hidden="true">
           <motion.div className="video-card__glow" animate={glowControls} initial={{ opacity: 0 }} />
           <motion.div className="video-card__shine" animate={shineControls} />
-          <motion.div className="video-card__border" animate={borderControls} initial={{ borderColor: 'rgba(255, 227, 179, 0.08)' }} />
+          <motion.div className="video-card__border" animate={borderControls} initial={{ borderColor: 'rgba(255, 255, 255, 0.08)' }} />
 
           <div className="video-card__media">
             <div className="video-card__poster" style={posterStyle} />

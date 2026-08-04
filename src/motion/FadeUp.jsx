@@ -9,7 +9,7 @@ export default function FadeUp({
   className,
   delay = 0.06,
   y = 28,
-  duration = 0.65,
+  duration = 0.75,
   stagger = 0,
   start = REVEAL_START,
   ...rest

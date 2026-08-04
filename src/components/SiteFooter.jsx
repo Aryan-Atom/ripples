@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
 import { safeSplitText, showElement } from '../motion/safeSplitText'
 import { attachScrollReveal, whenFontsReady } from '../motion/scrollReveal'
-import { NAV_LINKS, SITE } from '../data/site'
+import { SITE } from '../data/site'
 import { CAPABILITY_LINKS } from '../data/capabilities'
 import FadeUp from '../motion/FadeUp'
 
@@ -83,17 +83,6 @@ export default function SiteFooter() {
         </FadeUp>
 
         <FadeUp className="site-footer__grid" stagger={0.1} y={30}>
-          <div className="site-footer__col">
-            <h4>Sitemap</h4>
-            <nav aria-label="Footer">
-              <Link to="/">Home</Link>
-              {NAV_LINKS.map(({ label, to }) => (
-                <Link key={label} to={to}>
-                  {label}
-                </Link>
-              ))}
-            </nav>
-          </div>
           <div className="site-footer__col">
             <h4>Capabilities</h4>
             <nav aria-label="Capabilities">

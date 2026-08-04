@@ -61,17 +61,6 @@ export default function CapabilityPage({ slug: slugProp }) {
               {page.body}
             </FadeUp>
 
-            {isWaterHub && (
-              <FadeUp className="capability-intro__chips" stagger={0.05} y={18} delay={0.1}>
-                {WATER_FEATURE_CATEGORIES.map((link) => (
-                  <Link key={link.to} className="capability-chip" to={link.to}>
-                    {link.label}
-                    <span aria-hidden="true">&rarr;</span>
-                  </Link>
-                ))}
-              </FadeUp>
-            )}
-
             {isWaterCategory && (
               <FadeUp delay={0.1}>
                 <Link className="r-link capability-back" to="/water-features">

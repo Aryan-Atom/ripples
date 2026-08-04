@@ -46,9 +46,10 @@ export default function SplitLines({
       tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } })
       tl.to(split.lines, {
         yPercent: 0,
-        duration: 0.7,
+        duration: 0.85,
         stagger,
         delay,
+        ease: 'power3.out',
       })
 
       scrollTrigger = attachScrollReveal(tl, el, { start })

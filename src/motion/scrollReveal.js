@@ -1,13 +1,13 @@
-import { gsap } from './gsap'
+import { gsap, ScrollTrigger } from './gsap'
 
-/** Fire early so motion starts before the section feels empty. */
-export const REVEAL_START = 'top 96%'
+/** Reveal when the top of the element crosses this viewport line. */
+export const REVEAL_START = 'top 82%'
 
 /** Parse GSAP-style "top 88%" into a viewport ratio (0–1). */
 function startRatioFrom(start) {
   if (typeof start === 'number') return start
   const match = String(start).match(/top\s+(\d+(?:\.\d+)?)%/)
-  return match ? Number(match[1]) / 100 : 0.96
+  return match ? Number(match[1]) / 100 : 0.82
 }
 
 function isPastRevealLine(trigger, ratio) {
@@ -18,11 +18,21 @@ function isPastRevealLine(trigger, ratio) {
 }
 
 /**
+ * Home hero uses ScrollTrigger pin — while `.hva-pin` is fixed, below-fold
+ * sections can intersect the viewport under an opaque hero. Playing then
+ * finishes the motion unseen. Wait until the pin releases.
+ */
+function isHeroPinActive() {
+  const pin = document.querySelector('.hva-pin')
+  if (!pin) return false
+  return getComputedStyle(pin).position === 'fixed'
+}
+
+/**
  * Once-only reveal when the element actually crosses into view.
  *
- * Uses IntersectionObserver + scroll/resize fallbacks. IO alone can miss
- * reveals when Lenis jumps a frame past the root, or when a one-shot
- * callback fails a position guard and never retries.
+ * Uses IntersectionObserver + scroll/resize/Lenis fallbacks. Never plays on
+ * bare IO intersect alone, and never while the home hero pin is covering.
  */
 export function attachScrollReveal(animation, trigger, options = {}) {
   const { start = REVEAL_START } = options
@@ -45,6 +55,8 @@ export function attachScrollReveal(animation, trigger, options = {}) {
     }
     window.removeEventListener('scroll', onCheck)
     window.removeEventListener('resize', onCheck)
+    window.removeEventListener('ripples:scroll', onCheck)
+    ScrollTrigger.removeEventListener('refresh', onCheck)
   }
 
   const play = () => {
@@ -55,10 +67,13 @@ export function attachScrollReveal(animation, trigger, options = {}) {
   }
 
   const onCheck = () => {
-    if (!played && isPastRevealLine(trigger, ratio)) play()
+    if (played) return
+    // Don't burn the once-only play under the pinned hero.
+    if (isHeroPinActive()) return
+    if (isPastRevealLine(trigger, ratio)) play()
   }
 
-  // Already in view / past (route change, pin refresh, below-fold mount).
+  // Already in view / past (route change, below-fold mount after pin).
   onCheck()
   if (played) {
     return {
@@ -70,33 +85,35 @@ export function attachScrollReveal(animation, trigger, options = {}) {
   }
 
   if (typeof IntersectionObserver !== 'undefined') {
+    const bottomInset = Math.round((1 - ratio) * 100)
     observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
         if (!entry) return
-        // Intersecting OR already above the reveal line (scrolled past the root).
-        if (entry.isIntersecting || entry.boundingClientRect.top <= window.innerHeight * ratio) {
-          play()
-        }
+        // Gate on the reveal line — never play on bare isIntersecting.
+        if (isPastRevealLine(trigger, ratio)) onCheck()
       },
       {
         root: null,
-        // Generous bottom inset so IO fires early; position check gates the play.
-        rootMargin: '0px 0px -6% 0px',
-        threshold: 0,
+        // Align IO band with the reveal line so it still notifies nearby.
+        rootMargin: `0px 0px -${bottomInset}% 0px`,
+        threshold: [0, 0.01, 0.05],
       },
     )
     observer.observe(trigger)
   }
 
-  // Lenis / fast wheel can skip IO state changes — poll on scroll + a few rAFs.
+  // Lenis / pin refresh / fast wheel can skip IO — poll on scroll + refresh.
   window.addEventListener('scroll', onCheck, { passive: true })
   window.addEventListener('resize', onCheck, { passive: true })
+  window.addEventListener('ripples:scroll', onCheck)
+  ScrollTrigger.addEventListener('refresh', onCheck)
 
   let frames = 0
   const tick = () => {
     onCheck()
-    if (!played && frames++ < 12) {
+    // Longer poll: pin release + Lenis settle can take more than a few frames.
+    if (!played && frames++ < 90) {
       rafId = requestAnimationFrame(tick)
     } else {
       rafId = 0
@@ -122,7 +139,7 @@ export function createRevealTimeline(targets, vars = {}) {
 
   const {
     y = 28,
-    duration = 0.65,
+    duration = 0.75,
     stagger = 0,
     delay = 0.06,
     ease = 'power2.out',

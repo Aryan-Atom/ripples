@@ -35,7 +35,7 @@ export default function HomeCta() {
             <div className="cta-video-card__frame">
               <LazyVideo
                 className="cta-video-card__video"
-                src="/assets/Logo_construction_animation.mp4"
+                src="/assets/RipplesLogoAnimationWithMusic.mp4"
                 autoPlay
                 muted
                 loop

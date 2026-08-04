@@ -1,5 +1,6 @@
 import HeroVideoAnimation from 'hero-video-anim'
 import HeroCopy from '../HeroCopy.jsx'
+import HeroLogoReveal from '../HeroLogoReveal.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import BrandTrail from '../components/BrandTrail.jsx'
 import HomeIntro from '../components/HomeIntro.jsx'
@@ -15,7 +16,12 @@ const FRAME_COUNT = 241
 export default function Home() {
   return (
     <div className="home-page">
-      <HeroVideoAnimation frames={{ frameCount: FRAME_COUNT }} showProgressBar={false}>
+      <HeroVideoAnimation
+        frames={{ frameCount: FRAME_COUNT }}
+        showProgressBar={false}
+        scrollLength="+=210%"
+      >
+        <HeroLogoReveal />
         <HeroCopy />
       </HeroVideoAnimation>
 

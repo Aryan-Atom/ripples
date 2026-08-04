@@ -19,7 +19,11 @@ export function LenisProvider({ children, options }) {
     const lenis = new Lenis({ ...DEFAULT_LENIS_OPTIONS, ...optionsRef.current })
     lenisRef.current = lenis
 
-    lenis.on('scroll', ScrollTrigger.update)
+    lenis.on('scroll', () => {
+      ScrollTrigger.update()
+      // Home FadeUp/SplitLines listen for this — native scroll can be skipped by Lenis.
+      window.dispatchEvent(new Event('ripples:scroll'))
+    })
 
     const ticker = (time) => {
       lenis.raf(time * 1000)

@@ -4,7 +4,7 @@ const ITEMS = [
   {
     title: 'Indoor Fountains',
     description:
-      'Refined water features for lobbies, atriums, and interiors — quiet engineering, lasting presence.',
+      'Refined water features for lobbies, atriums, and interiors  quiet engineering, lasting presence.',
   },
   {
     title: 'Architectural Fountains',

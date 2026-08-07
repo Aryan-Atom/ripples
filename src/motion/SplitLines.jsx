@@ -5,7 +5,7 @@ import { attachScrollReveal, REVEAL_START, whenFontsReady } from './scrollReveal
 
 /**
  * Masked line-by-line text reveal (SplitText + ScrollTrigger).
- * Text stays visible until split is ready — no empty container flash.
+ * Text stays visible until split is ready  no empty container flash.
  */
 export default function SplitLines({
   as: Tag = 'h2',

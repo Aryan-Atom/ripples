@@ -75,7 +75,7 @@ export default function Origin() {
             />
           </div>
           <figcaption className="mt-3 font-body text-[0.65rem] uppercase tracking-[0.15em] text-mist/45">
-            Waves Exhibition, Delhi NCR — From prototype to presence
+            Waves Exhibition, Delhi NCR  From prototype to presence
           </figcaption>
         </figure>
 
@@ -84,7 +84,7 @@ export default function Origin() {
           <p className="mt-8 text-[0.95rem] leading-[1.85] text-mist/65">
             In 1988, at a Delhi exhibition, an idea took shape: what if an
             aquarium pump could become the heart of a fountain? A working
-            prototype drew a crowd — and the first batch sold out.
+            prototype drew a crowd  and the first batch sold out.
           </p>
           <p className="mt-4 text-[0.95rem] leading-[1.85] text-mist/65">
             That moment of curiosity became Ripples Engineering: a company built
@@ -96,7 +96,7 @@ export default function Origin() {
               className="font-display text-[clamp(1.35rem,2.4vw,1.9rem)] italic leading-[1.45] text-mist"
             >
               From a single exhibition floor to India&apos;s largest fountain
-              manufacturer — one ripple at a time.
+              manufacturer  one ripple at a time.
             </RevealText>
           </blockquote>
         </div>

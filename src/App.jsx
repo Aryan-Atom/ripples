@@ -1,8 +1,8 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AppLayout from './layouts/AppLayout.jsx'
 import Home from './pages/Home.jsx'
 import Creations from './pages/Creations.jsx'
-import OurJourney from './pages/OurJourney.jsx'
 import ClientLogin from './pages/ClientLogin.jsx'
 import Practice from './pages/Practice.jsx'
 import Worldwide from './pages/Worldwide.jsx'
@@ -10,6 +10,8 @@ import Contact from './pages/Contact.jsx'
 import Press from './pages/Press.jsx'
 import CapabilityPage from './pages/CapabilityPage.jsx'
 import { CAPABILITY_ROUTES } from './data/capabilities'
+
+const OurJourney = lazy(() => import('./pages/OurJourney.jsx'))
 
 export default function App() {
   return (
@@ -21,7 +23,14 @@ export default function App() {
           <Route path="/creations" element={<Creations />} />
           <Route path="/practice" element={<Practice />} />
           <Route path="/worldwide" element={<Worldwide />} />
-          <Route path="/our-journey" element={<OurJourney />} />
+          <Route
+            path="/our-journey"
+            element={
+              <Suspense fallback={null}>
+                <OurJourney />
+              </Suspense>
+            }
+          />
           <Route path="/press" element={<Press />} />
           <Route path="/client-login" element={<ClientLogin />} />
           <Route path="/contact" element={<Contact />} />

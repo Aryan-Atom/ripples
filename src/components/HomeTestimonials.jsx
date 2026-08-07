@@ -2,7 +2,7 @@ import { TESTIMONIALS } from '../data/testimonials'
 import FadeUp from '../motion/FadeUp'
 import SplitLines from '../motion/SplitLines'
 
-/** Homepage testimonials — editorial quotes from legacy site clients. */
+/** Homepage testimonials  editorial quotes from legacy site clients. */
 export default function HomeTestimonials() {
   return (
     <section className="home-testimonials home-section" aria-label="Client testimonials">
@@ -15,7 +15,7 @@ export default function HomeTestimonials() {
             What clients <em>say.</em>
           </SplitLines>
           <FadeUp as="p" className="r-body home-testimonials__lead" delay={0.15}>
-            Municipalities, parks, and industrial campuses — in their own words.
+            Municipalities, parks, and industrial campuses  in their own words.
           </FadeUp>
         </header>
 

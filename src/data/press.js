@@ -1,5 +1,5 @@
 /**
- * Press / media clippings — images from legacy ripplesfountains.com press archive.
+ * Press / media clippings  images from legacy ripplesfountains.com press archive.
  * thumbnail: card image. fullImage: lightbox scan.
  */
 
@@ -96,7 +96,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/01-amar-ujala-my-city.jpg",
     "fullImage": "/press/clippings/01-amar-ujala-my-city.jpg",
-    "alt": "Amar Ujala — Amar Ujala My City",
+    "alt": "Amar Ujala  Amar Ujala My City",
     "featured": true
   },
   {
@@ -108,7 +108,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/02-amar-ujala.jpg",
     "fullImage": "/press/clippings/02-amar-ujala.jpg",
-    "alt": "Amar Ujala — Amar Ujala",
+    "alt": "Amar Ujala  Amar Ujala",
     "featured": true
   },
   {
@@ -120,7 +120,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/03-bhopal-1.jpg",
     "fullImage": "/press/clippings/03-bhopal-1.jpg",
-    "alt": "Regional press — Bhopal 1",
+    "alt": "Regional press  Bhopal 1",
     "featured": false
   },
   {
@@ -132,7 +132,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/04-bhopal-3.jpeg",
     "fullImage": "/press/clippings/04-bhopal-3.jpeg",
-    "alt": "Regional press — Bhopal 3",
+    "alt": "Regional press  Bhopal 3",
     "featured": false
   },
   {
@@ -144,7 +144,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/05-bhopal-4.jpg",
     "fullImage": "/press/clippings/05-bhopal-4.jpg",
-    "alt": "Regional press — Bhopal 4",
+    "alt": "Regional press  Bhopal 4",
     "featured": false
   },
   {
@@ -156,7 +156,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/06-bhopal-5.jpg",
     "fullImage": "/press/clippings/06-bhopal-5.jpg",
-    "alt": "Regional press — Bhopal 5",
+    "alt": "Regional press  Bhopal 5",
     "featured": false
   },
   {
@@ -168,7 +168,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/07-bhopal-6.jpg",
     "fullImage": "/press/clippings/07-bhopal-6.jpg",
-    "alt": "Regional press — Bhopal 6",
+    "alt": "Regional press  Bhopal 6",
     "featured": false
   },
   {
@@ -180,7 +180,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/08-dainik-jagaran.jpg",
     "fullImage": "/press/clippings/08-dainik-jagaran.jpg",
-    "alt": "Dainik Jagaran — Dainik Jagaran",
+    "alt": "Dainik Jagaran  Dainik Jagaran",
     "featured": true
   },
   {
@@ -192,7 +192,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/09-hindustan.jpg",
     "fullImage": "/press/clippings/09-hindustan.jpg",
-    "alt": "Hindustan — Hindustan",
+    "alt": "Hindustan  Hindustan",
     "featured": true
   },
   {
@@ -204,7 +204,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/10-jusco-2.jpg",
     "fullImage": "/press/clippings/10-jusco-2.jpg",
-    "alt": "Project coverage — Jusco 2",
+    "alt": "Project coverage  Jusco 2",
     "featured": false
   },
   {
@@ -216,7 +216,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/11-jusco-3.jpg",
     "fullImage": "/press/clippings/11-jusco-3.jpg",
-    "alt": "Project coverage — Jusco 3",
+    "alt": "Project coverage  Jusco 3",
     "featured": false
   },
   {
@@ -228,7 +228,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/12-raipur-1.jpg",
     "fullImage": "/press/clippings/12-raipur-1.jpg",
-    "alt": "Regional press — Raipur 1",
+    "alt": "Regional press  Raipur 1",
     "featured": false
   },
   {
@@ -240,7 +240,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/13-raipur-2.jpg",
     "fullImage": "/press/clippings/13-raipur-2.jpg",
-    "alt": "Regional press — Raipur 2",
+    "alt": "Regional press  Raipur 2",
     "featured": false
   },
   {
@@ -252,7 +252,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/14-ripples-in-news.jpg",
     "fullImage": "/press/clippings/14-ripples-in-news.jpg",
-    "alt": "Press — Ripples In News",
+    "alt": "Press  Ripples In News",
     "featured": false
   },
   {
@@ -264,7 +264,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/15-sail-1.jpg",
     "fullImage": "/press/clippings/15-sail-1.jpg",
-    "alt": "Project coverage — Sail 1",
+    "alt": "Project coverage  Sail 1",
     "featured": false
   },
   {
@@ -276,7 +276,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/16-sail-2.jpg",
     "fullImage": "/press/clippings/16-sail-2.jpg",
-    "alt": "Project coverage — Sail 2",
+    "alt": "Project coverage  Sail 2",
     "featured": false
   },
   {
@@ -288,7 +288,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/17-sail.jpg",
     "fullImage": "/press/clippings/17-sail.jpg",
-    "alt": "Project coverage — Sail",
+    "alt": "Project coverage  Sail",
     "featured": false
   },
   {
@@ -300,7 +300,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/18-times-of-india-front-page.jpg",
     "fullImage": "/press/clippings/18-times-of-india-front-page.jpg",
-    "alt": "The Times of India — Times Of India Front Page",
+    "alt": "The Times of India  Times Of India Front Page",
     "featured": true
   },
   {
@@ -312,7 +312,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/19-times-of-india-page-2.jpg",
     "fullImage": "/press/clippings/19-times-of-india-page-2.jpg",
-    "alt": "The Times of India — Times Of India Page 2",
+    "alt": "The Times of India  Times Of India Page 2",
     "featured": true
   },
   {
@@ -324,7 +324,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/20-scan-1.jpg",
     "fullImage": "/press/clippings/20-scan-1.jpg",
-    "alt": "Press archive — Press Scan 1",
+    "alt": "Press archive  Press Scan 1",
     "featured": false
   },
   {
@@ -336,7 +336,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/21-scan-2.jpg",
     "fullImage": "/press/clippings/21-scan-2.jpg",
-    "alt": "Press archive — Press Scan 2",
+    "alt": "Press archive  Press Scan 2",
     "featured": false
   },
   {
@@ -348,7 +348,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/22-scan-3.jpg",
     "fullImage": "/press/clippings/22-scan-3.jpg",
-    "alt": "Press archive — Press Scan 3",
+    "alt": "Press archive  Press Scan 3",
     "featured": false
   },
   {
@@ -360,7 +360,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/23-scan-4.jpg",
     "fullImage": "/press/clippings/23-scan-4.jpg",
-    "alt": "Press archive — Press Scan 4",
+    "alt": "Press archive  Press Scan 4",
     "featured": false
   },
   {
@@ -372,7 +372,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/24-scan-5.jpg",
     "fullImage": "/press/clippings/24-scan-5.jpg",
-    "alt": "Press archive — Press Scan 5",
+    "alt": "Press archive  Press Scan 5",
     "featured": false
   },
   {
@@ -384,7 +384,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/25-scan-6.jpg",
     "fullImage": "/press/clippings/25-scan-6.jpg",
-    "alt": "Press archive — Press Scan 6",
+    "alt": "Press archive  Press Scan 6",
     "featured": false
   },
   {
@@ -396,7 +396,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/26-scan-7.jpg",
     "fullImage": "/press/clippings/26-scan-7.jpg",
-    "alt": "Press archive — Press Scan 7",
+    "alt": "Press archive  Press Scan 7",
     "featured": false
   },
   {
@@ -408,7 +408,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/27-scan-8.jpg",
     "fullImage": "/press/clippings/27-scan-8.jpg",
-    "alt": "Press archive — Press Scan 8",
+    "alt": "Press archive  Press Scan 8",
     "featured": false
   },
   {
@@ -420,7 +420,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/28-scan-10.jpg",
     "fullImage": "/press/clippings/28-scan-10.jpg",
-    "alt": "Press archive — Press Scan 10",
+    "alt": "Press archive  Press Scan 10",
     "featured": false
   },
   {
@@ -432,7 +432,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/29-scan-11.jpg",
     "fullImage": "/press/clippings/29-scan-11.jpg",
-    "alt": "Press archive — Press Scan 11",
+    "alt": "Press archive  Press Scan 11",
     "featured": false
   },
   {
@@ -444,7 +444,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/30-scan-12.jpg",
     "fullImage": "/press/clippings/30-scan-12.jpg",
-    "alt": "Press archive — Press Scan 12",
+    "alt": "Press archive  Press Scan 12",
     "featured": false
   },
   {
@@ -456,7 +456,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/31-scan-13.jpg",
     "fullImage": "/press/clippings/31-scan-13.jpg",
-    "alt": "Press archive — Press Scan 13",
+    "alt": "Press archive  Press Scan 13",
     "featured": false
   },
   {
@@ -468,7 +468,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/32-scan-14.jpg",
     "fullImage": "/press/clippings/32-scan-14.jpg",
-    "alt": "Press archive — Press Scan 14",
+    "alt": "Press archive  Press Scan 14",
     "featured": false
   },
   {
@@ -480,7 +480,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/33-scan-15.jpg",
     "fullImage": "/press/clippings/33-scan-15.jpg",
-    "alt": "Press archive — Press Scan 15",
+    "alt": "Press archive  Press Scan 15",
     "featured": false
   },
   {
@@ -492,7 +492,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/34-scan-16.jpg",
     "fullImage": "/press/clippings/34-scan-16.jpg",
-    "alt": "Press archive — Press Scan 16",
+    "alt": "Press archive  Press Scan 16",
     "featured": false
   },
   {
@@ -504,7 +504,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/35-scan-17.jpg",
     "fullImage": "/press/clippings/35-scan-17.jpg",
-    "alt": "Press archive — Press Scan 17",
+    "alt": "Press archive  Press Scan 17",
     "featured": false
   },
   {
@@ -516,7 +516,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/36-scan-18.jpg",
     "fullImage": "/press/clippings/36-scan-18.jpg",
-    "alt": "Press archive — Press Scan 18",
+    "alt": "Press archive  Press Scan 18",
     "featured": false
   },
   {
@@ -528,7 +528,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/37-scan-21.jpg",
     "fullImage": "/press/clippings/37-scan-21.jpg",
-    "alt": "Press archive — Press Scan 21",
+    "alt": "Press archive  Press Scan 21",
     "featured": false
   },
   {
@@ -540,7 +540,7 @@ export const PRESS_CLIPPINGS = [
     "year": 0,
     "thumbnail": "/press/clippings/38-scan-22.jpg",
     "fullImage": "/press/clippings/38-scan-22.jpg",
-    "alt": "Press archive — Press Scan 22",
+    "alt": "Press archive  Press Scan 22",
     "featured": false
   }
 ]

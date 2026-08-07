@@ -1,5 +1,5 @@
 /**
- * Client-side filter pills — All / publication / year.
+ * Client-side filter pills  All / publication / year.
  */
 export default function PressFilters({
   publications,

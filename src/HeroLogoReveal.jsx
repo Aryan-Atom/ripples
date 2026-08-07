@@ -31,7 +31,7 @@ function isNarrowHero() {
   return window.matchMedia('(max-width: 720px), (pointer: coarse)').matches
 }
 
-/** Shared type node — mask + rim must use identical metrics. */
+/** Shared type node  mask + rim must use identical metrics. */
 function LogoType({ className = '', fill, children }) {
   return (
     <text
@@ -110,7 +110,7 @@ export default function HeroLogoReveal() {
     wrap.style.visibility = hide ? 'hidden' : 'visible'
     plate.setAttribute('opacity', String(Math.max(0, plateOpacity)))
     rim.setAttribute('opacity', String(Math.max(0, rimOpacity)))
-    // Scale from viewport center — avoid left/top % transform drift on mobile
+    // Scale from viewport center  avoid left/top % transform drift on mobile
     scaler.style.transform = `scale(${scale})`
   }, [])
 

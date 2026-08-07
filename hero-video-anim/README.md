@@ -1,6 +1,6 @@
 # hero-video-anim
 
-Drop-in **scroll-driven video hero** for React. Pre-export frames as WebP, drop them in `public/frames/`, render one component — Lenis + GSAP ScrollTrigger + canvas playback are already wired.
+Drop-in **scroll-driven video hero** for React. Pre-export frames as WebP, drop them in `public/frames/`, render one component  Lenis + GSAP ScrollTrigger + canvas playback are already wired.
 
 ## Quick start
 
@@ -102,10 +102,10 @@ All fields are optional except **`frameCount`** (when your sequence differs from
 | `showHint` | `true` | "Scroll" hint at bottom |
 | `showVignette` | `true` | Edge vignette overlay |
 | `lenis` | `true` | Wrap with built-in LenisProvider |
-| `lenisOptions` | — | Override Lenis settings |
+| `lenisOptions` |  | Override Lenis settings |
 | `className` | `''` | Root class |
 | `id` | `'hero-video-anim'` | Root id |
-| `children` | — | Overlay content (text, buttons) |
+| `children` |  | Overlay content (text, buttons) |
 
 ### Overlay example
 
@@ -143,7 +143,7 @@ Use the `LenisProvider` exported from `./hero-video-anim` or your own.
 />
 ```
 
-**More movement per wheel tick** — edit `lenis/LenisProvider.jsx`:
+**More movement per wheel tick**  edit `lenis/LenisProvider.jsx`:
 
 ```js
 wheelMultiplier: 3,  // try 4–5

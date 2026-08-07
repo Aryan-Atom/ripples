@@ -1,5 +1,5 @@
 /**
- * Single press clipping card — keyboard activatable, opens lightbox via onOpen.
+ * Single press clipping card  keyboard activatable, opens lightbox via onOpen.
  */
 export default function PressCard({ clipping, onOpen }) {
   const open = () => onOpen?.(clipping)

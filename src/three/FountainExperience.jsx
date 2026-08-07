@@ -121,7 +121,7 @@ function FountainModel({ stateRef, url }) {
       camera.fov = s.fov ?? 44
       seeded.current = true
     } else {
-      // Frame-rate independent damp — softens scrub into cinematic arcs
+      // Frame-rate independent damp  softens scrub into cinematic arcs
       const k = 1 - Math.exp(-7.5 * Math.min(dt, 0.05))
       camera.position.lerp(goalPos, k)
       lookTarget.lerp(goalLook, k)
@@ -210,4 +210,4 @@ export default function FountainExperience({
   )
 }
 
-/* ponytail: no eager preload of ~70MB GLB — section gates load on approach */
+/* ponytail: no eager preload of ~70MB GLB  section gates load on approach */

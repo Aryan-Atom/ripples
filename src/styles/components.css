@@ -1,6 +1,6 @@
 /* ── Home page canvas ──
    One continuous atmosphere (inspired by gru.space continuity):
-   no section borders, no stacked flat bands — gradient carries depth. */
+   no section borders, no stacked flat bands  gradient carries depth. */
 
 .home-page {
   position: relative;
@@ -22,7 +22,7 @@
   z-index: 0;
   pointer-events: none;
   background:
-    /* Keep the top edge pure — no glow at the hero seam */
+    /* Keep the top edge pure  no glow at the hero seam */
     linear-gradient(180deg, #000000 0%, transparent 18%),
     radial-gradient(
       ellipse 75% 50% at 50% 42%,
@@ -90,7 +90,7 @@
   backdrop-filter: blur(14px);
 }
 
-/* Transparent glass variant — allows background video to show through and be blurred */
+/* Transparent glass variant  allows background video to show through and be blurred */
 .site-nav--transparent {
   background: rgba(11, 21, 32, 0.18);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
@@ -215,7 +215,7 @@ a.site-nav__item:hover {
   background: var(--color-accent-soft);
 }
 
-/* Mobile menu toggle — shown via .site-nav--mobile */
+/* Mobile menu toggle  shown via .site-nav--mobile */
 .site-nav__toggle {
   display: none;
   flex-shrink: 0;
@@ -380,7 +380,7 @@ a.site-nav__item:hover {
 
 /* Footer styles live in pages.css (oversized wordmark footer). */
 
-/* Home sections — spacing only, no dividers */
+/* Home sections  spacing only, no dividers */
 
 .home-section {
   padding-block: var(--space-section-y);
@@ -511,7 +511,7 @@ a.site-nav__item:hover {
   transform: scale(1.35);
 }
 
-/* Home CTA — side-by-side card + video panel */
+/* Home CTA  side-by-side card + video panel */
 
 .home-cta {
   padding-inline: var(--space-page-x);
@@ -651,7 +651,7 @@ a.site-nav__item:hover {
   padding-inline: var(--space-page-x);
 }
 
-/* ── Responsive — must stay after base component rules ── */
+/* ── Responsive  must stay after base component rules ── */
 
 @media (max-width: 1100px) {
   .cta-row {

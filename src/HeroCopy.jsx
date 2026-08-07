@@ -8,14 +8,14 @@ const PHASES = [
     end: 0.34,
     title: 'Who turns engineering into wonder?',
     description:
-      'Every show begins in quiet precision — pressure, light, and timing tuned long before the first surge arrives.',
+      'Every show begins in quiet precision  pressure, light, and timing tuned long before the first surge arrives.',
   },
   {
     start: 0.34,
     end: 0.67,
-    title: "When water becomes a performance — who's behind the stage?",
+    title: "When water becomes a performance  who's behind the stage?",
     description:
-      'Laser, music, and water sync into one immersive show — every effect calibrated to build drama.',
+      'Laser, music, and water sync into one immersive show  every effect calibrated to build drama.',
   },
   {
     start: 0.67,

@@ -19,13 +19,13 @@ export default function Practice() {
       <main className="interior-page__main">
         <PageHero
           className="page-hero--practice"
-          eyebrow="The practice — est. 1989"
+          eyebrow="The practice  est. 1989"
           title={
             <>
               Engineers of <em>wonder</em>
             </>
           }
-          lead="Ripples is a workshop before it is a studio. Composers, hydraulic engineers, and machinists share one floor in Noida — and one obsession: water that moves people."
+          lead="Ripples is a workshop before it is a studio. Composers, hydraulic engineers, and machinists share one floor in Noida  and one obsession: water that moves people."
         />
 
         <section className="practice-values" aria-label="Values">
@@ -49,7 +49,7 @@ export default function Practice() {
           <FadeUp className="practice-facility__frame" y={0}>
             <img
               src={PRACTICE_IMAGES.facility}
-              alt="Placeholder — Ripples manufacturing facility"
+              alt="Placeholder  Ripples manufacturing facility"
               loading="lazy"
               decoding="async"
             />

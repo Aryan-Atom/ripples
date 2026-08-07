@@ -18,7 +18,7 @@ function isPastRevealLine(trigger, ratio) {
 }
 
 /**
- * Home hero uses ScrollTrigger pin — while `.hva-pin` is fixed, below-fold
+ * Home hero uses ScrollTrigger pin  while `.hva-pin` is fixed, below-fold
  * sections can intersect the viewport under an opaque hero. Playing then
  * finishes the motion unseen. Wait until the pin releases.
  */
@@ -90,7 +90,7 @@ export function attachScrollReveal(animation, trigger, options = {}) {
       (entries) => {
         const entry = entries[0]
         if (!entry) return
-        // Gate on the reveal line — never play on bare isIntersecting.
+        // Gate on the reveal line  never play on bare isIntersecting.
         if (isPastRevealLine(trigger, ratio)) onCheck()
       },
       {
@@ -103,7 +103,7 @@ export function attachScrollReveal(animation, trigger, options = {}) {
     observer.observe(trigger)
   }
 
-  // Lenis / pin refresh / fast wheel can skip IO — poll on scroll + refresh.
+  // Lenis / pin refresh / fast wheel can skip IO  poll on scroll + refresh.
   window.addEventListener('scroll', onCheck, { passive: true })
   window.addEventListener('resize', onCheck, { passive: true })
   window.addEventListener('ripples:scroll', onCheck)

@@ -46,7 +46,7 @@ const clippings = files.map((file, index) => {
     year: 0,
     thumbnail: src,
     fullImage: src,
-    alt: `${pub.name} — ${headline}`,
+    alt: `${pub.name}  ${headline}`,
     featured: false,
   }
 })
@@ -78,7 +78,7 @@ const PRESS_LOGOS = [
 ]
 
 const out = `/**
- * Press / media clippings — images from legacy ripplesfountains.com press archive.
+ * Press / media clippings  images from legacy ripplesfountains.com press archive.
  * thumbnail: card image. fullImage: lightbox scan.
  */
 

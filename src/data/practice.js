@@ -18,7 +18,7 @@ export const PRACTICE_VALUES = [
   {
     index: '03',
     title: 'Endurance',
-    body: 'A fountain is a promise measured in decades. We build systems that survive monsoons, salt air, and sub-zero winters — and we stay to maintain them.',
+    body: 'A fountain is a promise measured in decades. We build systems that survive monsoons, salt air, and sub-zero winters  and we stay to maintain them.',
   },
 ]
 
@@ -31,7 +31,7 @@ export const PRACTICE_PROCESS = [
   {
     index: '02',
     title: 'Compose',
-    body: 'Choreography, score, and light are drafted together — the show exists on paper before steel.',
+    body: 'Choreography, score, and light are drafted together  the show exists on paper before steel.',
   },
   {
     index: '03',
@@ -41,7 +41,7 @@ export const PRACTICE_PROCESS = [
   {
     index: '04',
     title: 'Build',
-    body: 'Nozzles, pumps, and show controllers are manufactured in our Noida facility — nothing outsourced.',
+    body: 'Nozzles, pumps, and show controllers are manufactured in our Noida facility  nothing outsourced.',
   },
   {
     index: '05',

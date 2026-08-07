@@ -1,7 +1,7 @@
 import { gsap, SplitText } from './gsap'
 
 /**
- * SplitText wrapper — never leaves the element invisible if splitting fails
+ * SplitText wrapper  never leaves the element invisible if splitting fails
  * (common with nested <em>, ad-blocked fonts, or StrictMode race).
  */
 export function safeSplitText(el, config) {

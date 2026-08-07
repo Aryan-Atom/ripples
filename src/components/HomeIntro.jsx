@@ -8,18 +8,18 @@ export default function HomeIntro() {
     <section className="home-intro home-section" aria-label="About Ripples">
       <div className="home-intro__inner r-container">
         <FadeUp as="p" className="r-label">
-          Ripples Engineering — est. 1989
+          Ripples Engineering  est. 1989
         </FadeUp>
 
         <SplitLines as="h2" className="home-intro__statement">
-          We design, engineer, and manufacture <em>water</em> that performs — every nozzle,
+          We design, engineer, and manufacture <em>water</em> that performs  every nozzle,
           pump, and note made <em>in-house.</em>
         </SplitLines>
 
         <div className="home-intro__row">
           <FadeUp as="p" className="home-intro__body r-body" delay={0.15}>
-            Among the few companies worldwide that build fountain systems end to end —
-            from precision nozzles to multimedia show control — so the show a city
+            Among the few companies worldwide that build fountain systems end to end 
+            from precision nozzles to multimedia show control  so the show a city
             imagines is the show it gets, for decades.
           </FadeUp>
 

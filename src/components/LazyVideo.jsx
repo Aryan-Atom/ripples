@@ -33,12 +33,16 @@ export default function LazyVideo({
   autoPlay,
   loadDelay = 0,
   maxConcurrent = DEFAULT_MAX_CONCURRENT,
+  rootMargin = '32px 0px',
+  onReady,
   ...props
 }) {
   const videoRef = useRef(null)
   const [shouldLoad, setShouldLoad] = useState(false)
   const isVisibleRef = useRef(false)
   const loadTimerRef = useRef(null)
+  const onReadyRef = useRef(onReady)
+  onReadyRef.current = onReady
 
   useEffect(() => {
     const video = videoRef.current
@@ -74,7 +78,7 @@ export default function LazyVideo({
 
         syncPlayback()
       },
-      { rootMargin: '32px 0px', threshold: [0, 0.15, 0.4] },
+      { rootMargin, threshold: [0, 0.15, 0.4] },
     )
 
     observer.observe(video)
@@ -83,13 +87,14 @@ export default function LazyVideo({
       if (loadTimerRef.current) window.clearTimeout(loadTimerRef.current)
       stopPlay(video)
     }
-  }, [autoPlay, loadDelay, maxConcurrent, shouldLoad])
+  }, [autoPlay, loadDelay, maxConcurrent, shouldLoad, rootMargin])
 
   useEffect(() => {
     const video = videoRef.current
     if (!video || !shouldLoad || !src) return undefined
 
     const handleReady = () => {
+      onReadyRef.current?.(video)
       if (isVisibleRef.current && autoPlay) {
         tryPlay(video, maxConcurrent)
       }

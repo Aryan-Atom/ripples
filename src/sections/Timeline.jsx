@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 const ENTRIES = [
   {
     year: '1989',
-    text: 'Ripples Engineering takes root — the first workshops and the first sold-out fountain batches.',
+    text: 'Ripples Engineering takes root  the first workshops and the first sold-out fountain batches.',
   },
   {
     year: '1994',
@@ -21,7 +21,7 @@ const ENTRIES = [
   },
   {
     year: '2012',
-    text: 'Multimedia fountain shows become a signature offering — water, music, and light in one choreography.',
+    text: 'Multimedia fountain shows become a signature offering  water, music, and light in one choreography.',
   },
   {
     year: '2017',

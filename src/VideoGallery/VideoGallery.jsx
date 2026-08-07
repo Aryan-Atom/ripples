@@ -47,7 +47,7 @@ export default function VideoGallery() {
           Select works with <em>live motion</em> previews
         </motion.h2>
         <motion.p className="r-body video-gallery__copy" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}>
-          An immersive layout built for premium storytelling — subtle motion, polished lighting, and efficient video performance.
+          An immersive layout built for premium storytelling  subtle motion, polished lighting, and efficient video performance.
         </motion.p>
       </div>
 

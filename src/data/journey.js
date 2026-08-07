@@ -99,13 +99,12 @@ export const JOURNEY_PERFORMANCE = {
   titleLines: ['When water', 'becomes theatre.'],
   titleEm: 'theatre.',
   body: 'Music, light, and pressure choreographed as one system. The quiet work of thirty-five years, audible for a few minutes each night.',
-  // Drop day/night video files here later, e.g. journeyAsset('performance-day.mp4')
   day: {
-    src: null,
+    src: journeyAsset('day.mp4'),
     label: 'Day',
   },
   night: {
-    src: null,
+    src: journeyAsset('night.mp4'),
     label: 'Night',
   },
 }

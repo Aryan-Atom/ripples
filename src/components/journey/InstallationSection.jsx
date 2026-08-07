@@ -4,91 +4,126 @@ import LazyVideo from '../LazyVideo'
 import JourneyChapter from './JourneyChapter'
 import { JOURNEY_INSTALLATION } from '../../data/journey'
 
+function playVideo(video) {
+  if (!video) return
+  video.muted = true
+  video.playsInline = true
+  const run = () => {
+    video.play().catch(() => {})
+  }
+  if (video.readyState >= 2) run()
+  else {
+    video.addEventListener('loadeddata', run, { once: true })
+    video.addEventListener('canplay', run, { once: true })
+  }
+}
+
+function pauseVideo(video) {
+  video?.pause()
+}
+
 /**
- * Act V  pin full-viewport media first (settle), then scrub text on further scroll.
+ * Installation — full-bleed pinned chapter:
+ * 1) Section enters → video plays
+ * 2) Scroll scrubs Precision → Alignment → Execution
+ * 3) Sequence completes → pin releases → next section
  */
 export default function InstallationSection() {
   const data = JOURNEY_INSTALLATION
   const sectionRef = useRef(null)
-  const pinRef = useRef(null)
+  const stageRef = useRef(null)
   const mediaRef = useRef(null)
   const copyRef = useRef(null)
+  const videoRef = useRef(null)
   const linesRef = useRef([])
   const [mediaReady, setMediaReady] = useState(false)
 
   useLayoutEffect(() => {
     const section = sectionRef.current
-    const pin = pinRef.current
+    const stage = stageRef.current
     const media = mediaRef.current
     const copy = copyRef.current
     const lines = linesRef.current.filter(Boolean)
-    if (!section || !pin || !media || !copy || !lines.length) return undefined
+    if (!section || !stage || !media || !copy || !lines.length) return undefined
 
     if (prefersReducedMotion()) {
-      gsap.set(lines, { autoAlpha: 1, y: 0, filter: 'none' })
-      gsap.set(copy, { autoAlpha: 1 })
+      gsap.set([copy, ...lines], { autoAlpha: 1, y: 0, filter: 'none' })
       gsap.set(media, { scale: 1 })
       return undefined
     }
 
-    // Start: media fills the screen; copy waits until settle completes.
-    gsap.set(media, { scale: 1.08 })
+    gsap.set(media, { scale: 1.06 })
     gsap.set(copy, { autoAlpha: 0 })
-    gsap.set(lines, { autoAlpha: 0, y: 28, filter: 'blur(4px)' })
+    gsap.set(lines, { autoAlpha: 0, y: 32, filter: 'blur(4px)' })
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=300%',
-        pin: true,
-        scrub: 0.7,
+        end: '+=280%',
+        pin: stage,
+        scrub: 0.55,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        fastScrollEnd: true,
+        onEnter: () => playVideo(videoRef.current),
+        onEnterBack: () => playVideo(videoRef.current),
+        onLeave: () => pauseVideo(videoRef.current),
+        onLeaveBack: () => pauseVideo(videoRef.current),
+        onToggle: (self) => {
+          if (self.isActive) playVideo(videoRef.current)
+          else pauseVideo(videoRef.current)
+        },
       },
     })
 
-    // Phase 1  settle: hold full-bleed media on screen before any text.
-    tl.to(
-      media,
-      { scale: 1, duration: 0.38, ease: 'none' },
-      0,
-    )
-    tl.to(
-      copy,
-      { autoAlpha: 1, duration: 0.12, ease: 'none' },
-      0.32,
-    )
+    // Hold: video fills frame, then copy appears.
+    tl.to(media, { scale: 1, duration: 0.28, ease: 'none' }, 0)
+    tl.to(copy, { autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.22)
 
-    // Phase 2  text sequence after the media has settled.
-    const textStart = 0.42
+    // Text sequence — last line stays until pin releases.
+    const textStart = 0.32
+    const step = 0.22
     lines.forEach((line, i) => {
-      const start = textStart + i * 0.18
+      const at = textStart + i * step
       tl.to(
         line,
-        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.12, ease: 'none' },
-        start,
+        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.1, ease: 'none' },
+        at,
       )
       if (i < lines.length - 1) {
         tl.to(
           line,
-          { autoAlpha: 0, y: -18, filter: 'blur(3px)', duration: 0.1, ease: 'none' },
-          start + 0.14,
+          { autoAlpha: 0, y: -20, filter: 'blur(3px)', duration: 0.08, ease: 'none' },
+          at + 0.14,
         )
       }
     })
 
-    const refresh = () => ScrollTrigger.refresh()
-    requestAnimationFrame(refresh)
+    // Keep last frame visible briefly before next section.
+    tl.to({}, { duration: 0.18 }, textStart + (lines.length - 1) * step + 0.12)
+
+    // Also start video as soon as the section approaches the viewport.
+    const approach = ScrollTrigger.create({
+      trigger: section,
+      start: 'top 92%',
+      onEnter: () => playVideo(videoRef.current),
+      onEnterBack: () => playVideo(videoRef.current),
+    })
+
+    requestAnimationFrame(() => ScrollTrigger.refresh())
 
     return () => {
+      approach.kill()
       tl.scrollTrigger?.kill()
       tl.kill()
+      pauseVideo(videoRef.current)
     }
   }, [])
 
   useLayoutEffect(() => {
     if (!mediaReady) return undefined
+    playVideo(videoRef.current)
     ScrollTrigger.refresh()
   }, [mediaReady])
 
@@ -99,7 +134,7 @@ export default function InstallationSection() {
       className="installation-act"
       aria-labelledby="installation-act-title"
     >
-      <div ref={pinRef} className="installation-act__pin">
+      <div ref={stageRef} className="installation-act__stage">
         <div ref={mediaRef} className="installation-act__media">
           <img
             className="installation-act__poster"
@@ -111,24 +146,27 @@ export default function InstallationSection() {
             fetchPriority="high"
           />
           <LazyVideo
+            ref={videoRef}
             className={`installation-act__video${mediaReady ? ' is-ready' : ''}`}
             src={data.video}
             poster={data.poster}
-            autoPlay
+            autoPlay={false}
             muted
             loop
             playsInline
-            maxConcurrent={1}
-            rootMargin="40% 0px"
-            onReady={() => setMediaReady(true)}
+            eager
+            maxConcurrent={0}
+            rootMargin="100% 0px"
+            onReady={(video) => {
+              setMediaReady(true)
+              playVideo(video)
+            }}
           />
           <div className="installation-act__veil" aria-hidden="true" />
         </div>
 
         <div ref={copyRef} className="installation-act__copy r-container">
-          <p className="installation-act__label r-label">
-            {data.act.label}
-          </p>
+          <p className="installation-act__label r-label">{data.act.label}</p>
           <div className="installation-act__lines" aria-live="polite">
             {data.lines.map((line, i) => (
               <p

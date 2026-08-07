@@ -4,6 +4,7 @@ import AppLayout from './layouts/AppLayout.jsx'
 import Home from './pages/Home.jsx'
 import Creations from './pages/Creations.jsx'
 import ClientLogin from './pages/ClientLogin.jsx'
+import ClientProfile from './pages/ClientProfile.jsx'
 import Practice from './pages/Practice.jsx'
 import Worldwide from './pages/Worldwide.jsx'
 import Contact from './pages/Contact.jsx'
@@ -33,6 +34,7 @@ export default function App() {
           />
           <Route path="/press" element={<Press />} />
           <Route path="/client-login" element={<ClientLogin />} />
+          <Route path="/client-profile" element={<ClientProfile />} />
           <Route path="/contact" element={<Contact />} />
           {CAPABILITY_ROUTES.map(({ to }) => (
             <Route

@@ -1,9 +1,7 @@
 import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import SignupForm from '../components/SignupForm'
 import LoginForm from '../components/LoginForm'
-import PageHero from '../components/PageHero'
-import SiteFooter from '../components/SiteFooter'
 import { loadClientSession } from '../clientSession'
 
 export default function ClientLogin() {
@@ -15,79 +13,84 @@ export default function ClientLogin() {
   }
 
   return (
-    <div className="interior-page">
+    <div className="interior-page portal-auth">
       <div className="interior-page__atmosphere" aria-hidden="true" />
-      <main className="interior-page__main">
-        <PageHero
-          eyebrow="Client portal"
-          title={
-            mode === 'login' ? (
-              <>
-                Welcome <em>back</em>
-              </>
-            ) : (
-              <>
-                Request <em>access</em>
-              </>
-            )
-          }
-          lead={
-            mode === 'login'
-              ? 'Log in with your work email to open your profile and Slack channel status.'
-              : 'Sign up to join your Ripples project channel. Our team reviews every request.'
-          }
-        />
+      <main className="interior-page__main portal-auth__main">
+        <div className="r-container portal-auth__grid">
+          <aside className="portal-auth__intro">
+            <p className="r-label">Client portal</p>
+            <h1 className="portal-auth__title">
+              {mode === 'login' ? (
+                <>
+                  Your project, <em>one place</em>
+                </>
+              ) : (
+                <>
+                  Request <em>channel access</em>
+                </>
+              )}
+            </h1>
+            <p className="portal-auth__lead">
+              {mode === 'login'
+                ? 'Sign in to check Slack status, company details, and open your project channel.'
+                : 'Create an account so our team can approve you and invite you to Slack.'}
+            </p>
+            <ul className="portal-auth__points">
+              <li>Live access status</li>
+              <li>Direct Slack channel link</li>
+              <li>Company &amp; plan details</li>
+            </ul>
+            <Link className="r-link portal-auth__back" to="/">
+              Back to site <span className="r-link__arrow" aria-hidden="true">→</span>
+            </Link>
+          </aside>
 
-        <section className="client-access" aria-label="Client account">
-          <div className="r-container client-access__inner">
-            <div className="client-access__panel">
-              <div className="client-access__tabs" role="tablist" aria-label="Account">
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={mode === 'login'}
-                  className={`client-access__tab${mode === 'login' ? ' is-active' : ''}`}
-                  onClick={() => setMode('login')}
-                >
-                  Log in
-                </button>
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={mode === 'signup'}
-                  className={`client-access__tab${mode === 'signup' ? ' is-active' : ''}`}
-                  onClick={() => setMode('signup')}
-                >
-                  Sign up
-                </button>
-              </div>
-
-              <div className="client-access__body">
-                {mode === 'login' ? <LoginForm /> : <SignupForm />}
-              </div>
-
-              <p className="client-access__switch">
-                {mode === 'login' ? (
-                  <>
-                    New here?{' '}
-                    <button type="button" onClick={() => setMode('signup')}>
-                      Create a request
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    Already requested access?{' '}
-                    <button type="button" onClick={() => setMode('login')}>
-                      Log in
-                    </button>
-                  </>
-                )}
-              </p>
+          <section className="portal-auth__card" aria-label="Client account">
+            <div className="portal-auth__tabs" role="tablist" aria-label="Account">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={mode === 'login'}
+                className={`portal-auth__tab${mode === 'login' ? ' is-active' : ''}`}
+                onClick={() => setMode('login')}
+              >
+                Log in
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={mode === 'signup'}
+                className={`portal-auth__tab${mode === 'signup' ? ' is-active' : ''}`}
+                onClick={() => setMode('signup')}
+              >
+                Sign up
+              </button>
             </div>
-          </div>
-        </section>
+
+            <div className="portal-auth__body">
+              {mode === 'login' ? <LoginForm /> : <SignupForm />}
+            </div>
+
+            <p className="portal-auth__switch">
+              {mode === 'login' ? (
+                <>
+                  New here?{' '}
+                  <button type="button" onClick={() => setMode('signup')}>
+                    Create a request
+                  </button>
+                </>
+              ) : (
+                <>
+                  Already have an account?{' '}
+                  <button type="button" onClick={() => setMode('login')}>
+                    Log in
+                  </button>
+                </>
+              )}
+            </p>
+          </section>
+        </div>
       </main>
-      <SiteFooter />
     </div>
   )
 }

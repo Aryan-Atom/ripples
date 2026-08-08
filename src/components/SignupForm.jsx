@@ -59,16 +59,28 @@ export default function SignupForm({ onCreated }) {
 
   return (
     <form className="onboard-form" onSubmit={handleSubmit}>
-      <label className="onboard-form__field">
-        <span>Full name</span>
-        <input
-          required
-          value={form.name}
-          onChange={update('name')}
-          placeholder="Full name"
-          autoComplete="name"
-        />
-      </label>
+      <div className="onboard-form__row">
+        <label className="onboard-form__field">
+          <span>Full name</span>
+          <input
+            required
+            value={form.name}
+            onChange={update('name')}
+            placeholder="Ada Lovelace"
+            autoComplete="name"
+          />
+        </label>
+        <label className="onboard-form__field">
+          <span>Company</span>
+          <input
+            required
+            value={form.company}
+            onChange={update('company')}
+            placeholder="Company name"
+            autoComplete="organization"
+          />
+        </label>
+      </div>
 
       <label className="onboard-form__field">
         <span>Work email</span>
@@ -82,38 +94,28 @@ export default function SignupForm({ onCreated }) {
         />
       </label>
 
-      <label className="onboard-form__field">
-        <span>Company</span>
-        <input
-          required
-          value={form.company}
-          onChange={update('company')}
-          placeholder="Company name"
-          autoComplete="organization"
-        />
-      </label>
-
-      <label className="onboard-form__field">
-        <span>Password</span>
-        <input
-          type="password"
-          required
-          minLength={6}
-          value={form.password}
-          onChange={update('password')}
-          placeholder="At least 6 characters"
-          autoComplete="new-password"
-        />
-      </label>
-
-      <label className="onboard-form__field">
-        <span>Plan</span>
-        <select value={form.account_tier} onChange={update('account_tier')}>
-          <option value="standard">Standard</option>
-          <option value="pro">Pro</option>
-          <option value="enterprise">Enterprise</option>
-        </select>
-      </label>
+      <div className="onboard-form__row">
+        <label className="onboard-form__field">
+          <span>Password</span>
+          <input
+            type="password"
+            required
+            minLength={6}
+            value={form.password}
+            onChange={update('password')}
+            placeholder="Min. 6 characters"
+            autoComplete="new-password"
+          />
+        </label>
+        <label className="onboard-form__field">
+          <span>Plan</span>
+          <select value={form.account_tier} onChange={update('account_tier')}>
+            <option value="standard">Standard</option>
+            <option value="pro">Pro</option>
+            <option value="enterprise">Enterprise</option>
+          </select>
+        </label>
+      </div>
 
       <label className="onboard-form__check">
         <input
@@ -124,12 +126,12 @@ export default function SignupForm({ onCreated }) {
         <span>We already use Slack</span>
       </label>
 
-      {error && <p className="onboard-form__error">{error}</p>}
+      {error && <p className="onboard-form__error" role="alert">{error}</p>}
 
       <button type="submit" className="cta-card__btn onboard-form__submit" disabled={submitting}>
         {submitting ? 'Submitting…' : (
           <>
-            Request access <span aria-hidden="true">&rarr;</span>
+            Create request <span aria-hidden="true">&rarr;</span>
           </>
         )}
       </button>

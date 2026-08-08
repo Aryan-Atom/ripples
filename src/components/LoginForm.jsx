@@ -72,21 +72,17 @@ export default function LoginForm({ onFound }) {
           required
           value={form.password}
           onChange={update('password')}
-          placeholder="••••••••"
+          placeholder="Your password"
           autoComplete="current-password"
         />
       </label>
 
-      <p className="onboard-form__hint">
-        Use the email and password from your signup to open your client profile.
-      </p>
-
-      {error && <p className="onboard-form__error">{error}</p>}
+      {error && <p className="onboard-form__error" role="alert">{error}</p>}
 
       <button type="submit" className="cta-card__btn onboard-form__submit" disabled={submitting}>
-        {submitting ? 'Checking…' : (
+        {submitting ? 'Signing in…' : (
           <>
-            Log in <span aria-hidden="true">&rarr;</span>
+            Enter dashboard <span aria-hidden="true">&rarr;</span>
           </>
         )}
       </button>

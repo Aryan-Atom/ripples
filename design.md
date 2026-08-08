@@ -1,28 +1,29 @@
-# Ripples — Home Design System
+# Ripples  Design System
 
-Source of truth for the **homepage** visual language. Inspired in structure and continuity by [GRU Space](https://www.gru.space/) — one atmospheric scroll, not stacked “panels” — while keeping Ripples’ fountain/water identity.
+Source of truth for Ripples’ visual language. Inspired in structure and continuity by [GRU Space](https://www.gru.space/)  one atmospheric scroll, not stacked “panels”  while keeping Ripples’ fountain/water identity.
 
-Other pages (Creations, Practice, Buzz, Contact) are deferred. Nav labels stay as placeholders until those routes ship. Update this file before inventing new tokens or section patterns.
+Update this file before inventing new tokens or section patterns.
 
 ---
 
 ## Current scope
 
-| In scope | Out of scope (for now) |
+| In scope | Notes |
 |---|---|
-| `/` homepage only | Inner page layouts, forms, grids |
-| Nav labels (text only) | Working nav routes |
-| Continuous page atmosphere | Section borders / flat alternating bands |
+| `/` homepage | Primary canvas + hero sequence |
+| `/our-journey` | Chapter documentary page (same tokens / gradient) |
+| Shared nav routes | Multimedia, Practice, Worldwide, Press, Contact, etc. |
+| Continuous page atmosphere | No section borders / flat alternating bands |
 
 **Homepage stack (top → bottom):**
 
-1. **Hero** — scroll-synced fountain frames + overlay copy  
-2. **Intro band** — brand statement + four stats  
-3. **Brand trail** — client logo marquee  
-4. **CTA panel** — single full-width contact / project card  
-5. **Footer** — brand, explore labels, contact  
+1. **Hero**  scroll-synced fountain frames + overlay copy  
+2. **Intro band**  brand statement + four stats  
+3. **Brand trail**  client logo marquee  
+4. **CTA panel**  single full-width contact / project card  
+5. **Footer**  brand, explore labels, contact  
 
-All of 2–5 sit on **one shared page gradient** — no hairline rules between sections.
+All of 2–5 sit on **one shared page gradient**  no hairline rules between sections.
 
 ---
 
@@ -65,7 +66,7 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 | `--color-glow` | `rgba(79,143,191,0.1)` | Atmospheric radial glow |
 | `--page-gradient` | black → deep blue → black | Full post-hero wash |
 
-**Accent rule:** Muted teal (`--color-accent` / `#6d9ea8`) is for **labels and interaction only** — never large fills, never neon/shiny cyan. Keep it dull enough to sit quietly on black next to white type.
+**Accent rule:** Muted teal (`--color-accent` / `#6d9ea8`) is for **labels and interaction only**  never large fills, never neon/shiny cyan. Keep it dull enough to sit quietly on black next to white type.
 
 ### Page shell
 
@@ -86,7 +87,7 @@ All of 2–5 sit on **one shared page gradient** — no hairline rules between s
 - Atmosphere keeps the top edge black; blue glow sits mid/lower only.
 - Brand trail and footer stay transparent.
 
-**Accent rule:** Muted teal is for labels and interaction only — never large fills.
+**Accent rule:** Muted teal is for labels and interaction only  never large fills.
 
 ---
 
@@ -131,7 +132,7 @@ Fonts loaded via `@fontsource` in `src/main.jsx`.
 | Token | Use |
 |---|---|
 | `--space-page-x` | Horizontal padding |
-| `--space-section-y` | Vertical section padding — same on every major section (`clamp(3.75rem, 7.5vw, 6rem)`) |
+| `--space-section-y` | Vertical section padding  same on every major section (`clamp(3.75rem, 7.5vw, 6rem)`) |
 | `--space-block` | Trail head → marquee gap |
 | `--max-width` | `76rem` |
 
@@ -139,7 +140,7 @@ Fonts loaded via `@fontsource` in `src/main.jsx`.
 <div class="r-container">…</div>
 ```
 
-Home sections use `.home-section` for vertical rhythm **only** — no dividers.
+Home sections use `.home-section` for vertical rhythm **only**  no dividers.
 
 ---
 
@@ -155,7 +156,7 @@ Home sections use `.home-section` for vertical rhythm **only** — no dividers.
 |---|---|---|
 | 0–22% | Held breath | Before the first surge. |
 | 22–40% | Built to rise | Every pump. Every nozzle. Made here. |
-| 40–58% | It breaks free | Water climbs — light catches every arc. |
+| 40–58% | It breaks free | Water climbs  light catches every arc. |
 | 58–74% | Spectacle | Laser. Music. Water. In sync. |
 | 74–88% | Their faces | That pause. That gasp. That wow. |
 | 88–100% | Since 1989 | Design. Build. Manufacture. |
@@ -183,7 +184,7 @@ Hero bottom scrim should ease into the page gradient (darken toward ink), not a 
 
 - Component: `HomeCta`
 - One full-width interactive card (no image / no dual layout)
-- Soft blue radial lift on a dark panel — inspired by [GRU Space](https://www.gru.space/)
+- Soft blue radial lift on a dark panel  inspired by [GRU Space](https://www.gru.space/)
 - Label + display headline (Instrument Serif italic emphasis) + supporting copy + mailto button
 - Button: white fill (`--color-seaside-sand`), dark text
 
@@ -214,6 +215,7 @@ Hero bottom scrim should ease into the page gradient (darken toward ink), not a 
 | `src/styles/design-system.css` | Tokens, `--page-gradient`, `.r-*` |
 | `src/styles/components.css` | `.home-page`, nav, footer, intro, trail |
 | `src/styles/hero.css` | Hero overlay |
+| `src/styles/journey.css` | Our Journey page |
 | `src/index.css` | Imports + reset |
 
 ---
@@ -233,8 +235,41 @@ No bounce, no competing loops in one viewport.
 
 ## Imagery
 
-- Logos: ripplesfountains.com via `brands.js` — `object-fit: contain`, `loading="lazy"`
-- Hero frames: `hero-video-anim` — do not restyle the frame plane here
+- Logos: ripplesfountains.com via `brands.js`  `object-fit: contain`, `loading="lazy"`
+- Hero frames: `hero-video-anim`  do not restyle the frame plane here
+
+---
+
+## Our Journey (`/our-journey`)
+
+Documentary chapter page  same Sea Side tokens, Archivo + Instrument Serif, and `--page-gradient` atmosphere as the rest of the site. Not a second design system.
+
+**Layout language:** Full-bleed **50/50 split panels** (`.split-panel`) for key chapters  media | copy  with a quiet four-point spark accent. Ruled typography on foundation/design. B&W process photography on construction/philosophy. Vertical scrubbed timeline with left blueprint study.
+
+**Stack (top → bottom):**
+
+1. **JourneyHero**  mega type, blueprint grid + particles  
+2. **BlueprintSection**  split: glowing SVG blueprint | ruled “starts as a *line.*”  
+3. **ConstructionGallery**  split: B&W collage | “Concrete first. Then tile.”  
+4. **MediaReveal**  split: design media crossfade + labels | copy  
+5. **FactoryVideoSection**  viewport-gated videos (`LazyVideo`)  
+6. **InstallationSection**  pinned scroll copy over full-bleed video  
+7. **PerformanceSection**  split: show video | Act VI copy + Day/Night toggle  
+8. **JourneyTimeline**  split: fluid-dynamics blueprint | vertical spine timeline  
+9. **CounterStats**  viewport counters  
+10. **PhilosophySection**  split: B&W structure photo | serif “35 years…”  
+11. **SiteFooter**  shared closing footer (no CTA panel on this page)  
+
+| Piece | File |
+|---|---|
+| Page | `src/pages/OurJourney.jsx` |
+| Data / media paths | `src/data/journey.js` |
+| Styles | `src/styles/journey.css` |
+| Components | `src/components/journey/*` (`SplitPanel`, `JourneySpark`, …) |
+
+**Motion:** GSAP + ScrollTrigger only (no Framer). Prefer `FadeUp` / `SplitLines` / `attachScrollReveal`. Videos lazy-load and pause outside the viewport. Respect `prefers-reduced-motion`.
+
+**Media:** Prefer files under `public/assets/Journey/`. Paths with spaces go through `assetPath()` in `journey.js`.
 
 ---
 
@@ -243,7 +278,7 @@ No bounce, no competing loops in one viewport.
 1. Create `src/pages/YourPage.jsx`
 2. Add route in `App.jsx`
 3. Wire `NAV_LINKS` with `to` + restore `<Link>` in nav/footer
-4. Reuse the same `--page-gradient` canvas — do not introduce a second background system
+4. Reuse the same `--page-gradient` canvas  do not introduce a second background system
 5. Extend this doc; do not fork tokens
 
 ---

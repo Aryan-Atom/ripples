@@ -21,7 +21,7 @@ export function LenisProvider({ children, options }) {
 
     lenis.on('scroll', () => {
       ScrollTrigger.update()
-      // Home FadeUp/SplitLines listen for this — native scroll can be skipped by Lenis.
+      // Home FadeUp/SplitLines listen for this  native scroll can be skipped by Lenis.
       window.dispatchEvent(new Event('ripples:scroll'))
     })
 

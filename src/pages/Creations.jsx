@@ -18,13 +18,13 @@ export default function Creations() {
       <div className="interior-page__atmosphere" aria-hidden="true" />
       <main className="interior-page__main">
         <PageHero
-          eyebrow={`Creations — ${CREATIONS.length} selected works`}
+          eyebrow={`Creations  ${CREATIONS.length} selected works`}
           title={
             <>
               Water, <em>staged</em>
             </>
           }
-          lead="Fountains, lake shows, and architectural water — each one composed for its place, engineered for its climate, and built in our own workshop."
+          lead="Fountains, lake shows, and architectural water  each one composed for its place, engineered for its climate, and built in our own workshop."
         />
 
         <section className="creations-index" aria-label="Project index">

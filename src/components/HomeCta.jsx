@@ -17,7 +17,7 @@ export default function HomeCta() {
               </h2>
               <p className="cta-card__text">
                 From the first nozzle drawing to opening night, Ripples designs,
-                builds, and manufactures every system in-house — so the show you
+                builds, and manufactures every system in-house  so the show you
                 imagine is the show your city gets.
               </p>
               <p className="cta-card__text">
@@ -35,7 +35,7 @@ export default function HomeCta() {
             <div className="cta-video-card__frame">
               <LazyVideo
                 className="cta-video-card__video"
-                src="/assets/Logo_construction_animation.mp4"
+                src="/assets/RipplesLogoAnimationWithMusic.mp4"
                 autoPlay
                 muted
                 loop

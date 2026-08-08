@@ -92,7 +92,7 @@ export default function Conch() {
         </div>
 
         <p className="mt-6 text-[0.95rem] leading-[1.85] text-ink/70">
-          Four free-flowing lines form waves that resolve into a conch —
+          Four free-flowing lines form waves that resolve into a conch 
           signifying life in water and its sacred sound.
         </p>
         <RevealText

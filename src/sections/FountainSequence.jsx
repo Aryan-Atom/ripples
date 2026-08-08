@@ -41,12 +41,12 @@ const BEATS = [
  * Orbital camera keyframes (azimuth / elevation / radius) → cinematic arcs.
  * Holds keep each angle readable; moves ease between distinct viewpoints.
  *
- * az  — degrees around Y (0 = front +Z)
- * el  — degrees above horizon
- * r   — distance from look target
+ * az   degrees around Y (0 = front +Z)
+ * el   degrees above horizon
+ * r    distance from look target
  */
 const KEYFRAMES = [
-  // 1 — Wide establishing (front)
+  // 1  Wide establishing (front)
   {
     p: 0,
     az: 0,
@@ -73,7 +73,7 @@ const KEYFRAMES = [
     iTeal: 0.3,
     iWarm: 0.75,
   },
-  // 2 — Sweep to side / three-quarter
+  // 2  Sweep to side / three-quarter
   {
     p: 0.26,
     az: 72,
@@ -100,7 +100,7 @@ const KEYFRAMES = [
     iTeal: 1.7,
     iWarm: 0.65,
   },
-  // 3 — Low heroic (ground-level drama)
+  // 3  Low heroic (ground-level drama)
   {
     p: 0.48,
     az: 148,
@@ -127,7 +127,7 @@ const KEYFRAMES = [
     iTeal: 0.5,
     iWarm: 1.15,
   },
-  // 4 — Crane / high look-down
+  // 4  Crane / high look-down
   {
     p: 0.72,
     az: 220,
@@ -154,7 +154,7 @@ const KEYFRAMES = [
     iTeal: 1.25,
     iWarm: 1.45,
   },
-  // 5 — Macro push into jets
+  // 5  Macro push into jets
   {
     p: 0.94,
     az: 28,

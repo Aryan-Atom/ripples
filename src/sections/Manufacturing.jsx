@@ -41,7 +41,7 @@ export default function Manufacturing() {
             Manufacturing
           </RuleTitle>
           <p className="mt-8 text-[0.95rem] leading-[1.85] text-ink/70">
-            Our in-house factory in Noida is where design becomes hardware —
+            Our in-house factory in Noida is where design becomes hardware 
             nozzles, manifolds, control panels, and show systems built under one
             roof.
           </p>
@@ -63,7 +63,7 @@ export default function Manufacturing() {
             }}
           />
           <figcaption className="mt-3 text-[0.65rem] uppercase tracking-[0.15em] text-ink/50">
-            Noida — Design, fabricate, commission
+            Noida  Design, fabricate, commission
           </figcaption>
         </figure>
       </div>

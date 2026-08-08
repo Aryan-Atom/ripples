@@ -20,7 +20,7 @@ export default function Contact() {
 
   const submit = (event) => {
     event.preventDefault()
-    const subject = encodeURIComponent(`Project enquiry — ${form.type}`)
+    const subject = encodeURIComponent(`Project enquiry  ${form.type}`)
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nProject: ${form.type}\n\n${form.message}`,
     )
@@ -81,7 +81,7 @@ export default function Contact() {
                   required
                   value={form.message}
                   onChange={update('message')}
-                  placeholder="Site, scale, timeline — anything that helps us hear it."
+                  placeholder="Site, scale, timeline  anything that helps us hear it."
                 />
               </label>
               <button type="submit" className="cta-card__btn contact-form__submit">

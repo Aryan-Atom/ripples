@@ -3,7 +3,7 @@ import { PRESS_LOGOS } from '../data/press'
 import FadeUp from '../motion/FadeUp'
 import SplitLines from '../motion/SplitLines'
 
-/** Homepage “Featured in” — publication names only; full clippings live on /press. */
+/** Homepage “Featured in”  publication names only; full clippings live on /press. */
 export default function HomePress() {
   return (
     <section className="home-press home-section" aria-label="Featured in">

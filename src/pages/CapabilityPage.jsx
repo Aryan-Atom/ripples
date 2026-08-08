@@ -126,7 +126,7 @@ export default function CapabilityPage({ slug: slugProp }) {
           <section className="capability-gallery home-section" aria-label={`${page.label} gallery`}>
             <div className="r-container">
               <FadeUp as="p" className="r-label">
-                Selected work — {page.gallery.length} frames
+                Selected work  {page.gallery.length} frames
               </FadeUp>
               <FadeUp className="capability-gallery__wrap" y={32} delay={0.08}>
                 <GalleryGrid items={page.gallery} />

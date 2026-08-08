@@ -1,4 +1,4 @@
-/** Legacy capability pages — structure & photos from ripplesfountains.com archives. */
+/** Legacy capability pages  structure & photos from ripplesfountains.com archives. */
 
 /** Footer / top-level Capabilities only */
 export const CAPABILITY_LINKS = [
@@ -81,11 +81,11 @@ export const CAPABILITY_PAGES = [
   {
     "slug": "water-features",
     "label": "Water Features",
-    "eyebrow": "Capabilities — Water",
+    "eyebrow": "Capabilities  Water",
     "titleBefore": "Water that",
     "titleEm": "belongs",
-    "lead": "Architectural fountains, floating systems, programmable jets, pools, and play — designed, engineered, and manufactured under one roof since 1989.",
-    "body": "Every system begins as a site-specific composition. We shape hydraulics, lighting, and control so the water reads as architecture — then build the hardware ourselves so it performs for decades.",
+    "lead": "Architectural fountains, floating systems, programmable jets, pools, and play  designed, engineered, and manufactured under one roof since 1989.",
+    "body": "Every system begins as a site-specific composition. We shape hydraulics, lighting, and control so the water reads as architecture  then build the hardware ourselves so it performs for decades.",
     "gallery": [
       {
         "title": "ADNOC Abu Dhabi",
@@ -112,11 +112,11 @@ export const CAPABILITY_PAGES = [
   {
     "slug": "architectural-fountains",
     "label": "Architectural Fountains",
-    "eyebrow": "Water Features — Architectural",
+    "eyebrow": "Water Features  Architectural",
     "titleBefore": "Fountains as",
     "titleEm": "architecture",
-    "lead": "Site-specific architectural fountains — basins, nozzles, and light composed for plazas, campuses, and civic destinations.",
-    "body": "Form follows hydraulics. We design the silhouette and engineer the system so the water holds its line in wind, heat, and daily use — built in our workshop, installed as architecture.",
+    "lead": "Site-specific architectural fountains  basins, nozzles, and light composed for plazas, campuses, and civic destinations.",
+    "body": "Form follows hydraulics. We design the silhouette and engineer the system so the water holds its line in wind, heat, and daily use  built in our workshop, installed as architecture.",
     "gallery": [
       {
         "title": "Custom Geyser Jet Fountain Dmrc Hq New Delhi",
@@ -779,11 +779,11 @@ export const CAPABILITY_PAGES = [
   {
     "slug": "floating-fountains",
     "label": "Floating Fountains",
-    "eyebrow": "Water Features — Floating",
+    "eyebrow": "Water Features  Floating",
     "titleBefore": "Lakes, reimagined",
     "titleEm": "as stages",
-    "lead": "Floating fountain systems for lakes, lagoons, and open water — reliable platforms that carry light, spray, and spectacle without a permanent basin on shore.",
-    "body": "From municipal lakes to private estates, our floating arrays are built for duty cycles, climate, and service access — so the show stays on long after opening night.",
+    "lead": "Floating fountain systems for lakes, lagoons, and open water  reliable platforms that carry light, spray, and spectacle without a permanent basin on shore.",
+    "body": "From municipal lakes to private estates, our floating arrays are built for duty cycles, climate, and service access  so the show stays on long after opening night.",
     "gallery": [
       {
         "title": "Creek Fountain, Sharjah",
@@ -830,10 +830,10 @@ export const CAPABILITY_PAGES = [
   {
     "slug": "programmable-fountains",
     "label": "Programmable Fountains",
-    "eyebrow": "Water Features — Programmable",
+    "eyebrow": "Water Features  Programmable",
     "titleBefore": "Jets that",
     "titleEm": "listen",
-    "lead": "Programmable nozzles, jumping jets, and sequenced water — choreographed to music, light, and visitor flow.",
+    "lead": "Programmable nozzles, jumping jets, and sequenced water  choreographed to music, light, and visitor flow.",
     "body": "We write the show and build the control racks that run it. Precision timing, safe public interaction, and hardware we can service for the life of the installation.",
     "gallery": [
       {
@@ -961,10 +961,10 @@ export const CAPABILITY_PAGES = [
   {
     "slug": "swimming-pools",
     "label": "Swimming Pools",
-    "eyebrow": "Water Features — Pools",
+    "eyebrow": "Water Features  Pools",
     "titleBefore": "Pools with",
     "titleEm": "presence",
-    "lead": "Hospitality and private pools engineered as destinations — clarity, edge detail, and systems that stay quiet while guests stay longer.",
+    "lead": "Hospitality and private pools engineered as destinations  clarity, edge detail, and systems that stay quiet while guests stay longer.",
     "body": "From villas to hotels, we deliver the hydraulic backbone and finishes that make a pool feel intentional, not generic.",
     "gallery": [
       {
@@ -1116,11 +1116,11 @@ export const CAPABILITY_PAGES = [
   {
     "slug": "kids-play-areas",
     "label": "Kids Play Areas",
-    "eyebrow": "Water Features — Play",
+    "eyebrow": "Water Features  Play",
     "titleBefore": "Water play,",
     "titleEm": "engineered",
     "lead": "Interactive splash pads and kids play fountains that invite joy without compromising safety, filtration, or durability.",
-    "body": "Soft flow profiles, accessible decks, and robust manifolds — designed for parks, resorts, and mixed-use destinations that expect daily use.",
+    "body": "Soft flow profiles, accessible decks, and robust manifolds  designed for parks, resorts, and mixed-use destinations that expect daily use.",
     "gallery": [
       {
         "title": "Appu Ghar, Gurgaon",
@@ -1179,10 +1179,10 @@ export const CAPABILITY_PAGES = [
   {
     "slug": "prefab-water-features",
     "label": "Prefab Water Features",
-    "eyebrow": "Capabilities — Prefab",
+    "eyebrow": "Capabilities  Prefab",
     "titleBefore": "Factory-built",
     "titleEm": "water",
-    "lead": "Prefab pools and prefab fountains — assembled with workshop control, installed with site speed.",
+    "lead": "Prefab pools and prefab fountains  assembled with workshop control, installed with site speed.",
     "body": "Prefab is how we bring our factory standards to remote and fast-track projects without losing craft in the finish.",
     "gallery": [],
     "sections": [

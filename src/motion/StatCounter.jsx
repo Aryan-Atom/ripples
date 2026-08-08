@@ -54,14 +54,14 @@ export default function StatCounter({ value, className }) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Require a real on-screen presence — not just a pin-related layout pass
+        // Require a real on-screen presence  not just a pin-related layout pass
         if (!entry.isIntersecting || entry.intersectionRatio < 0.35) return
         play()
         observer.disconnect()
       },
       {
         threshold: [0, 0.35, 0.6],
-        // No large rootMargin — that was effectively starting the count off-screen
+        // No large rootMargin  that was effectively starting the count off-screen
         rootMargin: '0px 0px -12% 0px',
       },
     )

@@ -78,7 +78,7 @@ export default function WorldwideShowcase() {
           Events that move <em>water</em> and crowds.
         </h2>
         <p className="r-body worldwide-showcase__lead">
-          Scroll through landmark launches, civic unveilings, and industry showcases —
+          Scroll through landmark launches, civic unveilings, and industry showcases 
           each engineered for its climate, audience, and skyline.
         </p>
       </div>

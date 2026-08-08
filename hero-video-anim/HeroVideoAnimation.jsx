@@ -188,7 +188,7 @@ function HeroVideoAnimationInner({
 
 /**
  * Ready-to-use scroll-driven hero animation.
- * Drop frames in public/frames/, install peer deps, import Lenis CSS — done.
+ * Drop frames in public/frames/, install peer deps, import Lenis CSS  done.
  *
  * @example
  * <HeroVideoAnimation frames={{ frameCount: 241 }} />

@@ -1,4 +1,4 @@
-/* Worldwide page — ambient top-right globe (Shopify-inspired) */
+/* Worldwide page  ambient top-right globe (Shopify-inspired) */
 
 .worldwide-page {
   position: relative;
@@ -28,7 +28,7 @@
   z-index: 2;
 }
 
-/* Hero — text in normal flow; globe is absolute background only */
+/* Hero  text in normal flow; globe is absolute background only */
 
 .worldwide-hero {
   position: relative;
@@ -41,7 +41,7 @@
   padding-block: clamp(6.5rem, 14vh, 9rem) clamp(3rem, 6vw, 5rem);
 }
 
-/* Globe — absolute top-right, zero layout impact */
+/* Globe  absolute top-right, zero layout impact */
 
 .worldwide-hero__globe-ambient {
   position: absolute;
@@ -334,7 +334,7 @@
   object-fit: cover;
 }
 
-/* Description card — overlaps video edge, extends outside like Watcon */
+/* Description card  overlaps video edge, extends outside like Watcon */
 
 .worldwide-showcase__panel {
   position: absolute;

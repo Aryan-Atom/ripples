@@ -5,10 +5,10 @@ import { WORLDWIDE_GEOJSON_URL } from '../data/worldwide'
 
 const MOBILE_QUERY = '(max-width: 960px)'
 
-/** Dim — soft ice-white dots (active). */
+/** Dim  soft ice-white dots (active). */
 const LAND_DOT = 'rgba(142, 184, 212, 0.26)'
 
-/** Bright — vivid cyan glow; swap with LAND_DOT above to enable. */
+/** Bright  vivid cyan glow; swap with LAND_DOT above to enable. */
 // const LAND_DOT = 'rgba(168, 208, 232, 0.78)'
 
 const RENDERER_CONFIG = { alpha: true, antialias: true, powerPreference: 'high-performance' }

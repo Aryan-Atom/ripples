@@ -10,7 +10,7 @@ import FadeUp from '../motion/FadeUp'
 import PressFilters from '../components/press/PressFilters'
 import PressGrid from '../components/press/PressGrid'
 import PressLightbox from '../components/press/PressLightbox'
-/** Full press gallery with filters and lightbox — scans from legacy press archive. */
+/** Full press gallery with filters and lightbox  scans from legacy press archive. */
 export default function Press() {
   const [publicationFilter, setPublicationFilter] = useState('all')
   const [yearFilter, setYearFilter] = useState('all')
@@ -62,7 +62,7 @@ export default function Press() {
               In the <em>news</em>
             </>
           }
-          lead="Newspaper features and media coverage of Ripples Engineering — systems, shows, and the workshop behind them."
+          lead="Newspaper features and media coverage of Ripples Engineering  systems, shows, and the workshop behind them."
         />
 
         <section className="press-page" aria-label="Press clippings">

@@ -80,7 +80,7 @@
   color: var(--color-text-soft);
 }
 
-/* Home — intro statement */
+/* Home  intro statement */
 
 .home-intro__statement {
   margin: 0;
@@ -144,7 +144,7 @@
   color: var(--color-text-muted);
 }
 
-/* Home — creations head */
+/* Home  creations head */
 
 .home-creations__head {
   display: flex;
@@ -299,7 +299,7 @@
   display: none;
 }
 
-/* Home — full-bleed video */
+/* Home  full-bleed video */
 
 .home-video__scrim {
   position: absolute;
@@ -335,7 +335,7 @@
   color: var(--color-accent);
 }
 
-/* Home — worldwide teaser */
+/* Home  worldwide teaser */
 
 .home-worldwide__head .r-body {
   margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
@@ -353,7 +353,7 @@
   margin-top: clamp(3rem, 6vw, 5rem);
 }
 
-/* Home — testimonials */
+/* Home  testimonials */
 
 .home-testimonials__head {
   max-width: 40rem;
@@ -484,7 +484,7 @@
   }
 }
 
-/* Creations page — filters */
+/* Creations page  filters */
 
 .creations-index {
   padding-bottom: var(--space-section-y);
@@ -837,7 +837,7 @@
   color: var(--color-accent);
 }
 
-/* Worldwide — regions */
+/* Worldwide  regions */
 
 .worldwide-regions {
   padding-block: var(--space-section-y);
@@ -905,7 +905,7 @@
   padding-block: var(--space-section-y);
 }
 
-/* Footer — oversized wordmark */
+/* Footer  oversized wordmark */
 
 .site-footer {
   position: relative;
@@ -1046,7 +1046,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  /* Hidden until chars are masked below — prevents R/RIPPLES flash before motion */
+  /* Hidden until chars are masked below  prevents R/RIPPLES flash before motion */
   visibility: hidden;
 }
 
@@ -1054,7 +1054,7 @@
   visibility: visible;
 }
 
-/* SplitText wraps each char — reapply the gradient per char so it survives the split */
+/* SplitText wraps each char  reapply the gradient per char so it survives the split */
 .site-footer__mark .footer-mark-char {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, var(--color-accent-soft) 100%);
   -webkit-background-clip: text;
@@ -1130,7 +1130,7 @@
     cursor: pointer;
   }
 
-  /* Hidden until tap — JS/GSAP reveals with motion */
+  /* Hidden until tap  JS/GSAP reveals with motion */
   .creation-row__thumb {
     display: none;
     width: 100%;

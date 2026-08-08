@@ -1,4 +1,4 @@
-/** Local placeholder images — swap for real project photography later. */
+/** Local placeholder images  swap for real project photography later. */
 const PLACEHOLDER_IMAGES = [
   '/assets/home_1.jpg',
   '/assets/home_2.jpg',
@@ -44,7 +44,7 @@ export const CREATIONS = [
     year: '2023',
     category: 'Architectural',
     summary:
-      'A cascading water stairway threaded through a retail atrium — engineered to whisper, not roar.',
+      'A cascading water stairway threaded through a retail atrium  engineered to whisper, not roar.',
     image: img(2),
   },
   {
@@ -74,7 +74,7 @@ export const CREATIONS = [
     year: '2021',
     category: 'Architectural',
     summary:
-      'Laminar arcs vaulting a botanical walk — silent glass-rod streams lit from within.',
+      'Laminar arcs vaulting a botanical walk  silent glass-rod streams lit from within.',
     image: img(1),
   },
   {
@@ -94,7 +94,7 @@ export const CREATIONS = [
     year: '2020',
     category: 'Architectural',
     summary:
-      'A programmable tide table in a museum forecourt — water that rises, holds, and recedes.',
+      'A programmable tide table in a museum forecourt  water that rises, holds, and recedes.',
     image: img(3),
   },
   {

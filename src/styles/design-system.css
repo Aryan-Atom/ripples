@@ -36,7 +36,7 @@
     #000000 100%
   );
 
-  /* Typography — UI_mod */
+  /* Typography  UI_mod */
   --font-display: 'Archivo', system-ui, sans-serif;
   --font-body: 'Archivo', system-ui, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
@@ -111,7 +111,7 @@
   color: var(--color-accent);
 }
 
-/* SplitText line masks (mask: 'lines') — parent clips, child rises. */
+/* SplitText line masks (mask: 'lines')  parent clips, child rises. */
 .split-line-mask {
   display: block;
   overflow: clip;
@@ -124,7 +124,7 @@
   line-height: inherit;
 }
 
-/* GSAP SplitText default wrappers for words/chars — ensure they don't clip descenders */
+/* GSAP SplitText default wrappers for words/chars  ensure they don't clip descenders */
 .split-word,
 .split-words,
 .split-char,

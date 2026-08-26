@@ -1,5 +1,21 @@
 /** Legacy capability pages  structure & photos from ripplesfountains.com archives. */
 
+/** Footer Explore column — scroll targets on /multimedia */
+export const FOOTER_EXPLORE_LINKS = [
+  {
+    "label": "Water Features",
+    "to": "/multimedia#water-features"
+  },
+  {
+    "label": "Multimedia",
+    "to": "/multimedia#multimedia"
+  },
+  {
+    "label": "Prefab Water Features",
+    "to": "/multimedia#prefab-water-features"
+  }
+]
+
 /** Footer / top-level Capabilities only */
 export const CAPABILITY_LINKS = [
   {

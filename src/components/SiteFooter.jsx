@@ -4,7 +4,7 @@ import { gsap, prefersReducedMotion } from '../motion/gsap'
 import { safeSplitText, showElement } from '../motion/safeSplitText'
 import { attachScrollReveal, whenFontsReady } from '../motion/scrollReveal'
 import { SITE } from '../data/site'
-import { CAPABILITY_LINKS } from '../data/capabilities'
+import { FOOTER_EXPLORE_LINKS } from '../data/capabilities'
 import FadeUp from '../motion/FadeUp'
 import { Brand, withBrand } from './Brand.jsx'
 
@@ -103,7 +103,7 @@ export default function SiteFooter() {
           <div className="site-footer__col">
             <h4>Explore</h4>
             <nav aria-label="Capabilities">
-              {CAPABILITY_LINKS.map(({ label, to }) => (
+              {FOOTER_EXPLORE_LINKS.map(({ label, to }) => (
                 <Link key={to} to={to}>
                   {label}
                 </Link>

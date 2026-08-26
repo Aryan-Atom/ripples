@@ -21,6 +21,18 @@ const VB_W = 1600
 const VB_H = 900
 /** Approx width of "Ripples" in ems in Ripples Logo at current tracking. */
 const WORD_EM = 2.5
+const RIM_WHITE = '#ffffff'
+const RIM_BLUE = '#8eb8d4'
+
+function lerpHex(from, to, amount) {
+  const t = Math.max(0, Math.min(1, amount))
+  const f = parseInt(from.slice(1), 16)
+  const b = parseInt(to.slice(1), 16)
+  const r = Math.round(((f >> 16) & 255) * (1 - t) + ((b >> 16) & 255) * t)
+  const g = Math.round(((f >> 8) & 255) * (1 - t) + ((b >> 8) & 255) * t)
+  const bl = Math.round((f & 255) * (1 - t) + (b & 255) * t)
+  return `#${((1 << 24) + (r << 16) + (g << 8) + bl).toString(16).slice(1)}`
+}
 
 function easeInOutCubic(t) {
   return t < 0.5 ? 4 * t * t * t : 1 - ((-2 * t + 2) ** 3) / 2
@@ -40,8 +52,7 @@ function LogoType({ className = '', fill, stroke, children, textRef }) {
       x="0"
       y="0"
       textAnchor="middle"
-      // Cap-height optical center (dominant-baseline is unreliable on mobile WebKit)
-      dy="0.35em"
+      dy="0.22em"
       fill={fill}
       stroke={stroke ?? 'none'}
       strokeWidth="0"
@@ -63,8 +74,11 @@ export default function HeroLogoReveal() {
   const scaleRef = useRef(null)
   const plateRef = useRef(null)
   const rimRef = useRef(null)
+  const maskGroupRef = useRef(null)
   const maskTypeRef = useRef(null)
   const rimTypeRef = useRef(null)
+  const rimBlurRef = useRef(null)
+  const maskBlurRef = useRef(null)
   const progressRef = useRef(0)
   const narrowRef = useRef(false)
   const awayRef = useRef(false)
@@ -72,6 +86,8 @@ export default function HeroLogoReveal() {
   const reactId = useId().replace(/:/g, '')
   const maskId = `ripples-cut-${reactId}`
   const gradId = `ripples-grad-${reactId}`
+  const rimSoftId = `ripples-rim-soft-${reactId}`
+  const maskFeatherId = `ripples-mask-feather-${reactId}`
 
   const applyTypeMetrics = useCallback((size, stroke) => {
     const sizeValue = String(size)
@@ -83,9 +99,29 @@ export default function HeroLogoReveal() {
     }
     if (rimTypeRef.current) {
       rimTypeRef.current.setAttribute('font-size', sizeValue)
-      rimTypeRef.current.setAttribute('stroke', '#ffffff')
       rimTypeRef.current.setAttribute('stroke-width', strokeValue)
     }
+  }, [])
+
+  const alignTypeToCenter = useCallback(() => {
+    const type = rimTypeRef.current
+    const maskGroup = maskGroupRef.current
+    const rimGroup = rimRef.current
+    if (!type || !maskGroup || !rimGroup) return
+
+    let bbox
+    try {
+      bbox = type.getBBox()
+    } catch {
+      return
+    }
+    if (bbox.width < 1 || bbox.height < 1) return
+
+    const originX = bbox.x + bbox.width / 2
+    const originY = bbox.y + bbox.height / 2
+    const transform = `translate(${VB_W / 2 - originX} ${VB_H / 2 - originY})`
+    maskGroup.setAttribute('transform', transform)
+    rimGroup.setAttribute('transform', transform)
   }, [])
 
   const fitType = useCallback(() => {
@@ -102,12 +138,13 @@ export default function HeroLogoReveal() {
     const cover = Math.max(width / VB_W, height / VB_H)
     const visibleW = width / cover
     const size = Math.max(64, (visibleW * 0.9) / WORD_EM)
-    const stroke = Math.max(1.1, size * 0.008)
+    const stroke = Math.max(1.35, size * 0.0095)
 
     scaler.style.setProperty('--hero-logo-size', `${size}px`)
     scaler.style.setProperty('--hero-logo-stroke', `${stroke}px`)
     applyTypeMetrics(size, stroke)
-  }, [applyTypeMetrics])
+    alignTypeToCenter()
+  }, [applyTypeMetrics, alignTypeToCenter])
 
   const update = useCallback((progress) => {
     const wrap = wrapRef.current
@@ -130,11 +167,22 @@ export default function HeroLogoReveal() {
       raw < fadeStart ? 0 : easeInOutCubic((raw - fadeStart) / (1 - fadeStart))
     const plateOpacity = 1 - fadeT * (mobile ? 0.98 : 0.95)
 
-    const rimStart = mobile ? 0.08 : 0.12
-    const rimSpan = mobile ? 0.32 : 0.38
+    // Keep the soft rim through the full zoom; fade out with the plate, not midway.
+    const rimFadeStart = fadeStart
+    const rimFadeSpan = mobile ? 0.54 : 0.58
     const rimFadeT =
-      raw < rimStart ? 0 : easeInOutCubic(Math.min(1, (raw - rimStart) / rimSpan))
+      raw < rimFadeStart
+        ? 0
+        : easeInOutCubic(Math.min(1, (raw - rimFadeStart) / rimFadeSpan))
     const rimOpacity = 1 - rimFadeT
+
+    // White → soft theme blue while zooming, then both dissolve with the plate.
+    const colorT =
+      raw < 0.22 ? 0 : easeInOutCubic(Math.min(1, (raw - 0.22) / 0.62))
+    const strokeColor = lerpHex(RIM_WHITE, RIM_BLUE, colorT)
+    const rimBlur = 0.65 + t * 3.4 + rimFadeT * 2.2
+    const maskFeather = raw < 0.32 ? 0 : easeInOutCubic(Math.min(1, (raw - 0.32) / 0.58)) * 5.5
+
     const hide = raw >= 0.995
     const rest = raw <= 0.002
 
@@ -143,6 +191,23 @@ export default function HeroLogoReveal() {
     wrap.style.pointerEvents = 'none'
     plate.setAttribute('opacity', String(Math.max(0, plateOpacity)))
     rim.setAttribute('opacity', String(Math.max(0, rimOpacity)))
+
+    if (rimTypeRef.current) {
+      rimTypeRef.current.setAttribute('stroke', strokeColor)
+    }
+    if (rimBlurRef.current) {
+      rimBlurRef.current.setAttribute('stdDeviation', String(rimBlur))
+    }
+    if (maskGroupRef.current) {
+      if (maskFeather > 0.08) {
+        maskGroupRef.current.setAttribute('filter', `url(#${maskFeatherId})`)
+      } else {
+        maskGroupRef.current.removeAttribute('filter')
+      }
+    }
+    if (maskBlurRef.current) {
+      maskBlurRef.current.setAttribute('stdDeviation', String(maskFeather))
+    }
 
     // Drop the zoomed compositor layer while off-screen so it cannot ghost
     // extra stroke rasters when we return to the top.
@@ -195,6 +260,11 @@ export default function HeroLogoReveal() {
       if (cancelled) return
       fitType()
       update(progressRef.current)
+      requestAnimationFrame(() => {
+        if (cancelled) return
+        fitType()
+        update(progressRef.current)
+      })
     })
 
     return () => {
@@ -226,6 +296,26 @@ export default function HeroLogoReveal() {
               <stop offset="76%" stopColor="#081828" />
               <stop offset="100%" stopColor="#000000" />
             </linearGradient>
+            <filter
+              id={rimSoftId}
+              x="-8%"
+              y="-8%"
+              width="116%"
+              height="116%"
+              colorInterpolationFilters="sRGB"
+            >
+              <feGaussianBlur ref={rimBlurRef} stdDeviation="0.65" />
+            </filter>
+            <filter
+              id={maskFeatherId}
+              x="-12%"
+              y="-12%"
+              width="124%"
+              height="124%"
+              colorInterpolationFilters="sRGB"
+            >
+              <feGaussianBlur ref={maskBlurRef} stdDeviation="0" />
+            </filter>
             <mask
               id={maskId}
               maskUnits="userSpaceOnUse"
@@ -236,7 +326,7 @@ export default function HeroLogoReveal() {
               height={VB_H}
             >
               <rect width={VB_W} height={VB_H} fill="#fff" />
-              <g transform={`translate(${cx} ${cy})`}>
+              <g ref={maskGroupRef} transform={`translate(${cx} ${cy})`}>
                 <LogoType fill="#000" stroke="none" textRef={maskTypeRef}>
                   Ripples
                 </LogoType>
@@ -252,11 +342,15 @@ export default function HeroLogoReveal() {
             mask={`url(#${maskId})`}
           />
 
-          <g transform={`translate(${cx} ${cy})`} ref={rimRef}>
+          <g
+            transform={`translate(${cx} ${cy})`}
+            ref={rimRef}
+            filter={`url(#${rimSoftId})`}
+          >
             <LogoType
               className="hero-logo-reveal__rim"
               fill="none"
-              stroke="#ffffff"
+              stroke={RIM_WHITE}
               textRef={rimTypeRef}
             >
               Ripples

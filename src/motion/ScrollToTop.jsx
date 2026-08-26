@@ -1,24 +1,53 @@
 import { useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ScrollTrigger } from './gsap'
-import { disableBrowserScrollRestoration, resetScroll } from './scrollReset'
+import {
+  disableBrowserScrollRestoration,
+  getActiveLenis,
+  resetScroll,
+  scrollToHash,
+} from './scrollReset'
+
+function refreshScrollTriggers() {
+  ScrollTrigger.refresh()
+  requestAnimationFrame(() => ScrollTrigger.refresh())
+}
+
+function scrollToHashWhenReady(hash, attempt = 0) {
+  const lenis = getActiveLenis()
+  if (scrollToHash(hash, lenis)) {
+    refreshScrollTriggers()
+    return
+  }
+
+  if (attempt >= 12) {
+    resetScroll(lenis)
+    refreshScrollTriggers()
+    return
+  }
+
+  requestAnimationFrame(() => scrollToHashWhenReady(hash, attempt + 1))
+}
 
 /** Reset scroll and stale triggers when navigating between routes. */
 export default function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
   useLayoutEffect(() => {
     disableBrowserScrollRestoration()
-    resetScroll()
-    // Nav stays mounted across routes  clear leftover drag-selection highlights
     window.getSelection()?.removeAllRanges()
 
+    if (hash) {
+      scrollToHashWhenReady(hash)
+      return undefined
+    }
+
+    resetScroll(getActiveLenis())
     requestAnimationFrame(() => {
-      resetScroll()
-      ScrollTrigger.refresh()
-      requestAnimationFrame(() => ScrollTrigger.refresh())
+      resetScroll(getActiveLenis())
+      refreshScrollTriggers()
     })
-  }, [pathname])
+  }, [pathname, hash])
 
   return null
 }

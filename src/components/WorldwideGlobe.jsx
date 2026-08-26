@@ -1,26 +1,30 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Globe from 'react-globe.gl'
 import * as THREE from 'three'
-import { WORLDWIDE_GEOJSON_URL } from '../data/worldwide'
+import { getWorldCountriesCache, prefetchWorldCountries } from '../data/worldwide'
 
 const MOBILE_QUERY = '(max-width: 960px)'
 
-/** Dim  soft ice-white dots (active). */
+/** Dim — soft ice-white dots (active). */
 const LAND_DOT = 'rgba(142, 184, 212, 0.26)'
-
-/** Bright  vivid cyan glow; swap with LAND_DOT above to enable. */
-// const LAND_DOT = 'rgba(168, 208, 232, 0.78)'
-
-const RENDERER_CONFIG = { alpha: true, antialias: true, powerPreference: 'high-performance' }
 
 export default function WorldwideGlobe({ variant = 'ambient' }) {
   const isAmbient = variant === 'ambient'
   const containerRef = useRef(null)
   const globeRef = useRef(null)
   const [size, setSize] = useState({ width: 0, height: 0 })
-  const [countries, setCountries] = useState([])
-  const [isVisible, setIsVisible] = useState(false)
+  const [countries, setCountries] = useState(() => getWorldCountriesCache() ?? [])
+  const [isVisible, setIsVisible] = useState(isAmbient)
   const [isMobile, setIsMobile] = useState(false)
+
+  const rendererConfig = useMemo(
+    () => ({
+      alpha: true,
+      antialias: !isAmbient && !isMobile,
+      powerPreference: 'high-performance',
+    }),
+    [isAmbient, isMobile],
+  )
 
   const globeMaterial = useMemo(
     () =>
@@ -45,6 +49,8 @@ export default function WorldwideGlobe({ variant = 'ambient' }) {
   }, [])
 
   useEffect(() => {
+    if (isAmbient) return undefined
+
     const container = containerRef.current
     if (!container) return undefined
 
@@ -55,24 +61,30 @@ export default function WorldwideGlobe({ variant = 'ambient' }) {
           observer.disconnect()
         }
       },
-      { rootMargin: '80px 0px' },
+      { rootMargin: '120px 0px' },
     )
 
     observer.observe(container)
     return () => observer.disconnect()
-  }, [])
+  }, [isAmbient])
 
   useEffect(() => {
     if (!isVisible) return undefined
 
-    const controller = new AbortController()
+    const cached = getWorldCountriesCache()
+    if (cached?.length) {
+      setCountries(cached)
+      return undefined
+    }
 
-    fetch(WORLDWIDE_GEOJSON_URL, { signal: controller.signal })
-      .then((res) => res.json())
-      .then((data) => setCountries(data.features ?? []))
-      .catch(() => {})
+    let cancelled = false
+    prefetchWorldCountries().then((features) => {
+      if (!cancelled) setCountries(features)
+    })
 
-    return () => controller.abort()
+    return () => {
+      cancelled = true
+    }
   }, [isVisible])
 
   useEffect(() => {
@@ -121,7 +133,13 @@ export default function WorldwideGlobe({ variant = 'ambient' }) {
     }
   }, [isVisible, isMobile, size.width, size.height, configureGlobe])
 
-  const hexDotResolution = isAmbient ? (isMobile ? 8 : 10) : isMobile ? 6 : 7
+  const hexDotResolution = isAmbient
+    ? isMobile
+      ? 7
+      : 9
+    : isMobile
+      ? 6
+      : 7
 
   return (
     <div ref={containerRef} className="worldwide-globe worldwide-globe--ambient" aria-hidden="true">
@@ -131,12 +149,12 @@ export default function WorldwideGlobe({ variant = 'ambient' }) {
             ref={globeRef}
             width={size.width}
             height={size.height}
-            rendererConfig={RENDERER_CONFIG}
+            rendererConfig={rendererConfig}
             globeOffset={isAmbient ? [0.52, 0.32, 0] : [0, 0, 0]}
             backgroundColor="rgba(0,0,0,0)"
             showGlobe
             globeMaterial={globeMaterial}
-            showAtmosphere
+            showAtmosphere={!isAmbient}
             atmosphereColor="rgba(142, 184, 212, 0.08)"
             atmosphereAltitude={0.12}
             onGlobeReady={configureGlobe}
@@ -147,7 +165,7 @@ export default function WorldwideGlobe({ variant = 'ambient' }) {
             hexPolygonColor={() => LAND_DOT}
             hexPolygonDotResolution={hexDotResolution}
             hexPolygonAltitude={0.006}
-            hexPolygonCurvatureResolution={4}
+            hexPolygonCurvatureResolution={isAmbient ? 3 : 4}
             hexPolygonsTransitionDuration={0}
             enablePointerInteraction={false}
           />

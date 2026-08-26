@@ -2,31 +2,31 @@ import { useEffect, useLayoutEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import { gsap, ScrollTrigger, prefersReducedMotion } from './gsap'
-import { resetScroll } from './scrollReset'
+import { resetScroll, scrollToHash, setActiveLenis } from './scrollReset'
 
 /**
- * App-level Lenis for every route except Home  the Home hero package
+ * App-level Lenis for every route except Home — the Home hero package
  * owns its own Lenis instance tuned for the canvas scrub.
  */
 export default function SmoothScroll() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const lenisRef = useRef(null)
 
   useLayoutEffect(() => {
+    if (hash) return
     resetScroll(lenisRef.current)
-  }, [pathname])
+  }, [pathname, hash])
 
   useEffect(() => {
     if (prefersReducedMotion()) return undefined
 
     if (pathname === '/') {
+      setActiveLenis(null)
       lenisRef.current?.destroy()
       lenisRef.current = null
-      resetScroll()
+      if (!hash) resetScroll()
       return undefined
     }
-
-    resetScroll()
 
     const lenis = new Lenis({
       lerp: 0.085,
@@ -35,7 +35,11 @@ export default function SmoothScroll() {
     })
 
     lenisRef.current = lenis
-    lenis.scrollTo(0, { immediate: true, force: true })
+    setActiveLenis(lenis)
+
+    if (!hash) {
+      lenis.scrollTo(0, { immediate: true, force: true })
+    }
 
     lenis.on('scroll', ScrollTrigger.update)
 
@@ -51,7 +55,11 @@ export default function SmoothScroll() {
 
     const refresh = () => ScrollTrigger.refresh()
     requestAnimationFrame(() => {
-      resetScroll(lenis)
+      if (hash) {
+        scrollToHash(hash, lenis)
+      } else {
+        resetScroll(lenis)
+      }
       refresh()
     })
     window.addEventListener('load', refresh)
@@ -64,9 +72,18 @@ export default function SmoothScroll() {
       if (lenisRef.current === lenis) {
         lenisRef.current = null
       }
+      setActiveLenis(null)
       resetScroll()
     }
   }, [pathname])
+
+  useEffect(() => {
+    const lenis = lenisRef.current
+    if (!lenis || !hash || prefersReducedMotion()) return undefined
+
+    requestAnimationFrame(() => scrollToHash(hash, lenis))
+    return undefined
+  }, [hash])
 
   return null
 }

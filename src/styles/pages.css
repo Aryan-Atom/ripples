@@ -202,6 +202,59 @@
   color: var(--color-accent);
 }
 
+.creation-list--mobile .creation-list__preview {
+  display: none;
+}
+
+.creation-list--mobile .creation-row {
+  cursor: default;
+}
+
+.creation-list--mobile .creation-row__copy {
+  min-width: 0;
+}
+
+.creation-list--mobile .creation-row__thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 5.5rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 0.55rem;
+}
+
+.creation-list--mobile .creation-row__line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding-block: 0;
+}
+
+.creation-list--mobile .creation-row__index {
+  font-size: 0.62rem;
+}
+
+.creation-list--mobile .creation-row__title {
+  font-size: clamp(1.15rem, 4.8vw, 1.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.creation-list--mobile .creation-row__meta {
+  gap: 0.25rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+}
+
+.creation-list--mobile .creation-row__year {
+  margin-top: 0.15rem;
+  font-size: var(--text-sm);
+  text-align: left;
+}
+
 .creation-list__preview-img {
   position: absolute;
   inset: 0;
@@ -223,6 +276,10 @@
 .creation-row {
   box-shadow: inset 0 1px 0 var(--color-border);
   transition: opacity 0.4s var(--ease-out);
+}
+
+.creation-row__copy {
+  min-width: 0;
 }
 
 .creation-list:hover .creation-row:not(:hover) {
@@ -1158,13 +1215,30 @@
     opacity: 1;
   }
 
-  .creation-row {
+  .creation-list--mobile .creation-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(5.25rem, 24vw, 7.25rem);
+    gap: clamp(0.85rem, 3.5vw, 1.15rem);
+    align-items: center;
+    padding-block: clamp(1.15rem, 3.5vw, 1.65rem);
+  }
+
+  .creation-list--mobile .creation-row__copy {
+    grid-column: 1;
+  }
+
+  .creation-list--mobile .creation-row__thumb {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .creation-list--touch .creation-row {
     padding-block: clamp(1.5rem, 4vw, 2rem);
     cursor: pointer;
   }
 
-  /* Hidden until tap  JS/GSAP reveals with motion */
-  .creation-row__thumb {
+  /* Hidden until tap — JS/GSAP reveals with motion (non-mobile touch only) */
+  .creation-list--touch .creation-row__thumb {
     display: none;
     width: 100%;
     aspect-ratio: 16 / 10;
@@ -1173,22 +1247,22 @@
     margin-bottom: 0;
   }
 
-  .creation-row.is-open .creation-row__title {
+  .creation-list--touch .creation-row.is-open .creation-row__title {
     transform: translateX(0.4rem);
     color: var(--color-accent);
   }
 
-  .creation-row.is-open .creation-row__index {
+  .creation-list--touch .creation-row.is-open .creation-row__index {
     color: var(--color-accent);
   }
 
-  .creation-row__line {
+  .creation-list--touch .creation-row__line {
     grid-template-columns: 2.5rem minmax(0, 1fr) auto;
     row-gap: 0.6rem;
     padding-block: 0;
   }
 
-  .creation-row__meta {
+  .creation-list--touch .creation-row__meta {
     grid-column: 2 / 3;
   }
 

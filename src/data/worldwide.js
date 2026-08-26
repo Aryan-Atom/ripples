@@ -10,7 +10,33 @@ export const WORLDWIDE_PRESENCE = [
 
 export const WORLDWIDE_GEOJSON_URL = '/data/world-countries.geojson'
 
-/** Regional footprint  shown below the globe hero. */
+let worldCountriesCache = null
+let worldCountriesPromise = null
+
+/** Warm the GeoJSON cache before the globe mounts (Worldwide route / hero). */
+export function prefetchWorldCountries() {
+  if (worldCountriesCache) return Promise.resolve(worldCountriesCache)
+  if (!worldCountriesPromise) {
+    worldCountriesPromise = fetch(WORLDWIDE_GEOJSON_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        worldCountriesCache = data.features ?? []
+        return worldCountriesCache
+      })
+      .catch(() => {
+        worldCountriesPromise = null
+        worldCountriesCache = []
+        return worldCountriesCache
+      })
+  }
+  return worldCountriesPromise
+}
+
+export function getWorldCountriesCache() {
+  return worldCountriesCache
+}
+
+/** Regional footprint — shown below the globe hero. */
 export const WORLDWIDE_REGIONS = [
   {
     index: '01',

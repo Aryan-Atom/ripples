@@ -3,6 +3,8 @@
 /* ── RIPPLES zoom cut  video shows through the letters ── */
 
 .hero-logo-reveal {
+  --hero-logo-rim: #ffffff;
+  --hero-logo-rim-soft: #8eb8d4;
   position: absolute;
   inset: 0;
   z-index: 20;
@@ -25,6 +27,8 @@
   width: 100%;
   height: 100%;
   overflow: visible;
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
 }
 
 .hero-logo-reveal__type {
@@ -32,15 +36,20 @@
   font-size: var(--hero-logo-size, 240px);
   font-weight: 800;
   letter-spacing: -0.04em;
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
 }
 
 .hero-logo-reveal__rim {
   fill: none;
-  stroke: #ffffff;
+  stroke: var(--hero-logo-rim);
   stroke-linejoin: round;
   stroke-linecap: round;
+  stroke-miterlimit: 1.5;
   stroke-width: var(--hero-logo-stroke, 2px);
   paint-order: stroke;
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
 }
 
 @media (max-width: 720px) {
@@ -98,7 +107,8 @@
   align-items: center;
   width: 100%;
   opacity: 0;
-  will-change: opacity, transform;
+  visibility: hidden;
+  will-change: opacity;
   backface-visibility: hidden;
 }
 

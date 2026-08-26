@@ -1,10 +1,20 @@
 import { Link } from 'react-router-dom'
-import { WORLDWIDE_CITIES } from '../data/worldwide'
+import { useEffect } from 'react'
+import { WORLDWIDE_CITIES, prefetchWorldCountries } from '../data/worldwide'
 import TextMarquee from './TextMarquee.jsx'
 import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
 
 export default function HomeWorldwide() {
+  useEffect(() => {
+    prefetchWorldCountries()
+  }, [])
+
+  const warmWorldwidePage = () => {
+    prefetchWorldCountries()
+    import('./WorldwideGlobe.jsx')
+  }
+
   return (
     <section className="home-worldwide home-section" aria-label="Worldwide presence">
       <div className="r-container home-worldwide__head">
@@ -19,7 +29,7 @@ export default function HomeWorldwide() {
           own factory floor and arrives with the team that built it.
         </FadeUp>
         <FadeUp delay={0.08}>
-          <Link className="r-link" to="/worldwide">
+          <Link className="r-link" to="/worldwide" onMouseEnter={warmWorldwidePage} onFocus={warmWorldwidePage}>
             Explore the globe <span className="r-link__arrow" aria-hidden="true">
               &rarr;
             </span>

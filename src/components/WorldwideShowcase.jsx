@@ -53,11 +53,11 @@ export default function WorldwideShowcase() {
     const slides = slideRefs.current.filter(Boolean)
     const ctx = gsap.context(() => {
       slides.forEach((slide) => {
-        const panel = slide.querySelector('.worldwide-showcase__panel')
-        if (!panel) return
+        const card = slide.querySelector('.worldwide-showcase__card')
+        if (!card) return
 
-        const tl = createRevealTimeline(panel, {
-          y: 22,
+        const tl = createRevealTimeline(card, {
+          y: 18,
           duration: 0.45,
           ease: 'power2.out',
           clearProps: 'transform,opacity',

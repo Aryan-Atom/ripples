@@ -67,7 +67,12 @@ export default function SiteFooter() {
     }
   }, [])
 
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+  const scrollTop = () => {
+    const event = new Event('ripples:scroll-top', { cancelable: true })
+    if (window.dispatchEvent(event)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
   const factory = SITE.addresses.find((address) => address.label === 'Factory')
   const offices = SITE.addresses.filter((address) => address.label !== 'Factory')
 
@@ -129,7 +134,7 @@ export default function SiteFooter() {
       </div>
 
       <div className="site-footer__mark" ref={markWrapRef} aria-hidden="true">
-        <span ref={markRef} className="r-brand">RIPPLES</span>
+        <span ref={markRef} className="r-brand">Ripples</span>
       </div>
 
       <div className="site-footer__bottom r-container">

@@ -1045,11 +1045,13 @@
 }
 
 .site-footer__mark {
-  margin-top: clamp(3.5rem, 8vw, 7rem);
+  margin-top: clamp(2.25rem, 6vw, 4rem);
+  margin-bottom: clamp(-2.1rem, -4.2vw, -1.25rem);
   padding-inline: var(--space-page-x);
+  padding-block: 0.03em 0;
   text-align: center;
   user-select: none;
-  line-height: 0.8;
+  line-height: 1.05;
 }
 
 .site-footer__mark span {
@@ -1058,8 +1060,8 @@
   font-size: clamp(4rem, 17.5vw, 17rem);
   font-weight: 800;
   letter-spacing: 0.01em;
-  line-height: 0.8;
-  transform: translateY(0.08em);
+  line-height: 1.05;
+  padding: 0.05em 0 0.1em;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, var(--color-accent-soft) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -1080,17 +1082,30 @@
   color: transparent;
 }
 
+/* A little extra room in GSAP char masks for R caps and p descenders */
+.site-footer__mark [style*='overflow'] {
+  padding-top: 0.03em;
+  padding-bottom: 0.1em;
+}
+
 .site-footer__bottom {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 1.6rem;
+  padding-block: 0.35rem 0.5rem;
   font-size: var(--text-xs);
   letter-spacing: 0.1em;
   color: var(--color-text-muted);
   box-shadow: inset 0 1px 0 var(--color-border);
+}
+
+.site-footer__bottom .r-brand {
+  display: inline-block;
+  padding: 0.08em 0 0.16em;
+  line-height: 1.2;
+  vertical-align: -0.06em;
 }
 
 .site-footer__tagline-line {

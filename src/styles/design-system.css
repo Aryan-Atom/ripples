@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Ripples Logo';
+  src:
+    url('/font/RipplesLogo.woff2') format('woff2'),
+    url('/font/RipplesLogo%20(1).ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Sea Side palette */
   --color-seaside-deep: #174e8d;
@@ -40,7 +50,7 @@
   --font-display: 'Cinzel', 'Times New Roman', serif;
   --font-body: 'Archivo', system-ui, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-brand: 'Montserrat', system-ui, sans-serif;
+  --font-brand: 'Ripples Logo', 'Montserrat', system-ui, sans-serif;
 
   --text-xs: clamp(0.62rem, 0.9vw, 0.72rem);
   --text-sm: clamp(0.78rem, 1.1vw, 0.88rem);
@@ -131,6 +141,7 @@
   font-style: normal;
   font-synthesis: none;
   letter-spacing: 0.02em;
+  text-transform: none;
 }
 
 /* SplitText line masks (mask: 'lines')  parent clips, child rises. */

@@ -39,6 +39,12 @@ export default function SmoothScroll() {
 
     lenis.on('scroll', ScrollTrigger.update)
 
+    const onScrollTop = (event) => {
+      event.preventDefault()
+      lenis.scrollTo(0, { duration: 1.2 })
+    }
+    window.addEventListener('ripples:scroll-top', onScrollTop)
+
     const raf = (time) => lenis.raf(time * 1000)
     gsap.ticker.add(raf)
     gsap.ticker.lagSmoothing(0)
@@ -52,6 +58,7 @@ export default function SmoothScroll() {
 
     return () => {
       window.removeEventListener('load', refresh)
+      window.removeEventListener('ripples:scroll-top', onScrollTop)
       gsap.ticker.remove(raf)
       lenis.destroy()
       if (lenisRef.current === lenis) {

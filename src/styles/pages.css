@@ -864,6 +864,9 @@
 .contact-form__submit {
   align-self: flex-start;
   cursor: pointer;
+  width: fit-content;
+  border-radius: 9999px;
+  padding: 0.85rem 1.55rem;
 }
 
 .contact-details {

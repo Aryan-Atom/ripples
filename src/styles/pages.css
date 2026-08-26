@@ -43,10 +43,10 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--text-mega);
-  font-weight: 300;
+  font-weight: 400;
   /* Increase slightly to avoid descender clipping (e.g. 'g', 'y') */
-  line-height: 1.12;
-  letter-spacing: -0.04em;
+  line-height: 1.16;
+  letter-spacing: 0.02em;
   text-wrap: balance;
   overflow: visible;
   padding-bottom: 0.6rem;
@@ -74,9 +74,12 @@
 .page-hero__lead {
   margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
   max-width: 40rem;
+  font-family: var(--font-serif);
+  font-style: italic;
   font-size: var(--text-base);
   font-weight: 400;
   line-height: 1.8;
+  letter-spacing: 0.01em;
   color: var(--color-text-soft);
 }
 
@@ -87,9 +90,9 @@
   max-width: 64rem;
   font-family: var(--font-display);
   font-size: clamp(1.85rem, 4.3vw, 3.5rem);
-  font-weight: 300;
-  line-height: 1.18;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: 0.02em;
 }
 
 .home-intro__statement em {
@@ -123,23 +126,23 @@
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  padding-top: 1.1rem;
-  box-shadow: inset 0 1px 0 var(--color-border);
+  padding-top: 1.15rem;
+  box-shadow: inset 0 1px 0 var(--color-accent);
   min-width: 0;
 }
 
 .home-intro__stat-value {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums;
 }
 
 .home-intro__stat-label {
   font-size: var(--text-xs);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -246,7 +249,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 2.6vw, 2.3rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.02em;
   transition:
@@ -323,7 +326,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3.2vw, 2.6rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.02em;
 }
@@ -386,7 +389,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 2.4vw, 1.65rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.45;
   letter-spacing: -0.015em;
   color: var(--color-text);
@@ -451,7 +454,7 @@
   padding-right: clamp(1.5rem, 3vw, 2.75rem);
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 6.5vw, 5.5rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -556,7 +559,7 @@
   margin: 0.9rem 0 0;
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.01em;
 }
 
@@ -602,7 +605,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3.2vw, 2.6rem);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.02em;
 }
 
@@ -652,7 +655,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.01em;
 }
 
@@ -715,7 +718,7 @@
   max-width: 56rem;
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
@@ -741,9 +744,14 @@
 }
 
 .contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.5rem, 3vw, 2.25rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 3.2vw, 2.5rem) clamp(1.5rem, 3vw, 2rem);
+}
+
+.contact-field:nth-child(n + 3),
+.contact-form__submit {
+  grid-column: 1 / -1;
 }
 
 .contact-field {
@@ -764,7 +772,7 @@
 .contact-field select,
 .contact-field textarea {
   width: 100%;
-  padding: 0.85rem 0;
+  padding: 1.05rem 0;
   border: none;
   border-bottom: 1px solid var(--color-border-strong);
   border-radius: 0;
@@ -868,7 +876,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 2.6vw, 2.2rem);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.02em;
 }
 
@@ -917,8 +925,8 @@
 
 .site-footer__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
-  gap: clamp(3rem, 6vw, 6rem);
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 6vw, 5.5rem);
   align-items: start;
 }
 
@@ -926,9 +934,9 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.9rem, 3.6vw, 3rem);
-  font-weight: 300;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
 }
 
 .site-footer__cta-line em {
@@ -969,8 +977,8 @@
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2.25rem, 4.5vw, 3.5rem) clamp(2rem, 5vw, 4.5rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(2.25rem, 4.5vw, 3.5rem) clamp(1.5rem, 4vw, 3.25rem);
   align-items: start;
 }
 
@@ -1013,10 +1021,20 @@
   color: var(--color-text);
 }
 
+.site-footer__col .r-brand {
+  color: var(--color-text);
+}
+
 .site-footer__col a[href^='mailto:'] {
   white-space: nowrap;
   overflow-wrap: normal;
   word-break: keep-all;
+}
+
+@media (max-width: 900px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 560px) {
@@ -1036,9 +1054,9 @@
 
 .site-footer__mark span {
   display: inline-block;
-  font-family: var(--font-display);
+  font-family: var(--font-brand);
   font-size: clamp(4rem, 17.5vw, 17rem);
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: 0.01em;
   line-height: 0.8;
   transform: translateY(0.08em);
@@ -1188,6 +1206,10 @@
   .contact-body__inner {
     grid-template-columns: 1fr;
     gap: 3.5rem;
+  }
+
+  .contact-form {
+    grid-template-columns: 1fr;
   }
 
   .worldwide-region {

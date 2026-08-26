@@ -247,7 +247,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(3.25rem, 10vw, 8.5rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.035em;
   overflow: visible;
@@ -291,8 +291,12 @@
 .journey-hero__lead {
   margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
   max-width: 34rem;
+  font-family: var(--font-serif);
+  font-style: italic;
   font-size: var(--text-base);
+  font-weight: 400;
   line-height: 1.8;
+  letter-spacing: 0.01em;
   color: var(--color-text-soft);
 }
 
@@ -571,7 +575,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(2.75rem, 8vw, 6.5rem);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1.05;
   will-change: transform, opacity, filter;
@@ -681,7 +685,7 @@
   margin: 0 0 1.5rem;
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 4.5vw, 3.75rem);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 1.08;
   max-width: 12ch;
@@ -722,7 +726,7 @@
 .journey-timeline__active {
   font-family: var(--font-display);
   font-size: clamp(3.5rem, 8vw, 6.5rem);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.05em;
   line-height: 1;
   margin-bottom: 1.75rem;
@@ -816,7 +820,7 @@
   margin: 0 0 0.35rem;
   font-family: var(--font-display);
   font-size: var(--text-lg);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.02em;
 }
 
@@ -847,7 +851,7 @@
   display: block;
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 5.5vw, 4.25rem);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1;
   margin-bottom: 0.65rem;

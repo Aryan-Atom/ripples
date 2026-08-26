@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import gsap from 'gsap'
 import { NAV_LINKS, SITE } from '../data/site'
+import { Brand } from './Brand.jsx'
+
+const PRIMARY_LINKS = NAV_LINKS.filter((link) => link.to !== '/contact')
+const CONTACT_LINK = NAV_LINKS.find((link) => link.to === '/contact')
 
 const MOBILE_QUERY = '(max-width: 768px)'
 
@@ -124,17 +128,17 @@ export default function SiteNav({ variant = 'solid' }) {
     <header
       ref={headerRef}
       className={`site-nav site-nav--${variant}${menuOpen ? ' site-nav--open' : ''}${isMobile ? ' site-nav--mobile' : ''}`}
-      style={isHero ? { '--nav-items': NAV_LINKS.length } : undefined}
+      style={isHero ? { '--nav-items': PRIMARY_LINKS.length } : undefined}
     >
       <div className={`site-nav__inner${isHero ? '' : ' r-container'}`}>
         <Link to="/" className="site-nav__logo" onClick={closeMenu}>
           <img src="/assets/logo.png" alt="Ripples logo" className="site-nav__logo-icon" />
-          {SITE.name}
+          <Brand>{SITE.name}</Brand>
         </Link>
 
         {!isMobile && (
           <nav className="site-nav__links" aria-label="Primary">
-            {NAV_LINKS.map(({ label, to }) => (
+            {PRIMARY_LINKS.map(({ label, to }) => (
               <NavLink
                 key={label}
                 to={to}
@@ -143,6 +147,16 @@ export default function SiteNav({ variant = 'solid' }) {
                 {label}
               </NavLink>
             ))}
+            {CONTACT_LINK && (
+              <NavLink
+                to={CONTACT_LINK.to}
+                className={({ isActive }) =>
+                  `site-nav__cta${isActive ? ' is-active' : ''}`
+                }
+              >
+                {CONTACT_LINK.label}
+              </NavLink>
+            )}
           </nav>
         )}
 
@@ -177,7 +191,7 @@ export default function SiteNav({ variant = 'solid' }) {
             aria-hidden={!menuOpen}
           >
             <nav className="site-nav__mobile-links" aria-label="Mobile primary">
-              {NAV_LINKS.map(({ label, to }, index) => (
+              {PRIMARY_LINKS.map(({ label, to }, index) => (
                 <NavLink
                   key={label}
                   to={to}
@@ -192,6 +206,20 @@ export default function SiteNav({ variant = 'solid' }) {
                   {label}
                 </NavLink>
               ))}
+              {CONTACT_LINK && (
+                <NavLink
+                  to={CONTACT_LINK.to}
+                  ref={(node) => {
+                    itemsRef.current[PRIMARY_LINKS.length] = node
+                  }}
+                  className={({ isActive }) =>
+                    `site-nav__mobile-item site-nav__mobile-cta${isActive ? ' is-active' : ''}`
+                  }
+                  onClick={closeMenu}
+                >
+                  {CONTACT_LINK.label}
+                </NavLink>
+              )}
             </nav>
           </div>
         </>

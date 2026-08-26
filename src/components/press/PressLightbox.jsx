@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef } from 'react'
+import { withBrand } from '../Brand.jsx'
 
 /**
  * Full-scan lightbox with focus trap, Esc / backdrop close, and prev/next.
@@ -78,7 +79,7 @@ export default function PressLightbox({ items, index, onClose, onNavigate }) {
           <div>
             <p className="press-lightbox__pub">{clipping.publication}</p>
             <h2 className="press-lightbox__title" id={titleId}>
-              {clipping.headline}
+              {withBrand(clipping.headline)}
             </h2>
             <time className="press-lightbox__date" dateTime={`${clipping.year}`}>
               {clipping.date}

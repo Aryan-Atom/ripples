@@ -107,9 +107,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  font-family: var(--font-display);
+  font-family: var(--font-brand);
   font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
@@ -208,6 +208,37 @@ a.site-nav__item:hover {
   border-radius: 50%;
   background: var(--color-accent);
   transform: translateX(-50%);
+}
+
+.site-nav__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.35rem;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 0;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text);
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.site-nav__cta:hover,
+.site-nav__cta.is-active {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.site-nav--hero .site-nav__cta {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
 }
 
 .site-nav__mobile-item.is-active {
@@ -376,6 +407,20 @@ a.site-nav__item:hover {
 .site-nav__mobile-item:active {
   background: var(--color-accent-soft);
   color: var(--color-text);
+}
+
+.site-nav__mobile-cta {
+  margin-top: 0.45rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 0;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.site-nav__mobile-cta.is-active,
+.site-nav__mobile-cta:hover {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
 }
 
 /* Footer styles live in pages.css (oversized wordmark footer). */
@@ -566,14 +611,16 @@ a.site-nav__item:hover {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(2.1rem, 4.2vw, 3.4rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
   color: var(--color-text);
 }
 
 .cta-card__title em {
+  font-family: var(--font-serif);
   font-style: italic;
+  font-weight: 400;
   color: var(--color-accent);
 }
 
@@ -593,10 +640,10 @@ a.site-nav__item:hover {
   width: fit-content;
   margin-top: 2rem;
   padding: 0.95rem 1.45rem;
-  border: none;
-  border-radius: 0.65rem;
-  background: var(--color-seaside-sand);
-  color: var(--color-on-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--text-xs);
   font-weight: 500;
@@ -606,11 +653,13 @@ a.site-nav__item:hover {
   transition:
     background var(--duration-base) var(--ease-out),
     transform var(--duration-base) var(--ease-out),
-    color var(--duration-base) var(--ease-out);
+    color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
 }
 
 .cta-card__btn:hover {
   background: var(--color-accent);
+  border-color: var(--color-accent);
   color: var(--color-on-accent);
   transform: translateY(-1px);
 }

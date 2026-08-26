@@ -1,6 +1,7 @@
 import { TESTIMONIALS } from '../data/testimonials'
 import FadeUp from '../motion/FadeUp'
 import SplitLines from '../motion/SplitLines'
+import { withBrand } from './Brand.jsx'
 
 /** Homepage testimonials  editorial quotes from legacy site clients. */
 export default function HomeTestimonials() {
@@ -28,7 +29,7 @@ export default function HomeTestimonials() {
               delay={Math.min(index * 0.06, 0.24)}
               y={32}
             >
-              <p className="home-testimonial__quote">{item.quote}</p>
+              <p className="home-testimonial__quote">{withBrand(item.quote)}</p>
               <footer className="home-testimonial__byline">
                 <cite className="home-testimonial__org">{item.org}</cite>
                 <span className="home-testimonial__place">{item.place}</span>

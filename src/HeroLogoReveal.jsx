@@ -20,7 +20,7 @@ const SCALE_END_MOBILE = 12
 const VB_W = 1600
 const VB_H = 900
 /** Approx width of "RIPPLES" in ems at current tracking. */
-const WORD_EM = 5.85
+const WORD_EM = 6.2
 
 function easeInOutCubic(t) {
   return t < 0.5 ? 4 * t * t * t : 1 - ((-2 * t + 2) ** 3) / 2
@@ -42,6 +42,8 @@ function LogoType({ className = '', fill, children }) {
       // Cap-height optical center (dominant-baseline is unreliable on mobile WebKit)
       dy="0.35em"
       fill={fill}
+      fontFamily="Montserrat, sans-serif"
+      fontWeight="800"
     >
       {children}
     </text>

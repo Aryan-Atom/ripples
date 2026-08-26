@@ -36,10 +36,11 @@
     #000000 100%
   );
 
-  /* Typography  UI_mod */
-  --font-display: 'Archivo', system-ui, sans-serif;
+  /* Typography */
+  --font-display: 'Cinzel', 'Times New Roman', serif;
   --font-body: 'Archivo', system-ui, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-brand: 'Montserrat', system-ui, sans-serif;
 
   --text-xs: clamp(0.62rem, 0.9vw, 0.72rem);
   --text-sm: clamp(0.78rem, 1.1vw, 0.88rem);
@@ -54,7 +55,7 @@
   /* Spacing */
   --space-page-x: clamp(1.5rem, 5vw, 4.5rem);
   /* Shared rhythm between every major section (top + bottom padding) */
-  --space-section-y: clamp(3.75rem, 7.5vw, 6rem);
+  --space-section-y: clamp(4.5rem, 9vw, 7.5rem);
   --space-block: clamp(2.25rem, 4.5vw, 3.75rem);
   --max-width: 76rem;
 
@@ -83,7 +84,11 @@
 /* Typography */
 
 .r-label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: fit-content;
+  max-width: 100%;
   margin-bottom: 1.15rem;
   font-size: var(--text-xs);
   font-weight: 500;
@@ -92,13 +97,22 @@
   color: var(--color-accent);
 }
 
+.r-label::after {
+  content: '';
+  width: 2.25rem;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--color-accent);
+  opacity: 0.75;
+}
+
 .r-display {
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--text-3xl);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
 }
 
 .r-display em,
@@ -109,6 +123,14 @@
   font-size: 1.05em;
   letter-spacing: -0.01em;
   color: var(--color-accent);
+}
+
+.r-brand {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-style: normal;
+  font-synthesis: none;
+  letter-spacing: 0.02em;
 }
 
 /* SplitText line masks (mask: 'lines')  parent clips, child rises. */
@@ -174,9 +196,12 @@
 
 .r-lead {
   margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
   font-size: var(--text-lg);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.75;
+  letter-spacing: 0.01em;
   color: var(--color-text-soft);
 }
 
@@ -192,9 +217,9 @@
 .r-stat {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
 }
 
 /* Links (kept for future pages / CTAs) */

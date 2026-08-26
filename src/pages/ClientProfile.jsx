@@ -6,6 +6,7 @@ import {
   loadClientSession,
   saveClientSession,
 } from '../clientSession'
+import { withBrand } from '../components/Brand.jsx'
 
 const STATUS_COPY = {
   pending: 'Your access request is with our team for review.',
@@ -147,7 +148,7 @@ export default function ClientProfile() {
               <p className="portal-dash__kicker">Access status</p>
               <p className={`portal-dash__badge is-${status}`}>{status}</p>
               <p className="portal-dash__status-copy">
-                {STATUS_COPY[status] || STATUS_COPY.pending}
+                {withBrand(STATUS_COPY[status] || STATUS_COPY.pending)}
               </p>
               {error && <p className="onboard-form__error">{error}</p>}
             </div>
@@ -204,7 +205,7 @@ export default function ClientProfile() {
                     {slackChannelName || 'Your project channel'}
                   </p>
                   <p className="portal-dash__tile-copy">
-                    Open Slack to message the Ripples team on this project.
+                    {withBrand('Open Slack to message the Ripples team on this project.')}
                   </p>
                   <a
                     className="cta-card__btn portal-dash__cta"

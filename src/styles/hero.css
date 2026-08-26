@@ -52,9 +52,20 @@
   text-rendering: geometricPrecision;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 720px), (pointer: coarse) {
+  .hero-logo-reveal__svg,
+  .hero-logo-reveal__type,
+  .hero-logo-reveal__rim {
+    shape-rendering: auto;
+    text-rendering: optimizeSpeed;
+  }
+
   .hero-logo-reveal__type {
     letter-spacing: -0.04em;
+  }
+
+  .home-hero__slide {
+    will-change: auto;
   }
 }
 

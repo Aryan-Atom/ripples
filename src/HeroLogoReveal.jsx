@@ -180,8 +180,30 @@ export default function HeroLogoReveal() {
     const colorT =
       raw < 0.22 ? 0 : easeInOutCubic(Math.min(1, (raw - 0.22) / 0.62))
     const strokeColor = lerpHex(RIM_WHITE, RIM_BLUE, colorT)
-    const rimBlur = 0.65 + t * 3.4 + rimFadeT * 2.2
-    const maskFeather = raw < 0.32 ? 0 : easeInOutCubic(Math.min(1, (raw - 0.32) / 0.58)) * 5.5
+
+    if (mobile) {
+      rim.removeAttribute('filter')
+      if (maskGroupRef.current) maskGroupRef.current.removeAttribute('filter')
+    } else {
+      const rimBlur = 0.65 + t * 3.4 + rimFadeT * 2.2
+      const maskFeather =
+        raw < 0.32 ? 0 : easeInOutCubic(Math.min(1, (raw - 0.32) / 0.58)) * 5.5
+
+      rim.setAttribute('filter', `url(#${rimSoftId})`)
+      if (rimBlurRef.current) {
+        rimBlurRef.current.setAttribute('stdDeviation', String(rimBlur))
+      }
+      if (maskGroupRef.current) {
+        if (maskFeather > 0.08) {
+          maskGroupRef.current.setAttribute('filter', `url(#${maskFeatherId})`)
+        } else {
+          maskGroupRef.current.removeAttribute('filter')
+        }
+      }
+      if (maskBlurRef.current) {
+        maskBlurRef.current.setAttribute('stdDeviation', String(maskFeather))
+      }
+    }
 
     const hide = raw >= 0.995
     const rest = raw <= 0.002
@@ -194,19 +216,6 @@ export default function HeroLogoReveal() {
 
     if (rimTypeRef.current) {
       rimTypeRef.current.setAttribute('stroke', strokeColor)
-    }
-    if (rimBlurRef.current) {
-      rimBlurRef.current.setAttribute('stdDeviation', String(rimBlur))
-    }
-    if (maskGroupRef.current) {
-      if (maskFeather > 0.08) {
-        maskGroupRef.current.setAttribute('filter', `url(#${maskFeatherId})`)
-      } else {
-        maskGroupRef.current.removeAttribute('filter')
-      }
-    }
-    if (maskBlurRef.current) {
-      maskBlurRef.current.setAttribute('stdDeviation', String(maskFeather))
     }
 
     // Drop the zoomed compositor layer while off-screen so it cannot ghost
@@ -235,6 +244,14 @@ export default function HeroLogoReveal() {
 
   useLayoutEffect(() => {
     narrowRef.current = isNarrowHero()
+    const rim = rimRef.current
+    if (rim) {
+      if (narrowRef.current) rim.removeAttribute('filter')
+      else rim.setAttribute('filter', `url(#${rimSoftId})`)
+    }
+    if (maskGroupRef.current && narrowRef.current) {
+      maskGroupRef.current.removeAttribute('filter')
+    }
     fitType()
     update(progressRef.current)
 
@@ -243,6 +260,11 @@ export default function HeroLogoReveal() {
 
     const ro = new ResizeObserver(() => {
       narrowRef.current = isNarrowHero()
+      const rimEl = rimRef.current
+      if (rimEl) {
+        if (narrowRef.current) rimEl.removeAttribute('filter')
+        else rimEl.setAttribute('filter', `url(#${rimSoftId})`)
+      }
       fitType()
       update(progressRef.current)
     })
@@ -272,7 +294,7 @@ export default function HeroLogoReveal() {
       ro.disconnect()
       window.removeEventListener('orientationchange', onOrient)
     }
-  }, [fitType, update, resetGen])
+  }, [fitType, update, resetGen, rimSoftId, maskFeatherId])
 
   const cx = VB_W / 2
   const cy = VB_H / 2
@@ -342,11 +364,7 @@ export default function HeroLogoReveal() {
             mask={`url(#${maskId})`}
           />
 
-          <g
-            transform={`translate(${cx} ${cy})`}
-            ref={rimRef}
-            filter={`url(#${rimSoftId})`}
-          >
+          <g transform={`translate(${cx} ${cy})`} ref={rimRef}>
             <LogoType
               className="hero-logo-reveal__rim"
               fill="none"

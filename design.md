@@ -95,11 +95,12 @@ All of 2–5 sit on **one shared page gradient**  no hairline rules between sect
 
 | Role | Font | Weight | Where |
 |---|---|---|---|
-| Display / headings | Archivo | 300 | `.r-display`, hero titles, stats |
-| Body / UI | Archivo | 300–500 | `.r-body`, nav, footer, labels |
-| Emphasis / italic | Instrument Serif | 400 italic | `<em>` in display headings |
+| Display / headings | Cinzel | 400–600 | `.r-display`, hero titles, stats, page heroes |
+| Body / UI | Archivo | 300–500 | `.r-body`, nav, footer, buttons, labels |
+| Brand wordmark | Montserrat | 800 (ExtraBold) | Visible “Ripples” via `.r-brand` / `<Brand />` |
+| Leads / emphasis | Instrument Serif | 400 italic | `.r-lead`, page/hero leads, `<em>` in headings |
 
-Fonts loaded via `@fontsource` in `src/main.jsx`.
+Fonts loaded via `@fontsource` in `src/main.jsx`. The name **Ripples** is always Montserrat ExtraBold on the site. Use `<Brand />` or `withBrand()`. Display sits at 400 because Cinzel has no 300 cut.
 
 ### Scale
 
@@ -115,15 +116,16 @@ Fonts loaded via `@fontsource` in `src/main.jsx`.
 ### Patterns
 
 ```html
-<span class="r-label">Ripples Engineering</span>
+<span class="r-label"><span class="r-brand">Ripples</span> Engineering</span>
 <h2 class="r-display">We sculpt water<br /><em>into wonder</em></h2>
 <p class="r-body">Supporting sentence.</p>
 <span class="r-stat">36+</span>
 ```
 
-- Labels: uppercase, wide tracking, muted teal accent.
-- Display emphasis in `<em>`: Instrument Serif italic, accent color.
-- Hero titles: light Archivo. Body: Archivo regular/light.
+- Labels: uppercase, wide tracking, muted teal accent, short trailing rule.
+- Brand name: Montserrat ExtraBold via `.r-brand`.
+- Display: Cinzel. Emphasis in `<em>`: Instrument Serif italic, accent color.
+- Leads: Instrument Serif italic. Body: Archivo regular/light.
 
 ---
 

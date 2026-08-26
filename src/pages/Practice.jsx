@@ -11,6 +11,7 @@ import SiteFooter from '../components/SiteFooter.jsx'
 import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
 import StatCounter from '../motion/StatCounter'
+import { withBrand } from '../components/Brand.jsx'
 
 export default function Practice() {
   return (
@@ -25,7 +26,9 @@ export default function Practice() {
               Engineers of <em>wonder</em>
             </>
           }
-          lead="Ripples is a workshop before it is a studio. Composers, hydraulic engineers, and machinists share one floor in Noida  and one obsession: water that moves people."
+          lead={withBrand(
+            'Ripples is a workshop before it is a studio. Composers, hydraulic engineers, and machinists share one floor in Noida  and one obsession: water that moves people.',
+          )}
         />
 
         <section className="practice-values" aria-label="Values">

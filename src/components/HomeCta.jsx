@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import LazyVideo from './LazyVideo.jsx'
 import FadeUp from '../motion/FadeUp'
+import { withBrand } from './Brand.jsx'
 
 export default function HomeCta() {
   return (
@@ -16,9 +17,9 @@ export default function HomeCta() {
                 into a <em>spectacle?</em>
               </h2>
               <p className="cta-card__text">
-                From the first nozzle drawing to opening night, Ripples designs,
-                builds, and manufactures every system in-house  so the show you
-                imagine is the show your city gets.
+                {withBrand(
+                  'From the first nozzle drawing to opening night, Ripples designs, builds, and manufactures every system in-house  so the show you imagine is the show your city gets.',
+                )}
               </p>
               <p className="cta-card__text">
                 Tell us about the site, the scale, and the feeling you want water

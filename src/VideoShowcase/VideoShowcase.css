@@ -29,7 +29,8 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.02;
+  font-weight: 400;
+  line-height: 1.08;
 }
 
 .video-showcase__grid {

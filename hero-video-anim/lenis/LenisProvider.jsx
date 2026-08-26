@@ -25,6 +25,12 @@ export function LenisProvider({ children, options }) {
       window.dispatchEvent(new Event('ripples:scroll'))
     })
 
+    const onScrollTop = (event) => {
+      event.preventDefault()
+      lenis.scrollTo(0, { duration: 1.2 })
+    }
+    window.addEventListener('ripples:scroll-top', onScrollTop)
+
     const ticker = (time) => {
       lenis.raf(time * 1000)
     }
@@ -33,6 +39,7 @@ export function LenisProvider({ children, options }) {
     gsap.ticker.lagSmoothing(0)
 
     return () => {
+      window.removeEventListener('ripples:scroll-top', onScrollTop)
       gsap.ticker.remove(ticker)
       lenis.destroy()
       lenisRef.current = null

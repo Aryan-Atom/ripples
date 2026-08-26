@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { PRESS_LOGOS } from '../data/press'
 import FadeUp from '../motion/FadeUp'
 import SplitLines from '../motion/SplitLines'
+import { withBrand } from './Brand.jsx'
 
 /** Homepage “Featured in”  publication names only; full clippings live on /press. */
 export default function HomePress() {
@@ -17,7 +18,9 @@ export default function HomePress() {
               Featured <em>in.</em>
             </SplitLines>
             <FadeUp as="p" className="r-body home-press__lead" delay={0.15}>
-              National and regional coverage of Ripples systems, shows, and craft.
+              {withBrand(
+                'National and regional coverage of Ripples systems, shows, and craft.',
+              )}
             </FadeUp>
           </div>
           <FadeUp delay={0.2}>

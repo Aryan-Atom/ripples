@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { WORLDWIDE_EVENTS } from '../data/worldwide'
 import { prefersReducedMotion } from '../motion/gsap'
 import { attachScrollReveal, createRevealTimeline } from '../motion/scrollReveal'
+import { withBrand } from './Brand.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -52,11 +53,11 @@ export default function WorldwideShowcase() {
     const slides = slideRefs.current.filter(Boolean)
     const ctx = gsap.context(() => {
       slides.forEach((slide) => {
-        const panel = slide.querySelector('.worldwide-showcase__panel')
-        if (!panel) return
+        const card = slide.querySelector('.worldwide-showcase__card')
+        if (!card) return
 
-        const tl = createRevealTimeline(panel, {
-          y: 22,
+        const tl = createRevealTimeline(card, {
+          y: 18,
           duration: 0.45,
           ease: 'power2.out',
           clearProps: 'transform,opacity',
@@ -126,7 +127,7 @@ export default function WorldwideShowcase() {
                     <div className="worldwide-showcase__card">
                       <span className="worldwide-showcase__card-index">{event.index}</span>
                       <h3 className="worldwide-showcase__card-title">{event.title}</h3>
-                      <p className="worldwide-showcase__card-body">{event.description}</p>
+                      <p className="worldwide-showcase__card-body">{withBrand(event.description)}</p>
                       <span className="worldwide-showcase__card-rule" aria-hidden="true" />
                     </div>
                   </div>

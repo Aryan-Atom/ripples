@@ -4,6 +4,7 @@ import FadeUp from '../../motion/FadeUp'
 import BlueprintGrid from './BlueprintGrid'
 import SplitPanel from './SplitPanel'
 import { JOURNEY_TIMELINE, JOURNEY_TIMELINE_MEDIA } from '../../data/journey'
+import { withBrand } from '../Brand.jsx'
 
 export default function JourneyTimeline() {
   const sectionRef = useRef(null)
@@ -89,7 +90,7 @@ export default function JourneyTimeline() {
               <div className="journey-timeline__card">
                 <span className="journey-timeline__item-year">{entry.year}</span>
                 <h3 className="journey-timeline__item-title">{entry.title}</h3>
-                <p className="journey-timeline__item-body">{entry.body}</p>
+                <p className="journey-timeline__item-body">{withBrand(entry.body)}</p>
               </div>
             </li>
           ))}

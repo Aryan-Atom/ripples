@@ -4,9 +4,11 @@ import WorldwideHero from '../components/WorldwideHero.jsx'
 import WorldwideShowcase from '../components/WorldwideShowcase.jsx'
 import TextMarquee from '../components/TextMarquee.jsx'
 import VideoShowcase from '../VideoShowcase/VideoShowcase.jsx'
-import { WORLDWIDE_REGIONS, WORLDWIDE_CITIES } from '../data/worldwide'
+import { WORLDWIDE_REGIONS, WORLDWIDE_CITIES, prefetchWorldCountries } from '../data/worldwide'
 import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
+
+prefetchWorldCountries()
 
 export default function Worldwide() {
   return (

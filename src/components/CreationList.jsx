@@ -3,11 +3,13 @@ import { gsap, prefersReducedMotion } from '../motion/gsap'
 import FadeUp from '../motion/FadeUp'
 
 const HOVER_QUERY = '(hover: hover) and (pointer: fine)'
+const MOBILE_LAYOUT_QUERY = '(max-width: 900px)'
 
 /**
  * Editorial numbered project list.
  * Desktop: cursor-following image preview on hover.
- * Touch / coarse pointer: tap a row to reveal its image with motion.
+ * Mobile (≤900px): text left, thumbnail right — always visible.
+ * Touch tablet: tap a row to reveal its image with motion.
  */
 export default function CreationList({ items }) {
   const rootRef = useRef(null)
@@ -18,20 +20,35 @@ export default function CreationList({ items }) {
   const [isHoverDevice, setIsHoverDevice] = useState(
     () => typeof window !== 'undefined' && window.matchMedia(HOVER_QUERY).matches,
   )
+  const [isMobileLayout, setIsMobileLayout] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(MOBILE_LAYOUT_QUERY).matches,
+  )
+
+  const useDesktopHover = isHoverDevice && !isMobileLayout
+  const useTouchReveal = !useDesktopHover && !isMobileLayout
 
   useLayoutEffect(() => {
-    const mq = window.matchMedia(HOVER_QUERY)
-    const sync = () => setIsHoverDevice(mq.matches)
+    const hoverMq = window.matchMedia(HOVER_QUERY)
+    const mobileMq = window.matchMedia(MOBILE_LAYOUT_QUERY)
+
+    const sync = () => {
+      setIsHoverDevice(hoverMq.matches)
+      setIsMobileLayout(mobileMq.matches)
+    }
+
     sync()
-    mq.addEventListener?.('change', sync)
-    return () => mq.removeEventListener?.('change', sync)
+    hoverMq.addEventListener?.('change', sync)
+    mobileMq.addEventListener?.('change', sync)
+    return () => {
+      hoverMq.removeEventListener?.('change', sync)
+      mobileMq.removeEventListener?.('change', sync)
+    }
   }, [])
 
-  // Desktop floating preview
   useLayoutEffect(() => {
     const root = rootRef.current
     const preview = previewRef.current
-    if (!root || !preview || !isHoverDevice) return undefined
+    if (!root || !preview || !useDesktopHover) return undefined
     if (prefersReducedMotion()) return undefined
 
     gsap.set(preview, { xPercent: -50, yPercent: -50, autoAlpha: 0, scale: 0.85, rotate: -3 })
@@ -59,11 +76,10 @@ export default function CreationList({ items }) {
       root.removeEventListener('mouseenter', onEnter)
       root.removeEventListener('mouseleave', onLeave)
     }
-  }, [isHoverDevice])
+  }, [useDesktopHover])
 
-  // Touch: collapse all thumbs, expand the open one with motion
   useLayoutEffect(() => {
-    if (isHoverDevice) return undefined
+    if (!useTouchReveal) return undefined
 
     const thumbs = thumbRefs.current
     const reduced = prefersReducedMotion()
@@ -117,11 +133,10 @@ export default function CreationList({ items }) {
         },
       })
     })
-  }, [openIndex, isHoverDevice, items])
+  }, [openIndex, useTouchReveal, items])
 
-  // Initial hide for touch thumbs
   useLayoutEffect(() => {
-    if (isHoverDevice) return undefined
+    if (!useTouchReveal) return undefined
     thumbRefs.current.forEach((thumb) => {
       if (!thumb) return
       gsap.set(thumb, {
@@ -132,21 +147,22 @@ export default function CreationList({ items }) {
         overflow: 'hidden',
       })
     })
-  }, [isHoverDevice, items])
+  }, [useTouchReveal, items])
 
   const activateRow = (i) => {
-    if (isHoverDevice) {
+    if (useDesktopHover) {
       setActive(i)
       return
     }
-    setOpenIndex((prev) => (prev === i ? -1 : i))
+    if (useTouchReveal) {
+      setOpenIndex((prev) => (prev === i ? -1 : i))
+    }
   }
 
+  const listMode = useDesktopHover ? 'hover' : isMobileLayout ? 'mobile' : 'touch'
+
   return (
-    <div
-      className={`creation-list${isHoverDevice ? ' creation-list--hover' : ' creation-list--touch'}`}
-      ref={rootRef}
-    >
+    <div className={`creation-list creation-list--${listMode}`} ref={rootRef}>
       <div className="creation-list__preview" ref={previewRef} aria-hidden="true">
         {items.map((item, i) => (
           <img
@@ -162,28 +178,46 @@ export default function CreationList({ items }) {
 
       <FadeUp stagger={0.08} y={36}>
         {items.map((item, i) => {
-          const isOpen = !isHoverDevice && openIndex === i
+          const isOpen = useTouchReveal && openIndex === i
+          const isInteractive = useDesktopHover || useTouchReveal
+
           return (
             <article
               key={item.id}
               className={`creation-row${i === active ? ' is-active' : ''}${isOpen ? ' is-open' : ''}`}
               onMouseEnter={() => {
-                if (isHoverDevice) setActive(i)
+                if (useDesktopHover) setActive(i)
               }}
               onFocus={() => {
-                if (isHoverDevice) setActive(i)
+                if (useDesktopHover) setActive(i)
               }}
-              onClick={() => activateRow(i)}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault()
-                  activateRow(i)
-                }
-              }}
-              tabIndex={isHoverDevice ? undefined : 0}
-              role={isHoverDevice ? undefined : 'button'}
-              aria-expanded={isHoverDevice ? undefined : isOpen}
+              onClick={isInteractive ? () => activateRow(i) : undefined}
+              onKeyDown={
+                isInteractive
+                  ? (event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        activateRow(i)
+                      }
+                    }
+                  : undefined
+              }
+              tabIndex={isInteractive ? 0 : undefined}
+              role={useTouchReveal ? 'button' : undefined}
+              aria-expanded={useTouchReveal ? isOpen : undefined}
             >
+              <div className="creation-row__copy">
+                <div className="creation-row__line">
+                  <span className="creation-row__index">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="creation-row__title">{item.title}</h3>
+                  <p className="creation-row__summary">{item.summary}</p>
+                  <span className="creation-row__meta">
+                    {item.location}
+                    <em>{item.category}</em>
+                  </span>
+                  <span className="creation-row__year">{item.year}</span>
+                </div>
+              </div>
               <img
                 ref={(node) => {
                   thumbRefs.current[i] = node
@@ -194,16 +228,6 @@ export default function CreationList({ items }) {
                 loading="lazy"
                 decoding="async"
               />
-              <div className="creation-row__line">
-                <span className="creation-row__index">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="creation-row__title">{item.title}</h3>
-                <p className="creation-row__summary">{item.summary}</p>
-                <span className="creation-row__meta">
-                  {item.location}
-                  <em>{item.category}</em>
-                </span>
-                <span className="creation-row__year">{item.year}</span>
-              </div>
             </article>
           )
         })}

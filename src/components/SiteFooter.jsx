@@ -4,8 +4,9 @@ import { gsap, prefersReducedMotion } from '../motion/gsap'
 import { safeSplitText, showElement } from '../motion/safeSplitText'
 import { attachScrollReveal, whenFontsReady } from '../motion/scrollReveal'
 import { SITE } from '../data/site'
-import { CAPABILITY_LINKS } from '../data/capabilities'
+import { FOOTER_EXPLORE_LINKS } from '../data/capabilities'
 import FadeUp from '../motion/FadeUp'
+import { Brand, withBrand } from './Brand.jsx'
 
 export default function SiteFooter() {
   const markRef = useRef(null)
@@ -66,7 +67,14 @@ export default function SiteFooter() {
     }
   }, [])
 
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+  const scrollTop = () => {
+    const event = new Event('ripples:scroll-top', { cancelable: true })
+    if (window.dispatchEvent(event)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+  const factory = SITE.addresses.find((address) => address.label === 'Factory')
+  const offices = SITE.addresses.filter((address) => address.label !== 'Factory')
 
   return (
     <footer className="site-footer">
@@ -84,9 +92,18 @@ export default function SiteFooter() {
 
         <FadeUp className="site-footer__grid" stagger={0.1} y={30}>
           <div className="site-footer__col">
-            <h4>Capabilities</h4>
+            <h4>Brand</h4>
+            <nav aria-label="Brand">
+              <Brand>{SITE.name}</Brand>
+              <span>{SITE.tagline}</span>
+              <a href={`mailto:${SITE.email.info}`}>{SITE.email.info}</a>
+              <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>
+            </nav>
+          </div>
+          <div className="site-footer__col">
+            <h4>Explore</h4>
             <nav aria-label="Capabilities">
-              {CAPABILITY_LINKS.map(({ label, to }) => (
+              {FOOTER_EXPLORE_LINKS.map(({ label, to }) => (
                 <Link key={to} to={to}>
                   {label}
                 </Link>
@@ -94,33 +111,35 @@ export default function SiteFooter() {
             </nav>
           </div>
           <div className="site-footer__col">
-            <h4>Contact</h4>
-            <nav aria-label="Contact">
-              <a href={`mailto:${SITE.email.info}`}>{SITE.email.info}</a>
-              <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>
-              <span>{SITE.hours}</span>
-            </nav>
-          </div>
-          {SITE.addresses.map((address) => (
-            <div className="site-footer__col" key={address.label}>
-              <h4>{address.label}</h4>
-              <nav aria-label={address.label}>
+            <h4>Offices</h4>
+            {offices.map((address) => (
+              <nav aria-label={address.label} key={address.label}>
                 {address.lines.map((line) => (
                   <span key={line}>{line}</span>
                 ))}
               </nav>
+            ))}
+          </div>
+          {factory && (
+            <div className="site-footer__col">
+              <h4>Factory</h4>
+              <nav aria-label={factory.label}>
+                {factory.lines.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </nav>
             </div>
-          ))}
+          )}
         </FadeUp>
       </div>
 
       <div className="site-footer__mark" ref={markWrapRef} aria-hidden="true">
-        <span ref={markRef}>RIPPLES</span>
+        <span ref={markRef} className="r-brand">Ripples</span>
       </div>
 
       <div className="site-footer__bottom r-container">
         <span>
-          &copy; {new Date().getFullYear()} {SITE.legalName}
+          &copy; {new Date().getFullYear()} {withBrand(SITE.legalName)}
         </span>
         <span className="site-footer__tagline-line">{SITE.tagline}</span>
         <button type="button" className="site-footer__top" onClick={scrollTop}>

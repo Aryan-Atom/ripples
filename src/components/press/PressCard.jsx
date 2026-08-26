@@ -1,3 +1,5 @@
+import { withBrand } from '../Brand.jsx'
+
 /**
  * Single press clipping card  keyboard activatable, opens lightbox via onOpen.
  */
@@ -33,7 +35,7 @@ export default function PressCard({ clipping, onOpen }) {
 
         <div className="press-card__body">
           <p className="press-card__pub">{clipping.publication}</p>
-          <h3 className="press-card__headline">{clipping.headline}</h3>
+          <h3 className="press-card__headline">{withBrand(clipping.headline)}</h3>
           {clipping.date ? (
             <div className="press-card__meta">
               <time className="press-card__date" dateTime={`${clipping.year || ''}`}>

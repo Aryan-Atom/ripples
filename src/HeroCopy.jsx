@@ -26,29 +26,22 @@ const PHASES = [
   },
 ]
 
-/** Wider crossfade so 3 beats dissolve cleanly under scrub. */
-const FADE = 0.1
-
-function smoothstep(t) {
-  const x = Math.max(0, Math.min(1, t))
-  return x * x * (3 - 2 * x)
-}
+/** Crossfade within each phase's local scroll span (original hero copy behavior). */
+const FADE_EDGE = 0.12
 
 function phaseOpacity(progress, phase, index, total) {
-  const { start, end } = phase
-  const fadeInFrom = index === 0 ? start : start - FADE
-  const fadeOutTo = index === total - 1 ? end : end + FADE
+  const span = phase.end - phase.start
+  if (span <= 0) return 0
 
-  if (progress < fadeInFrom || progress > fadeOutTo) return 0
+  const local = (progress - phase.start) / span
+  if (local < 0 || local > 1) return 0
 
-  let opacity = 1
-  if (index > 0 && progress < start + FADE) {
-    opacity = Math.min(opacity, smoothstep((progress - (start - FADE)) / (2 * FADE)))
-  }
-  if (index < total - 1 && progress > end - FADE) {
-    opacity = Math.min(opacity, smoothstep((end + FADE - progress) / (2 * FADE)))
-  }
-  return Math.max(0, Math.min(1, opacity))
+  const isFirst = index === 0
+  const isLast = index === total - 1
+
+  if (!isFirst && local < FADE_EDGE) return local / FADE_EDGE
+  if (!isLast && local > 1 - FADE_EDGE) return (1 - local) / FADE_EDGE
+  return 1
 }
 
 export default function HeroCopy() {
@@ -59,9 +52,7 @@ export default function HeroCopy() {
   const updateSlides = useCallback((progress) => {
     const logoEnd = getLogoRevealEnd()
     const inLogo = progress < logoEnd
-    const copyProgress = inLogo
-      ? 0
-      : (progress - logoEnd) / (1 - logoEnd)
+    const copyProgress = inLogo ? 0 : (progress - logoEnd) / (1 - logoEnd)
 
     const copyGate = inLogo
       ? Math.max(0, (progress - logoEnd * 0.88) / (logoEnd * 0.12))
@@ -80,15 +71,14 @@ export default function HeroCopy() {
 
       if (inLogo) {
         slide.style.opacity = '0'
-        slide.style.transform = 'translate3d(0, 10px, 0)'
+        slide.style.visibility = 'hidden'
         slide.setAttribute('aria-hidden', 'true')
         return
       }
 
       const opacity = phaseOpacity(copyProgress, phase, index, PHASES.length)
-      const y = (1 - opacity) * 10
       slide.style.opacity = String(opacity)
-      slide.style.transform = `translate3d(0, ${y}px, 0)`
+      slide.style.visibility = opacity > 0 ? 'visible' : 'hidden'
       slide.setAttribute('aria-hidden', opacity <= 0.5 ? 'true' : 'false')
     })
   }, [])

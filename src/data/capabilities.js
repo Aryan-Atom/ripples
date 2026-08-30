@@ -1,18 +1,24 @@
 /** Legacy capability pages  structure & photos from ripplesfountains.com archives. */
 
-/** Footer Explore column — scroll targets on /multimedia */
+import { getWaterworksCategoryPage } from './waterworksCategories.js'
+
+/** Footer Explore column  WaterWorks category pages */
 export const FOOTER_EXPLORE_LINKS = [
   {
-    "label": "Water Features",
-    "to": "/multimedia#water-features"
-  },
-  {
     "label": "Multimedia",
-    "to": "/multimedia#multimedia"
+    "to": "/waterworks/multimedia"
   },
   {
-    "label": "Prefab Water Features",
-    "to": "/multimedia#prefab-water-features"
+    "label": "Architectural",
+    "to": "/waterworks/architectural"
+  },
+  {
+    "label": "Prefabs",
+    "to": "/waterworks/prefabs"
+  },
+  {
+    "label": "Others",
+    "to": "/waterworks/others"
   }
 ]
 
@@ -27,9 +33,9 @@ export const CAPABILITY_LINKS = [
     "to": "/prefab-water-features"
   },
   {
-    "label": "Multimedia",
-    "to": "/multimedia"
-  }
+    "label": "WaterWorks",
+    "to": "/waterworks"
+  },
 ]
 
 /** Nested under Water Features (not in footer Capabilities) */
@@ -1343,22 +1349,47 @@ export const CAPABILITY_PAGES = [
 ]
 
 export function getCapabilityPage(slug) {
-  return CAPABILITY_PAGES.find((page) => page.slug === slug) ?? null
+  return (
+    CAPABILITY_PAGES.find((page) => page.slug === slug) ??
+    getWaterworksCategoryPage(slug) ??
+    null
+  )
 }
 
 export function getCapabilityRelatedLinks(slug) {
+  const waterworksPeers = [
+    { label: 'Multimedia', to: '/waterworks/multimedia' },
+    { label: 'Architectural', to: '/waterworks/architectural' },
+    { label: 'Prefabs', to: '/waterworks/prefabs' },
+    { label: 'Others', to: '/waterworks/others' },
+  ]
+
+  if (
+    slug === 'multimedia-shows' ||
+    slug === 'architectural-fountains' ||
+    slug === 'prefab-water-features' ||
+    slug === 'waterworks-others'
+  ) {
+    const currentTo =
+      slug === 'multimedia-shows'
+        ? '/waterworks/multimedia'
+        : slug === 'architectural-fountains'
+          ? '/waterworks/architectural'
+          : slug === 'prefab-water-features'
+            ? '/waterworks/prefabs'
+            : '/waterworks/others'
+    return [
+      { label: 'All WaterWorks', to: '/waterworks' },
+      ...waterworksPeers.filter((link) => link.to !== currentTo),
+    ]
+  }
+
   if (slug === 'water-features') return WATER_FEATURE_CATEGORIES
   if (WATER_FEATURE_CATEGORIES.some((c) => c.slug === slug)) {
     return [
       { label: 'All Water Features', to: '/water-features' },
       ...WATER_FEATURE_CATEGORIES.filter((c) => c.slug !== slug),
       { label: 'Prefab Water Features', to: '/prefab-water-features' },
-    ]
-  }
-  if (slug === 'prefab-water-features') {
-    return [
-      { label: 'Water Features', to: '/water-features' },
-      ...WATER_FEATURE_CATEGORIES,
     ]
   }
   return CAPABILITY_LINKS.filter((link) => link.to !== `/${slug}`)

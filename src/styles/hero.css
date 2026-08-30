@@ -1,67 +1,66 @@
 /* Hero overlay  used only on the home page scroll animation */
 
-/* ── RIPPLES zoom cut  video shows through the letters ── */
+/* ── End-of-hero Ripples wordmark (outlined text, no plate) ── */
 
-.hero-logo-reveal {
-  --hero-logo-rim: #ffffff;
-  --hero-logo-rim-soft: #8eb8d4;
+.hero-logo-end {
   position: absolute;
   inset: 0;
   z-index: 20;
-  overflow: hidden;
+  display: grid;
+  place-items: center;
   pointer-events: none;
-  visibility: visible;
+  visibility: hidden;
+  padding: var(--space-page-x);
 }
 
-.hero-logo-reveal__scaler {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transform: none;
-  transform-origin: center center;
+.hero-logo-end__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.85rem, 2.4vw, 1.75rem);
+  max-width: min(92vw, 72rem);
 }
 
-.hero-logo-reveal__svg {
+.hero-logo-end__icon {
+  width: clamp(3.25rem, 11vw, 7rem);
+  height: clamp(3.25rem, 11vw, 7rem);
+  min-width: clamp(3.25rem, 11vw, 7rem);
+  object-fit: contain;
   display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  shape-rendering: geometricPrecision;
-  text-rendering: geometricPrecision;
+  opacity: 0.96;
+  flex-shrink: 0;
 }
 
-.hero-logo-reveal__type {
+.hero-logo-end__word {
+  display: block;
+  margin: 0;
   font-family: var(--font-brand), 'Montserrat', sans-serif;
-  font-size: var(--hero-logo-size, 240px);
+  font-size: clamp(4rem, 16vw, 10.5rem);
   font-weight: 800;
+  line-height: 0.9;
   letter-spacing: -0.04em;
-  shape-rendering: geometricPrecision;
-  text-rendering: geometricPrecision;
-}
-
-.hero-logo-reveal__rim {
-  fill: none;
-  stroke: var(--hero-logo-rim);
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-miterlimit: 1.5;
-  stroke-width: var(--hero-logo-stroke, 2px);
-  paint-order: stroke;
-  shape-rendering: geometricPrecision;
-  text-rendering: geometricPrecision;
+  color: transparent;
+  -webkit-text-stroke: clamp(1.5px, 0.18vw, 2.5px) rgba(255, 255, 255, 0.96);
+  paint-order: stroke fill;
+  text-shadow: 0 0 40px rgba(142, 184, 212, 0.18);
+  text-transform: none;
+  user-select: none;
 }
 
 @media (max-width: 720px), (pointer: coarse) {
-  .hero-logo-reveal__svg,
-  .hero-logo-reveal__type,
-  .hero-logo-reveal__rim {
-    shape-rendering: auto;
-    text-rendering: optimizeSpeed;
+  .hero-logo-end__mark {
+    gap: 0.7rem;
   }
 
-  .hero-logo-reveal__type {
-    letter-spacing: -0.04em;
+  .hero-logo-end__icon {
+    width: clamp(2.4rem, 14vw, 3.75rem);
+    height: clamp(2.4rem, 14vw, 3.75rem);
+    min-width: clamp(2.4rem, 14vw, 3.75rem);
+  }
+
+  .hero-logo-end__word {
+    font-size: clamp(2.85rem, 18vw, 5.75rem);
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.96);
   }
 
   .home-hero__slide {

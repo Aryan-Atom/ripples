@@ -5,7 +5,7 @@ import { gsap, ScrollTrigger, prefersReducedMotion } from './gsap'
 import { resetScroll, scrollToHash, setActiveLenis } from './scrollReset'
 
 /**
- * App-level Lenis for every route except Home — the Home hero package
+ * App-level Lenis for every route except Home  the Home hero package
  * owns its own Lenis instance tuned for the canvas scrub.
  */
 export default function SmoothScroll() {

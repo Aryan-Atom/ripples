@@ -2,19 +2,18 @@ import { HOME_STATS } from '../data/site'
 import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
 import StatCounter from '../motion/StatCounter'
-import { withBrand } from './Brand.jsx'
 
 export default function HomeIntro() {
   return (
     <section className="home-intro home-section" aria-label="About Ripples">
       <div className="home-intro__inner r-container">
         <FadeUp as="p" className="r-label">
-          {withBrand('Ripples Engineering  est. 1989')}
+          Ripples Engineering  est. 1989
         </FadeUp>
 
         <SplitLines as="h2" className="home-intro__statement">
           We design, engineer, and manufacture <em>water</em> that performs  every nozzle,
-          pump, and note made <em>in-house.</em>
+          light, and note made <em>in-house.</em>
         </SplitLines>
 
         <div className="home-intro__row">

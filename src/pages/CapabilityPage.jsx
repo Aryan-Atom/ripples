@@ -40,6 +40,12 @@ export default function CapabilityPage({ slug: slugProp }) {
   const isWaterHub = page.slug === 'water-features'
   const isPrefab = page.slug === 'prefab-water-features'
   const isWaterCategory = WATER_FEATURE_CATEGORIES.some((c) => c.slug === page.slug)
+  const isWaterworksCategory = [
+    'multimedia-shows',
+    'architectural-fountains',
+    'prefab-water-features',
+    'waterworks-others',
+  ].includes(page.slug)
 
   return (
     <div className="interior-page">
@@ -61,7 +67,14 @@ export default function CapabilityPage({ slug: slugProp }) {
               {page.body}
             </FadeUp>
 
-            {isWaterCategory && (
+            {isWaterworksCategory && (
+              <FadeUp delay={0.1}>
+                <Link className="r-link capability-back" to="/waterworks">
+                  ← All WaterWorks
+                </Link>
+              </FadeUp>
+            )}
+            {isWaterCategory && !isWaterworksCategory && (
               <FadeUp delay={0.1}>
                 <Link className="r-link capability-back" to="/water-features">
                   ← All water features

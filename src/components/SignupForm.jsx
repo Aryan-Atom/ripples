@@ -49,7 +49,7 @@ export default function SignupForm({ onCreated }) {
     } catch (err) {
       const message =
         err?.name === 'TimeoutError' || err?.name === 'AbortError'
-          ? 'Request timed out — the API may be waking up. Try again in a moment.'
+          ? 'Request timed out  the API may be waking up. Try again in a moment.'
           : err.message || 'Signup failed'
       setError(message)
     } finally {

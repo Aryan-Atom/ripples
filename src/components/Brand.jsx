@@ -1,4 +1,4 @@
-/** Wordmark for the visible name “Ripples” — Ripples Logo (glyphs: R i p l e s). */
+/** Wordmark for the visible name “Ripples”  Ripples Logo (glyphs: R i p l e s). */
 
 const BRAND_PATTERN = /(RIPPLES|Ripples)/g
 

@@ -36,7 +36,7 @@ export function getWorldCountriesCache() {
   return worldCountriesCache
 }
 
-/** Regional footprint — shown below the globe hero. */
+/** Regional footprint  shown below the globe hero. */
 export const WORLDWIDE_REGIONS = [
   {
     index: '01',

@@ -22,8 +22,8 @@
   z-index: 0;
   pointer-events: none;
   background:
-    /* Keep the top edge pure  no glow at the hero seam */
-    linear-gradient(180deg, #000000 0%, transparent 18%),
+    /* Soft seam under the hero  keep short so the first section isn’t pushed down visually */
+    linear-gradient(180deg, #000000 0%, transparent 10%),
     radial-gradient(
       ellipse 75% 50% at 50% 42%,
       var(--color-glow) 0%,
@@ -40,6 +40,22 @@
 .home-page__below > .site-footer {
   position: relative;
   z-index: 1;
+}
+
+/* Tighter, even rhythm across homepage sections (hero → footer). */
+.home-page {
+  --home-section-y: clamp(3rem, 6vw, 5rem);
+  --home-section-y-first: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+
+.home-page .home-section,
+.home-page .brand-trail,
+.home-page .home-video {
+  padding-block: var(--home-section-y);
+}
+
+.home-page__main > .home-section:first-child {
+  padding-top: var(--home-section-y-first);
 }
 
 /* Navigation */
@@ -641,7 +657,7 @@ a.site-nav__item:hover {
   margin-top: 2rem;
   padding: 0.95rem 1.45rem;
   border: 1px solid var(--color-accent);
-  border-radius: 0;
+  border-radius: 9999px;
   background: transparent;
   color: var(--color-text);
   font-family: var(--font-body);

@@ -2,7 +2,7 @@ import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
 import WorldwideGlobe from './WorldwideGlobe.jsx'
 
-/** Absolute background layer — never affects hero layout flow. */
+/** Absolute background layer  never affects hero layout flow. */
 function WorldwideGlobeAmbient() {
   return (
     <div className="worldwide-hero__globe-ambient" aria-hidden="true">
@@ -26,7 +26,7 @@ export default function WorldwideHero() {
             Experiences delivered <em>worldwide.</em>
           </SplitLines>
           <FadeUp as="p" className="worldwide-hero__lead" delay={0.08}>
-            Building iconic fountain experiences across continents — from civic
+            Building iconic fountain experiences across continents  from civic
             plazas to landmark destinations worldwide.
           </FadeUp>
         </div>

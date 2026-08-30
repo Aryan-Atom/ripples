@@ -1,4 +1,4 @@
-/** Force document scroll to top — works with and without Lenis. */
+/** Force document scroll to top  works with and without Lenis. */
 export function resetScroll(lenis) {
   window.scrollTo(0, 0)
   document.documentElement.scrollTop = 0

@@ -12,7 +12,7 @@ const STATUS_COPY = {
   pending: 'Your access request is with our team for review.',
   approved:
     'Accept the Slack invite in your email, then this dashboard updates automatically.',
-  joined: 'You’re connected — open your project channel when you need the team.',
+  joined: 'You’re connected  open your project channel when you need the team.',
   rejected: 'This request couldn’t be completed. Contact Ripples for help.',
 }
 
@@ -50,8 +50,8 @@ export default function ClientProfile() {
           const next = {
             requestId,
             profile: {
-              name: data.profile.name || prev?.profile?.name || '—',
-              company: data.profile.company || prev?.profile?.company || '—',
+              name: data.profile.name || prev?.profile?.name || '',
+              company: data.profile.company || prev?.profile?.company || '',
               contactEmail: data.profile.contactEmail,
               accountTier:
                 data.profile.accountTier || prev?.profile?.accountTier || 'standard',
@@ -180,15 +180,15 @@ export default function ClientProfile() {
               <dl>
                 <div>
                   <dt>Name</dt>
-                  <dd>{display.name || '—'}</dd>
+                  <dd>{display.name || ''}</dd>
                 </div>
                 <div>
                   <dt>Email</dt>
-                  <dd>{display.contactEmail || '—'}</dd>
+                  <dd>{display.contactEmail || ''}</dd>
                 </div>
                 <div>
                   <dt>Company</dt>
-                  <dd>{display.company || '—'}</dd>
+                  <dd>{display.company || ''}</dd>
                 </div>
                 <div>
                   <dt>Plan</dt>
@@ -220,7 +220,7 @@ export default function ClientProfile() {
                 <>
                   <p className="portal-dash__tile-copy">
                     {status === 'approved'
-                      ? 'Invite sent — accept it, then refresh to unlock the channel link.'
+                      ? 'Invite sent  accept it, then refresh to unlock the channel link.'
                       : status === 'rejected'
                         ? 'No channel is available for this request.'
                         : 'Your channel link appears here once access is approved and you join Slack.'}
@@ -240,7 +240,7 @@ export default function ClientProfile() {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/multimedia">Multimedia</Link>
+                  <Link to="/waterworks">WaterWorks</Link>
                 </li>
                 <li>
                   <Link to="/our-journey">Our Journey</Link>

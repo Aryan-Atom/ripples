@@ -5,7 +5,7 @@ import { getWorldCountriesCache, prefetchWorldCountries } from '../data/worldwid
 
 const MOBILE_QUERY = '(max-width: 960px)'
 
-/** Dim — soft ice-white dots (active). */
+/** Dim  soft ice-white dots (active). */
 const LAND_DOT = 'rgba(142, 184, 212, 0.26)'
 
 export default function WorldwideGlobe({ variant = 'ambient' }) {

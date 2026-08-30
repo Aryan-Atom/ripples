@@ -14,7 +14,7 @@
   position: fixed;
   inset: 0;
   z-index: 0;
-  /* Match interior / Worldwide — Sea Side page gradient + soft blue glow */
+  /* Match interior / Worldwide  Sea Side page gradient + soft blue glow */
   background:
     radial-gradient(ellipse 70% 45% at 30% 20%, var(--color-glow) 0%, transparent 60%),
     radial-gradient(ellipse 55% 40% at 85% 75%, var(--color-glow-deep) 0%, transparent 60%),
@@ -272,7 +272,7 @@
   overflow: visible;
 }
 
-/* SplitText mask wrappers (mask: words) — give the clip box extra width */
+/* SplitText mask wrappers (mask: words)  give the clip box extra width */
 .journey-hero__title [style*='overflow'] {
   padding-right: 0.14em !important;
   padding-bottom: 0.12em !important;

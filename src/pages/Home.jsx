@@ -7,8 +7,8 @@ import HomeIntro from '../components/HomeIntro.jsx'
 import HomeCreations from '../components/HomeCreations.jsx'
 import HomeVideo from '../components/HomeVideo.jsx'
 import HomeWorldwide from '../components/HomeWorldwide.jsx'
-import HomePress from '../components/HomePress.jsx'
 import HomeTestimonials from '../components/HomeTestimonials.jsx'
+import HomePress from '../components/HomePress.jsx'
 import HomeCta from '../components/HomeCta.jsx'
 
 const FRAME_COUNT = 241

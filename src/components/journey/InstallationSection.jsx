@@ -23,7 +23,7 @@ function pauseVideo(video) {
 }
 
 /**
- * Installation — full-bleed pinned chapter:
+ * Installation  full-bleed pinned chapter:
  * 1) Section enters → video plays
  * 2) Scroll scrubs Precision → Alignment → Execution
  * 3) Sequence completes → pin releases → next section
@@ -81,7 +81,7 @@ export default function InstallationSection() {
     tl.to(media, { scale: 1, duration: 0.28, ease: 'none' }, 0)
     tl.to(copy, { autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.22)
 
-    // Text sequence — last line stays until pin releases.
+    // Text sequence  last line stays until pin releases.
     const textStart = 0.32
     const step = 0.22
     lines.forEach((line, i) => {

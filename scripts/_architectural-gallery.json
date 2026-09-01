@@ -1,0 +1,86 @@
+{
+  "cover": "/assets/architectural/aarohan-gurgaon.jpg",
+  "previews": [
+    "/assets/architectural/aarohan-gurgaon.jpg",
+    "/assets/architectural/abu-dhabi-airport.jpg",
+    "/assets/architectural/hyatt-hyderabad.jpg"
+  ],
+  "gallery": [
+    {
+      "title": "Aarohan Gurgaon",
+      "src": "/assets/architectural/aarohan-gurgaon.jpg"
+    },
+    {
+      "title": "Abu Dhabi Airport",
+      "src": "/assets/architectural/abu-dhabi-airport.jpg"
+    },
+    {
+      "title": "Adani Power Plant Mundra",
+      "src": "/assets/architectural/adani-power-plant-mundra.jpg"
+    },
+    {
+      "title": "Aditya World City Noida",
+      "src": "/assets/architectural/aditya-world-city-noida.jpg"
+    },
+    {
+      "title": "Ansal Township Lucknow",
+      "src": "/assets/architectural/ansal-township-lucknow.jpg"
+    },
+    {
+      "title": "APRA Builders",
+      "src": "/assets/architectural/apra-builders.jpg"
+    },
+    {
+      "title": "Asiana Hotel - Dubai",
+      "src": "/assets/architectural/asiana-hotel-dubai.jpg"
+    },
+    {
+      "title": "Bombay Dying",
+      "src": "/assets/architectural/bombay-dying.jpg"
+    },
+    {
+      "title": "Country Inn and Suites",
+      "src": "/assets/architectural/country-inn-and-suites.jpg"
+    },
+    {
+      "title": "Crowne Plaza Rohini",
+      "src": "/assets/architectural/crowne-plaza-rohini.jpg"
+    },
+    {
+      "title": "DLF Prinston",
+      "src": "/assets/architectural/dlf-prinston.jpg"
+    },
+    {
+      "title": "F1 Track, Greater Noida",
+      "src": "/assets/architectural/f1-track-g-noida.jpg"
+    },
+    {
+      "title": "Fortis Gurgaon",
+      "src": "/assets/architectural/fortis-gurgaon.jpg"
+    },
+    {
+      "title": "Golf Park",
+      "src": "/assets/architectural/golf-park.jpg"
+    },
+    {
+      "title": "Harsha Dubai 1",
+      "src": "/assets/architectural/harsha-dubai-1.jpg"
+    },
+    {
+      "title": "Hotel Radisson SAS - Dubai",
+      "src": "/assets/architectural/hotel-radisson-sas-dubai.jpg"
+    },
+    {
+      "title": "Hyatt Hyderabad",
+      "src": "/assets/architectural/hyatt-hyderabad.jpg"
+    },
+    {
+      "title": "INS Karamba",
+      "src": "/assets/architectural/ins-karamba.jpg"
+    },
+    {
+      "title": "IOCL Panipat",
+      "src": "/assets/architectural/iocl-panipat.jpg"
+    }
+  ]
+}

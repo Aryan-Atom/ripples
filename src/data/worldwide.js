@@ -82,7 +82,7 @@ export const WORLDWIDE_EVENTS = [
     title: 'Dubai Fountain District',
     description:
       'A landmark lake show engineered for desert heat  programmable arcs, chromatic lighting, and synchronized music across one of the Gulf\u2019s most visible waterfront destinations.',
-    video: '/assets/web-videos/video%201.mp4',
+    video: '/assets/web-videos/video 1.mp4',
     align: 'right',
   },
   {
@@ -90,7 +90,7 @@ export const WORLDWIDE_EVENTS = [
     title: 'Guangzhou Civic Plaza',
     description:
       'An interactive water matrix for a growing Chinese metropolis  precision nozzles, dynamic patterns, and a basin designed for year-round public spectacle.',
-    video: '/assets/web-videos/video%202.mp4',
+    video: '/assets/web-videos/video 2.mp4',
     align: 'left',
   },
   {
@@ -98,7 +98,7 @@ export const WORLDWIDE_EVENTS = [
     title: 'IAAPA Expo Showcase',
     description:
       'Live demonstration at the global attractions industry stage  Ripples engineering on display, from programmable choreography to field-ready control systems.',
-    video: '/assets/web-videos/video%203.mp4',
+    video: '/assets/web-videos/video 3.mp4',
     align: 'right',
   },
 ]

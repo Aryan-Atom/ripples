@@ -8,8 +8,10 @@ import FadeUp from '../motion/FadeUp'
  * Interior page opener: eyebrow, mega title (char reveal), optional lead.
  * `title` accepts JSX so accent words can be wrapped in <em>.
  */
-export default function PageHero({ eyebrow, title, lead, children, className }) {
+export default function PageHero({ eyebrow, title, lead, children, className, contentKey }) {
   const titleRef = useRef(null)
+  // Remount split/reveal when route content changes (WaterWorks category hops).
+  const refreshKey = contentKey ?? `${eyebrow ?? ''}|${typeof title === 'string' ? title : ''}|${lead ?? ''}`
 
   useLayoutEffect(() => {
     const el = titleRef.current
@@ -47,13 +49,13 @@ export default function PageHero({ eyebrow, title, lead, children, className }) 
       split?.revert?.()
       showElement(el)
     }
-  }, [])
+  }, [refreshKey])
 
   return (
-    <header className={"page-hero" + (className ? ` ${className}` : '')}>
+    <header className={"page-hero" + (className ? ` ${className}` : '')} key={refreshKey}>
       <div className="page-hero__inner r-container">
         {eyebrow && (
-          <FadeUp as="p" className="page-hero__eyebrow r-label">
+          <FadeUp as="p" className="page-hero__eyebrow r-label" key={`eyebrow-${refreshKey}`}>
             {eyebrow}
           </FadeUp>
         )}
@@ -61,7 +63,7 @@ export default function PageHero({ eyebrow, title, lead, children, className }) 
           {title}
         </h1>
         {lead && (
-          <FadeUp as="p" className="page-hero__lead" delay={0.5} y={28}>
+          <FadeUp as="p" className="page-hero__lead" delay={0.5} y={28} key={`lead-${refreshKey}`}>
             {lead}
           </FadeUp>
         )}

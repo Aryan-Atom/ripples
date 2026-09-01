@@ -1,0 +1,42 @@
+{
+  "cover": "/assets/multimedia/bhopal-musical.jpg",
+  "previews": [
+    "/assets/multimedia/bhopal-musical.jpg",
+    "/assets/multimedia/statue-of-unity-fountain.jpg",
+    "/assets/multimedia/jk-temple.png"
+  ],
+  "gallery": [
+    {
+      "title": "Bhopal Musical",
+      "src": "/assets/multimedia/bhopal-musical.jpg"
+    },
+    {
+      "title": "Birsa Munda memorial park",
+      "src": "/assets/multimedia/birsa-munda-memorial-park.png"
+    },
+    {
+      "title": "HUB",
+      "src": "/assets/multimedia/hub-07.jpg"
+    },
+    {
+      "title": "JK Temple",
+      "src": "/assets/multimedia/jk-temple.png"
+    },
+    {
+      "title": "Luv Kush Garden",
+      "src": "/assets/multimedia/luv-kush-garden.jpg"
+    },
+    {
+      "title": "NDMC image 9",
+      "src": "/assets/multimedia/ndmc-image-9.jpg"
+    },
+    {
+      "title": "PCMC 1",
+      "src": "/assets/multimedia/pcmc-1.jpg"
+    },
+    {
+      "title": "Statue of unity fountain",
+      "src": "/assets/multimedia/statue-of-unity-fountain.jpg"
+    }
+  ]
+}

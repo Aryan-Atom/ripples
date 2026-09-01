@@ -1,10 +1,10 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { motion, useAnimation, useMotionValue } from 'framer-motion'
+import { motion, useMotionValue } from 'framer-motion'
 import useIntersection from './useIntersection.js'
 import VideoManager from './VideoManager.js'
 
 const MAX_ROTATION = 4
-const RESET_TRANSITION = { duration: 0.32, ease: [0.22, 1, 0.36, 1] }
+const HOVER_SCALE = 1.02
 
 function clearVideoSource(video) {
   if (!video) return
@@ -12,19 +12,31 @@ function clearVideoSource(video) {
   video.load()
 }
 
-function VideoCard({ id, poster, video, title, category, className, isActive, isDimmed, onHoverStart, onHoverEnd }) {
+function VideoCard({
+  id,
+  poster,
+  video,
+  title,
+  category,
+  className,
+  isActive,
+  isDimmed,
+  onHoverStart,
+  onHoverEnd,
+  playCue = false,
+  allowUnmute = false,
+}) {
   const [ref, isVisible] = useIntersection({ rootMargin: '300px' })
   const videoRef = useRef(null)
   const frameRef = useRef(null)
   const pointerRef = useRef({ x: 0, y: 0 })
   const boundsRef = useRef(null)
   const [isHovered, setIsHovered] = useState(false)
-  const [readyToPlay, setReadyToPlay] = useState(false)
-  const controls = useAnimation()
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [muted, setMuted] = useState(true)
   const cardScale = useMotionValue(1)
   const rotateX = useMotionValue(0)
   const rotateY = useMotionValue(0)
-  const contentOpacity = useMotionValue(1)
 
   const posterSrc = useMemo(() => poster, [poster])
 
@@ -38,7 +50,7 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
 
     rotateY.set(relX * MAX_ROTATION)
     rotateX.set(-relY * MAX_ROTATION)
-    cardScale.set(1.03)
+    cardScale.set(HOVER_SCALE)
   }, [cardScale, rotateX, rotateY])
 
   const resetTilt = useCallback(() => {
@@ -52,21 +64,24 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
     cardScale.set(1)
   }, [cardScale, rotateX, rotateY])
 
-  const handlePointerMove = useCallback((event) => {
-    const target = event.currentTarget
-    if (!target) return
+  const handlePointerMove = useCallback(
+    (event) => {
+      const target = event.currentTarget
+      if (!target) return
 
-    if (!boundsRef.current) {
-      boundsRef.current = target.getBoundingClientRect()
-    }
+      if (!boundsRef.current) {
+        boundsRef.current = target.getBoundingClientRect()
+      }
 
-    pointerRef.current.x = event.clientX
-    pointerRef.current.y = event.clientY
+      pointerRef.current.x = event.clientX
+      pointerRef.current.y = event.clientY
 
-    if (frameRef.current == null) {
-      frameRef.current = requestAnimationFrame(updateTilt)
-    }
-  }, [updateTilt])
+      if (frameRef.current == null) {
+        frameRef.current = requestAnimationFrame(updateTilt)
+      }
+    },
+    [updateTilt],
+  )
 
   const loadVideo = useCallback(() => {
     const node = videoRef.current
@@ -74,7 +89,6 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
     node.src = video
     node.preload = 'none'
     node.load()
-    setReadyToPlay(true)
   }, [video])
 
   const pauseAndReset = useCallback(() => {
@@ -83,26 +97,41 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
     VideoManager.releaseIfCurrent(node)
     node.pause()
     node.currentTime = 0
+    node.muted = true
     clearVideoSource(node)
-    setReadyToPlay(false)
+    setIsPlaying(false)
+    setMuted(true)
   }, [])
 
   const handlePointerEnter = useCallback(() => {
     setIsHovered(true)
     onHoverStart(id)
     loadVideo()
-    controls.start({ y: -8, transition: RESET_TRANSITION })
-    contentOpacity.set(1)
-  }, [controls, contentOpacity, id, loadVideo, onHoverStart])
+    cardScale.set(HOVER_SCALE)
+  }, [cardScale, id, loadVideo, onHoverStart])
 
   const handlePointerLeave = useCallback(() => {
     setIsHovered(false)
     resetTilt()
     onHoverEnd(id)
-    controls.start({ y: 0, transition: RESET_TRANSITION })
-    contentOpacity.set(0.96)
     pauseAndReset()
-  }, [controls, id, onHoverEnd, pauseAndReset, resetTilt, contentOpacity])
+  }, [id, onHoverEnd, pauseAndReset, resetTilt])
+
+  const toggleMute = useCallback(
+    (event) => {
+      event.preventDefault()
+      event.stopPropagation()
+      const node = videoRef.current
+      if (!node || !allowUnmute) return
+      const next = !muted
+      node.muted = next
+      setMuted(next)
+      if (!next) {
+        node.play().catch(() => {})
+      }
+    },
+    [allowUnmute, muted],
+  )
 
   useEffect(() => {
     const node = videoRef.current
@@ -111,13 +140,20 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
     const handleCanPlay = () => {
       if (isHovered && node.readyState >= 3) {
         VideoManager.setActive(id, node)
-        node.play().catch(() => {})
+        node
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => {})
       }
     }
 
+    const handlePlaying = () => setIsPlaying(true)
+
     node.addEventListener('canplay', handleCanPlay)
+    node.addEventListener('playing', handlePlaying)
     return () => {
       node.removeEventListener('canplay', handleCanPlay)
+      node.removeEventListener('playing', handlePlaying)
     }
   }, [id, isHovered])
 
@@ -130,8 +166,18 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
   useEffect(() => pauseAndReset, [pauseAndReset])
 
   const cardClasses = useMemo(
-    () => `video-card ${className} ${isHovered ? 'is-hovered' : ''} ${isDimmed ? 'video-card--dimmed' : ''}`,
-    [className, isDimmed, isHovered],
+    () =>
+      [
+        'video-card',
+        className,
+        isHovered ? 'is-hovered' : '',
+        isPlaying ? 'is-playing' : '',
+        isDimmed ? 'video-card--dimmed' : '',
+        playCue ? 'video-card--cue' : '',
+      ]
+        .filter(Boolean)
+        .join(' '),
+    [className, isDimmed, isHovered, isPlaying, playCue],
   )
 
   return (
@@ -143,7 +189,15 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
       viewport={{ once: true, amount: 0.2 }}
       variants={{ hidden: { opacity: 0, y: 60, scale: 0.96 }, visible: { opacity: 1, y: 0, scale: 1 } }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      style={{ x: 0, scale: cardScale, rotateX, rotateY, transformStyle: 'preserve-3d', backfaceVisibility: 'hidden', willChange: 'transform, opacity' }}
+      style={{
+        x: 0,
+        scale: cardScale,
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+        backfaceVisibility: 'hidden',
+        willChange: 'transform, opacity',
+      }}
       onPointerMove={handlePointerMove}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
@@ -153,9 +207,9 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
         {isVisible && (
           <video
             ref={videoRef}
-            className={`video-card__video ${isHovered ? 'is-active' : ''}`}
+            className={`video-card__video${isPlaying ? ' is-active' : ''}`}
             preload="none"
-            muted
+            muted={muted}
             playsInline
             loop
             aria-hidden="true"
@@ -163,10 +217,68 @@ function VideoCard({ id, poster, video, title, category, className, isActive, is
         )}
         <div className="video-card__layer video-card__glow" />
         <div className="video-card__layer video-card__shine" />
-        <div className="video-card__content" style={{ opacity: contentOpacity }}>
+        <div className="video-card__scrim" aria-hidden="true" />
+
+        {playCue && (
+          <div className="video-card__play-cue" aria-hidden="true">
+            <span className="video-card__play-cue-ring">
+              <span className="video-card__play-cue-triangle" />
+            </span>
+          </div>
+        )}
+
+        <div className="video-card__content">
           <p className="video-card__label">{category}</p>
           <h3 className="video-card__title">{title}</h3>
         </div>
+
+        {allowUnmute && isHovered && (
+          <button
+            type="button"
+            className={`video-card__mute${muted ? ' is-muted' : ''}`}
+            onClick={toggleMute}
+            onPointerDown={(event) => event.stopPropagation()}
+            aria-label={muted ? 'Unmute video' : 'Mute video'}
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+              {muted ? (
+                <>
+                  <path
+                    d="M4 9v6h3.5L14 20V4L7.5 9H4z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M17 9.5l4 5m0-5l-4 5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                  />
+                </>
+              ) : (
+                <>
+                  <path
+                    d="M4 9v6h3.5L14 20V4L7.5 9H4z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M17 9a4 4 0 010 6m2.5-8.5a7 7 0 010 11"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                  />
+                </>
+              )}
+            </svg>
+          </button>
+        )}
       </div>
     </motion.article>
   )

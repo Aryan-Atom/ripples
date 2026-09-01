@@ -1,0 +1,500 @@
+{
+  "cover": "/assets/ww-others/floating-fountains/creek-fountain-sharjah.jpg",
+  "previews": [
+    "/assets/ww-others/floating-fountains/creek-fountain-sharjah.jpg",
+    "/assets/ww-others/programmable-fountains/jumping-jets-mall-noida.jpg",
+    "/assets/ww-others/swimming-pools/intercontinental-goa.jpg"
+  ],
+  "sections": [
+    {
+      "id": "floating-fountains",
+      "label": "Floating Fountains",
+      "titleBefore": "Floating",
+      "titleEm": "systems",
+      "gallery": [
+        {
+          "title": "ADNOC Abu Dhabi",
+          "src": "/assets/ww-others/floating-fountains/adnoc-abu-dhabi.jpg"
+        },
+        {
+          "title": "ADNOC Abu Dhabi",
+          "src": "/assets/ww-others/floating-fountains/adnoc-abu-dhabi-2.jpg"
+        },
+        {
+          "title": "Creek Fountain Sharjah",
+          "src": "/assets/ww-others/floating-fountains/creek-fountain-sharjah.jpg"
+        },
+        {
+          "title": "DLF Golf Club Gurgaon",
+          "src": "/assets/ww-others/floating-fountains/dlf-golf-club-gurgaon.jpg"
+        },
+        {
+          "title": "Floating Fountain Indore",
+          "src": "/assets/ww-others/floating-fountains/floating-fountain-indore.jpg"
+        },
+        {
+          "title": "Jaypee Golf Course G Noida",
+          "src": "/assets/ww-others/floating-fountains/jaypee-golf-course-g-noida.jpg"
+        },
+        {
+          "title": "Jaypee Greens G Noida",
+          "src": "/assets/ww-others/floating-fountains/jaypee-greens-g-noida.jpg"
+        },
+        {
+          "title": "Jaypee Greens G Noida",
+          "src": "/assets/ww-others/floating-fountains/jaypee-greens-g-noida-2.jpg"
+        },
+        {
+          "title": "M3M Golf Estate Gurgaon",
+          "src": "/assets/ww-others/floating-fountains/m3m-golf-estate-gurgaon.jpg"
+        },
+        {
+          "title": "M3M Golf Estate Gurgaon",
+          "src": "/assets/ww-others/floating-fountains/m3m-golf-estate-gurgaon-2.jpg"
+        },
+        {
+          "title": "M3M Golf Estate Gurgaon",
+          "src": "/assets/ww-others/floating-fountains/m3m-golf-estate-gurgaon-3.jpg"
+        },
+        {
+          "title": "Park Hyatt Goa",
+          "src": "/assets/ww-others/floating-fountains/park-hyatt-goa.jpg"
+        },
+        {
+          "title": "SVIL Mines Katni",
+          "src": "/assets/ww-others/floating-fountains/svil-mines-katni.jpg"
+        }
+      ]
+    },
+    {
+      "id": "programmable-fountains",
+      "label": "Programmable Fountains",
+      "titleBefore": "Programmable",
+      "titleEm": "jets",
+      "gallery": [
+        {
+          "title": "Harsha Dubai",
+          "src": "/assets/ww-others/programmable-fountains/harsha-dubai.jpg"
+        },
+        {
+          "title": "Jumping Jets Club Florence Gurgaon",
+          "src": "/assets/ww-others/programmable-fountains/jumping-jets-club-florence-gurgaon.jpg"
+        },
+        {
+          "title": "Jumping Jets Cross River Mall Noida",
+          "src": "/assets/ww-others/programmable-fountains/jumping-jets-cross-river-mall-noida.jpg"
+        },
+        {
+          "title": "Jumping Jets Mall Noida",
+          "src": "/assets/ww-others/programmable-fountains/jumping-jets-mall-noida.jpg"
+        },
+        {
+          "title": "Jumping Jets ZECO Haryana",
+          "src": "/assets/ww-others/programmable-fountains/jumping-jets-zeco-haryana.jpg"
+        },
+        {
+          "title": "Orange county Indirapuram",
+          "src": "/assets/ww-others/programmable-fountains/orange-county-indirapuram.jpg"
+        },
+        {
+          "title": "Private Residence N Delhi",
+          "src": "/assets/ww-others/programmable-fountains/private-residence-n-delhi.jpg"
+        },
+        {
+          "title": "Private Residence N Delhi",
+          "src": "/assets/ww-others/programmable-fountains/private-residence-n-delhi-2.jpg"
+        },
+        {
+          "title": "Programmed Fountain",
+          "src": "/assets/ww-others/programmable-fountains/programmed-fountain.jpg"
+        },
+        {
+          "title": "Shantaram Talaov Mumbai",
+          "src": "/assets/ww-others/programmable-fountains/shantaram-talaov-mumbai.jpg"
+        },
+        {
+          "title": "Taj Vivanta Surajkund",
+          "src": "/assets/ww-others/programmable-fountains/taj-vivanta-surajkund.jpg"
+        },
+        {
+          "title": "Tata Steel Jamshedpur",
+          "src": "/assets/ww-others/programmable-fountains/tata-steel-jamshedpur.jpg"
+        },
+        {
+          "title": "Tata Steel Jamshedpur",
+          "src": "/assets/ww-others/programmable-fountains/tata-steel-jamshedpur-2.jpg"
+        },
+        {
+          "title": "Tata Steel Jamshedpur",
+          "src": "/assets/ww-others/programmable-fountains/tata-steel-jamshedpur-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "swimming-pools",
+      "label": "Swimming Pools",
+      "titleBefore": "Swimming",
+      "titleEm": "pools",
+      "gallery": [
+        {
+          "title": "Country Inn & Suites Ajmer",
+          "src": "/assets/ww-others/swimming-pools/country-inn-and-suites-ajmer.jpg"
+        },
+        {
+          "title": "IMG_0633",
+          "src": "/assets/ww-others/swimming-pools/private-pool-img-0633.jpg"
+        },
+        {
+          "title": "Intercontinental Goa",
+          "src": "/assets/ww-others/swimming-pools/intercontinental-goa.jpg"
+        },
+        {
+          "title": "JW MARRIOT MUMBAI",
+          "src": "/assets/ww-others/swimming-pools/jw-marriot-mumbai.jpg"
+        },
+        {
+          "title": "Lodha Bellezza Hyderabad",
+          "src": "/assets/ww-others/swimming-pools/lodha-bellezza-hyderabad.jpg"
+        },
+        {
+          "title": "M3M Golf Estate Gurgaon",
+          "src": "/assets/ww-others/swimming-pools/m3m-golf-estate-gurgaon.jpg"
+        },
+        {
+          "title": "Private Farm N Delhi",
+          "src": "/assets/ww-others/swimming-pools/private-farm-n-delhi.jpg"
+        },
+        {
+          "title": "Sapphire Heights Mumbai Swimming Pool and Kids Play Pool",
+          "src": "/assets/ww-others/swimming-pools/sapphire-heights-mumbai-swimming-pool-and-kids-play-pool.jpg"
+        },
+        {
+          "title": "Taj Vivanta Suraj Kund",
+          "src": "/assets/ww-others/swimming-pools/taj-vivanta-suraj-kund.jpg"
+        },
+        {
+          "title": "Taj Vivanta Surajkund",
+          "src": "/assets/ww-others/swimming-pools/taj-vivanta-surajkund.jpg"
+        },
+        {
+          "title": "Taj Vivanta Surajkund",
+          "src": "/assets/ww-others/swimming-pools/taj-vivanta-surajkund-2.jpg"
+        },
+        {
+          "title": "The Bay Club Mumbai",
+          "src": "/assets/ww-others/swimming-pools/the-bay-club-mumbai.jpg"
+        },
+        {
+          "title": "The Bay Club Mumbai",
+          "src": "/assets/ww-others/swimming-pools/the-bay-club-mumbai-2.jpg"
+        },
+        {
+          "title": "The Bay Club Mumbai",
+          "src": "/assets/ww-others/swimming-pools/the-bay-club-mumbai-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "kids-play",
+      "label": "Kids Play Areas",
+      "titleBefore": "Kids",
+      "titleEm": "play",
+      "gallery": [
+        {
+          "title": "Al Ain Stadium UAE",
+          "src": "/assets/ww-others/kids-play/al-ain-stadium-uae.jpg"
+        },
+        {
+          "title": "Appu Ghar Gurgaon",
+          "src": "/assets/ww-others/kids-play/appu-ghar-gurgaon.jpg"
+        },
+        {
+          "title": "Appu Ghar Gurgaon",
+          "src": "/assets/ww-others/kids-play/appu-ghar-gurgaon-2.jpg"
+        },
+        {
+          "title": "Bay Club Mumbai",
+          "src": "/assets/ww-others/kids-play/bay-club-mumbai.jpg"
+        },
+        {
+          "title": "Bay Club Mumbai",
+          "src": "/assets/ww-others/kids-play/bay-club-mumbai-2.jpg"
+        },
+        {
+          "title": "Bay Club Mumbai",
+          "src": "/assets/ww-others/kids-play/bay-club-mumbai-3.jpg"
+        },
+        {
+          "title": "Bay Club Mumbai",
+          "src": "/assets/ww-others/kids-play/bay-club-mumbai-4.jpg"
+        },
+        {
+          "title": "Bay Club Mumbai",
+          "src": "/assets/ww-others/kids-play/bay-club-mumbai-5.jpg"
+        },
+        {
+          "title": "Bay Club Mumbai",
+          "src": "/assets/ww-others/kids-play/bay-club-mumbai-6.jpg"
+        },
+        {
+          "title": "Bay Club Mumbai",
+          "src": "/assets/ww-others/kids-play/bay-club-mumbai-7.jpg"
+        },
+        {
+          "title": "Bay Club Mumbai",
+          "src": "/assets/ww-others/kids-play/bay-club-mumbai-8.jpg"
+        },
+        {
+          "title": "M3M Golf Estate Gurgaon",
+          "src": "/assets/ww-others/kids-play/m3m-golf-estate-gurgaon.jpg"
+        },
+        {
+          "title": "Miraj Housing Mumbai",
+          "src": "/assets/ww-others/kids-play/miraj-housing-mumbai.jpg"
+        },
+        {
+          "title": "Suncity Panchkula",
+          "src": "/assets/ww-others/kids-play/suncity-panchkula.jpg"
+        },
+        {
+          "title": "Suncity Panchkula",
+          "src": "/assets/ww-others/kids-play/suncity-panchkula-2.jpg"
+        },
+        {
+          "title": "Suncity Panchkula",
+          "src": "/assets/ww-others/kids-play/suncity-panchkula-3.jpg"
+        }
+      ]
+    }
+  ],
+  "all": [
+    {
+      "title": "ADNOC Abu Dhabi",
+      "src": "/assets/ww-others/floating-fountains/adnoc-abu-dhabi.jpg"
+    },
+    {
+      "title": "ADNOC Abu Dhabi",
+      "src": "/assets/ww-others/floating-fountains/adnoc-abu-dhabi-2.jpg"
+    },
+    {
+      "title": "Creek Fountain Sharjah",
+      "src": "/assets/ww-others/floating-fountains/creek-fountain-sharjah.jpg"
+    },
+    {
+      "title": "DLF Golf Club Gurgaon",
+      "src": "/assets/ww-others/floating-fountains/dlf-golf-club-gurgaon.jpg"
+    },
+    {
+      "title": "Floating Fountain Indore",
+      "src": "/assets/ww-others/floating-fountains/floating-fountain-indore.jpg"
+    },
+    {
+      "title": "Jaypee Golf Course G Noida",
+      "src": "/assets/ww-others/floating-fountains/jaypee-golf-course-g-noida.jpg"
+    },
+    {
+      "title": "Jaypee Greens G Noida",
+      "src": "/assets/ww-others/floating-fountains/jaypee-greens-g-noida.jpg"
+    },
+    {
+      "title": "Jaypee Greens G Noida",
+      "src": "/assets/ww-others/floating-fountains/jaypee-greens-g-noida-2.jpg"
+    },
+    {
+      "title": "M3M Golf Estate Gurgaon",
+      "src": "/assets/ww-others/floating-fountains/m3m-golf-estate-gurgaon.jpg"
+    },
+    {
+      "title": "M3M Golf Estate Gurgaon",
+      "src": "/assets/ww-others/floating-fountains/m3m-golf-estate-gurgaon-2.jpg"
+    },
+    {
+      "title": "M3M Golf Estate Gurgaon",
+      "src": "/assets/ww-others/floating-fountains/m3m-golf-estate-gurgaon-3.jpg"
+    },
+    {
+      "title": "Park Hyatt Goa",
+      "src": "/assets/ww-others/floating-fountains/park-hyatt-goa.jpg"
+    },
+    {
+      "title": "SVIL Mines Katni",
+      "src": "/assets/ww-others/floating-fountains/svil-mines-katni.jpg"
+    },
+    {
+      "title": "Harsha Dubai",
+      "src": "/assets/ww-others/programmable-fountains/harsha-dubai.jpg"
+    },
+    {
+      "title": "Jumping Jets Club Florence Gurgaon",
+      "src": "/assets/ww-others/programmable-fountains/jumping-jets-club-florence-gurgaon.jpg"
+    },
+    {
+      "title": "Jumping Jets Cross River Mall Noida",
+      "src": "/assets/ww-others/programmable-fountains/jumping-jets-cross-river-mall-noida.jpg"
+    },
+    {
+      "title": "Jumping Jets Mall Noida",
+      "src": "/assets/ww-others/programmable-fountains/jumping-jets-mall-noida.jpg"
+    },
+    {
+      "title": "Jumping Jets ZECO Haryana",
+      "src": "/assets/ww-others/programmable-fountains/jumping-jets-zeco-haryana.jpg"
+    },
+    {
+      "title": "Orange county Indirapuram",
+      "src": "/assets/ww-others/programmable-fountains/orange-county-indirapuram.jpg"
+    },
+    {
+      "title": "Private Residence N Delhi",
+      "src": "/assets/ww-others/programmable-fountains/private-residence-n-delhi.jpg"
+    },
+    {
+      "title": "Private Residence N Delhi",
+      "src": "/assets/ww-others/programmable-fountains/private-residence-n-delhi-2.jpg"
+    },
+    {
+      "title": "Programmed Fountain",
+      "src": "/assets/ww-others/programmable-fountains/programmed-fountain.jpg"
+    },
+    {
+      "title": "Shantaram Talaov Mumbai",
+      "src": "/assets/ww-others/programmable-fountains/shantaram-talaov-mumbai.jpg"
+    },
+    {
+      "title": "Taj Vivanta Surajkund",
+      "src": "/assets/ww-others/programmable-fountains/taj-vivanta-surajkund.jpg"
+    },
+    {
+      "title": "Tata Steel Jamshedpur",
+      "src": "/assets/ww-others/programmable-fountains/tata-steel-jamshedpur.jpg"
+    },
+    {
+      "title": "Tata Steel Jamshedpur",
+      "src": "/assets/ww-others/programmable-fountains/tata-steel-jamshedpur-2.jpg"
+    },
+    {
+      "title": "Tata Steel Jamshedpur",
+      "src": "/assets/ww-others/programmable-fountains/tata-steel-jamshedpur-3.jpg"
+    },
+    {
+      "title": "Country Inn & Suites Ajmer",
+      "src": "/assets/ww-others/swimming-pools/country-inn-and-suites-ajmer.jpg"
+    },
+    {
+      "title": "IMG_0633",
+      "src": "/assets/ww-others/swimming-pools/private-pool-img-0633.jpg"
+    },
+    {
+      "title": "Intercontinental Goa",
+      "src": "/assets/ww-others/swimming-pools/intercontinental-goa.jpg"
+    },
+    {
+      "title": "JW MARRIOT MUMBAI",
+      "src": "/assets/ww-others/swimming-pools/jw-marriot-mumbai.jpg"
+    },
+    {
+      "title": "Lodha Bellezza Hyderabad",
+      "src": "/assets/ww-others/swimming-pools/lodha-bellezza-hyderabad.jpg"
+    },
+    {
+      "title": "M3M Golf Estate Gurgaon",
+      "src": "/assets/ww-others/swimming-pools/m3m-golf-estate-gurgaon.jpg"
+    },
+    {
+      "title": "Private Farm N Delhi",
+      "src": "/assets/ww-others/swimming-pools/private-farm-n-delhi.jpg"
+    },
+    {
+      "title": "Sapphire Heights Mumbai Swimming Pool and Kids Play Pool",
+      "src": "/assets/ww-others/swimming-pools/sapphire-heights-mumbai-swimming-pool-and-kids-play-pool.jpg"
+    },
+    {
+      "title": "Taj Vivanta Suraj Kund",
+      "src": "/assets/ww-others/swimming-pools/taj-vivanta-suraj-kund.jpg"
+    },
+    {
+      "title": "Taj Vivanta Surajkund",
+      "src": "/assets/ww-others/swimming-pools/taj-vivanta-surajkund.jpg"
+    },
+    {
+      "title": "Taj Vivanta Surajkund",
+      "src": "/assets/ww-others/swimming-pools/taj-vivanta-surajkund-2.jpg"
+    },
+    {
+      "title": "The Bay Club Mumbai",
+      "src": "/assets/ww-others/swimming-pools/the-bay-club-mumbai.jpg"
+    },
+    {
+      "title": "The Bay Club Mumbai",
+      "src": "/assets/ww-others/swimming-pools/the-bay-club-mumbai-2.jpg"
+    },
+    {
+      "title": "The Bay Club Mumbai",
+      "src": "/assets/ww-others/swimming-pools/the-bay-club-mumbai-3.jpg"
+    },
+    {
+      "title": "Al Ain Stadium UAE",
+      "src": "/assets/ww-others/kids-play/al-ain-stadium-uae.jpg"
+    },
+    {
+      "title": "Appu Ghar Gurgaon",
+      "src": "/assets/ww-others/kids-play/appu-ghar-gurgaon.jpg"
+    },
+    {
+      "title": "Appu Ghar Gurgaon",
+      "src": "/assets/ww-others/kids-play/appu-ghar-gurgaon-2.jpg"
+    },
+    {
+      "title": "Bay Club Mumbai",
+      "src": "/assets/ww-others/kids-play/bay-club-mumbai.jpg"
+    },
+    {
+      "title": "Bay Club Mumbai",
+      "src": "/assets/ww-others/kids-play/bay-club-mumbai-2.jpg"
+    },
+    {
+      "title": "Bay Club Mumbai",
+      "src": "/assets/ww-others/kids-play/bay-club-mumbai-3.jpg"
+    },
+    {
+      "title": "Bay Club Mumbai",
+      "src": "/assets/ww-others/kids-play/bay-club-mumbai-4.jpg"
+    },
+    {
+      "title": "Bay Club Mumbai",
+      "src": "/assets/ww-others/kids-play/bay-club-mumbai-5.jpg"
+    },
+    {
+      "title": "Bay Club Mumbai",
+      "src": "/assets/ww-others/kids-play/bay-club-mumbai-6.jpg"
+    },
+    {
+      "title": "Bay Club Mumbai",
+      "src": "/assets/ww-others/kids-play/bay-club-mumbai-7.jpg"
+    },
+    {
+      "title": "Bay Club Mumbai",
+      "src": "/assets/ww-others/kids-play/bay-club-mumbai-8.jpg"
+    },
+    {
+      "title": "M3M Golf Estate Gurgaon",
+      "src": "/assets/ww-others/kids-play/m3m-golf-estate-gurgaon.jpg"
+    },
+    {
+      "title": "Miraj Housing Mumbai",
+      "src": "/assets/ww-others/kids-play/miraj-housing-mumbai.jpg"
+    },
+    {
+      "title": "Suncity Panchkula",
+      "src": "/assets/ww-others/kids-play/suncity-panchkula.jpg"
+    },
+    {
+      "title": "Suncity Panchkula",
+      "src": "/assets/ww-others/kids-play/suncity-panchkula-2.jpg"
+    },
+    {
+      "title": "Suncity Panchkula",
+      "src": "/assets/ww-others/kids-play/suncity-panchkula-3.jpg"
+    }
+  ]
+}

@@ -119,4 +119,56 @@ export const CREATIONS = [
   },
 ]
 
-export const FEATURED_CREATIONS = CREATIONS.slice(0, 5)
+/** Homepage Selected Creations  real project photos from /assets/front-page. */
+export const FEATURED_CREATIONS = [
+  {
+    id: 'adnoc-abu-dhabi',
+    title: 'ADNOC Abu Dhabi',
+    location: 'Abu Dhabi, UAE',
+    year: '2018',
+    category: 'Architectural',
+    summary:
+      'A landmark campus fountain for ADNOC  choreographed jets and light composed for the desert skyline.',
+    image: '/assets/front-page/adnoc-abu-dhabi.jpg',
+  },
+  {
+    id: 'ibc-tech-park-bangalore',
+    title: 'IBC Tech Park',
+    location: 'Bangalore, India',
+    year: '2019',
+    category: 'Architectural',
+    summary:
+      'An arrival water feature for a tech campus  precise nozzle work that frames the plaza without overpowering it.',
+    image: '/assets/front-page/ibc-tech-park-bangalore.jpg',
+  },
+  {
+    id: 'dlf-golf-club-gurgaon',
+    title: 'DLF Golf Club',
+    location: 'Gurgaon, India',
+    year: '2017',
+    category: 'Architectural',
+    summary:
+      'A resort-scale fountain for the golf club landscape  elegant arcs tuned for evening light and open grounds.',
+    image: '/assets/front-page/dlf-golf-club-gurgaon.jpg',
+  },
+  {
+    id: 'aarohan-gurgaon',
+    title: 'Aarohan',
+    location: 'Gurgaon, India',
+    year: '2020',
+    category: 'Architectural',
+    summary:
+      'A residential water composition at Aarohan  calm basins and jets engineered for daily living, not spectacle alone.',
+    image: '/assets/front-page/aarohan-gurgaon.jpg',
+  },
+  {
+    id: 'divyashree-nsl-hyderabad',
+    title: 'Divyashree NSL Infratech',
+    location: 'Hyderabad, India',
+    year: '2016',
+    category: 'Architectural',
+    summary:
+      'A commercial campus fountain for Divyashree NSL  structured water geometry that marks the entry and holds the night.',
+    image: '/assets/front-page/divyashree-nsl-hyderabad.jpg',
+  },
+]

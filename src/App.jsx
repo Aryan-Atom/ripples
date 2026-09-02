@@ -57,13 +57,14 @@ export default function App() {
           <Route path="/practice" element={<Practice />} />
           <Route path="/worldwide" element={<Worldwide />} />
           <Route
-            path="/our-journey"
+            path="/case-study"
             element={
               <Suspense fallback={null}>
                 <OurJourney />
               </Suspense>
             }
           />
+          <Route path="/our-journey" element={<Navigate to="/case-study" replace />} />
           <Route path="/client-login" element={<ClientLogin />} />
           <Route path="/client-profile" element={<ClientProfile />} />
           <Route path="/contact" element={<Contact />} />

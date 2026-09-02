@@ -243,7 +243,7 @@ export default function ClientProfile() {
                   <Link to="/waterworks">WaterWorks</Link>
                 </li>
                 <li>
-                  <Link to="/our-journey">Our Journey</Link>
+                  <Link to="/case-study">Case Study</Link>
                 </li>
                 <li>
                   <Link to="/contact">Contact</Link>

@@ -11,7 +11,7 @@ import PhilosophySection from '../components/journey/PhilosophySection'
 import JourneyFooter from '../components/journey/JourneyFooter'
 
 /**
- * Our Journey  cinematic chapter scroll through 35 years of Ripples Engineering.
+ * Case Study  cinematic chapter scroll through 35 years of Ripples Engineering.
  * Full-bleed 50/50 splits match the documentary reference frames.
  */
 export default function OurJourney() {

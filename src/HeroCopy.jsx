@@ -28,8 +28,6 @@ const PHASES = [
 
 /** Crossfade within each phase's local scroll span. */
 const FADE_EDGE = 0.12
-/** Soft fade-in at the very start of the hero. */
-const INTRO_FADE = 0.04
 /** Fade copy out before the end Ripples logo fully lands. */
 const OUTRO_FADE = 0.08
 
@@ -58,10 +56,9 @@ export default function HeroCopy() {
     // Remap copy into the scroll before the end logo beat.
     const copyProgress = Math.min(1, Math.max(0, progress / logoStart))
 
+    // First line is fully visible on load; only fade out into the end logo.
     let gate = 1
-    if (progress < INTRO_FADE) {
-      gate = progress / INTRO_FADE
-    } else if (progress > logoStart - OUTRO_FADE) {
+    if (progress > logoStart - OUTRO_FADE) {
       gate = Math.max(0, (logoStart - progress) / OUTRO_FADE)
     }
 
@@ -99,7 +96,7 @@ export default function HeroCopy() {
   }, [updateSlides])
 
   return (
-    <div className="home-hero" ref={rootRef} style={{ opacity: 0 }}>
+    <div className="home-hero" ref={rootRef} style={{ opacity: 1 }}>
       <div className="home-hero__backdrop" ref={backdropRef} aria-hidden="true" />
       <div className="home-hero__stack">
         {PHASES.map((phase, index) => (
@@ -109,7 +106,12 @@ export default function HeroCopy() {
               slideRefs.current[index] = node
             }}
             className="home-hero__slide"
-            aria-hidden
+            style={
+              index === 0
+                ? { opacity: 1, visibility: 'visible' }
+                : { opacity: 0, visibility: 'hidden' }
+            }
+            aria-hidden={index !== 0}
           >
             <h1 className="home-hero__title">{phase.title}</h1>
             <p className="home-hero__description">{phase.description}</p>

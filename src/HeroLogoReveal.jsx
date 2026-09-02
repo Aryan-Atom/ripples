@@ -20,7 +20,7 @@ function easeOutCubic(t) {
 
 /**
  * End-of-hero wordmark: hidden while the video + copy play, then fades in
- * as a centered outlined “Ripples” (no plate / mask overlay).
+ * as a centered solid white “Ripples” wordmark (no plate / mask overlay).
  */
 export default function HeroLogoReveal() {
   const wrapRef = useRef(null)

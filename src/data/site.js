@@ -24,7 +24,7 @@ export const NAV_LINKS = [
   { label: 'WaterWorks', to: '/waterworks' },
   { label: 'Practice', to: '/practice' },
   { label: 'Worldwide', to: '/worldwide' },
-  { label: 'Our Journey', to: '/our-journey' },
+  { label: 'Case Study', to: '/case-study' },
   { label: 'Client Login', to: '/client-login' },
   { label: 'Contact', to: '/contact' },
 ]

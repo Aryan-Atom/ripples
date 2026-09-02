@@ -1,6 +1,6 @@
 /* Hero overlay  used only on the home page scroll animation */
 
-/* ── End-of-hero Ripples wordmark (outlined text, no plate) ── */
+/* ── End-of-hero Ripples wordmark (solid white, dominant) ── */
 
 .hero-logo-end {
   position: absolute;
@@ -17,50 +17,49 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.85rem, 2.4vw, 1.75rem);
-  max-width: min(92vw, 72rem);
+  gap: clamp(1rem, 3vw, 2.25rem);
+  max-width: min(96vw, 90rem);
 }
 
 .hero-logo-end__icon {
-  width: clamp(3.25rem, 11vw, 7rem);
-  height: clamp(3.25rem, 11vw, 7rem);
-  min-width: clamp(3.25rem, 11vw, 7rem);
+  width: clamp(4.5rem, 14vw, 10rem);
+  height: clamp(4.5rem, 14vw, 10rem);
+  min-width: clamp(4.5rem, 14vw, 10rem);
   object-fit: contain;
   display: block;
-  opacity: 0.96;
+  opacity: 1;
   flex-shrink: 0;
+  filter: brightness(0) invert(1);
 }
 
 .hero-logo-end__word {
   display: block;
   margin: 0;
   font-family: var(--font-brand), 'Montserrat', sans-serif;
-  font-size: clamp(4rem, 16vw, 10.5rem);
+  font-size: clamp(5.5rem, 20vw, 14rem);
   font-weight: 800;
   line-height: 0.9;
   letter-spacing: -0.04em;
-  color: transparent;
-  -webkit-text-stroke: clamp(1.5px, 0.18vw, 2.5px) rgba(255, 255, 255, 0.96);
-  paint-order: stroke fill;
-  text-shadow: 0 0 40px rgba(142, 184, 212, 0.18);
+  color: #ffffff;
+  -webkit-text-stroke: 0;
+  text-shadow: 0 0 48px rgba(255, 255, 255, 0.22);
   text-transform: none;
   user-select: none;
 }
 
 @media (max-width: 720px), (pointer: coarse) {
   .hero-logo-end__mark {
-    gap: 0.7rem;
+    gap: 0.85rem;
   }
 
   .hero-logo-end__icon {
-    width: clamp(2.4rem, 14vw, 3.75rem);
-    height: clamp(2.4rem, 14vw, 3.75rem);
-    min-width: clamp(2.4rem, 14vw, 3.75rem);
+    width: clamp(3.25rem, 16vw, 5rem);
+    height: clamp(3.25rem, 16vw, 5rem);
+    min-width: clamp(3.25rem, 16vw, 5rem);
   }
 
   .hero-logo-end__word {
-    font-size: clamp(2.85rem, 18vw, 5.75rem);
-    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.96);
+    font-size: clamp(3.75rem, 22vw, 7.5rem);
   }
 
   .home-hero__slide {

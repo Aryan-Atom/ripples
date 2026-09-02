@@ -87,7 +87,7 @@ const routes = [
   '/waterworks/architectural',
   '/waterworks/prefabs',
   '/waterworks/others',
-  '/our-journey',
+  '/case-study',
   '/practice',
   '/worldwide',
   '/contact',

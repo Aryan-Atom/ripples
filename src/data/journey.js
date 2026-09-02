@@ -6,7 +6,7 @@ export function journeyAsset(file) {
 }
 
 export const JOURNEY_HERO = {
-  label: 'Our Journey',
+  label: 'Case Study',
   titleLines: ['35 years of', 'engineering', 'excellence'],
   titleEm: 'excellence',
   lead: 'From the first line on paper to opening night  the evolution of Ripples Engineering, told as it was built.',

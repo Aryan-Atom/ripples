@@ -1166,10 +1166,6 @@
   color: var(--color-text);
 }
 
-.site-footer__col .r-brand {
-  color: var(--color-text);
-}
-
 .site-footer__col a[href^='mailto:'] {
   white-space: nowrap;
   overflow-wrap: normal;
@@ -1244,13 +1240,6 @@
   letter-spacing: 0.1em;
   color: var(--color-text-muted);
   box-shadow: inset 0 1px 0 var(--color-border);
-}
-
-.site-footer__bottom .r-brand {
-  display: inline-block;
-  padding: 0.08em 0 0.16em;
-  line-height: 1.2;
-  vertical-align: -0.06em;
 }
 
 .site-footer__tagline-line {

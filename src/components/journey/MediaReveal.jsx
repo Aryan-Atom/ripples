@@ -33,11 +33,15 @@ function SlideMedia({ slide, active }) {
   )
 }
 
-function MediaReveal() {
-  const data = JOURNEY_DESIGN
+function MediaReveal({ data = JOURNEY_DESIGN, labelsAside = false }) {
   const [index, setIndex] = useState(0)
   const layersRef = useRef([])
   const labelsRef = useRef(null)
+  const labels = data.labels ?? []
+
+  useEffect(() => {
+    setIndex(0)
+  }, [data])
 
   useEffect(() => {
     if (prefersReducedMotion()) return undefined
@@ -45,7 +49,7 @@ function MediaReveal() {
     layers.forEach((layer, i) => {
       gsap.set(layer, { autoAlpha: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 0.985 })
     })
-  }, [])
+  }, [data])
 
   useEffect(() => {
     const layers = layersRef.current.filter(Boolean)
@@ -79,13 +83,14 @@ function MediaReveal() {
   }, [data.slides.length])
 
   useLayoutEffect(() => {
+    if (labelsAside) return undefined
     const root = labelsRef.current
     if (!root || prefersReducedMotion()) return undefined
 
-    const labels = root.querySelectorAll('.eng-label')
-    gsap.set(labels, { autoAlpha: 0, y: 10 })
+    const nodes = root.querySelectorAll('.eng-label')
+    gsap.set(nodes, { autoAlpha: 0, y: 10 })
     const tl = gsap.timeline({ paused: true })
-    tl.to(labels, {
+    tl.to(nodes, {
       autoAlpha: 1,
       y: 0,
       duration: 0.7,
@@ -97,12 +102,12 @@ function MediaReveal() {
       reveal?.kill()
       tl.kill()
     }
-  }, [])
+  }, [labelsAside, data])
 
   return (
     <SplitPanel
       id={data.act.id}
-      className="media-reveal"
+      className={`media-reveal${labelsAside ? ' media-reveal--labels-aside' : ''}`}
       mediaSide="right"
       ariaLabelledby="design-act-title"
       media={
@@ -120,11 +125,13 @@ function MediaReveal() {
                 <SlideMedia slide={slide} active={i === index} />
               </div>
             ))}
-            <div ref={labelsRef} className="media-reveal__labels" aria-hidden="true">
-              {data.labels.map((label) => (
-                <EngineeringLabel key={label.text} {...label} />
-              ))}
-            </div>
+            {!labelsAside && labels.length > 0 ? (
+              <div ref={labelsRef} className="media-reveal__labels" aria-hidden="true">
+                {labels.map((label) => (
+                  <EngineeringLabel key={label.text} {...label} />
+                ))}
+              </div>
+            ) : null}
           </div>
           <div className="media-reveal__dots" role="tablist" aria-label="Design media">
             {data.slides.map((slide, i) => (
@@ -151,6 +158,16 @@ function MediaReveal() {
         body={data.body}
         ruled
       />
+      {labelsAside && labels.length > 0 ? (
+        <ul className="media-reveal__aside-labels" aria-label="Engineering focus">
+          {labels.map((label) => (
+            <li key={label.text} className="media-reveal__aside-label">
+              <span className="media-reveal__aside-dot" aria-hidden="true" />
+              <span className="media-reveal__aside-text">{label.text}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </SplitPanel>
   )
 }

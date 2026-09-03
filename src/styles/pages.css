@@ -990,6 +990,14 @@
   color: var(--color-accent);
 }
 
+.contact-details__gif {
+  width: 100%;
+  max-width: 18rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  margin-bottom: 0.25rem;
+}
+
 /* Worldwide  regions */
 
 .worldwide-regions {

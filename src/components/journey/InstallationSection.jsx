@@ -28,8 +28,7 @@ function pauseVideo(video) {
  * 2) Scroll scrubs Precision → Alignment → Execution
  * 3) Sequence completes → pin releases → next section
  */
-export default function InstallationSection() {
-  const data = JOURNEY_INSTALLATION
+export default function InstallationSection({ data = JOURNEY_INSTALLATION }) {
   const sectionRef = useRef(null)
   const stageRef = useRef(null)
   const mediaRef = useRef(null)
@@ -62,8 +61,14 @@ export default function InstallationSection() {
         start: 'top top',
         end: '+=280%',
         pin: stage,
+        pinSpacing: true,
         scrub: 0.55,
         anticipatePin: 1,
+        onRefresh: (self) => {
+          if (self.pin && self.pin.parentElement) {
+            self.pin.parentElement.style.zIndex = '1';
+          }
+        },
         invalidateOnRefresh: true,
         fastScrollEnd: true,
         onEnter: () => playVideo(videoRef.current),

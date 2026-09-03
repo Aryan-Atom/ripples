@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { SITE } from '../data/site'
 import PageHero from '../components/PageHero.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
@@ -108,6 +109,19 @@ export default function Contact() {
                   ))}
                 </div>
               ))}
+              <div className="contact-details__block">
+                <h4>Journey</h4>
+                <img
+                  src="/assets/bes.gif"
+                  alt="Ripples fountain showcase"
+                  className="contact-details__gif"
+                  loading="lazy"
+                />
+                <span>35 years of Ripples Engineering, told as it was built.</span>
+                <Link to="/journey">
+                  Full company journey <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
             </FadeUp>
           </div>
         </section>

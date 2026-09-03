@@ -10,7 +10,8 @@ import Worldwide from './pages/Worldwide.jsx'
 import Contact from './pages/Contact.jsx'
 import CapabilityPage from './pages/CapabilityPage.jsx'
 
-const OurJourney = lazy(() => import('./pages/OurJourney.jsx'))
+const CaseStudy = lazy(() => import('./pages/CaseStudy.jsx'))
+const Journey = lazy(() => import('./pages/Journey.jsx'))
 
 /** Legacy capability URLs that still have working page data. */
 const LEGACY_CAPABILITY_PAGES = [
@@ -18,7 +19,7 @@ const LEGACY_CAPABILITY_PAGES = [
   { path: '/architectural-fountains', slug: 'architectural-fountains' },
 ]
 
-/** Old archive routes whose /capabilities/ media is gone — send users to WaterWorks. */
+/** Old archive routes whose /capabilities/ media is gone  send users to WaterWorks. */
 const LEGACY_CAPABILITY_REDIRECTS = [
   { from: '/water-features', to: '/waterworks' },
   { from: '/floating-fountains', to: '/waterworks/others#floating-fountains' },
@@ -60,7 +61,15 @@ export default function App() {
             path="/case-study"
             element={
               <Suspense fallback={null}>
-                <OurJourney />
+                <CaseStudy />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/journey"
+            element={
+              <Suspense fallback={null}>
+                <Journey />
               </Suspense>
             }
           />

@@ -5,13 +5,11 @@ import {
   CaseStudyDesign,
   CaseStudyDrawing,
   CaseStudyFabrication,
-  CaseStudyVisualization,
-  CaseStudyResult,
   CaseStudyFooterCta,
 } from '../components/caseStudy/CaseStudySections'
+import CaseStudyFinale from '../components/caseStudy/CaseStudyFinale'
 import MediaReveal from '../components/journey/MediaReveal'
 import ConstructionGallery from '../components/journey/ConstructionGallery'
-import InstallationSection from '../components/journey/InstallationSection'
 import JourneyFooter from '../components/journey/JourneyFooter'
 import { CASE_STUDY } from '../data/caseStudy'
 
@@ -33,9 +31,7 @@ export default function CaseStudy() {
         <MediaReveal data={CASE_STUDY.engineering} labelsAside />
         <CaseStudyFabrication />
         <ConstructionGallery data={CASE_STUDY.construction} />
-        <CaseStudyVisualization />
-        <InstallationSection data={CASE_STUDY.installation} />
-        <CaseStudyResult />
+        <CaseStudyFinale />
         <CaseStudyFooterCta />
       </main>
 

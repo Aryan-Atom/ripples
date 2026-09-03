@@ -260,7 +260,7 @@ export function CaseStudyVisualization() {
   )
 }
 
-/** Full-bleed installation video — no GSAP pin, so it never overlaps Visualization. */
+/** Full-bleed installation video  no GSAP pin, so it never overlaps Visualization. */
 export function CaseStudyInstallation() {
   const { installation } = CASE_STUDY
   const mediaRef = useRef(null)

@@ -260,6 +260,94 @@ export function CaseStudyVisualization() {
   )
 }
 
+/** Full-bleed installation video — no GSAP pin, so it never overlaps Visualization. */
+export function CaseStudyInstallation() {
+  const { installation } = CASE_STUDY
+  const mediaRef = useRef(null)
+  const videoRef = useRef(null)
+  const [ready, setReady] = useState(false)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
+  useEffect(() => {
+    const root = mediaRef.current
+    if (!root) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true)
+          const video = videoRef.current
+          if (video) {
+            video.muted = true
+            video.playsInline = true
+            video.play().catch(() => {})
+          }
+        } else {
+          videoRef.current?.pause()
+        }
+      },
+      { rootMargin: '30% 0px', threshold: 0.12 },
+    )
+    observer.observe(root)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !shouldLoad) return undefined
+
+    const onReady = () => {
+      setReady(true)
+      if (!video.paused) return
+      video.play().catch(() => {})
+    }
+
+    video.addEventListener('loadeddata', onReady)
+    video.addEventListener('canplay', onReady)
+    if (video.readyState >= 2) onReady()
+
+    return () => {
+      video.removeEventListener('loadeddata', onReady)
+      video.removeEventListener('canplay', onReady)
+    }
+  }, [shouldLoad])
+
+  return (
+    <JourneyChapter
+      id="installation"
+      className="cs-installation"
+      aria-labelledby="cs-install-title"
+    >
+      <div ref={mediaRef} className="cs-installation__media" aria-hidden="true">
+        <img
+          className={`cs-installation__poster${ready ? ' is-faded' : ''}`}
+          src={installation.poster}
+          alt=""
+          decoding="async"
+        />
+        <video
+          ref={videoRef}
+          className={`cs-installation__video${ready ? ' is-ready' : ''}`}
+          src={shouldLoad ? installation.video : undefined}
+          poster={installation.poster}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+        <div className="cs-installation__veil" />
+      </div>
+      <div className="cs-installation__inner r-container">
+        <p className="r-label cs-installation__eyebrow">{installation.act.label}</p>
+        <h2 id="cs-install-title" className="cs-installation__title">
+          {installation.title}
+        </h2>
+        <p className="cs-installation__body">{installation.body}</p>
+      </div>
+    </JourneyChapter>
+  )
+}
+
 export function CaseStudyResult() {
   const { result } = CASE_STUDY
   const mediaRef = useRef(null)

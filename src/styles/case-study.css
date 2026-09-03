@@ -331,15 +331,9 @@
 
 .case-study-page .cs-visualization {
   position: relative;
-  z-index: 10;
-}
-
-/* Keep the GSAP pin-spacer for installation below the visualization */
-.case-study-page .installation-act,
-.case-study-page .installation-act + .pin-spacer,
-.case-study-page div[class*="pin-spacer"] + .installation-act {
-  position: relative;
   z-index: 1;
+  isolation: isolate;
+  background: var(--color-bg, #060c16);
 }
 
 .cs-visualization__stage {
@@ -354,6 +348,98 @@
 /* Make sure the split-panel media holds its height for the absolute videos */
 .cs-visualization .split-panel__media {
   min-height: clamp(22rem, 55vh, 36rem);
+}
+
+/* ── Installation (non-pinned full-bleed) ── */
+
+.cs-installation,
+.journey-chapter.cs-installation:not(.split-panel) {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--color-bg, #060c16);
+  padding-block: 0;
+  margin: 0;
+}
+
+.cs-installation__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cs-installation__poster,
+.cs-installation__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cs-installation__poster {
+  z-index: 1;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cs-installation__poster.is-faded {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cs-installation__video {
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cs-installation__video.is-ready {
+  opacity: 1;
+}
+
+.cs-installation__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.22) 45%, rgba(0, 0, 0, 0.58) 100%),
+    radial-gradient(ellipse 70% 50% at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+.cs-installation__inner {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 40rem;
+  padding-block: clamp(3rem, 8vh, 5rem);
+}
+
+.cs-installation__eyebrow {
+  margin-bottom: 1.25rem;
+}
+
+.cs-installation__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: #fff;
+}
+
+.cs-installation__body {
+  margin: 1.5rem auto 0;
+  max-width: 28rem;
+  font-size: var(--text-base);
+  line-height: 1.75;
+  color: rgba(214, 230, 238, 0.88);
 }
 
 .cs-visualization__video {
@@ -411,11 +497,6 @@
 .cs-visualization__mode.is-active {
   background: rgba(169, 211, 216, 0.22);
   color: #fff;
-}
-
-/* Isolate installation section below visualization so pinned stage doesn't overlap */
-.case-study-page .installation-act {
-  isolation: isolate;
 }
 
 /* ── Result ── */

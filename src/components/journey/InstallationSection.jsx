@@ -61,14 +61,8 @@ export default function InstallationSection({ data = JOURNEY_INSTALLATION }) {
         start: 'top top',
         end: '+=280%',
         pin: stage,
-        pinSpacing: true,
         scrub: 0.55,
         anticipatePin: 1,
-        onRefresh: (self) => {
-          if (self.pin && self.pin.parentElement) {
-            self.pin.parentElement.style.zIndex = '1';
-          }
-        },
         invalidateOnRefresh: true,
         fastScrollEnd: true,
         onEnter: () => playVideo(videoRef.current),

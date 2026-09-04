@@ -6,7 +6,6 @@ import { attachScrollReveal, whenFontsReady } from '../motion/scrollReveal'
 import { SITE } from '../data/site'
 import { FOOTER_EXPLORE_LINKS } from '../data/capabilities'
 import FadeUp from '../motion/FadeUp'
-import { Brand, withBrand } from './Brand.jsx'
 
 export default function SiteFooter() {
   const markRef = useRef(null)
@@ -94,7 +93,7 @@ export default function SiteFooter() {
           <div className="site-footer__col">
             <h4>Brand</h4>
             <nav aria-label="Brand">
-              <Brand>{SITE.name}</Brand>
+              <span>{SITE.name}</span>
               <span>{SITE.tagline}</span>
               <a href={`mailto:${SITE.email.info}`}>{SITE.email.info}</a>
               <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>
@@ -139,7 +138,7 @@ export default function SiteFooter() {
 
       <div className="site-footer__bottom r-container">
         <span>
-          &copy; {new Date().getFullYear()} {withBrand(SITE.legalName)}
+          &copy; {new Date().getFullYear()} {SITE.legalName}
         </span>
         <span className="site-footer__tagline-line">{SITE.tagline}</span>
         <button type="button" className="site-footer__top" onClick={scrollTop}>

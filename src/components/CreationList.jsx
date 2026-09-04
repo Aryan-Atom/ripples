@@ -8,7 +8,7 @@ const MOBILE_LAYOUT_QUERY = '(max-width: 900px)'
 /**
  * Editorial numbered project list.
  * Desktop: cursor-following image preview on hover.
- * Mobile (≤900px): text left, thumbnail right — always visible.
+ * Mobile (≤900px): text left, thumbnail right  always visible.
  * Touch tablet: tap a row to reveal its image with motion.
  */
 export default function CreationList({ items }) {

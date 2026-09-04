@@ -5,8 +5,7 @@ import SectionHeading from './SectionHeading'
 import SplitPanel from './SplitPanel'
 import { JOURNEY_CONSTRUCTION } from '../../data/journey'
 
-export default function ConstructionGallery() {
-  const data = JOURNEY_CONSTRUCTION
+export default function ConstructionGallery({ data = JOURNEY_CONSTRUCTION }) {
   const collageRef = useRef(null)
 
   useLayoutEffect(() => {
@@ -29,7 +28,7 @@ export default function ConstructionGallery() {
       reveal?.kill()
       tl.kill()
     }
-  }, [])
+  }, [data.images])
 
   return (
     <SplitPanel

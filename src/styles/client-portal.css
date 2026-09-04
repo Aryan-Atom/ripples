@@ -1,6 +1,6 @@
-﻿/* Client portal — auth + dashboard */
+﻿/* Client portal  auth + dashboard */
 
-/* ── Auth (login / signup) — cardless, matches contact form ─────── */
+/* ── Auth (login / signup)  cardless, matches contact form ─────── */
 
 .client-access {
   padding-bottom: var(--space-section-y);
@@ -76,7 +76,7 @@
   color: var(--color-text);
 }
 
-/* Forms — same language as Contact */
+/* Forms  same language as Contact */
 
 .onboard-form {
   display: flex;
@@ -173,7 +173,7 @@
   cursor: wait;
 }
 
-/* Filled pill primary — client access + dashboard only */
+/* Filled pill primary  client access + dashboard only */
 .client-access .cta-card__btn,
 .portal-dash .cta-card__btn {
   margin-top: 0;

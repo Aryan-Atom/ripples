@@ -1,6 +1,6 @@
 import { useCallback, useLayoutEffect, useRef } from 'react'
 import { useHeroScrollSubscribe } from 'hero-video-anim'
-import { getLogoRevealEnd } from './HeroLogoReveal.jsx'
+import { getLogoEndStart } from './HeroLogoReveal.jsx'
 
 const PHASES = [
   {
@@ -15,7 +15,7 @@ const PHASES = [
     end: 0.67,
     title: "When water becomes a performance  who's behind the stage?",
     description:
-      'Laser, music, and water sync into one immersive show  every effect calibrated to build drama.',
+      'Light, music, and water sync into one immersive show  every effect calibrated to build drama.',
   },
   {
     start: 0.67,
@@ -26,8 +26,10 @@ const PHASES = [
   },
 ]
 
-/** Crossfade within each phase's local scroll span (original hero copy behavior). */
+/** Crossfade within each phase's local scroll span. */
 const FADE_EDGE = 0.12
+/** Fade copy out before the end Ripples logo fully lands. */
+const OUTRO_FADE = 0.08
 
 function phaseOpacity(progress, phase, index, total) {
   const span = phase.end - phase.start
@@ -50,26 +52,30 @@ export default function HeroCopy() {
   const backdropRef = useRef(null)
 
   const updateSlides = useCallback((progress) => {
-    const logoEnd = getLogoRevealEnd()
-    const inLogo = progress < logoEnd
-    const copyProgress = inLogo ? 0 : (progress - logoEnd) / (1 - logoEnd)
+    const logoStart = getLogoEndStart()
+    // Remap copy into the scroll before the end logo beat.
+    const copyProgress = Math.min(1, Math.max(0, progress / logoStart))
 
-    const copyGate = inLogo
-      ? Math.max(0, (progress - logoEnd * 0.88) / (logoEnd * 0.12))
-      : 1
+    // First line is fully visible on load; only fade out into the end logo.
+    let gate = 1
+    if (progress > logoStart - OUTRO_FADE) {
+      gate = Math.max(0, (logoStart - progress) / OUTRO_FADE)
+    }
 
     if (rootRef.current) {
-      rootRef.current.style.opacity = String(copyGate)
+      rootRef.current.style.opacity = String(gate)
     }
     if (backdropRef.current) {
-      backdropRef.current.style.opacity = String(copyGate)
+      backdropRef.current.style.opacity = String(gate)
     }
+
+    const hideAll = gate <= 0.001
 
     PHASES.forEach((phase, index) => {
       const slide = slideRefs.current[index]
       if (!slide) return
 
-      if (inLogo) {
+      if (hideAll) {
         slide.style.opacity = '0'
         slide.style.visibility = 'hidden'
         slide.setAttribute('aria-hidden', 'true')
@@ -90,7 +96,7 @@ export default function HeroCopy() {
   }, [updateSlides])
 
   return (
-    <div className="home-hero" ref={rootRef} style={{ opacity: 0 }}>
+    <div className="home-hero" ref={rootRef} style={{ opacity: 1 }}>
       <div className="home-hero__backdrop" ref={backdropRef} aria-hidden="true" />
       <div className="home-hero__stack">
         {PHASES.map((phase, index) => (
@@ -100,7 +106,12 @@ export default function HeroCopy() {
               slideRefs.current[index] = node
             }}
             className="home-hero__slide"
-            aria-hidden
+            style={
+              index === 0
+                ? { opacity: 1, visibility: 'visible' }
+                : { opacity: 0, visibility: 'hidden' }
+            }
+            aria-hidden={index !== 0}
           >
             <h1 className="home-hero__title">{phase.title}</h1>
             <p className="home-hero__description">{phase.description}</p>

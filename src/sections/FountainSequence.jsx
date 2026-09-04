@@ -261,12 +261,6 @@ function beatIndex(progress) {
 function ReducedFallback() {
   return (
     <section className="bg-[#080A0C] px-[clamp(1.25rem,4vw,3rem)] py-24">
-      <img
-        src="/images/journey2.jpg"
-        alt="Fountain show"
-        className="w-full object-cover opacity-75"
-        loading="lazy"
-      />
       <div className="mt-10 grid gap-8 md:grid-cols-2">
         {BEATS.map((b) => (
           <div key={b.id}>
@@ -382,11 +376,7 @@ export default function FountainSequence() {
               far: 120,
             }}
             fallback={
-              <img
-                src="/images/journey2.jpg"
-                alt=""
-                className="h-full w-full object-cover opacity-55"
-              />
+              <div className="h-full w-full bg-[#080A0C]" />
             }
           >
             <Suspense fallback={null}>
@@ -394,10 +384,9 @@ export default function FountainSequence() {
             </Suspense>
           </LazyCanvas>
         ) : (
-          <img
-            src="/images/journey2.jpg"
-            alt="Multimedia fountain show"
-            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          <div
+            className="absolute inset-0 h-full w-full bg-[#080A0C]"
+            aria-hidden="true"
           />
         )}
 

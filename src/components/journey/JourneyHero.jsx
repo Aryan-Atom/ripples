@@ -5,7 +5,6 @@ import { whenFontsReady } from '../../motion/scrollReveal'
 import FadeUp from '../../motion/FadeUp'
 import BlueprintGrid from './BlueprintGrid'
 import { JOURNEY_HERO } from '../../data/journey'
-import { withBrand } from '../Brand.jsx'
 
 export default function JourneyHero() {
   const titleRef = useRef(null)
@@ -81,7 +80,7 @@ export default function JourneyHero() {
         </h1>
 
         <FadeUp as="p" className="journey-hero__lead" delay={0.55} y={24}>
-          {withBrand(JOURNEY_HERO.lead)}
+          {JOURNEY_HERO.lead}
         </FadeUp>
       </div>
     </header>

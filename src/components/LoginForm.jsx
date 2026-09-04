@@ -32,7 +32,7 @@ export default function LoginForm({ onFound }) {
 
       const profile = data.profile || {
         name: form.contact_email.split('@')[0],
-        company: '—',
+        company: '',
         contactEmail: form.contact_email.trim().toLowerCase(),
         accountTier: 'standard',
       }
@@ -43,7 +43,7 @@ export default function LoginForm({ onFound }) {
     } catch (err) {
       const message =
         err?.name === 'TimeoutError' || err?.name === 'AbortError'
-          ? 'Request timed out — the API may be waking up. Try again in a moment.'
+          ? 'Request timed out  the API may be waking up. Try again in a moment.'
           : err.message || 'Login failed'
       setError(message)
     } finally {

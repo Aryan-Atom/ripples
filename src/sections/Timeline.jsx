@@ -77,7 +77,7 @@ export default function Timeline() {
   return (
     <section ref={pinRef} className="relative min-h-screen bg-void px-[clamp(1.25rem,4vw,3rem)] py-24">
       <div className="mx-auto max-w-4xl">
-        <RuleTitle>Our Journey</RuleTitle>
+        <RuleTitle>Case Study</RuleTitle>
         <div className="relative mt-16">
           <div
             ref={spineRef}

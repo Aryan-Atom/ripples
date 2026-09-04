@@ -3,7 +3,8 @@ import { gsap, ScrollTrigger, prefersReducedMotion } from '../../motion/gsap'
 import FadeUp from '../../motion/FadeUp'
 import BlueprintGrid from './BlueprintGrid'
 import SplitPanel from './SplitPanel'
-import { JOURNEY_TIMELINE, JOURNEY_TIMELINE_MEDIA } from '../../data/journey'
+import { JOURNEY_TIMELINE } from '../../data/journey'
+import { asset } from '../../data/assets.js'
 import { withBrand } from '../Brand.jsx'
 
 export default function JourneyTimeline() {
@@ -61,8 +62,8 @@ export default function JourneyTimeline() {
             <div className="journey-timeline__blueprint-wrap">
               <img
                 className="timeline-blueprint"
-                src={JOURNEY_TIMELINE_MEDIA.blueprint}
-                alt={JOURNEY_TIMELINE_MEDIA.alt}
+                src={asset('bes.gif')}
+                alt="Ripples fountain showcase"
                 loading="lazy"
                 decoding="async"
               />

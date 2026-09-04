@@ -12,7 +12,7 @@ Update this file before inventing new tokens or section patterns.
 |---|---|
 | `/` homepage | Primary canvas + hero sequence |
 | `/our-journey` | Chapter documentary page (same tokens / gradient) |
-| Shared nav routes | Multimedia, Practice, Worldwide, Press, Contact, etc. |
+| Shared nav routes | WaterWorks, Practice, Worldwide, Contact, etc. |
 | Continuous page atmosphere | No section borders / flat alternating bands |
 
 **Homepage stack (top → bottom):**

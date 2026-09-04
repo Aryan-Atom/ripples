@@ -21,11 +21,10 @@ export const SITE = {
 }
 
 export const NAV_LINKS = [
-  { label: 'Multimedia', to: '/multimedia' },
+  { label: 'WaterWorks', to: '/waterworks' },
   { label: 'Practice', to: '/practice' },
   { label: 'Worldwide', to: '/worldwide' },
-  { label: 'Our Journey', to: '/our-journey' },
-  { label: 'Press', to: '/press' },
+  { label: 'Case Study', to: '/case-study' },
   { label: 'Client Login', to: '/client-login' },
   { label: 'Contact', to: '/contact' },
 ]

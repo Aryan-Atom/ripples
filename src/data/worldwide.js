@@ -1,4 +1,6 @@
 /** Regions where Ripples has delivered fountain experiences. */
+import { withRemoteAssets } from './assets.js'
+
 export const WORLDWIDE_PRESENCE = [
   { lat: 52.52, lng: 13.405, label: 'Europe' },
   { lat: 25.2048, lng: 55.2708, label: 'Middle East' },
@@ -36,7 +38,7 @@ export function getWorldCountriesCache() {
   return worldCountriesCache
 }
 
-/** Regional footprint — shown below the globe hero. */
+/** Regional footprint  shown below the globe hero. */
 export const WORLDWIDE_REGIONS = [
   {
     index: '01',
@@ -75,14 +77,14 @@ export const WORLDWIDE_REGIONS = [
   },
 ]
 
-/** Scroll-driven event showcase  videos live in /public/assets/web-videos. */
-export const WORLDWIDE_EVENTS = [
+/** Scroll-driven event showcase  videos resolved through the asset manifest. */
+export const WORLDWIDE_EVENTS = withRemoteAssets([
   {
     index: '01',
     title: 'Dubai Fountain District',
     description:
       'A landmark lake show engineered for desert heat  programmable arcs, chromatic lighting, and synchronized music across one of the Gulf\u2019s most visible waterfront destinations.',
-    video: '/assets/web-videos/video%201.mp4',
+    video: '/assets/web-videos/video 1.mp4',
     align: 'right',
   },
   {
@@ -90,7 +92,7 @@ export const WORLDWIDE_EVENTS = [
     title: 'Guangzhou Civic Plaza',
     description:
       'An interactive water matrix for a growing Chinese metropolis  precision nozzles, dynamic patterns, and a basin designed for year-round public spectacle.',
-    video: '/assets/web-videos/video%202.mp4',
+    video: '/assets/web-videos/video 2.mp4',
     align: 'left',
   },
   {
@@ -98,10 +100,10 @@ export const WORLDWIDE_EVENTS = [
     title: 'IAAPA Expo Showcase',
     description:
       'Live demonstration at the global attractions industry stage  Ripples engineering on display, from programmable choreography to field-ready control systems.',
-    video: '/assets/web-videos/video%203.mp4',
+    video: '/assets/web-videos/video 3.mp4',
     align: 'right',
   },
-]
+])
 
 export const WORLDWIDE_CITIES = [
   'New Delhi',

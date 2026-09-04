@@ -396,6 +396,19 @@
   color: var(--color-accent);
 }
 
+@media (max-width: 900px) {
+  .home-video__caption {
+    top: clamp(0.85rem, 3.5vw, 1.5rem);
+    right: var(--space-page-x);
+    max-width: calc(100% - (var(--space-page-x) * 2));
+  }
+
+  .home-video__caption-line {
+    font-size: clamp(1.15rem, 4.6vw, 1.65rem);
+    line-height: 1.18;
+  }
+}
+
 /* Home  worldwide teaser */
 
 .home-worldwide__head .r-display {

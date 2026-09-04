@@ -1,5 +1,6 @@
 import { useCallback, useLayoutEffect, useRef } from 'react'
 import { useHeroScrollSubscribe } from 'hero-video-anim'
+import { asset } from './data/assets.js'
 
 /** Global hero progress where the end “Ripples” wordmark begins to appear. */
 export const LOGO_END_START = 0.86
@@ -51,7 +52,7 @@ export default function HeroLogoReveal() {
   return (
     <div ref={wrapRef} className="hero-logo-end" aria-hidden="true" style={{ opacity: 0 }}>
       <div className="hero-logo-end__mark">
-        <img src="/assets/logo.png" alt="" className="hero-logo-end__icon" />
+        <img src={asset('logo.webp')} alt="" className="hero-logo-end__icon" />
         <span className="hero-logo-end__word">Ripples</span>
       </div>
     </div>

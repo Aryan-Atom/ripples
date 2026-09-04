@@ -3,9 +3,9 @@ import fs from 'fs'
 const payload = JSON.parse(fs.readFileSync('scripts/_prefab-gallery.json', 'utf8'))
 
 const previews = [
-  '/assets/prefab/prefab-swimming-pool-w-goa.jpg',
-  '/assets/prefab/custom-geyser-jet-fountain-dmrc-hq-n-delhi.jpg',
-  '/assets/prefab/mckinsey-gurgaon.jpg',
+  '/assets/prefab/prefab-swimming-pool-w-goa.webp',
+  '/assets/prefab/custom-geyser-jet-fountain-dmrc-hq-n-delhi.webp',
+  '/assets/prefab/mckinsey-gurgaon.webp',
 ]
 const cover = previews[0]
 

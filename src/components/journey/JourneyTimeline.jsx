@@ -4,6 +4,7 @@ import FadeUp from '../../motion/FadeUp'
 import BlueprintGrid from './BlueprintGrid'
 import SplitPanel from './SplitPanel'
 import { JOURNEY_TIMELINE } from '../../data/journey'
+import { asset } from '../../data/assets.js'
 import { withBrand } from '../Brand.jsx'
 
 export default function JourneyTimeline() {
@@ -61,7 +62,7 @@ export default function JourneyTimeline() {
             <div className="journey-timeline__blueprint-wrap">
               <img
                 className="timeline-blueprint"
-                src="/assets/bes.gif"
+                src={asset('bes.gif')}
                 alt="Ripples fountain showcase"
                 loading="lazy"
                 decoding="async"

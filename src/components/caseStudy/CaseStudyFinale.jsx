@@ -24,9 +24,8 @@ function pauseVideo(video) {
 }
 
 /**
- * Case Study only. No GSAP pin — a tall section + sticky stage.
- * Precision → Alignment → Execution scrubs while the stage stays in its box,
- * so it cannot overlap Day/Night above or the final video below.
+ * Case Study only. No GSAP pin  a short sticky scroller (one extra viewport).
+ * Precision → Alignment → Execution, then the final video follows on a normal scroll.
  */
 function CaseStudyPinnedInstall() {
   const { installation } = CASE_STUDY
@@ -73,28 +72,28 @@ function CaseStudyPinnedInstall() {
       },
     })
 
-    tl.to(media, { scale: 1, duration: 0.28, ease: 'none' }, 0)
-    tl.to(copy, { autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.22)
+    tl.to(media, { scale: 1, duration: 0.2, ease: 'none' }, 0)
+    tl.to(copy, { autoAlpha: 1, duration: 0.08, ease: 'none' }, 0.16)
 
-    const textStart = 0.32
-    const step = 0.22
+    const textStart = 0.24
+    const step = 0.26
     lines.forEach((line, i) => {
       const at = textStart + i * step
       tl.to(
         line,
-        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.1, ease: 'none' },
+        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.08, ease: 'none' },
         at,
       )
       if (i < lines.length - 1) {
         tl.to(
           line,
-          { autoAlpha: 0, y: -20, filter: 'blur(3px)', duration: 0.08, ease: 'none' },
+          { autoAlpha: 0, y: -20, filter: 'blur(3px)', duration: 0.07, ease: 'none' },
           at + 0.14,
         )
       }
     })
 
-    tl.to({}, { duration: 0.22 }, textStart + (lines.length - 1) * step + 0.12)
+    tl.to({}, { duration: 0.06 }, textStart + (lines.length - 1) * step + 0.1)
 
     const approach = ScrollTrigger.create({
       trigger: section,

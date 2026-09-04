@@ -1,4 +1,6 @@
 /** Regions where Ripples has delivered fountain experiences. */
+import { withRemoteAssets } from './assets.js'
+
 export const WORLDWIDE_PRESENCE = [
   { lat: 52.52, lng: 13.405, label: 'Europe' },
   { lat: 25.2048, lng: 55.2708, label: 'Middle East' },
@@ -75,8 +77,8 @@ export const WORLDWIDE_REGIONS = [
   },
 ]
 
-/** Scroll-driven event showcase  videos live in /public/assets/web-videos. */
-export const WORLDWIDE_EVENTS = [
+/** Scroll-driven event showcase  videos resolved through the asset manifest. */
+export const WORLDWIDE_EVENTS = withRemoteAssets([
   {
     index: '01',
     title: 'Dubai Fountain District',
@@ -101,7 +103,7 @@ export const WORLDWIDE_EVENTS = [
     video: '/assets/web-videos/video 3.mp4',
     align: 'right',
   },
-]
+])
 
 export const WORLDWIDE_CITIES = [
   'New Delhi',

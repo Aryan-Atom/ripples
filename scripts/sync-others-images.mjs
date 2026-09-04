@@ -108,9 +108,9 @@ for (const section of SECTION_MAP) {
 }
 
 const preferredPreviews = [
-  '/assets/ww-others/floating-fountains/creek-fountain-sharjah.jpg',
-  '/assets/ww-others/programmable-fountains/jumping-jets-mall-noida.jpg',
-  '/assets/ww-others/swimming-pools/intercontinental-goa.jpg',
+  '/assets/ww-others/floating-fountains/creek-fountain-sharjah.webp',
+  '/assets/ww-others/programmable-fountains/jumping-jets-mall-noida.webp',
+  '/assets/ww-others/swimming-pools/intercontinental-goa.webp',
 ]
 
 const existing = new Set(allImages.map((g) => g.src))

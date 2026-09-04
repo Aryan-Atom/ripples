@@ -5,6 +5,7 @@ import JourneyChapter from '../journey/JourneyChapter'
 import SectionHeading from '../journey/SectionHeading'
 import SplitPanel from '../journey/SplitPanel'
 import { CASE_STUDY } from '../../data/caseStudy'
+import CaseStudyHeavyVideo from './CaseStudyHeavyVideo'
 
 export function CaseStudyBrief() {
   const { brief } = CASE_STUDY
@@ -350,76 +351,18 @@ export function CaseStudyInstallation() {
 
 export function CaseStudyResult() {
   const { result } = CASE_STUDY
-  const mediaRef = useRef(null)
-  const videoRef = useRef(null)
-  const [ready, setReady] = useState(false)
-  const [shouldLoad, setShouldLoad] = useState(false)
-
-  useEffect(() => {
-    const root = mediaRef.current
-    if (!root) return undefined
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true)
-          const video = videoRef.current
-          if (video) {
-            video.muted = true
-            video.playsInline = true
-            video.play().catch(() => {})
-          }
-        } else {
-          videoRef.current?.pause()
-        }
-      },
-      { rootMargin: '30% 0px', threshold: 0.12 },
-    )
-    observer.observe(root)
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video || !shouldLoad) return undefined
-
-    const onReady = () => {
-      setReady(true)
-      if (!video.paused) return
-      video.play().catch(() => {})
-    }
-
-    video.addEventListener('loadeddata', onReady)
-    video.addEventListener('canplay', onReady)
-    if (video.readyState >= 2) onReady()
-
-    return () => {
-      video.removeEventListener('loadeddata', onReady)
-      video.removeEventListener('canplay', onReady)
-    }
-  }, [shouldLoad])
 
   return (
     <JourneyChapter id="result" className="cs-result" aria-labelledby="cs-result-title">
-      <div ref={mediaRef} className="cs-result__media" aria-hidden="true">
-        <img
-          className={`cs-result__poster${ready ? ' is-faded' : ''}`}
-          src={result.poster}
-          alt=""
-          decoding="async"
-        />
-        <video
-          ref={videoRef}
-          className={`cs-result__video${ready ? ' is-ready' : ''}`}
-          src={shouldLoad ? result.video : undefined}
-          poster={result.poster}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        />
-        <div className="cs-result__veil" />
-      </div>
+      <CaseStudyHeavyVideo
+        src={result.video}
+        poster={result.poster}
+        className="cs-result__media"
+        posterClassName="cs-result__poster"
+        videoClassName="cs-result__video"
+        veilClassName="cs-result__veil"
+        rootMargin="25% 0px"
+      />
       <div className="cs-result__inner r-container">
         <p className="r-label cs-result__eyebrow">{result.eyebrow}</p>
         <h2 id="cs-result-title" className="cs-result__title">

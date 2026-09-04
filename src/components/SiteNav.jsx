@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import gsap from 'gsap'
 import { NAV_LINKS, SITE } from '../data/site'
+import { asset } from '../data/assets.js'
 import { Brand } from './Brand.jsx'
 
 const PRIMARY_LINKS = NAV_LINKS.filter((link) => link.to !== '/contact')
@@ -132,7 +133,7 @@ export default function SiteNav({ variant = 'solid' }) {
     >
       <div className={`site-nav__inner${isHero ? '' : ' r-container'}`}>
         <Link to="/" className="site-nav__logo" onClick={closeMenu}>
-          <img src="/assets/logo.png" alt="Ripples logo" className="site-nav__logo-icon" />
+          <img src={asset('logo.webp')} alt="Ripples logo" className="site-nav__logo-icon" />
           <Brand>{SITE.name}</Brand>
         </Link>
 

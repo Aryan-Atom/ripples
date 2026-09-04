@@ -1,9 +1,4 @@
-/** Public Journey media lives flat under /assets/Journey (webp + mp4). */
-export const JOURNEY_ASSETS = '/assets/Journey'
-
-export function journeyAsset(file) {
-  return `${JOURNEY_ASSETS}/${file}`
-}
+/** Timeline copy for /journey. Media files were removed with the unused Journey folder. */
 
 export const JOURNEY_HERO = {
   label: 'Case Study',
@@ -33,23 +28,7 @@ export const JOURNEY_DESIGN = {
   titleLines: ['Drawn until', 'it can hold.'],
   titleEm: 'hold.',
   body: 'Hydraulics, structure, and show control share one drawing set. What leaves the board is already a machine.',
-  slides: [
-    {
-      src: journeyAsset('design-01.webp'),
-      type: 'image',
-      alt: 'Site geometry and pool layout',
-    },
-    {
-      src: journeyAsset('design-02.webp'),
-      type: 'image',
-      alt: 'Engineering layout on site',
-    },
-    {
-      src: journeyAsset('design-03.webp'),
-      type: 'image',
-      alt: 'Technical site survey',
-    },
-  ],
+  slides: [],
   labels: [
     { text: 'Material Analysis', x: 12, y: 18 },
     { text: 'Hydraulic Design', x: 68, y: 14 },
@@ -64,12 +43,7 @@ export const JOURNEY_CONSTRUCTION = {
   titleLines: ['Concrete first.', 'Then tile.'],
   titleEm: null,
   body: null,
-  images: [
-    { src: journeyAsset('construction-01.webp'), alt: 'Site excavation and basin works' },
-    { src: journeyAsset('construction-02.webp'), alt: 'Concrete pour on site' },
-    { src: journeyAsset('construction-03.webp'), alt: 'Pool shell under construction' },
-    { src: journeyAsset('construction-04.webp'), alt: 'Tile and finish work' },
-  ],
+  images: [],
 }
 
 export const JOURNEY_MANUFACTURING = {
@@ -77,12 +51,7 @@ export const JOURNEY_MANUFACTURING = {
   titleLines: ['Made under', 'one roof.'],
   titleEm: 'roof.',
   body: 'Nozzles, manifolds, and control racks are fabricated in Noida  then tested before they ever leave the floor.',
-  videos: [
-    { src: journeyAsset('factory-01.mp4'), caption: 'Basin works' },
-    { src: journeyAsset('factory-02.mp4'), caption: 'Field systems' },
-    { src: journeyAsset('factory-03.mp4'), caption: 'Assembly' },
-    { src: journeyAsset('factory-04.mp4'), caption: 'Commissioning prep' },
-  ],
+  videos: [],
 }
 
 export const JOURNEY_INSTALLATION = {
@@ -90,8 +59,8 @@ export const JOURNEY_INSTALLATION = {
   title: 'On site',
   lines: ['Precision.', 'Alignment.', 'Execution.'],
   body: 'Every nozzle finds its mark. Tolerance is not a slogan  it is the difference between a spray and a show.',
-  video: journeyAsset('installation.mp4'),
-  poster: journeyAsset('installation-poster.webp'),
+  video: '',
+  poster: '',
 }
 
 export const JOURNEY_PERFORMANCE = {
@@ -100,11 +69,11 @@ export const JOURNEY_PERFORMANCE = {
   titleEm: 'theatre.',
   body: 'Music, light, and pressure choreographed as one system. The quiet work of thirty-five years, audible for a few minutes each night.',
   day: {
-    src: journeyAsset('day.mp4'),
+    src: '',
     label: 'Day',
   },
   night: {
-    src: journeyAsset('night.mp4'),
+    src: '',
     label: 'Night',
   },
 }
@@ -119,7 +88,7 @@ export const JOURNEY_TIMELINE = [
 ]
 
 export const JOURNEY_TIMELINE_MEDIA = {
-  blueprint: journeyAsset('blueprint.webp'),
+  blueprint: '',
   alt: 'V-Jet control nozzle prototype drawing  fluid dynamics study, c. 1991',
 }
 
@@ -135,7 +104,7 @@ export const JOURNEY_PHILOSOPHY = {
   title: '35 years of engineering excellence.',
   aside: 'Engineering, exposed.',
   image: {
-    src: journeyAsset('philosophy.webp'),
+    src: '',
     alt: 'Stone and structure  engineering, exposed',
   },
 }

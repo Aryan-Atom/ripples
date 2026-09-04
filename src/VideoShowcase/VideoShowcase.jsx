@@ -3,14 +3,15 @@ import { motion } from 'framer-motion'
 import VideoCard from './VideoCard.jsx'
 import useHoverVideo from './useHoverVideo.js'
 import { sectionVariants } from './animations.js'
+import { withRemoteAssets } from '../data/assets.js'
 import './VideoShowcase.css'
 
-const videoItems = [
+const videoItems = withRemoteAssets([
   {
     id: 'hero-video',
     title: 'Cinematic Flow',
     category: 'Large Scale Installation',
-    poster: '/assets/home_1.jpg',
+    poster: '/assets/home_1.webp',
     video: '/assets/web-videos/video 1.mp4',
     className: 'video-card__span-hero',
   },
@@ -18,7 +19,7 @@ const videoItems = [
     id: 'portrait-video',
     title: 'Portrait Motion',
     category: 'Interactive Fountain',
-    poster: '/assets/home_2.jpg',
+    poster: '/assets/home_2.webp',
     video: '/assets/web-videos/video 2.mp4',
     className: 'video-card__span-portrait',
   },
@@ -26,7 +27,7 @@ const videoItems = [
     id: 'square-video',
     title: 'Reflective Grid',
     category: 'Public Space',
-    poster: '/assets/home_3.jpg',
+    poster: '/assets/home_3.webp',
     video: '/assets/web-videos/video 3.mp4',
     className: 'video-card__span-square',
   },
@@ -34,7 +35,7 @@ const videoItems = [
     id: 'landscape-video-1',
     title: 'Lumen Tides',
     category: 'Projection Design',
-    poster: '/assets/home_4.jpg',
+    poster: '/assets/home_4.webp',
     video: '/assets/web-videos/video 4.mp4',
     className: 'video-card__span-landscape-1',
   },
@@ -42,11 +43,11 @@ const videoItems = [
     id: 'landscape-video-2',
     title: 'Echo Motion',
     category: 'Architectural Lighting',
-    poster: '/assets/home_1.jpg',
+    poster: '/assets/home_1.webp',
     video: '/assets/web-videos/video 5.mp4',
     className: 'video-card__span-landscape-2',
   },
-]
+])
 
 export default function VideoShowcase() {
   const { activeId, setActive, clearActive } = useHoverVideo()

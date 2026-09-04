@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SITE } from '../data/site'
+import { asset } from '../data/assets.js'
 import PageHero from '../components/PageHero.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import FadeUp from '../motion/FadeUp'
@@ -112,7 +113,7 @@ export default function Contact() {
               <div className="contact-details__block">
                 <h4>Journey</h4>
                 <img
-                  src="/assets/bes.gif"
+                  src={asset('bes.gif')}
                   alt="Ripples fountain showcase"
                   className="contact-details__gif"
                   loading="lazy"

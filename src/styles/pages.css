@@ -364,14 +364,15 @@
 .home-video__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, 0.62) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, transparent 45%);
   pointer-events: none;
 }
 
 .home-video__caption {
   position: absolute;
   left: var(--space-page-x);
-  bottom: clamp(1.75rem, 4vw, 3.25rem);
+  top: clamp(7.75rem, 15.5vw, 12.25rem);
+  bottom: auto;
   z-index: 2;
 }
 

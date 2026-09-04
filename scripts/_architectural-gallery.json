@@ -1,86 +1,86 @@
 {
-  "cover": "/assets/architectural/aarohan-gurgaon.jpg",
+  "cover": "/assets/architectural/aarohan-gurgaon.webp",
   "previews": [
-    "/assets/architectural/aarohan-gurgaon.jpg",
-    "/assets/architectural/abu-dhabi-airport.jpg",
-    "/assets/architectural/hyatt-hyderabad.jpg"
+    "/assets/architectural/aarohan-gurgaon.webp",
+    "/assets/architectural/abu-dhabi-airport.webp",
+    "/assets/architectural/hyatt-hyderabad.webp"
   ],
   "gallery": [
     {
       "title": "Aarohan Gurgaon",
-      "src": "/assets/architectural/aarohan-gurgaon.jpg"
+      "src": "/assets/architectural/aarohan-gurgaon.webp"
     },
     {
       "title": "Abu Dhabi Airport",
-      "src": "/assets/architectural/abu-dhabi-airport.jpg"
+      "src": "/assets/architectural/abu-dhabi-airport.webp"
     },
     {
       "title": "Adani Power Plant Mundra",
-      "src": "/assets/architectural/adani-power-plant-mundra.jpg"
+      "src": "/assets/architectural/adani-power-plant-mundra.webp"
     },
     {
       "title": "Aditya World City Noida",
-      "src": "/assets/architectural/aditya-world-city-noida.jpg"
+      "src": "/assets/architectural/aditya-world-city-noida.webp"
     },
     {
       "title": "Ansal Township Lucknow",
-      "src": "/assets/architectural/ansal-township-lucknow.jpg"
+      "src": "/assets/architectural/ansal-township-lucknow.webp"
     },
     {
       "title": "APRA Builders",
-      "src": "/assets/architectural/apra-builders.jpg"
+      "src": "/assets/architectural/apra-builders.webp"
     },
     {
       "title": "Asiana Hotel - Dubai",
-      "src": "/assets/architectural/asiana-hotel-dubai.jpg"
+      "src": "/assets/architectural/asiana-hotel-dubai.webp"
     },
     {
       "title": "Bombay Dying",
-      "src": "/assets/architectural/bombay-dying.jpg"
+      "src": "/assets/architectural/bombay-dying.webp"
     },
     {
       "title": "Country Inn and Suites",
-      "src": "/assets/architectural/country-inn-and-suites.jpg"
+      "src": "/assets/architectural/country-inn-and-suites.webp"
     },
     {
       "title": "Crowne Plaza Rohini",
-      "src": "/assets/architectural/crowne-plaza-rohini.jpg"
+      "src": "/assets/architectural/crowne-plaza-rohini.webp"
     },
     {
       "title": "DLF Prinston",
-      "src": "/assets/architectural/dlf-prinston.jpg"
+      "src": "/assets/architectural/dlf-prinston.webp"
     },
     {
       "title": "F1 Track, Greater Noida",
-      "src": "/assets/architectural/f1-track-g-noida.jpg"
+      "src": "/assets/architectural/f1-track-g-noida.webp"
     },
     {
       "title": "Fortis Gurgaon",
-      "src": "/assets/architectural/fortis-gurgaon.jpg"
+      "src": "/assets/architectural/fortis-gurgaon.webp"
     },
     {
       "title": "Golf Park",
-      "src": "/assets/architectural/golf-park.jpg"
+      "src": "/assets/architectural/golf-park.webp"
     },
     {
       "title": "Harsha Dubai 1",
-      "src": "/assets/architectural/harsha-dubai-1.jpg"
+      "src": "/assets/architectural/harsha-dubai-1.webp"
     },
     {
       "title": "Hotel Radisson SAS - Dubai",
-      "src": "/assets/architectural/hotel-radisson-sas-dubai.jpg"
+      "src": "/assets/architectural/hotel-radisson-sas-dubai.webp"
     },
     {
       "title": "Hyatt Hyderabad",
-      "src": "/assets/architectural/hyatt-hyderabad.jpg"
+      "src": "/assets/architectural/hyatt-hyderabad.webp"
     },
     {
       "title": "INS Karamba",
-      "src": "/assets/architectural/ins-karamba.jpg"
+      "src": "/assets/architectural/ins-karamba.webp"
     },
     {
       "title": "IOCL Panipat",
-      "src": "/assets/architectural/iocl-panipat.jpg"
+      "src": "/assets/architectural/iocl-panipat.webp"
     }
   ]
 }

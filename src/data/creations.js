@@ -1,9 +1,11 @@
+import { asset, withRemoteAssets } from './assets.js'
+
 /** Local placeholder images  swap for real project photography later. */
 const PLACEHOLDER_IMAGES = [
-  '/assets/home_1.jpg',
-  '/assets/home_2.jpg',
-  '/assets/home_3.jpg',
-  '/assets/home_4.jpg',
+  asset('home_1.webp'),
+  asset('home_2.webp'),
+  asset('home_3.webp'),
+  asset('home_4.webp'),
 ]
 
 const img = (index) => PLACEHOLDER_IMAGES[index % PLACEHOLDER_IMAGES.length]
@@ -119,8 +121,8 @@ export const CREATIONS = [
   },
 ]
 
-/** Homepage Selected Creations  real project photos from /assets/front-page. */
-export const FEATURED_CREATIONS = [
+/** Homepage Selected Creations  real project photos from front-page. */
+export const FEATURED_CREATIONS = withRemoteAssets([
   {
     id: 'adnoc-abu-dhabi',
     title: 'ADNOC Abu Dhabi',
@@ -129,7 +131,7 @@ export const FEATURED_CREATIONS = [
     category: 'Architectural',
     summary:
       'A landmark campus fountain for ADNOC  choreographed jets and light composed for the desert skyline.',
-    image: '/assets/front-page/adnoc-abu-dhabi.jpg',
+    image: '/assets/front-page/adnoc-abu-dhabi.webp',
   },
   {
     id: 'ibc-tech-park-bangalore',
@@ -139,7 +141,7 @@ export const FEATURED_CREATIONS = [
     category: 'Architectural',
     summary:
       'An arrival water feature for a tech campus  precise nozzle work that frames the plaza without overpowering it.',
-    image: '/assets/front-page/ibc-tech-park-bangalore.jpg',
+    image: '/assets/front-page/ibc-tech-park-bangalore.webp',
   },
   {
     id: 'dlf-golf-club-gurgaon',
@@ -149,7 +151,7 @@ export const FEATURED_CREATIONS = [
     category: 'Architectural',
     summary:
       'A resort-scale fountain for the golf club landscape  elegant arcs tuned for evening light and open grounds.',
-    image: '/assets/front-page/dlf-golf-club-gurgaon.jpg',
+    image: '/assets/front-page/dlf-golf-club-gurgaon.webp',
   },
   {
     id: 'aarohan-gurgaon',
@@ -159,7 +161,7 @@ export const FEATURED_CREATIONS = [
     category: 'Architectural',
     summary:
       'A residential water composition at Aarohan  calm basins and jets engineered for daily living, not spectacle alone.',
-    image: '/assets/front-page/aarohan-gurgaon.jpg',
+    image: '/assets/front-page/aarohan-gurgaon.webp',
   },
   {
     id: 'divyashree-nsl-hyderabad',
@@ -169,6 +171,6 @@ export const FEATURED_CREATIONS = [
     category: 'Architectural',
     summary:
       'A commercial campus fountain for Divyashree NSL  structured water geometry that marks the entry and holds the night.',
-    image: '/assets/front-page/divyashree-nsl-hyderabad.jpg',
+    image: '/assets/front-page/divyashree-nsl-hyderabad.webp',
   },
-]
+])

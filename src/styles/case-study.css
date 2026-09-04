@@ -328,8 +328,8 @@
 }
 
 /* ── Finale sequence: Day/Night → Precision → Result ──
-   Installation is a tall scroller with a sticky stage (no GSAP pin).
-   That keeps each chapter in document flow so they cannot overlay. */
+   Installation is a short sticky scroller (no GSAP pin).
+   After Execution, the final video is the next section. */
 
 .cs-finale {
   position: relative;
@@ -348,11 +348,18 @@
 .journey-chapter.cs-finale-install:not(.split-panel) {
   position: relative;
   z-index: auto;
-  height: 320vh;
+  height: 180vh;
   padding-block: 0;
   margin: 0;
   background: transparent;
   overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-finale-install,
+  .journey-chapter.cs-finale-install:not(.split-panel) {
+    height: 100vh;
+  }
 }
 
 .cs-finale-install__stage {

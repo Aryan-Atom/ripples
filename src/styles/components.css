@@ -558,7 +558,6 @@ a.site-nav__item:hover {
   border: none;
   background: #05080d;
   aspect-ratio: 16 / 9;
-  min-height: clamp(24rem, 62vh, 44rem);
 }
 
 .home-video__media {
@@ -567,9 +566,8 @@ a.site-nav__item:hover {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
-  transform: scale(1.35);
 }
 
 /* Home CTA  side-by-side card + video panel */
@@ -789,12 +787,7 @@ a.site-nav__item:hover {
   }
 
   .home-video__frame {
-    min-height: 14rem;
-    aspect-ratio: 16 / 10;
-  }
-
-  .home-video__media {
-    transform: scale(1.15);
+    aspect-ratio: 16 / 9;
   }
 }
 

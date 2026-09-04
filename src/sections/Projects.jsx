@@ -10,32 +10,22 @@ const PROJECTS = [
   {
     title: 'Isola Courtyard Fountain',
     location: 'Isola, 2014',
-    image: '/images/journey3.jpg',
-    alt: 'Warm-lit circular fountain clusters in a luxury courtyard at night',
   },
   {
     title: 'Multimedia Fountain Show',
     location: 'Public installation',
-    image: '/images/journey2.jpg',
-    alt: 'Night-time multimedia fountain with purple illuminated water jets',
   },
   {
     title: 'The Big 5 Dubai',
     location: 'Dubai',
-    image: '/images/isola-2014.jpg',
-    alt: 'Ripples Engineering exhibition booth with working tiled fountain',
   },
   {
     title: 'Garden & Landscape Dubai',
     location: 'Dubai',
-    image: '/images/garden-landscape-dubai.jpg',
-    alt: 'Ripples trade booth with cascading water wall',
   },
   {
     title: 'International Exhibition',
     location: 'Dubai',
-    image: '/images/big-5-dubai.jpg',
-    alt: 'Ripples Engineering exhibition booth at an international trade show',
   },
 ]
 
@@ -83,12 +73,6 @@ export default function Projects() {
               key={project.title}
               className="relative aspect-[16/10] w-[85vw] max-w-3xl shrink-0"
             >
-              <img
-                src={project.image}
-                alt={project.alt}
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void via-void/50 to-transparent p-6">
                 <h3 className="font-display text-2xl uppercase tracking-[0.08em] text-mist">
                   {project.title}

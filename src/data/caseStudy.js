@@ -1,9 +1,11 @@
-/** Nehru Garden case study  media under /assets/case-study */
+/** Nehru Garden case study  media resolved through the Supabase asset manifest. */
 
-export const CS_ASSETS = '/assets/case-study'
+import { asset } from './assets.js'
+
+export const CS_ASSETS = 'case-study'
 
 export function csAsset(file) {
-  return `${CS_ASSETS}/${file}`
+  return asset(`${CS_ASSETS}/${file}`)
 }
 
 export const CASE_STUDY = {
@@ -12,7 +14,7 @@ export const CASE_STUDY = {
     titleLines: ['A lake garden', 'asks for a', 'show.'],
     titleEm: 'show.',
     video: csAsset('Intro.mp4'),
-    poster: csAsset('before-03.jpg'),
+    poster: csAsset('before-03.webp'),
     place: 'Nehru Garden, Udaipur',
   },
 
@@ -22,7 +24,7 @@ export const CASE_STUDY = {
     titleEm: null,
     body: 'The ask was a musical fountain for Nehru Garden on the lake edge in Udaipur  open water, wind exposure, and a heritage garden setting that could not read as a theme-park insert. The system had to hold the view by day and carry a night show without fighting the landscape.',
     image: {
-      src: csAsset('before-02.jpg'),
+      src: csAsset('before-02.webp'),
       alt: 'Nehru Garden approach and empty basin before fountain works',
     },
   },
@@ -32,15 +34,15 @@ export const CASE_STUDY = {
     intro: 'The basin and garden as found  before nozzles, headers, or night lighting.',
     images: [
       {
-        src: csAsset('before-01.jpg'),
+        src: csAsset('before-01.webp'),
         alt: 'Linear tiled basin looking toward the lake pavilion',
       },
       {
-        src: csAsset('before-02.jpg'),
+        src: csAsset('before-02.webp'),
         alt: 'Garden path and empty channel under palm rows',
       },
       {
-        src: csAsset('before-04.jpg'),
+        src: csAsset('before-04.webp'),
         alt: 'Site context before fountain installation',
       },
     ],
@@ -52,7 +54,7 @@ export const CASE_STUDY = {
     titleEm: 'line.',
     body: 'Before water moves, geometry does. Site surveys, hand sketches, and the first nozzle grid drawn until the idea can carry pressure.',
     image: {
-      src: csAsset('sketch-01.png'),
+      src: csAsset('sketch-01.webp'),
       alt: 'Hand-annotated Nehru Garden pool layout sketch',
     },
   },
@@ -63,7 +65,7 @@ export const CASE_STUDY = {
     titleEm: '1:100',
     body: 'The signed musical fountain layout  nozzle families, pump loads, and jet heights locked before fabrication.',
     image: {
-      src: csAsset('approved-02.png'),
+      src: csAsset('approved-02.webp'),
       alt: 'Approved Nehru Garden musical fountain layout plan',
     },
   },
@@ -76,17 +78,17 @@ export const CASE_STUDY = {
     body: 'Hydraulics, structure, and show control share one drawing set. What leaves the board is already a machine.',
     slides: [
       {
-        src: csAsset('before-03.jpg'),
+        src: csAsset('before-03.webp'),
         type: 'image',
         alt: 'Tiled circular basin during engineering review',
       },
       {
-        src: csAsset('final-01.png'),
+        src: csAsset('final-01.webp'),
         type: 'image',
         alt: 'Musical fountain section and effect references',
       },
       {
-        src: csAsset('approved-01.png'),
+        src: csAsset('approved-01.webp'),
         type: 'image',
         alt: 'Approved hydraulic layout with elevations',
       },
@@ -106,10 +108,10 @@ export const CASE_STUDY = {
     titleEm: 'roof.',
     body: 'Nozzles, manifolds, and control racks are fabricated in Noida  then tested before they ever leave the floor.',
     items: [
-      { src: csAsset('final-01.png'), caption: 'Basin Works', alt: 'Section drawings for basin systems' },
-      { src: csAsset('final-02.png'), caption: 'Field Systems', alt: 'Plan and elevation for field jets' },
-      { src: csAsset('final-03.png'), caption: 'Assembly', alt: 'Assembly and detailing sheet' },
-      { src: csAsset('final-04.png'), caption: 'Commissioning Prep', alt: 'Commissioning reference drawing' },
+      { src: csAsset('final-01.webp'), caption: 'Basin Works', alt: 'Section drawings for basin systems' },
+      { src: csAsset('final-02.webp'), caption: 'Field Systems', alt: 'Plan and elevation for field jets' },
+      { src: csAsset('final-03.webp'), caption: 'Assembly', alt: 'Assembly and detailing sheet' },
+      { src: csAsset('final-04.webp'), caption: 'Commissioning Prep', alt: 'Commissioning reference drawing' },
     ],
   },
 
@@ -120,10 +122,10 @@ export const CASE_STUDY = {
     titleEm: null,
     body: null,
     images: [
-      { src: csAsset('before-01.jpg'), alt: 'Basin channel before finishes' },
-      { src: csAsset('before-02.jpg'), alt: 'Garden approach during site works' },
-      { src: csAsset('before-03.jpg'), alt: 'Circular tiled basin shell' },
-      { src: csAsset('before-04.jpg'), alt: 'Site works at Nehru Garden' },
+      { src: csAsset('before-01.webp'), alt: 'Basin channel before finishes' },
+      { src: csAsset('before-02.webp'), alt: 'Garden approach during site works' },
+      { src: csAsset('before-03.webp'), alt: 'Circular tiled basin shell' },
+      { src: csAsset('before-04.webp'), alt: 'Site works at Nehru Garden' },
     ],
   },
 
@@ -132,7 +134,7 @@ export const CASE_STUDY = {
     titleLines: ['Seen before', 'it was built.'],
     titleEm: 'built.',
     body: 'Jet pattern and light sequence signed off in simulation  the show agreed before the first header hit the water.',
-    poster: csAsset('before-02.jpg'),
+    poster: csAsset('before-02.webp'),
     modes: [
       { id: 'day', label: 'Day', src: csAsset('day.mp4') },
       { id: 'night', label: 'Night', src: csAsset('night.mp4') },
@@ -146,7 +148,7 @@ export const CASE_STUDY = {
     lines: ['Precision.', 'Alignment.', 'Execution.'],
     body: 'Every nozzle finds its mark. Tolerance is not a slogan  it is the difference between a spray and a show.',
     video: csAsset('installation.mp4'),
-    poster: csAsset('before-03.jpg'),
+    poster: csAsset('before-03.webp'),
   },
 
   result: {
@@ -154,7 +156,7 @@ export const CASE_STUDY = {
     titleLines: ['The final', 'show.'],
     titleEm: 'show.',
     video: csAsset('final_video.mp4'),
-    poster: csAsset('before-03.jpg'),
+    poster: csAsset('before-03.webp'),
   },
 
   cta: {

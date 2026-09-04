@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import LazyVideo from './LazyVideo.jsx'
 import FadeUp from '../motion/FadeUp'
+import { asset } from '../data/assets.js'
 
 export default function HomeCta() {
   return (
@@ -35,7 +36,7 @@ export default function HomeCta() {
             <div className="cta-video-card__frame">
               <LazyVideo
                 className="cta-video-card__video"
-                src="/assets/RipplesLogoAnimationWithMusic.mp4"
+                src={asset('RipplesLogoAnimationWithMusic.mp4')}
                 autoPlay
                 muted
                 loop

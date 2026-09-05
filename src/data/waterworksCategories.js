@@ -92,8 +92,11 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
     "showreel": {
       "src": "/assets/multimedia/bhopal-musical-clip.mp4",
       "poster": "/assets/multimedia/bhopal-musical.webp",
-      "title": "Bhopal Musical showreel",
-      "caption": "Bhopal Musical"
+      "title": "Bhopal Musical",
+      "caption": "Bhopal Musical",
+      "index": "01",
+      "align": "right",
+      "description": "A civic musical fountain where light, score, and water move as one system  programmed in-house so the nightly show holds its drama from the opening surge to the last fade."
     },
     "gallery": [
       {

@@ -81,26 +81,26 @@ export const WORLDWIDE_REGIONS = [
 export const WORLDWIDE_EVENTS = withRemoteAssets([
   {
     index: '01',
-    title: 'Dubai Fountain District',
+    title: 'Dubai Event',
     description:
-      'A landmark lake show engineered for desert heat  programmable arcs, chromatic lighting, and synchronized music across one of the Gulf\u2019s most visible waterfront destinations.',
-    video: '/assets/web-videos/video 1.mp4',
+      'A live fountain demonstration at a Dubai industry event  programmable jets, light, and music shown as they run, from opening cue to the last fade.',
+    video: '/assets/events/dubai-event-final-out-12-12.mp4',
     align: 'right',
   },
   {
     index: '02',
-    title: 'Guangzhou Civic Plaza',
+    title: 'Guangzhou Exhibition',
     description:
-      'An interactive water matrix for a growing Chinese metropolis  precision nozzles, dynamic patterns, and a basin designed for year-round public spectacle.',
-    video: '/assets/web-videos/video 2.mp4',
+      'Ripples on the floor in Guangzhou  a working water feature staged for the trade audience, from nozzle precision to choreographed light.',
+    video: '/assets/events/guangzhou-1.mp4',
     align: 'left',
   },
   {
     index: '03',
-    title: 'IAAPA Expo Showcase',
+    title: 'IAAPA Expo 2025',
     description:
-      'Live demonstration at the global attractions industry stage  Ripples engineering on display, from programmable choreography to field-ready control systems.',
-    video: '/assets/web-videos/video 3.mp4',
+      'Live demonstration at IAAPA Expo 2025  Ripples engineering on display, from programmable choreography to field-ready control systems.',
+    video: '/assets/events/iaapa-2025.mp4',
     align: 'right',
   },
 ])

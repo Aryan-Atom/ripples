@@ -9,9 +9,7 @@ import {
 import PageHero from '../components/PageHero.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import GalleryCoverflow from '../components/GalleryCoverflow.jsx'
-import VideoCard from '../VideoShowcase/VideoCard.jsx'
-import useHoverVideo from '../VideoShowcase/useHoverVideo.js'
-import '../VideoShowcase/VideoShowcase.css'
+import WorldwideShowcase from '../components/WorldwideShowcase.jsx'
 import FadeUp from '../motion/FadeUp'
 
 /** Prefab / Multimedia: first few as coverflow cards, the rest in the normal grid. */
@@ -64,7 +62,6 @@ export default function CapabilityPage({ slug: slugProp }) {
   const params = useParams()
   const slug = slugProp || params.slug
   const page = getCapabilityPage(slug)
-  const { activeId, setActive, clearActive } = useHoverVideo()
 
   useEffect(() => {
     const hash = window.location.hash?.slice(1)
@@ -209,36 +206,28 @@ export default function CapabilityPage({ slug: slugProp }) {
           ))}
 
         {showreel?.src && (
-          <section
-            className="capability-gallery home-section multimedia-video-section"
-            aria-label="Multimedia showreel"
-            id="multimedia-showreel"
-          >
-            <div className="r-container">
-              <FadeUp as="p" className="r-label">
-                In motion
-              </FadeUp>
-              <FadeUp as="h2" className="r-display capability-section__title" y={24}>
-                Nightly <em>performance</em>
-              </FadeUp>
-              <div className="multimedia-video-section__grid">
-                <VideoCard
-                  id="multimedia-bhopal-musical"
-                  poster={showreel.poster}
-                  video={showreel.src}
-                  title={showreel.caption || 'Bhopal Musical'}
-                  category="Multimedia Show"
-                  className="video-card__span-hero multimedia-video-section__card"
-                  isActive={activeId === 'multimedia-bhopal-musical'}
-                  isDimmed={false}
-                  onHoverStart={setActive}
-                  onHoverEnd={clearActive}
-                  playCue
-                  allowUnmute
-                />
-              </div>
-            </div>
-          </section>
+          <div id="multimedia-showreel">
+            <WorldwideShowcase
+              compact
+              ariaLabel="Multimedia showreel"
+              label="In motion"
+              title={
+                <>
+                  Nightly <em>performance</em>
+                </>
+              }
+              lead="Light, music, and water choreographed as one system  a showreel from the floor, engineered to hold its drama after dark."
+              items={[
+                {
+                  index: '',
+                  title: showreel.caption || showreel.title || 'Bhopal Musical',
+                  description: showreel.description,
+                  video: showreel.src,
+                  align: showreel.align || 'right',
+                },
+              ]}
+            />
+          </div>
         )}
 
         {isMultimedia && page.gallery?.length > 0 && (

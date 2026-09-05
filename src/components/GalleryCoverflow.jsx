@@ -42,7 +42,9 @@ export default function GalleryCoverflow({ items, label = 'Gallery' }) {
             onClick={() => go(-1)}
             aria-label="Previous photo"
           >
-            ←
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 5l-7 7 7 7" />
+            </svg>
           </button>
         )}
 
@@ -88,7 +90,9 @@ export default function GalleryCoverflow({ items, label = 'Gallery' }) {
             onClick={() => go(1)}
             aria-label="Next photo"
           >
-            →
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         )}
       </div>

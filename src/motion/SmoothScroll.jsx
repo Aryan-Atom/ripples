@@ -56,7 +56,7 @@ export default function SmoothScroll() {
     const refresh = () => ScrollTrigger.refresh()
     requestAnimationFrame(() => {
       if (hash) {
-        scrollToHash(hash, lenis)
+        scrollToHash(hash, lenis, { immediate: true, behavior: 'auto' })
       } else {
         resetScroll(lenis)
       }

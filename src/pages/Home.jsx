@@ -10,6 +10,7 @@ import HomeWorldwide from '../components/HomeWorldwide.jsx'
 import HomeTestimonials from '../components/HomeTestimonials.jsx'
 import HomePress from '../components/HomePress.jsx'
 import HomeCta from '../components/HomeCta.jsx'
+import HomeJourney from '../components/HomeJourney.jsx'
 
 const FRAME_COUNT = 241
 
@@ -37,6 +38,7 @@ export default function Home() {
           <HomePress />
           <HomeCta />
           <BrandTrail />
+          <HomeJourney />
         </main>
 
         <SiteFooter />

@@ -15,7 +15,7 @@ function refreshScrollTriggers() {
 
 function scrollToHashWhenReady(hash, attempt = 0) {
   const lenis = getActiveLenis()
-  if (scrollToHash(hash, lenis)) {
+  if (scrollToHash(hash, lenis, { immediate: true, behavior: 'auto' })) {
     refreshScrollTriggers()
     return
   }

@@ -8,8 +8,10 @@ export function csAsset(file) {
   return asset(`${CS_ASSETS}/${file}`)
 }
 
-export const CASE_STUDY = {
-  hero: {
+export const CASE_STUDY_CHOICES = [
+  {
+    id: 'nehru-garden',
+    to: '/case-study/nehru-garden#brief',
     eyebrow: 'Case Study',
     titleLines: ['A lake garden', 'asks for a', 'show.'],
     titleEm: 'show.',
@@ -17,6 +19,20 @@ export const CASE_STUDY = {
     poster: csAsset('before-03.webp'),
     place: 'Nehru Garden, Udaipur',
   },
+  {
+    id: 'wow-goa',
+    to: '/case-study/wow-goa',
+    eyebrow: 'Case Study',
+    titleLines: ['A coastal night', 'asks for a', 'show.'],
+    titleEm: 'show.',
+    video: csAsset('Intro.mp4'),
+    poster: csAsset('before-03.webp'),
+    place: 'Wow Goa',
+  },
+]
+
+export const CASE_STUDY = {
+  hero: CASE_STUDY_CHOICES[0],
 
   brief: {
     eyebrow: 'The brief',

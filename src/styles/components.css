@@ -45,7 +45,7 @@
 /* Tighter, even rhythm across homepage sections (hero → footer). */
 .home-page {
   --home-section-y: clamp(3rem, 6vw, 5rem);
-  --home-section-y-first: clamp(2.25rem, 4.5vw, 3.5rem);
+  --home-section-y-first: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 .home-page .home-section,
@@ -56,6 +56,10 @@
 
 .home-page__main > .home-section:first-child {
   padding-top: var(--home-section-y-first);
+}
+
+.home-page__main > .home-intro {
+  padding-top: clamp(4.35rem, 6.5vw, 5.15rem);
 }
 
 /* Navigation */

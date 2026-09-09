@@ -23,11 +23,13 @@ export default function WorldwideHero() {
       <div className="worldwide-hero__inner r-container">
         <div className="worldwide-hero__copy">
           <SplitLines as="h1" id="worldwide-hero-title" className="worldwide-hero__title">
-            Experiences delivered <em>worldwide.</em>
+            Ripples on the
+            <br />
+            <em>world stage.</em>
           </SplitLines>
           <FadeUp as="p" className="worldwide-hero__lead" delay={0.08}>
-            Building iconic fountain experiences across continents  from civic
-            plazas to landmark destinations worldwide.
+            Shows that move water and crowds. Landmark fountains delivered
+            across continents.
           </FadeUp>
         </div>
       </div>

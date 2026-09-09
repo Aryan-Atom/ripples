@@ -1,4 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Link } from 'react-router-dom'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
 import FadeUp from '../motion/FadeUp'
 
@@ -11,10 +13,17 @@ const MOBILE_LAYOUT_QUERY = '(max-width: 900px)'
  * Mobile (≤900px): text left, thumbnail right  always visible.
  * Touch tablet: tap a row to reveal its image with motion.
  */
-export default function CreationList({ items }) {
+export default function CreationList({ items, groups }) {
+  const sections = groups?.length
+    ? groups
+    : [{ id: 'all', label: null, items: items ?? [] }]
+  const flatItems = sections.flatMap((section) => section.items)
   const rootRef = useRef(null)
   const previewRef = useRef(null)
   const thumbRefs = useRef([])
+  const activeRef = useRef(-1)
+  const moveXRef = useRef(null)
+  const moveYRef = useRef(null)
   const [active, setActive] = useState(-1)
   const [openIndex, setOpenIndex] = useState(-1)
   const [isHoverDevice, setIsHoverDevice] = useState(
@@ -46,35 +55,15 @@ export default function CreationList({ items }) {
   }, [])
 
   useLayoutEffect(() => {
-    const root = rootRef.current
     const preview = previewRef.current
-    if (!root || !preview || !useDesktopHover) return undefined
-    if (prefersReducedMotion()) return undefined
+    if (!preview || !useDesktopHover) return undefined
 
-    gsap.set(preview, { xPercent: -50, yPercent: -50, autoAlpha: 0, scale: 0.85, rotate: -3 })
-    const moveX = gsap.quickTo(preview, 'x', { duration: 0.55, ease: 'power3.out' })
-    const moveY = gsap.quickTo(preview, 'y', { duration: 0.55, ease: 'power3.out' })
+    moveXRef.current = gsap.quickTo(preview, 'left', { duration: 0.4, ease: 'power3.out' })
+    moveYRef.current = gsap.quickTo(preview, 'top', { duration: 0.4, ease: 'power3.out' })
 
-    const onMove = (event) => {
-      moveX(event.clientX)
-      moveY(event.clientY)
-    }
-    const onEnter = (event) => {
-      moveX(event.clientX)
-      moveY(event.clientY)
-      gsap.to(preview, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.45, ease: 'power3.out' })
-    }
-    const onLeave = () => {
-      gsap.to(preview, { autoAlpha: 0, scale: 0.85, rotate: -3, duration: 0.35, ease: 'power3.in' })
-    }
-
-    root.addEventListener('mousemove', onMove)
-    root.addEventListener('mouseenter', onEnter)
-    root.addEventListener('mouseleave', onLeave)
     return () => {
-      root.removeEventListener('mousemove', onMove)
-      root.removeEventListener('mouseenter', onEnter)
-      root.removeEventListener('mouseleave', onLeave)
+      moveXRef.current = null
+      moveYRef.current = null
     }
   }, [useDesktopHover])
 
@@ -133,7 +122,7 @@ export default function CreationList({ items }) {
         },
       })
     })
-  }, [openIndex, useTouchReveal, items])
+  }, [openIndex, useTouchReveal, flatItems])
 
   useLayoutEffect(() => {
     if (!useTouchReveal) return undefined
@@ -147,13 +136,43 @@ export default function CreationList({ items }) {
         overflow: 'hidden',
       })
     })
-  }, [useTouchReveal, items])
+  }, [useTouchReveal, flatItems])
+
+  const ensureMovers = (preview) => {
+    if (!preview) return
+    if (!moveXRef.current || !moveYRef.current) {
+      moveXRef.current = gsap.quickTo(preview, 'left', { duration: 0.4, ease: 'power3.out' })
+      moveYRef.current = gsap.quickTo(preview, 'top', { duration: 0.4, ease: 'power3.out' })
+    }
+  }
+
+  const showGroupPreview = (index, event) => {
+    if (!useDesktopHover) return
+    const preview = previewRef.current
+    activeRef.current = index
+    setActive(index)
+    if (!preview) return
+    ensureMovers(preview)
+    preview.style.left = `${event.clientX}px`
+    preview.style.top = `${event.clientY}px`
+    moveXRef.current?.(event.clientX)
+    moveYRef.current?.(event.clientY)
+  }
+
+  const movePreview = (event) => {
+    if (!useDesktopHover || activeRef.current < 0) return
+    ensureMovers(previewRef.current)
+    moveXRef.current?.(event.clientX)
+    moveYRef.current?.(event.clientY)
+  }
+
+  const hidePreview = () => {
+    if (!useDesktopHover) return
+    activeRef.current = -1
+    setActive(-1)
+  }
 
   const activateRow = (i) => {
-    if (useDesktopHover) {
-      setActive(i)
-      return
-    }
     if (useTouchReveal) {
       setOpenIndex((prev) => (prev === i ? -1 : i))
     }
@@ -161,74 +180,110 @@ export default function CreationList({ items }) {
 
   const listMode = useDesktopHover ? 'hover' : isMobileLayout ? 'mobile' : 'touch'
 
+  const preview = (
+    <div
+      className={`creation-list__preview${active >= 0 ? ' is-visible' : ''}`}
+      ref={previewRef}
+      aria-hidden="true"
+    >
+      {flatItems.map((item, i) => (
+        <img
+          key={item.id}
+          src={item.image}
+          alt=""
+          className={`creation-list__preview-img${i === active ? ' is-active' : ''}`}
+        />
+      ))}
+    </div>
+  )
+
   return (
     <div className={`creation-list creation-list--${listMode}`} ref={rootRef}>
-      <div className="creation-list__preview" ref={previewRef} aria-hidden="true">
-        {items.map((item, i) => (
-          <img
-            key={item.id}
-            src={item.image}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            className={`creation-list__preview-img${i === active ? ' is-active' : ''}`}
-          />
-        ))}
-      </div>
+      {useDesktopHover && typeof document !== 'undefined'
+        ? createPortal(preview, document.body)
+        : null}
 
-      <FadeUp stagger={0.08} y={36}>
-        {items.map((item, i) => {
-          const isOpen = useTouchReveal && openIndex === i
-          const isInteractive = useDesktopHover || useTouchReveal
+      <FadeUp stagger={0.1} y={36}>
+        {sections.map((section, sectionIndex) => {
+          const offset = sections
+            .slice(0, sectionIndex)
+            .reduce((count, group) => count + group.items.length, 0)
 
           return (
-            <article
-              key={item.id}
-              className={`creation-row${i === active ? ' is-active' : ''}${isOpen ? ' is-open' : ''}`}
-              onMouseEnter={() => {
-                if (useDesktopHover) setActive(i)
-              }}
-              onFocus={() => {
-                if (useDesktopHover) setActive(i)
-              }}
-              onClick={isInteractive ? () => activateRow(i) : undefined}
-              onKeyDown={
-                isInteractive
-                  ? (event) => {
-                      if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault()
-                        activateRow(i)
-                      }
-                    }
-                  : undefined
-              }
-              tabIndex={isInteractive ? 0 : undefined}
-              role={useTouchReveal ? 'button' : undefined}
-              aria-expanded={useTouchReveal ? isOpen : undefined}
-            >
-              <div className="creation-row__copy">
-                <div className="creation-row__line">
-                  <span className="creation-row__index">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 className="creation-row__title">{item.title}</h3>
-                  <p className="creation-row__summary">{item.summary}</p>
-                  <span className="creation-row__meta">
-                    {item.location}
-                    <em>{item.category}</em>
-                  </span>
-                  <span className="creation-row__year">{item.year}</span>
+            <div key={section.id} className="creation-group">
+              {section.label ? (
+                <div className="creation-group__head" onMouseEnter={hidePreview}>
+                  <h3 className="creation-group__title">{section.label}</h3>
+                  {section.to ? (
+                    <Link
+                      className="creation-group__arrow"
+                      to={section.to}
+                      aria-label={`Open ${section.label} in WaterWorks`}
+                    >
+                      <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  ) : null}
                 </div>
+              ) : null}
+
+              <div
+                className="creation-group__projects"
+                onMouseEnter={(event) => showGroupPreview(offset, event)}
+                onMouseMove={movePreview}
+                onMouseLeave={hidePreview}
+              >
+              {section.items.map((item, localIndex) => {
+                const i = offset + localIndex
+                const isOpen = useTouchReveal && openIndex === i
+                const isInteractive = useTouchReveal
+
+                return (
+                  <article
+                    key={item.id}
+                    className={`creation-row${i === active ? ' is-active' : ''}${isOpen ? ' is-open' : ''}`}
+                    onClick={isInteractive ? () => activateRow(i) : undefined}
+                    onKeyDown={
+                      isInteractive
+                        ? (event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault()
+                              activateRow(i)
+                            }
+                          }
+                        : undefined
+                    }
+                    tabIndex={isInteractive ? 0 : undefined}
+                    role={useTouchReveal ? 'button' : undefined}
+                    aria-expanded={useTouchReveal ? isOpen : undefined}
+                  >
+                    <div className="creation-row__copy">
+                      <div className="creation-row__line">
+                        <span className="creation-row__index">
+                          {String(localIndex + 1).padStart(2, '0')}
+                        </span>
+                        <h3 className="creation-row__title">{item.title}</h3>
+                        <p className="creation-row__summary">{item.summary}</p>
+                        <span className="creation-row__meta">
+                          {item.location}
+                          {item.category ? <em>{item.category}</em> : null}
+                        </span>
+                      </div>
+                    </div>
+                    <img
+                      ref={(node) => {
+                        thumbRefs.current[i] = node
+                      }}
+                      className="creation-row__thumb"
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </article>
+                )
+              })}
               </div>
-              <img
-                ref={(node) => {
-                  thumbRefs.current[i] = node
-                }}
-                className="creation-row__thumb"
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-                decoding="async"
-              />
-            </article>
+            </div>
           )
         })}
       </FadeUp>

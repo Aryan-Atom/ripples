@@ -93,7 +93,7 @@ export default function SiteFooter() {
           <div className="site-footer__col">
             <h4>Brand</h4>
             <nav aria-label="Brand">
-              <span>{SITE.name}</span>
+              <span>Ripples Water Technology</span>
               <span>{SITE.tagline}</span>
               <a href={`mailto:${SITE.email.info}`}>{SITE.email.info}</a>
               <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>

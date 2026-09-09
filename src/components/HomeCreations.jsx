@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FEATURED_CREATIONS } from '../data/creations'
+import { FEATURED_CREATION_GROUPS } from '../data/creations'
 import CreationList from './CreationList.jsx'
 import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
@@ -26,7 +26,7 @@ export default function HomeCreations() {
           </FadeUp>
         </header>
 
-        <CreationList items={FEATURED_CREATIONS} />
+        <CreationList groups={FEATURED_CREATION_GROUPS} />
       </div>
     </section>
   )

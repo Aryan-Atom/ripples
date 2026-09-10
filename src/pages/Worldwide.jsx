@@ -3,7 +3,13 @@ import SiteFooter from '../components/SiteFooter.jsx'
 import WorldwideHero from '../components/WorldwideHero.jsx'
 import WorldwideShowcase from '../components/WorldwideShowcase.jsx'
 import TextMarquee from '../components/TextMarquee.jsx'
-import { WORLDWIDE_REGIONS, WORLDWIDE_CITIES, prefetchWorldCountries } from '../data/worldwide'
+import {
+  WORLDWIDE_REGIONS,
+  WORLDWIDE_CITIES,
+  WORLDWIDE_EVENTS,
+  WORLDWIDE_PROJECTS,
+  prefetchWorldCountries,
+} from '../data/worldwide'
 import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
 
@@ -15,7 +21,32 @@ export default function Worldwide() {
       <div className="worldwide-page__atmosphere" aria-hidden="true" />
       <main className="worldwide-page__main">
         <WorldwideHero />
-        <WorldwideShowcase />
+
+        <WorldwideShowcase
+          items={WORLDWIDE_EVENTS}
+          label="Events"
+          title={
+            <>
+              Events that move <em>water</em> and crowds.
+            </>
+          }
+          lead="Landmark launches, civic unveilings, and industry showcases  each engineered for its climate, audience, and skyline."
+          ariaLabel="Worldwide events"
+        />
+
+        <WorldwideShowcase
+          items={WORLDWIDE_PROJECTS}
+          label="Projects"
+          title={
+            <>
+              Projects delivered <em>worldwide.</em>
+            </>
+          }
+          lead="Permanent installations built for campuses, civic plazas, and destinations  starting with Abu Dhabi."
+          ariaLabel="Worldwide projects"
+          compact
+          variant="projects"
+        />
 
         <section className="worldwide-regions" aria-label="Regional presence">
           <div className="r-container">

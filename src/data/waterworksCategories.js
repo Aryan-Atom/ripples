@@ -86,7 +86,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
     "label": "Multimedia",
     "eyebrow": "WaterWorks  Multimedia",
     "titleBefore": "Water as",
-    "titleEm": "performance",
+    "titleEm": "Performance",
     "lead": "Multimedia fountain shows  light, music, and water choreographed as one system.",
     "body": "From lake spectacles to urban promenades, we design and manufacture the show systems that turn water into a nightly performance.",
     "showreel": {
@@ -98,6 +98,64 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
       "align": "right",
       "description": "A civic musical fountain where light, score, and water move as one system  programmed in-house so the nightly show holds its drama from the opening surge to the last fade."
     },
+    "projects": [
+      {
+        "id": "birsa-munda",
+        "title": "Birsa Munda",
+        "description": "A memorial-park multimedia show in Ranchi  musical fountain, light, and score engineered as one system so the performance holds a crowd from the first jet to the last fade.",
+        "video": "/assets/multimedia/bhopal-musical-clip.mp4",
+        "poster": "/assets/multimedia/bhopal-musical.webp",
+        "align": "right",
+        "gallery": [
+          {
+            "title": "Birsa Munda Memorial Park",
+            "src": "/assets/multimedia/birsa-munda-memorial-park.webp"
+          }
+        ]
+      },
+      {
+        "id": "bhopal-musical",
+        "title": "Bhopal Musical",
+        "description": "A civic musical fountain where light, score, and water move as one system  programmed in-house so the nightly show holds its drama from the opening surge to the last fade.",
+        "video": "/assets/multimedia/bhopal-musical-clip.mp4",
+        "poster": "/assets/multimedia/bhopal-musical.webp",
+        "align": "right",
+        "gallery": [
+          {
+            "title": "Bhopal Musical",
+            "src": "/assets/multimedia/bhopal-musical.webp"
+          }
+        ]
+      },
+      {
+        "id": "jk-temple",
+        "title": "J K Temple",
+        "description": "A temple-side musical fountain where water and light are programmed to the architecture  a nightly show that belongs to the precinct, not bolted on beside it.",
+        "video": "/assets/multimedia/bhopal-musical-clip.mp4",
+        "poster": "/assets/multimedia/bhopal-musical.webp",
+        "align": "right",
+        "gallery": [
+          {
+            "title": "J K Temple",
+            "src": "/assets/multimedia/jk-temple.webp"
+          }
+        ]
+      },
+      {
+        "id": "luv-khush-garden",
+        "title": "Luv Khush Garden",
+        "description": "A garden musical fountain composed for evening crowds  jets, colour, and score timed in-house so the park becomes a civic stage after dusk.",
+        "video": "/assets/multimedia/bhopal-musical-clip.mp4",
+        "poster": "/assets/multimedia/bhopal-musical.webp",
+        "align": "right",
+        "gallery": [
+          {
+            "title": "Luv Khush Garden",
+            "src": "/assets/multimedia/luv-kush-garden.webp"
+          }
+        ]
+      }
+    ],
     "gallery": [
       {
         "title": "Bhopal Musical",
@@ -138,7 +196,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
     "label": "Others",
     "eyebrow": "WaterWorks  Others",
     "titleBefore": "Beyond the",
-    "titleEm": "stage",
+    "titleEm": "Stage",
     "lead": "Floating fountains, programmable jets, pools, and play areas from the Ripples workshop.",
     "body": "A curated set of systems outside multimedia shows and architectural fountains  each still designed, engineered, and built in-house.",
     "gallery": [],
@@ -147,7 +205,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "id": "floating-fountains",
         "label": "Floating Fountains",
         "titleBefore": "Floating",
-        "titleEm": "systems",
+        "titleEm": "Systems",
         "gallery": [
           {
             "title": "ADNOC, Abu Dhabi",
@@ -207,7 +265,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "id": "programmable-fountains",
         "label": "Programmable Fountains",
         "titleBefore": "Programmable",
-        "titleEm": "jets",
+        "titleEm": "Jets",
         "gallery": [
           {
             "title": "Harsha, Dubai",
@@ -271,7 +329,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "id": "swimming-pools",
         "label": "Swimming Pools",
         "titleBefore": "Swimming",
-        "titleEm": "pools",
+        "titleEm": "Pools",
         "gallery": [
           {
             "title": "Country Inn & Suites, Ajmer",
@@ -335,7 +393,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "id": "kids-play",
         "label": "Kids Play Areas",
         "titleBefore": "Kids",
-        "titleEm": "play",
+        "titleEm": "Play",
         "gallery": [
           {
             "title": "Al Ain Stadium, UAE",

@@ -4,6 +4,7 @@ import FadeUp from '../../motion/FadeUp'
 import JourneyChapter from '../journey/JourneyChapter'
 import SectionHeading from '../journey/SectionHeading'
 import SplitPanel from '../journey/SplitPanel'
+import GalleryCollage from '../GalleryCollage.jsx'
 import { CASE_STUDY } from '../../data/caseStudy'
 import CaseStudyHeavyVideo from './CaseStudyHeavyVideo'
 
@@ -68,15 +69,7 @@ export function CaseStudyDesign() {
       className="cs-design"
       ariaLabelledby="cs-design-title"
       media={
-        <div className="cs-sheet">
-          <img
-            className="cs-fill-media cs-fill-media--contain"
-            src={design.image.src}
-            alt={design.image.alt}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+        <GalleryCollage items={design.images} label="Design drawings collage" />
       }
     >
       <SectionHeading
@@ -87,33 +80,12 @@ export function CaseStudyDesign() {
         body={design.body}
         ruled
       />
-    </SplitPanel>
-  )
-}
-
-export function CaseStudyDrawing() {
-  const { drawing } = CASE_STUDY
-  return (
-    <JourneyChapter id="drawing" className="cs-drawing" aria-labelledby="cs-drawing-title">
-      <div className="r-container">
-        <SectionHeading
-          act={{ label: drawing.eyebrow }}
-          titleId="cs-drawing-title"
-          titleLines={drawing.titleLines}
-          titleEm={drawing.titleEm}
-          body={drawing.body}
-          ruled
-        />
-        <FadeUp className="cs-drawing__frame cs-sheet" y={28} delay={0.1}>
-          <img
-            src={drawing.image.src}
-            alt={drawing.image.alt}
-            loading="lazy"
-            decoding="async"
-          />
+      {design.note ? (
+        <FadeUp as="p" className="cs-design__note" delay={0.18}>
+          {design.note}
         </FadeUp>
-      </div>
-    </JourneyChapter>
+      ) : null}
+    </SplitPanel>
   )
 }
 
@@ -157,7 +129,7 @@ export function CaseStudyFabrication() {
 export function CaseStudyVisualization() {
   const { visualization } = CASE_STUDY
   const modes = visualization.modes
-  const [modeId, setModeId] = useState(modes[0]?.id ?? 'day')
+  const [modeId, setModeId] = useState('night')
   const stageRef = useRef(null)
   const videoRefs = useRef({})
 

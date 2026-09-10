@@ -10,7 +10,7 @@ export default function BrandTrail() {
       <div className="brand-trail__head r-container">
         <div>
           <FadeUp as="p" className="r-label">
-            Backed by
+            Trusted by
           </FadeUp>
           <SplitLines as="h2" className="r-display">
             Institutions &amp; brands <em>that demand excellence</em>

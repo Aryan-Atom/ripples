@@ -11,6 +11,7 @@ import Contact from './pages/Contact.jsx'
 import CapabilityPage from './pages/CapabilityPage.jsx'
 
 const CaseStudy = lazy(() => import('./pages/CaseStudy.jsx'))
+const CaseStudyIndex = lazy(() => import('./pages/CaseStudyIndex.jsx'))
 const Journey = lazy(() => import('./pages/Journey.jsx'))
 
 /** Legacy capability URLs that still have working page data. */
@@ -59,6 +60,14 @@ export default function App() {
           <Route path="/worldwide" element={<Worldwide />} />
           <Route
             path="/case-study"
+            element={
+              <Suspense fallback={null}>
+                <CaseStudyIndex />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/case-study/:slug"
             element={
               <Suspense fallback={null}>
                 <CaseStudy />

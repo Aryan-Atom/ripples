@@ -1,14 +1,61 @@
+import { Link } from 'react-router-dom'
 import FadeUp from '../../motion/FadeUp'
 import CaseStudyHeavyVideo from './CaseStudyHeavyVideo'
 import { CASE_STUDY } from '../../data/caseStudy'
 import { emphasizeLine } from '../../data/journey'
 
 /** Hero Intro.mp4  stream only while on screen, drop buffer after leave. */
-export default function CaseStudyHero() {
-  const { hero } = CASE_STUDY
+export default function CaseStudyHero({
+  hero = CASE_STUDY.hero,
+  to,
+  links,
+  titleId = 'cs-hero-title',
+  titleAs = 'h1',
+}) {
+  const TitleTag = titleAs
+  const placeLinks = links ?? (to ? [{ to, place: hero.place }] : null)
+
+  const inner = (
+    <div className="cs-hero__inner r-container">
+      <FadeUp as="p" className="r-label cs-hero__eyebrow">
+        {hero.eyebrow}
+      </FadeUp>
+
+      <FadeUp as={TitleTag} id={titleId} className="cs-hero__title" y={28} delay={0.08}>
+        {hero.titleLines.map((line) => {
+          const parts = emphasizeLine(line, hero.titleEm)
+          return (
+            <span key={line} className="cs-hero__title-line">
+              {parts.before}
+              {parts.em ? <em>{parts.em}</em> : null}
+              {parts.after}
+            </span>
+          )
+        })}
+      </FadeUp>
+
+      {placeLinks ? (
+        <div className="cs-hero__places">
+          {placeLinks.map((item) => (
+            <Link key={item.to} to={item.to} className="cs-hero__place-row">
+              <span className="cs-hero__place">{item.place}</span>
+              <span className="cs-hero__more">
+                Know More
+                <span className="cs-hero__more-arrow" aria-hidden="true">
+                  &rarr;
+                </span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <p className="cs-hero__place">{hero.place}</p>
+      )}
+    </div>
+  )
 
   return (
-    <header className="cs-hero" aria-labelledby="cs-hero-title">
+    <header className="cs-hero" aria-labelledby={titleId}>
       <CaseStudyHeavyVideo
         src={hero.video}
         poster={hero.poster}
@@ -18,29 +65,8 @@ export default function CaseStudyHero() {
         veilClassName="cs-hero__veil"
         rootMargin="10% 0px"
       />
-
-      <div className="cs-hero__inner r-container">
-        <FadeUp as="p" className="r-label cs-hero__eyebrow">
-          {hero.eyebrow}
-        </FadeUp>
-
-        <FadeUp as="h1" id="cs-hero-title" className="cs-hero__title" y={28} delay={0.08}>
-          {hero.titleLines.map((line) => {
-            const parts = emphasizeLine(line, hero.titleEm)
-            return (
-              <span key={line} className="cs-hero__title-line">
-                {parts.before}
-                {parts.em ? <em>{parts.em}</em> : null}
-                {parts.after}
-              </span>
-            )
-          })}
-        </FadeUp>
-
-        <FadeUp as="p" className="cs-hero__place" delay={0.2} y={20}>
-          {hero.place}
-        </FadeUp>
-      </div>
+      {placeLinks ? <div className="cs-hero__frost" aria-hidden="true" /> : null}
+      {inner}
     </header>
   )
 }

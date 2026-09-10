@@ -53,7 +53,11 @@ export default function HeroLogoReveal() {
     <div ref={wrapRef} className="hero-logo-end" aria-hidden="true" style={{ opacity: 0 }}>
       <div className="hero-logo-end__mark">
         <img src={asset('logo.webp')} alt="" className="hero-logo-end__icon" />
-        <span className="hero-logo-end__word">Ripples</span>
+        <span className="hero-logo-end__copy">
+          <span className="hero-logo-end__word">
+            Rip<span className="hero-logo-end__tail">ples<span className="hero-logo-end__tag">water technology</span></span>
+          </span>
+        </span>
       </div>
     </div>
   )

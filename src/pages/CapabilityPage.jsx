@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import {
   CAPABILITY_LINKS,
@@ -8,12 +8,9 @@ import {
 } from '../data/capabilities'
 import PageHero from '../components/PageHero.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
-import GalleryCoverflow from '../components/GalleryCoverflow.jsx'
-import WorldwideShowcase from '../components/WorldwideShowcase.jsx'
+import GalleryCollage from '../components/GalleryCollage.jsx'
+import MultimediaProjectCards from '../components/MultimediaProjectCards.jsx'
 import FadeUp from '../motion/FadeUp'
-
-/** Prefab / Multimedia: first few as coverflow cards, the rest in the normal grid. */
-const COVERFLOW_COUNT = 5
 
 function GalleryGrid({ items }) {
   if (!items?.length) return null
@@ -31,27 +28,41 @@ function GalleryGrid({ items }) {
   )
 }
 
-function MixedSectionGallery({ items, label }) {
-  if (!items?.length) return null
+function sectionHeading(section) {
+  if (!section) return null
+  if (section.titleBefore) {
+    return (
+      <>
+        {section.titleBefore} <em>{section.titleEm}</em>
+      </>
+    )
+  }
+  if (section.id === 'prefab-pools') {
+    return (
+      <>
+        Prefab <em>Pools</em>
+      </>
+    )
+  }
+  if (section.id === 'prefab-fountains') {
+    return (
+      <>
+        Prefab <em>Fountains</em>
+      </>
+    )
+  }
+  return section.label
+}
 
-  const coverCount = Math.min(COVERFLOW_COUNT, items.length)
-  const coverItems = items.slice(0, coverCount)
-  const gridItems = items.length > coverCount ? items.slice(coverCount) : []
-
-  return (
-    <div className="prefab-gallery-mix">
-      {/* Keep media outside FadeUp so ScrollReveal can't leave photos at opacity 0 */}
-      <div className="prefab-gallery-mix__coverflow">
-        <GalleryCoverflow items={coverItems} label={`${label} cards`} />
-      </div>
-      {gridItems.length > 0 && (
-        <div className="capability-gallery__wrap prefab-gallery-mix__grid">
-          <p className="r-label prefab-gallery-mix__grid-label">More from this set</p>
-          <GalleryGrid items={gridItems} />
-        </div>
-      )}
-    </div>
-  )
+function sectionIdFromHash(page) {
+  if (!page?.sections?.length) return null
+  const hash = typeof window !== 'undefined' ? window.location.hash?.slice(1) : ''
+  const match = page.sections.find((section) => section.id === hash)
+  if (match) return match.id
+  if (page.slug === 'prefab-water-features') {
+    return page.sections.find((section) => section.id === 'prefab-fountains')?.id ?? page.sections[0].id
+  }
+  return page.sections[0].id
 }
 
 /**
@@ -62,6 +73,8 @@ export default function CapabilityPage({ slug: slugProp }) {
   const params = useParams()
   const slug = slugProp || params.slug
   const page = getCapabilityPage(slug)
+  const [collageSectionId, setCollageSectionId] = useState(() => sectionIdFromHash(page))
+  const [collageSwitched, setCollageSwitched] = useState(false)
 
   useEffect(() => {
     const hash = window.location.hash?.slice(1)
@@ -75,6 +88,23 @@ export default function CapabilityPage({ slug: slugProp }) {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
   }, [slug])
 
+  useEffect(() => {
+    if (
+      !page?.sections?.length ||
+      (page.slug !== 'prefab-water-features' && page.slug !== 'waterworks-others')
+    ) {
+      return undefined
+    }
+
+    const applyHash = () => {
+      setCollageSectionId(sectionIdFromHash(page))
+    }
+
+    applyHash()
+    window.addEventListener('hashchange', applyHash)
+    return () => window.removeEventListener('hashchange', applyHash)
+  }, [page])
+
   if (!page) return <Navigate to="/" replace />
 
   const related = getCapabilityRelatedLinks(page.slug)
@@ -84,15 +114,10 @@ export default function CapabilityPage({ slug: slugProp }) {
   const isArchitectural = page.slug === 'architectural-fountains'
   const isOthers = page.slug === 'waterworks-others'
   const usesCoverflowGallery = isPrefab || isMultimedia || isArchitectural || isOthers
-  const showreel = isMultimedia ? page.showreel : null
-  const sectionedGalleries = isPrefab || isOthers
+  const isCollageSwitch = isPrefab || isOthers
   const isWaterCategory = WATER_FEATURE_CATEGORIES.some((c) => c.slug === page.slug)
-  const isWaterworksCategory = [
-    'multimedia-shows',
-    'architectural-fountains',
-    'prefab-water-features',
-    'waterworks-others',
-  ].includes(page.slug)
+  const collageSection =
+    page.sections?.find((section) => section.id === collageSectionId) ?? page.sections?.[0]
 
   return (
     <div
@@ -112,46 +137,55 @@ export default function CapabilityPage({ slug: slugProp }) {
           lead={page.lead}
         />
 
-        <section className="capability-intro home-section" aria-label="Overview">
-          <div className="r-container capability-intro__inner">
-            <FadeUp as="p" className="capability-intro__body r-body">
-              {page.body}
-            </FadeUp>
-
-            {isWaterworksCategory && (
-              <FadeUp delay={0.1}>
-                <Link className="r-link capability-back" to="/waterworks">
-                  ← All WaterWorks
-                </Link>
+        {isCollageSwitch && collageSection?.gallery?.length > 0 && (
+          <section
+            className="capability-gallery home-section"
+            aria-label={`${collageSection.label} gallery`}
+            id={collageSection.id}
+          >
+            <div className="r-container multimedia-gallery-block">
+              <FadeUp as="p" className="r-label">
+                Selected work
               </FadeUp>
-            )}
-            {isWaterCategory && !isWaterworksCategory && (
-              <FadeUp delay={0.1}>
-                <Link className="r-link capability-back" to="/waterworks">
-                  ← All WaterWorks
-                </Link>
+              <FadeUp as="h2" className="r-display capability-section__title" y={24}>
+                <span
+                  key={collageSection.id}
+                  className={collageSwitched ? 'prefab-switch-title' : undefined}
+                >
+                  {sectionHeading(collageSection)}
+                </span>
               </FadeUp>
-            )}
-          </div>
-        </section>
-
-        {isOthers && page.sections?.length > 0 && (
-          <section className="others-toc home-section" aria-label="Browse categories">
-            <div className="r-container">
-              <FadeUp
-                as="ul"
-                className="others-toc__featured"
-                stagger={0.05}
-                delay={0.06}
-                aria-label="Collections"
+              <div
+                className={`prefab-switch${page.sections.length > 2 ? ' prefab-switch--many' : ''}`}
+                role="tablist"
+                aria-label={isPrefab ? 'Prefab type' : 'Other waterworks'}
               >
-                {page.sections.map((section) => (
-                  <li className="others-toc__featured-item" key={section.id}>
-                    <a href={`#${section.id}`}>{section.label}</a>
-                  </li>
-                ))}
-              </FadeUp>
+                {page.sections.map((section) => {
+                  const selected = section.id === collageSection.id
+                  return (
+                    <button
+                      key={section.id}
+                      type="button"
+                      role="tab"
+                      className={`prefab-switch__btn${selected ? ' is-active' : ''}`}
+                      aria-selected={selected}
+                      onClick={() => {
+                        if (section.id === collageSection.id) return
+                        setCollageSwitched(true)
+                        setCollageSectionId(section.id)
+                        window.history.replaceState(null, '', `#${section.id}`)
+                      }}
+                    >
+                      {section.label}
+                    </button>
+                  )
+                })}
+              </div>
             </div>
+            <GalleryCollage
+              items={collageSection.gallery}
+              label={`${collageSection.label} collage`}
+            />
           </section>
         )}
 
@@ -173,79 +207,8 @@ export default function CapabilityPage({ slug: slugProp }) {
           </section>
         )}
 
-        {sectionedGalleries &&
-          page.sections?.map((section) => (
-            <section
-              className={`capability-gallery home-section${isOthers ? ' others-gallery-section' : ''}`}
-              aria-label={section.label}
-              key={section.id}
-              id={section.id}
-            >
-              <div className="r-container multimedia-gallery-block">
-                <FadeUp as="p" className="r-label">
-                  {section.label}
-                </FadeUp>
-                <FadeUp as="h2" className="r-display capability-section__title" y={24}>
-                  {section.titleBefore ? (
-                    <>
-                      {section.titleBefore} <em>{section.titleEm}</em>
-                    </>
-                  ) : section.label === 'Prefab Pools' ? (
-                    <>
-                      Prefab <em>pools</em>
-                    </>
-                  ) : (
-                    <>
-                      Prefab <em>fountains</em>
-                    </>
-                  )}
-                </FadeUp>
-                <MixedSectionGallery items={section.gallery} label={section.label} />
-              </div>
-            </section>
-          ))}
-
-        {showreel?.src && (
-          <div id="multimedia-showreel">
-            <WorldwideShowcase
-              compact
-              ariaLabel="Multimedia showreel"
-              label="In motion"
-              title={
-                <>
-                  Nightly <em>performance</em>
-                </>
-              }
-              lead="Light, music, and water choreographed as one system  a showreel from the floor, engineered to hold its drama after dark."
-              items={[
-                {
-                  index: '',
-                  title: showreel.caption || showreel.title || 'Bhopal Musical',
-                  description: showreel.description,
-                  video: showreel.src,
-                  align: showreel.align || 'right',
-                },
-              ]}
-            />
-          </div>
-        )}
-
-        {isMultimedia && page.gallery?.length > 0 && (
-          <section
-            className="capability-gallery home-section"
-            aria-label="Multimedia gallery"
-            id="multimedia-gallery"
-          >
-            <div className="r-container multimedia-gallery-block">
-              <FadeUp as="p" className="r-label">
-                Selected shows
-              </FadeUp>
-              <FadeUp as="h2" className="r-display capability-section__title" y={24}>
-                Nightly <em>spectacles</em>
-              </FadeUp>
-              <MixedSectionGallery items={page.gallery} label="Multimedia" />
-            </div>
-          </section>
+        {isMultimedia && page.projects?.length > 0 && (
+          <MultimediaProjectCards projects={page.projects} gallery={page.gallery} />
         )}
 
         {isArchitectural && page.gallery?.length > 0 && (
@@ -261,8 +224,8 @@ export default function CapabilityPage({ slug: slugProp }) {
               <FadeUp as="h2" className="r-display capability-section__title" y={24}>
                 Built as <em>form</em>
               </FadeUp>
-              <MixedSectionGallery items={page.gallery} label="Architectural" />
             </div>
+            <GalleryCollage items={page.gallery} label="Architectural collage" />
           </section>
         )}
 

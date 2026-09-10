@@ -16,13 +16,18 @@ const DEFAULT_TITLE = (
 const DEFAULT_LEAD =
   'Scroll through landmark launches, civic unveilings, and industry showcases  each engineered for its climate, audience, and skyline.'
 
+function isVideoSrc(src) {
+  return typeof src === 'string' && /\.(mp4|webm|ogg)(\?|$)/i.test(src)
+}
+
 export default function WorldwideShowcase({
   items = WORLDWIDE_EVENTS,
-  label = 'On the world stage',
+  label = 'Ripples on the world stage',
   title = DEFAULT_TITLE,
   lead = DEFAULT_LEAD,
   ariaLabel = 'Global event showcase',
   compact = false,
+  variant,
 }) {
   const wrapRef = useRef(null)
   const slideRefs = useRef([])
@@ -89,7 +94,7 @@ export default function WorldwideShowcase({
 
   return (
     <section
-      className={`worldwide-showcase${compact ? ' worldwide-showcase--compact' : ''}`}
+      className={`worldwide-showcase${compact ? ' worldwide-showcase--compact' : ''}${variant ? ` worldwide-showcase--${variant}` : ''}`}
       aria-label={ariaLabel}
     >
       <div className="worldwide-showcase__header r-container">
@@ -124,17 +129,26 @@ export default function WorldwideShowcase({
               <div className="worldwide-showcase__slide-inner">
                 <div className="worldwide-showcase__composition">
                   <div className="worldwide-showcase__frame">
-                    <video
-                      ref={(el) => {
-                        videoRefs.current[i] = el
-                      }}
-                      className="worldwide-showcase__video"
-                      src={event.video}
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                    />
+                    {isVideoSrc(event.video) ? (
+                      <video
+                        ref={(el) => {
+                          videoRefs.current[i] = el
+                        }}
+                        className="worldwide-showcase__video"
+                        src={event.video}
+                        poster={event.poster}
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                      />
+                    ) : (
+                      <img
+                        className="worldwide-showcase__video"
+                        src={event.image || event.poster || event.video}
+                        alt=""
+                      />
+                    )}
                   </div>
 
                   <div

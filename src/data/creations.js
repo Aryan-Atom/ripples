@@ -121,56 +121,72 @@ export const CREATIONS = [
   },
 ]
 
-/** Homepage Selected Creations  real project photos from front-page. */
-export const FEATURED_CREATIONS = withRemoteAssets([
+/** Homepage Selected Creations — one lead project per WaterWorks category. */
+export const FEATURED_CREATION_GROUPS = withRemoteAssets([
   {
-    id: 'adnoc-abu-dhabi',
-    title: 'ADNOC Abu Dhabi',
-    location: 'Abu Dhabi, UAE',
-    year: '2018',
-    category: 'Architectural',
-    summary:
-      'A landmark campus fountain for ADNOC  choreographed jets and light composed for the desert skyline.',
-    image: '/assets/front-page/adnoc-abu-dhabi.webp',
+    id: 'multimedia',
+    label: 'Multimedia',
+    to: '/waterworks/multimedia',
+    items: [
+      {
+        id: 'bhopal-musical',
+        title: 'Bhopal Musical',
+        location: 'Bhopal, India',
+        category: 'Multimedia',
+        summary:
+          'A civic musical fountain where light, score, and water move as one system  programmed in-house for the nightly show.',
+        image: '/assets/multimedia/bhopal-musical.webp',
+      },
+    ],
   },
   {
-    id: 'ibc-tech-park-bangalore',
-    title: 'IBC Tech Park',
-    location: 'Bangalore, India',
-    year: '2019',
-    category: 'Architectural',
-    summary:
-      'An arrival water feature for a tech campus  precise nozzle work that frames the plaza without overpowering it.',
-    image: '/assets/front-page/ibc-tech-park-bangalore.webp',
+    id: 'architectural',
+    label: 'Architectural',
+    to: '/waterworks/architectural',
+    items: [
+      {
+        id: 'adnoc-abu-dhabi',
+        title: 'ADNOC Abu Dhabi',
+        location: 'Abu Dhabi, UAE',
+        category: 'Architectural',
+        summary:
+          'A landmark campus fountain for ADNOC  choreographed jets and light composed for the desert skyline.',
+        image: '/assets/front-page/adnoc-abu-dhabi.webp',
+      },
+    ],
   },
   {
-    id: 'dlf-golf-club-gurgaon',
-    title: 'DLF Golf Club',
-    location: 'Gurgaon, India',
-    year: '2017',
-    category: 'Architectural',
-    summary:
-      'A resort-scale fountain for the golf club landscape  elegant arcs tuned for evening light and open grounds.',
-    image: '/assets/front-page/dlf-golf-club-gurgaon.webp',
+    id: 'prefabs',
+    label: 'Prefabs',
+    to: '/waterworks/prefabs',
+    items: [
+      {
+        id: 'prefab-pool-w-goa',
+        title: 'Prefab Pool, W Goa',
+        location: 'Goa, India',
+        category: 'Prefabs',
+        summary:
+          'A workshop-built swimming pool for W Goa  modular precision that arrives ready to set without losing a custom finish.',
+        image: '/assets/prefab/prefab-swimming-pool-w-goa.webp',
+      },
+    ],
   },
   {
-    id: 'aarohan-gurgaon',
-    title: 'Aarohan',
-    location: 'Gurgaon, India',
-    year: '2020',
-    category: 'Architectural',
-    summary:
-      'A residential water composition at Aarohan  calm basins and jets engineered for daily living, not spectacle alone.',
-    image: '/assets/front-page/aarohan-gurgaon.webp',
-  },
-  {
-    id: 'divyashree-nsl-hyderabad',
-    title: 'Divyashree NSL Infratech',
-    location: 'Hyderabad, India',
-    year: '2016',
-    category: 'Architectural',
-    summary:
-      'A commercial campus fountain for Divyashree NSL  structured water geometry that marks the entry and holds the night.',
-    image: '/assets/front-page/divyashree-nsl-hyderabad.webp',
+    id: 'floating-fountains',
+    label: 'Floating Fountains',
+    to: '/waterworks/others#floating-fountains',
+    items: [
+      {
+        id: 'creek-fountain-sharjah',
+        title: 'Creek Fountain',
+        location: 'Sharjah, UAE',
+        category: 'Floating Fountains',
+        summary:
+          'A creek-scale floating array for Sharjah  jets engineered for open water, wind, and a long civic duty cycle.',
+        image: '/assets/ww-others/floating-fountains/creek-fountain-sharjah.webp',
+      },
+    ],
   },
 ])
+
+export const FEATURED_CREATIONS = FEATURED_CREATION_GROUPS.flatMap((group) => group.items)

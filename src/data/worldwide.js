@@ -105,6 +105,19 @@ export const WORLDWIDE_EVENTS = withRemoteAssets([
   },
 ])
 
+/** Landmark project cards  start with ADNOC; more videos can slot in later. */
+export const WORLDWIDE_PROJECTS = withRemoteAssets([
+  {
+    index: '01',
+    title: 'ADNOC Abu Dhabi',
+    description:
+      'A landmark campus fountain for ADNOC  choreographed jets and light composed for the desert skyline.',
+    poster: '/assets/front-page/adnoc-abu-dhabi.webp',
+    image: '/assets/front-page/adnoc-abu-dhabi.webp',
+    align: 'right',
+  },
+])
+
 export const WORLDWIDE_CITIES = [
   'New Delhi',
   'Dubai',

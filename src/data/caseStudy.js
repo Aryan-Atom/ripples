@@ -8,15 +8,31 @@ export function csAsset(file) {
   return asset(`${CS_ASSETS}/${file}`)
 }
 
-export const CASE_STUDY = {
-  hero: {
+export const CASE_STUDY_CHOICES = [
+  {
+    id: 'nehru-garden',
+    to: '/case-study/nehru-garden',
     eyebrow: 'Case Study',
-    titleLines: ['A lake garden', 'asks for a', 'show.'],
-    titleEm: 'show.',
+    titleLines: ['A lake garden', 'asks for a', 'Show.'],
+    titleEm: 'Show.',
     video: csAsset('Intro.mp4'),
     poster: csAsset('before-03.webp'),
     place: 'Nehru Garden, Udaipur',
   },
+  {
+    id: 'wow-goa',
+    to: '/case-study/wow-goa',
+    eyebrow: 'Case Study',
+    titleLines: ['A coastal night', 'asks for a', 'Show.'],
+    titleEm: 'Show.',
+    video: csAsset('Intro.mp4'),
+    poster: csAsset('before-03.webp'),
+    place: 'Wow Goa',
+  },
+]
+
+export const CASE_STUDY = {
+  hero: CASE_STUDY_CHOICES[0],
 
   brief: {
     eyebrow: 'The brief',
@@ -53,21 +69,39 @@ export const CASE_STUDY = {
     titleLines: ['Every fountain', 'starts as', 'a line.'],
     titleEm: 'line.',
     body: 'Before water moves, geometry does. Site surveys, hand sketches, and the first nozzle grid drawn until the idea can carry pressure.',
-    image: {
-      src: csAsset('sketch-01.webp'),
-      alt: 'Hand-annotated Nehru Garden pool layout sketch',
-    },
-  },
-
-  drawing: {
-    eyebrow: 'Approved drawing',
-    titleLines: ['Pool layout', '1:100'],
-    titleEm: '1:100',
-    body: 'The signed musical fountain layout  nozzle families, pump loads, and jet heights locked before fabrication.',
-    image: {
-      src: csAsset('approved-02.webp'),
-      alt: 'Approved Nehru Garden musical fountain layout plan',
-    },
+    note: 'The signed musical fountain layout  nozzle families, pump loads, and jet heights locked before fabrication.',
+    images: [
+      {
+        src: csAsset('sketch-01.webp'),
+        title: 'Site sketch',
+        alt: 'Hand-annotated Nehru Garden pool layout sketch',
+      },
+      {
+        src: csAsset('approved-02.webp'),
+        title: 'Pool layout 1:100',
+        alt: 'Approved Nehru Garden musical fountain layout plan',
+      },
+      {
+        src: csAsset('approved-01.webp'),
+        title: 'Hydraulic layout',
+        alt: 'Approved hydraulic layout with elevations',
+      },
+      {
+        src: csAsset('final-01.webp'),
+        title: 'Basin works',
+        alt: 'Section drawings for basin systems',
+      },
+      {
+        src: csAsset('final-02.webp'),
+        title: 'Field systems',
+        alt: 'Plan and elevation for field jets',
+      },
+      {
+        src: csAsset('final-03.webp'),
+        title: 'Assembly',
+        alt: 'Assembly and detailing sheet',
+      },
+    ],
   },
 
   /** Kept engineering overlay  MediaReveal / JOURNEY_DESIGN shape */

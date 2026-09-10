@@ -24,11 +24,15 @@ export function scrollToHash(hash, lenis, options = {}) {
   if (lenis) {
     lenis.scrollTo(el, {
       offset,
-      duration: options.duration ?? 1.15,
+      immediate: options.immediate ?? false,
+      duration: options.immediate ? 0 : (options.duration ?? 1.15),
     })
   } else {
     const top = el.getBoundingClientRect().top + window.scrollY + offset
-    window.scrollTo({ top, behavior: options.behavior ?? 'smooth' })
+    window.scrollTo({
+      top,
+      behavior: options.immediate ? 'auto' : (options.behavior ?? 'smooth'),
+    })
   }
 
   return true

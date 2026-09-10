@@ -102,7 +102,7 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "label": "Water Features",
     "eyebrow": "Capabilities  Water",
     "titleBefore": "Water that",
-    "titleEm": "belongs",
+    "titleEm": "Belongs",
     "lead": "Architectural fountains, floating systems, programmable jets, pools, and play  designed, engineered, and manufactured under one roof since 1989.",
     "body": "Every system begins as a site-specific composition. We shape hydraulics, lighting, and control so the water reads as architecture  then build the hardware ourselves so it performs for decades.",
     "gallery": []
@@ -112,7 +112,7 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "label": "Architectural",
     "eyebrow": "WaterWorks  Architectural",
     "titleBefore": "Fountains as",
-    "titleEm": "architecture",
+    "titleEm": "Architecture",
     "lead": "Site-specific architectural fountains  basins, nozzles, and light composed for plazas, campuses, and civic destinations.",
     "body": "Form follows hydraulics. We design the silhouette and engineer the system so the water holds its line in wind, heat, and daily use  built in our workshop, installed as architecture.",
     "gallery": [
@@ -199,7 +199,7 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "label": "Floating Fountains",
     "eyebrow": "Water Features  Floating",
     "titleBefore": "Lakes, reimagined",
-    "titleEm": "as stages",
+    "titleEm": "As stages",
     "lead": "Floating fountain systems for lakes, lagoons, and open water  reliable platforms that carry light, spray, and spectacle without a permanent basin on shore.",
     "body": "From municipal lakes to private estates, our floating arrays are built for duty cycles, climate, and service access  so the show stays on long after opening night.",
     "gallery": []
@@ -209,7 +209,7 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "label": "Programmable Fountains",
     "eyebrow": "Water Features  Programmable",
     "titleBefore": "Jets that",
-    "titleEm": "listen",
+    "titleEm": "Listen",
     "lead": "Programmable nozzles, jumping jets, and sequenced water  choreographed to music, light, and visitor flow.",
     "body": "We write the show and build the control racks that run it. Precision timing, safe public interaction, and hardware we can service for the life of the installation.",
     "gallery": []
@@ -219,7 +219,7 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "label": "Swimming Pools",
     "eyebrow": "Water Features  Pools",
     "titleBefore": "Pools with",
-    "titleEm": "presence",
+    "titleEm": "Presence",
     "lead": "Hospitality and private pools engineered as destinations  clarity, edge detail, and systems that stay quiet while guests stay longer.",
     "body": "From villas to hotels, we deliver the hydraulic backbone and finishes that make a pool feel intentional, not generic.",
     "gallery": []
@@ -229,7 +229,7 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "label": "Kids Play Areas",
     "eyebrow": "Water Features  Play",
     "titleBefore": "Water play,",
-    "titleEm": "engineered",
+    "titleEm": "Engineered",
     "lead": "Interactive splash pads and kids play fountains that invite joy without compromising safety, filtration, or durability.",
     "body": "Soft flow profiles, accessible decks, and robust manifolds  designed for parks, resorts, and mixed-use destinations that expect daily use.",
     "gallery": []
@@ -239,7 +239,7 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "label": "Prefabs",
     "eyebrow": "WaterWorks  Prefabs",
     "titleBefore": "Factory-built",
-    "titleEm": "water",
+    "titleEm": "Water",
     "lead": "Prefab pools and waterfalls from the Ripples workshop  precision-built modules that install faster without losing the finish of a custom system.",
     "body": "Every prefab piece is manufactured under one roof: swimming pools, rock pools, sheet and trickling waterfalls, geyser jets. Workshop control means tighter tolerances, cleaner edges, and site schedules that stay on track.",
     "gallery": [],

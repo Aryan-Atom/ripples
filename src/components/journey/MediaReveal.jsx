@@ -67,7 +67,7 @@ function MediaReveal({ data = JOURNEY_DESIGN, labelsAside = false }) {
       gsap.to(layer, {
         autoAlpha: on ? 1 : 0,
         scale: on ? 1 : 0.985,
-        duration: 1.1,
+        duration: 0.35,
         ease: 'power2.inOut',
         overwrite: 'auto',
       })
@@ -78,7 +78,7 @@ function MediaReveal({ data = JOURNEY_DESIGN, labelsAside = false }) {
     if (data.slides.length < 2) return undefined
     const id = window.setInterval(() => {
       setIndex((prev) => (prev + 1) % data.slides.length)
-    }, 5200)
+    }, 1600)
     return () => window.clearInterval(id)
   }, [data.slides.length])
 

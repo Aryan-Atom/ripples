@@ -9,39 +9,50 @@ import FadeUp from '../motion/FadeUp'
 
 export default function SiteFooter() {
   const markRef = useRef(null)
+  const markTagRef = useRef(null)
   const markWrapRef = useRef(null)
 
   useLayoutEffect(() => {
     const el = markRef.current
+    const tag = markTagRef.current
     const wrap = markWrapRef.current
     if (!el) return undefined
 
     if (prefersReducedMotion()) {
       wrap?.classList.add('is-armed')
       showElement(el)
+      showElement(tag)
       return undefined
     }
 
     let split
+    let tagSplit
     let scrollTrigger
     let cancelled = false
 
     // Keep mark invisible until chars sit under the mask.
     gsap.set(el, { autoAlpha: 0 })
+    if (tag) gsap.set(tag, { autoAlpha: 0 })
     wrap?.classList.remove('is-armed')
 
     const run = () => {
       if (cancelled) return
       split = safeSplitText(el, { type: 'chars', mask: 'chars', charsClass: 'footer-mark-char' })
+      tagSplit = tag
+        ? safeSplitText(tag, { type: 'chars', mask: 'chars', charsClass: 'footer-mark-char' })
+        : null
       if (!split?.chars?.length) {
         wrap?.classList.add('is-armed')
         showElement(el)
+        showElement(tag)
         return
       }
 
       gsap.set(split.chars, { yPercent: 110 })
+      if (tagSplit?.chars?.length) gsap.set(tagSplit.chars, { yPercent: 110 })
       wrap?.classList.add('is-armed')
       showElement(el)
+      showElement(tag)
 
       const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
       tl.to(split.chars, {
@@ -50,6 +61,17 @@ export default function SiteFooter() {
         stagger: 0.045,
         delay: 0.12,
       })
+      if (tagSplit?.chars?.length) {
+        tl.to(
+          tagSplit.chars,
+          {
+            yPercent: 0,
+            duration: 1.1,
+            stagger: 0.04,
+          },
+          0.28,
+        )
+      }
 
       scrollTrigger = attachScrollReveal(tl, el, { start: 'top 92%' })
     }
@@ -61,8 +83,10 @@ export default function SiteFooter() {
       cancelFonts()
       scrollTrigger?.kill()
       split?.revert?.()
+      tagSplit?.revert?.()
       wrap?.classList.remove('is-armed')
       showElement(el)
+      showElement(tag)
     }
   }, [])
 
@@ -133,7 +157,10 @@ export default function SiteFooter() {
       </div>
 
       <div className="site-footer__mark" ref={markWrapRef} aria-hidden="true">
-        <span ref={markRef} className="r-brand">Ripples</span>
+        <span className="site-footer__mark-lockup">
+          <span ref={markRef} className="r-brand site-footer__mark-word">Ripples</span>
+          <span ref={markTagRef} className="site-footer__mark-tag">water technology</span>
+        </span>
       </div>
 
       <div className="site-footer__bottom r-container">

@@ -20,7 +20,7 @@ export default function Journey() {
               Company journey
             </FadeUp>
             <FadeUp as="h1" id="journey-stub-title" className="journey-stub-hero__title" y={24}>
-              35 years of <em>engineering</em> excellence
+              35 years of <em>Engineering</em> excellence
             </FadeUp>
             <FadeUp as="p" className="journey-stub-hero__lead" delay={0.1} y={18}>
               From the first workshop to projects worldwide  the Ripples timeline, told as it

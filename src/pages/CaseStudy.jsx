@@ -1,11 +1,10 @@
 import { Navigate, useParams } from 'react-router-dom'
-import CaseStudyHero from '../components/caseStudy/CaseStudyHero'
 import {
   CaseStudyBrief,
   CaseStudyBefore,
   CaseStudyDesign,
-  CaseStudyDrawing,
   CaseStudyFabrication,
+  CaseStudyVisualization,
   CaseStudyFooterCta,
 } from '../components/caseStudy/CaseStudySections'
 import CaseStudyFinale from '../components/caseStudy/CaseStudyFinale'
@@ -30,12 +29,11 @@ export default function CaseStudy() {
       <div className="journey-page__atmosphere" aria-hidden="true" />
 
       <main className="journey-page__main">
-        <CaseStudyHero hero={hero} titleId={`cs-hero-${hero.id}`} />
         <CaseStudyBrief />
         <CaseStudyBefore />
         <CaseStudyDesign />
-        <CaseStudyDrawing />
         <MediaReveal data={CASE_STUDY.engineering} labelsAside />
+        <CaseStudyVisualization />
         <CaseStudyFabrication />
         <ConstructionGallery data={CASE_STUDY.construction} />
         <CaseStudyFinale />

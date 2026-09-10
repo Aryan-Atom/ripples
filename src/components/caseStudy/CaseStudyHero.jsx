@@ -37,10 +37,13 @@ export default function CaseStudyHero({
       {placeLinks ? (
         <div className="cs-hero__places">
           {placeLinks.map((item) => (
-            <Link key={item.to} to={item.to} className="cs-hero__place-link">
-              {item.place}
-              <span className="cs-hero__place-arrow" aria-hidden="true">
-                &rarr;
+            <Link key={item.to} to={item.to} className="cs-hero__place-row">
+              <span className="cs-hero__place">{item.place}</span>
+              <span className="cs-hero__more">
+                Know More
+                <span className="cs-hero__more-arrow" aria-hidden="true">
+                  &rarr;
+                </span>
               </span>
             </Link>
           ))}
@@ -62,6 +65,7 @@ export default function CaseStudyHero({
         veilClassName="cs-hero__veil"
         rootMargin="10% 0px"
       />
+      {placeLinks ? <div className="cs-hero__frost" aria-hidden="true" /> : null}
       {inner}
     </header>
   )

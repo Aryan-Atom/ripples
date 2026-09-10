@@ -25,7 +25,7 @@ export default function WorldwideHero() {
           <SplitLines as="h1" id="worldwide-hero-title" className="worldwide-hero__title">
             Ripples on the
             <br />
-            <em>world stage.</em>
+            <em>World stage.</em>
           </SplitLines>
           <FadeUp as="p" className="worldwide-hero__lead" delay={0.08}>
             Shows that move water and crowds. Landmark fountains delivered

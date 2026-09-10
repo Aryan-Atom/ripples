@@ -23,11 +23,11 @@ export default function ClientLogin() {
           title={
             mode === 'login' ? (
               <>
-                Welcome <em>back</em>
+                Welcome <em>Back</em>
               </>
             ) : (
               <>
-                Request <em>access</em>
+                Request <em>Access</em>
               </>
             )
           }

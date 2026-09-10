@@ -3,7 +3,7 @@ import { gsap, ScrollTrigger, prefersReducedMotion } from '../../motion/gsap'
 import LazyVideo from '../LazyVideo'
 import JourneyChapter from '../journey/JourneyChapter'
 import { CASE_STUDY } from '../../data/caseStudy'
-import { CaseStudyResult, CaseStudyVisualization } from './CaseStudySections'
+import { CaseStudyResult } from './CaseStudySections'
 
 function playVideo(video) {
   if (!video) return
@@ -179,11 +179,10 @@ function CaseStudyPinnedInstall() {
   )
 }
 
-/** Day/Night → Precision/Execution → final output, Case Study only. */
+/** Precision/Execution → final output, Case Study only. */
 export default function CaseStudyFinale() {
   return (
     <div className="cs-finale">
-      <CaseStudyVisualization />
       <CaseStudyPinnedInstall />
       <CaseStudyResult />
     </div>

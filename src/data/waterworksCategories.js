@@ -86,7 +86,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
     "label": "Multimedia",
     "eyebrow": "WaterWorks  Multimedia",
     "titleBefore": "Water as",
-    "titleEm": "performance",
+    "titleEm": "Performance",
     "lead": "Multimedia fountain shows  light, music, and water choreographed as one system.",
     "body": "From lake spectacles to urban promenades, we design and manufacture the show systems that turn water into a nightly performance.",
     "showreel": {
@@ -196,7 +196,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
     "label": "Others",
     "eyebrow": "WaterWorks  Others",
     "titleBefore": "Beyond the",
-    "titleEm": "stage",
+    "titleEm": "Stage",
     "lead": "Floating fountains, programmable jets, pools, and play areas from the Ripples workshop.",
     "body": "A curated set of systems outside multimedia shows and architectural fountains  each still designed, engineered, and built in-house.",
     "gallery": [],
@@ -205,7 +205,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "id": "floating-fountains",
         "label": "Floating Fountains",
         "titleBefore": "Floating",
-        "titleEm": "systems",
+        "titleEm": "Systems",
         "gallery": [
           {
             "title": "ADNOC, Abu Dhabi",
@@ -265,7 +265,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "id": "programmable-fountains",
         "label": "Programmable Fountains",
         "titleBefore": "Programmable",
-        "titleEm": "jets",
+        "titleEm": "Jets",
         "gallery": [
           {
             "title": "Harsha, Dubai",
@@ -329,7 +329,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "id": "swimming-pools",
         "label": "Swimming Pools",
         "titleBefore": "Swimming",
-        "titleEm": "pools",
+        "titleEm": "Pools",
         "gallery": [
           {
             "title": "Country Inn & Suites, Ajmer",
@@ -393,7 +393,7 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "id": "kids-play",
         "label": "Kids Play Areas",
         "titleBefore": "Kids",
-        "titleEm": "play",
+        "titleEm": "Play",
         "gallery": [
           {
             "title": "Al Ain Stadium, UAE",

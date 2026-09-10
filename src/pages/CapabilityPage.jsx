@@ -40,14 +40,14 @@ function sectionHeading(section) {
   if (section.id === 'prefab-pools') {
     return (
       <>
-        Prefab <em>pools</em>
+        Prefab <em>Pools</em>
       </>
     )
   }
   if (section.id === 'prefab-fountains') {
     return (
       <>
-        Prefab <em>fountains</em>
+        Prefab <em>Fountains</em>
       </>
     )
   }
@@ -58,7 +58,11 @@ function sectionIdFromHash(page) {
   if (!page?.sections?.length) return null
   const hash = typeof window !== 'undefined' ? window.location.hash?.slice(1) : ''
   const match = page.sections.find((section) => section.id === hash)
-  return match?.id ?? page.sections[0].id
+  if (match) return match.id
+  if (page.slug === 'prefab-water-features') {
+    return page.sections.find((section) => section.id === 'prefab-fountains')?.id ?? page.sections[0].id
+  }
+  return page.sections[0].id
 }
 
 /**

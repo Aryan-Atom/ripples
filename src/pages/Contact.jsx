@@ -35,7 +35,7 @@ export default function Contact() {
           eyebrow="Contact"
           title={
             <>
-              Make water <em>dance</em>
+              Make water <em>Dance</em>
             </>
           }
           lead="Tell us about the site, the scale, and the feeling you want water to create. We'll take it from there."

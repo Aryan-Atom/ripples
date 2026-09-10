@@ -146,8 +146,32 @@ export default function CreationList({ items, groups }) {
     }
   }
 
+  const isCategoryArea = (event) => {
+    if (event.target?.closest?.('.creation-row__category-cell')) return true
+
+    const row = event.target.closest?.('.creation-row')
+    if (!row) return false
+    const cell = row.querySelector('.creation-row__category-cell')
+    if (!cell) return false
+
+    const rowRect = row.getBoundingClientRect()
+    const cellRect = cell.getBoundingClientRect()
+    const line = row.querySelector('.creation-row__line')
+    const gap = line ? parseFloat(getComputedStyle(line).columnGap || '0') || 0 : 0
+    return (
+      event.clientX >= cellRect.left - gap / 2 &&
+      event.clientX <= rowRect.right &&
+      event.clientY >= rowRect.top &&
+      event.clientY <= rowRect.bottom
+    )
+  }
+
   const showGroupPreview = (index, event) => {
     if (!useDesktopHover) return
+    if (isCategoryArea(event)) {
+      if (activeRef.current >= 0) hidePreview()
+      return
+    }
     const preview = previewRef.current
     activeRef.current = index
     setActive(index)
@@ -160,7 +184,18 @@ export default function CreationList({ items, groups }) {
   }
 
   const movePreview = (event) => {
-    if (!useDesktopHover || activeRef.current < 0) return
+    if (!useDesktopHover) return
+    if (isCategoryArea(event)) {
+      if (activeRef.current >= 0) hidePreview()
+      return
+    }
+    const row = event.target.closest?.('.creation-row')
+    const index = row ? Number(row.dataset.creationIndex) : -1
+    if (index >= 0 && activeRef.current !== index) {
+      showGroupPreview(index, event)
+      return
+    }
+    if (activeRef.current < 0) return
     ensureMovers(previewRef.current)
     moveXRef.current?.(event.clientX)
     moveYRef.current?.(event.clientY)
@@ -211,21 +246,6 @@ export default function CreationList({ items, groups }) {
 
           return (
             <div key={section.id} className="creation-group">
-              {section.label ? (
-                <div className="creation-group__head" onMouseEnter={hidePreview}>
-                  <h3 className="creation-group__title">{section.label}</h3>
-                  {section.to ? (
-                    <Link
-                      className="creation-group__arrow"
-                      to={section.to}
-                      aria-label={`Open ${section.label} in WaterWorks`}
-                    >
-                      <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                  ) : null}
-                </div>
-              ) : null}
-
               <div
                 className="creation-group__projects"
                 onMouseEnter={(event) => showGroupPreview(offset, event)}
@@ -236,10 +256,12 @@ export default function CreationList({ items, groups }) {
                 const i = offset + localIndex
                 const isOpen = useTouchReveal && openIndex === i
                 const isInteractive = useTouchReveal
+                const categoryLabel = section.label || item.category
 
                 return (
                   <article
                     key={item.id}
+                    data-creation-index={i}
                     className={`creation-row${i === active ? ' is-active' : ''}${isOpen ? ' is-open' : ''}`}
                     onClick={isInteractive ? () => activateRow(i) : undefined}
                     onKeyDown={
@@ -258,15 +280,33 @@ export default function CreationList({ items, groups }) {
                   >
                     <div className="creation-row__copy">
                       <div className="creation-row__line">
-                        <span className="creation-row__index">
-                          {String(localIndex + 1).padStart(2, '0')}
-                        </span>
-                        <h3 className="creation-row__title">{item.title}</h3>
+                        <div className="creation-row__project">
+                          <span className="creation-row__index">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          <h3 className="creation-row__title">{item.title}</h3>
+                        </div>
                         <p className="creation-row__summary">{item.summary}</p>
-                        <span className="creation-row__meta">
-                          {item.location}
-                          {item.category ? <em>{item.category}</em> : null}
-                        </span>
+                        <span className="creation-row__place">{item.location}</span>
+                        {categoryLabel ? (
+                          <div className="creation-row__category-cell">
+                            {section.to ? (
+                              <Link
+                                className="creation-row__category"
+                                to={section.to}
+                                aria-label={`Open ${categoryLabel} in WaterWorks`}
+                                onClick={(event) => event.stopPropagation()}
+                              >
+                                {categoryLabel}
+                                <span className="creation-row__category-arrow" aria-hidden="true">
+                                  &rarr;
+                                </span>
+                              </Link>
+                            ) : (
+                              <span className="creation-row__category">{categoryLabel}</span>
+                            )}
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                     <img

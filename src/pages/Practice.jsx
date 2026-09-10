@@ -22,7 +22,7 @@ export default function Practice() {
           eyebrow="The practice  est. 1989"
           title={
             <>
-              Engineers of <em>wonder</em>
+              Engineers of <em>Wonder</em>
             </>
           }
           lead="Ripples is a workshop before it is a studio. Composers, hydraulic engineers, and machinists share one floor in Noida  and one obsession: water that moves people."

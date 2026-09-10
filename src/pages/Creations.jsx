@@ -17,7 +17,7 @@ export default function Creations() {
             eyebrow={water.eyebrow}
             title={
               <>
-                <span className="multimedia-explore__title-main">Water that</span> <em>belongs</em>
+                <span className="multimedia-explore__title-main">Water that</span> <em>Belongs</em>
               </>
             }
             lead={water.lead}

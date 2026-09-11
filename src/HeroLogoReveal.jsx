@@ -21,7 +21,7 @@ function easeOutCubic(t) {
 
 /**
  * End-of-hero wordmark: hidden while the video + copy play, then fades in
- * as a centered solid white “Ripples” wordmark (no plate / mask overlay).
+ * as a centered cool-silver “Ripples” lockup (logo + type, brand temperature).
  */
 export default function HeroLogoReveal() {
   const wrapRef = useRef(null)

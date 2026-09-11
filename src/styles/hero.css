@@ -1,6 +1,6 @@
 /* Hero overlay  used only on the home page scroll animation */
 
-/* ── End-of-hero Ripples wordmark (solid white, dominant) ── */
+/* ── End-of-hero Ripples wordmark (theme medium blue on black) ── */
 
 .hero-logo-end {
   position: absolute;
@@ -20,6 +20,7 @@
   gap: clamp(1rem, 3vw, 2.25rem);
   max-width: min(96vw, 90rem);
   transform: translateX(clamp(-2.75rem, -4.5vw, -1.5rem));
+  filter: drop-shadow(0 0 40px rgba(79, 143, 191, 0.42));
 }
 
 .hero-logo-end__icon {
@@ -30,7 +31,7 @@
   display: block;
   opacity: 1;
   flex-shrink: 0;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(62%) sepia(18%) saturate(980%) hue-rotate(166deg) brightness(1.08) contrast(0.92);
 }
 
 .hero-logo-end__copy {
@@ -46,9 +47,11 @@
   font-weight: 800;
   line-height: 0.9;
   letter-spacing: -0.04em;
-  color: #ffffff;
+  background: linear-gradient(180deg, #eaf4fb 0%, #9ec6e0 46%, var(--color-accent-medium) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   -webkit-text-stroke: 0;
-  text-shadow: 0 0 48px rgba(255, 255, 255, 0.22);
   text-transform: none;
   user-select: none;
   white-space: nowrap;
@@ -70,8 +73,11 @@
   letter-spacing: -0.02em;
   line-height: 1.3;
   padding: 0 0.02em 0.18em;
-  color: #ffffff;
-  opacity: 0.88;
+  background: linear-gradient(180deg, #eaf4fb 0%, #9ec6e0 46%, var(--color-accent-medium) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.95;
   white-space: nowrap;
   pointer-events: none;
   font-variant: normal;

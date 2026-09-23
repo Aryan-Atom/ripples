@@ -30,6 +30,7 @@ export default function PageHero({ eyebrow, title, lead, children, className, co
       }
 
       showElement(el)
+      el.classList.remove('is-revealed')
       gsap.set(split.chars, { yPercent: 108 })
       tween = gsap.to(split.chars, {
         yPercent: 0,
@@ -37,6 +38,7 @@ export default function PageHero({ eyebrow, title, lead, children, className, co
         ease: 'power4.out',
         stagger: { each: 0.02, from: 'start' },
         delay: 0.15,
+        onComplete: () => el.classList.add('is-revealed'),
       })
     }
 

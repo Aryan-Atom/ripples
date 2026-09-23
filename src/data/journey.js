@@ -2,7 +2,7 @@
 
 export const JOURNEY_HERO = {
   label: 'Case Study',
-  titleLines: ['35 years of', 'engineering', 'excellence'],
+  titleLines: ['37 years of', 'engineering', 'excellence'],
   titleEm: 'excellence',
   lead: 'From the first line on paper to opening night  the evolution of Ripples Engineering, told as it was built.',
 }
@@ -84,7 +84,7 @@ export const JOURNEY_TIMELINE = [
   { year: '2006', title: '100 Projects', body: 'Control systems and lighting integrate into large public installations.' },
   { year: '2012', title: 'International', body: 'Multimedia shows become a signature  water, music, and light as one.' },
   { year: '2017', title: '500+ Projects', body: 'Design, R&D, fabrication, and commissioning under one Noida roof.' },
-  { year: 'Today', title: '2,000+', body: 'Thirty-five years on  still drawing the next line.' },
+  { year: 'Today', title: '2,400+', body: 'Thirty-seven years on  still drawing the next line.' },
 ]
 
 export const JOURNEY_TIMELINE_MEDIA = {
@@ -93,15 +93,31 @@ export const JOURNEY_TIMELINE_MEDIA = {
 }
 
 export const JOURNEY_STATS = [
-  { value: '2,000+', label: 'Global Projects' },
-  { value: '150+', label: 'Unique Designs' },
-  { value: '30+', label: 'Countries' },
-  { value: '36+', label: 'Years' },
+  {
+    value: '2,400+',
+    label: 'Projects executed',
+    lines: ['Projects', 'executed'],
+  },
+  {
+    value: '212+',
+    label: 'Experts on company payroll',
+    lines: ['Experts on', 'company payroll'],
+  },
+  {
+    value: '30+',
+    label: 'Project locations worldwide',
+    lines: ['Project locations', 'worldwide'],
+  },
+  {
+    value: '37+',
+    label: 'Years of experience',
+    lines: ['Years of', 'experience'],
+  },
 ]
 
 export const JOURNEY_PHILOSOPHY = {
   label: 'Philosophy',
-  title: '35 years of engineering excellence.',
+  title: '37 years of engineering excellence.',
   aside: 'Engineering, exposed.',
   image: {
     src: '',

@@ -1,8 +1,8 @@
 import { useCallback, useLayoutEffect, useRef } from 'react'
 import { useHeroScrollSubscribe } from 'hero-video-anim'
-import { asset } from './data/assets.js'
+import { COLOR_LOGO } from './data/assets.js'
 
-/** Global hero progress where the end “Ripples” wordmark begins to appear. */
+/** Global hero progress where the end wordmark begins to appear. */
 export const LOGO_END_START = 0.86
 
 /** Mobile starts the end logo a touch earlier so it has room to settle. */
@@ -20,8 +20,8 @@ function easeOutCubic(t) {
 }
 
 /**
- * End-of-hero wordmark: hidden while the video + copy play, then fades in
- * as a centered cool-silver “Ripples” lockup (logo + type, brand temperature).
+ * End-of-hero lockup: hidden while the video + copy play, then fades in
+ * as the official color Ripples wordmark.
  */
 export default function HeroLogoReveal() {
   const wrapRef = useRef(null)
@@ -50,15 +50,12 @@ export default function HeroLogoReveal() {
   }, [update])
 
   return (
-    <div ref={wrapRef} className="hero-logo-end" aria-hidden="true" style={{ opacity: 0 }}>
-      <div className="hero-logo-end__mark">
-        <img src={asset('logo.webp')} alt="" className="hero-logo-end__icon" />
-        <span className="hero-logo-end__copy">
-          <span className="hero-logo-end__word">
-            Rip<span className="hero-logo-end__tail">ples<span className="hero-logo-end__tag">water technology</span></span>
-          </span>
-        </span>
-      </div>
+    <div ref={wrapRef} className="hero-logo-end" style={{ opacity: 0 }}>
+      <img
+        src={COLOR_LOGO}
+        alt="Ripples water technology"
+        className="hero-logo-end__brand"
+      />
     </div>
   )
 }

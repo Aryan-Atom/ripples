@@ -181,6 +181,16 @@
   overflow: visible;
 }
 
+/* Keep a sliver of clip-box for the rise, then drop the mask so italic
+   serifs (Architecture “A”) are not chopped on the lower left. */
+.page-hero__title [style*='overflow'] {
+  overflow-clip-margin: 0.18em;
+}
+
+.page-hero__title.is-revealed [style*='overflow'] {
+  overflow: visible !important;
+}
+
 /* Nudge the split masks slightly upward so descenders (g, y) sit clear of
    the container edge. This affects PageHero titles and the Practice process
    title below to keep visual alignment consistent. */

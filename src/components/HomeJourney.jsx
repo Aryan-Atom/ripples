@@ -106,7 +106,7 @@ export default function HomeJourney() {
           Company journey
         </FadeUp>
         <SplitLines as="h2" className="r-display">
-          35 years of <em>engineering</em> excellence
+          37 years of <em>engineering</em> excellence
         </SplitLines>
         <FadeUp as="p" className="r-body home-journey__lead" delay={0.1}>
           From the first workshop to the world.

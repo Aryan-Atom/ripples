@@ -8,7 +8,7 @@ function WorldwideGlobeAmbient() {
     <div className="worldwide-hero__globe-ambient" aria-hidden="true">
       <div className="worldwide-hero__globe-stat">
         <span className="worldwide-hero__globe-stat-value">30+</span>
-        <span className="worldwide-hero__globe-stat-label">Countries</span>
+        <span className="worldwide-hero__globe-stat-label">Project locations worldwide</span>
       </div>
       <WorldwideGlobe variant="ambient" />
     </div>

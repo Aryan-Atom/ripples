@@ -12,9 +12,13 @@ export default function CounterStats() {
         </FadeUp>
         <ul className="journey-stats__grid">
           {JOURNEY_STATS.map((stat, i) => (
-            <FadeUp as="li" className="journey-stats__item" key={stat.label} delay={i * 0.06}>
+            <FadeUp as="li" className="journey-stats__item" key={stat.value} delay={i * 0.06}>
               <StatCounter value={stat.value} className="journey-stats__value r-stat" />
-              <span className="journey-stats__label">{stat.label}</span>
+              <span className="journey-stats__label">
+                {stat.lines.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </span>
             </FadeUp>
           ))}
         </ul>

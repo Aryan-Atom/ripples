@@ -30,10 +30,26 @@ export const NAV_LINKS = [
 ]
 
 export const HOME_STATS = [
-  { value: '36+', label: 'Years' },
-  { value: '2,000+', label: 'Projects' },
-  { value: '170+', label: 'Experts' },
-  { value: '30+', label: 'Countries' },
+  {
+    value: '37+',
+    label: 'Years of experience',
+    lines: ['Years of', 'experience'],
+  },
+  {
+    value: '212+',
+    label: 'Experts on company payroll',
+    lines: ['Experts on', 'company payroll'],
+  },
+  {
+    value: '30+',
+    label: 'Project locations worldwide',
+    lines: ['Project locations', 'worldwide'],
+  },
+  {
+    value: '2,400+',
+    label: 'Projects executed',
+    lines: ['Projects', 'executed'],
+  },
 ]
 
 export const IMAGE_BASE = 'https://www.ripplesfountains.com'

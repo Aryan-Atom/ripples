@@ -1,5 +1,122 @@
 /** WaterWorks landing categories + gallery page payloads. */
-import { withRemoteAssets } from './assets.js'
+import { folderMedia, withRemoteAssets } from './assets.js'
+
+function multimediaProject({ id, title, folder, description, media }) {
+  const resolved = media ?? folderMedia(folder)
+  return {
+    id,
+    title,
+    description,
+    video: resolved.video,
+    poster: resolved.poster,
+    align: 'right',
+    gallery: resolved.gallery.map((item) => ({ ...item, title })),
+  }
+}
+
+const MULTIMEDIA_PROJECTS = [
+  multimediaProject({
+    id: 'naya-raipur',
+    title: 'Naya Raipur',
+    folder: 'Naya Raipur',
+    description:
+      'A floating multimedia fountain show at Rajdhani Sarovar, Naya Raipur  light, laser, and water screen choreographed in-house for the nightly civic show.',
+  }),
+  multimediaProject({
+    id: 'navsari',
+    title: 'Navsari',
+    folder: 'Navsari',
+    description:
+      'A floating multimedia fountain show in Navsari  water, light, and score programmed as one nightly performance.',
+  }),
+  multimediaProject({
+    id: 'statue-of-unity',
+    title: 'Statue of Unity',
+    folder: 'Statue of Unity',
+    description:
+      'A floating multimedia fountain show at the Statue of Unity, Gujarat  civic-scale water, light, and music staged for the memorial landscape.',
+  }),
+  multimediaProject({
+    id: 'upvan',
+    title: 'Upvan',
+    folder: 'Upvan',
+    description:
+      'A floating multimedia fountain show at Upvan  jets and light choreographed for the lake and evening crowds.',
+  }),
+  multimediaProject({
+    id: 'seoni',
+    title: 'Seoni',
+    folder: 'Seoni',
+    description:
+      'A floating multimedia fountain show in Seoni, Madhya Pradesh  water and light timed as a civic night performance.',
+  }),
+  multimediaProject({
+    id: 'new-navghar',
+    title: 'New Navghar',
+    folder: 'New Navghar',
+    description:
+      'A floating multimedia fountain show at New Navghar  an in-house score of water, colour, and music for the waterfront.',
+  }),
+  multimediaProject({
+    id: 'pmc-pune',
+    title: 'PMC Pune',
+    folder: 'PMC Pune',
+    description:
+      'A floating multimedia fountain show for Pune Municipal Corporation  civic water, light, and music on the lake.',
+  }),
+  multimediaProject({
+    id: 'mogharpada',
+    title: 'Mogharpada',
+    folder: 'Mogharpada',
+    description:
+      'A floating multimedia fountain show at Mogharpada  nightly jets, colour, and score built as one system.',
+  }),
+  multimediaProject({
+    id: 'jarimari',
+    title: 'Jarimari',
+    folder: 'Jarimari',
+    description:
+      'A floating multimedia fountain show at Jarimari  water and light composed for the lake after dusk.',
+  }),
+  multimediaProject({
+    id: 'jamner',
+    title: 'Jamner',
+    folder: 'Jamner',
+    description:
+      'A floating multimedia fountain show in Jamner  in-house choreography of water, music, and light.',
+  }),
+  multimediaProject({
+    id: 'sail-rourkela',
+    title: 'SAIL Rourkela',
+    folder: 'SAIL',
+    description:
+      'A floating multimedia fountain show for SAIL, Rourkela, Odisha  a civic performance of water, light, and score.',
+  }),
+  multimediaProject({
+    id: 'tata-steel-jamshedpur',
+    title: 'Tata Steel Jamshedpur',
+    media: {
+      video: '',
+      poster: '/assets/ww-others/programmable-fountains/tata-steel-jamshedpur.webp',
+      gallery: [
+        {
+          title: 'Tata Steel Jamshedpur',
+          src: '/assets/ww-others/programmable-fountains/tata-steel-jamshedpur.webp',
+        },
+        {
+          title: 'Tata Steel Jamshedpur',
+          src: '/assets/ww-others/programmable-fountains/tata-steel-jamshedpur-2.webp',
+        },
+        {
+          title: 'Tata Steel Jamshedpur',
+          src: '/assets/ww-others/programmable-fountains/tata-steel-jamshedpur-3.webp',
+        },
+      ],
+    },
+    description:
+      'Tata Steel Jamshedpur  day and night. A programmable water performance built to hold presence from daylight jets to after-dark light.',
+  }),
+]
 
 export const WATERWORKS_CATEGORIES = withRemoteAssets([
   {
@@ -90,106 +207,16 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
     "lead": "Multimedia fountain shows  light, music, and water choreographed as one system.",
     "body": "From lake spectacles to urban promenades, we design and manufacture the show systems that turn water into a nightly performance.",
     "showreel": {
-      "src": "/assets/multimedia/bhopal-musical-clip.mp4",
-      "poster": "/assets/multimedia/bhopal-musical.webp",
-      "title": "Bhopal Musical",
-      "caption": "Bhopal Musical",
+      "src": MULTIMEDIA_PROJECTS[0].video,
+      "poster": MULTIMEDIA_PROJECTS[0].poster,
+      "title": MULTIMEDIA_PROJECTS[0].title,
+      "caption": MULTIMEDIA_PROJECTS[0].title,
       "index": "01",
       "align": "right",
-      "description": "A civic musical fountain where light, score, and water move as one system  programmed in-house so the nightly show holds its drama from the opening surge to the last fade."
+      "description": MULTIMEDIA_PROJECTS[0].description
     },
-    "projects": [
-      {
-        "id": "birsa-munda",
-        "title": "Birsa Munda",
-        "description": "A memorial-park multimedia show in Ranchi  musical fountain, light, and score engineered as one system so the performance holds a crowd from the first jet to the last fade.",
-        "video": "/assets/multimedia/bhopal-musical-clip.mp4",
-        "poster": "/assets/multimedia/bhopal-musical.webp",
-        "align": "right",
-        "gallery": [
-          {
-            "title": "Birsa Munda Memorial Park",
-            "src": "/assets/multimedia/birsa-munda-memorial-park.webp"
-          }
-        ]
-      },
-      {
-        "id": "bhopal-musical",
-        "title": "Bhopal Musical",
-        "description": "A civic musical fountain where light, score, and water move as one system  programmed in-house so the nightly show holds its drama from the opening surge to the last fade.",
-        "video": "/assets/multimedia/bhopal-musical-clip.mp4",
-        "poster": "/assets/multimedia/bhopal-musical.webp",
-        "align": "right",
-        "gallery": [
-          {
-            "title": "Bhopal Musical",
-            "src": "/assets/multimedia/bhopal-musical.webp"
-          }
-        ]
-      },
-      {
-        "id": "jk-temple",
-        "title": "J K Temple",
-        "description": "A temple-side musical fountain where water and light are programmed to the architecture  a nightly show that belongs to the precinct, not bolted on beside it.",
-        "video": "/assets/multimedia/bhopal-musical-clip.mp4",
-        "poster": "/assets/multimedia/bhopal-musical.webp",
-        "align": "right",
-        "gallery": [
-          {
-            "title": "J K Temple",
-            "src": "/assets/multimedia/jk-temple.webp"
-          }
-        ]
-      },
-      {
-        "id": "luv-khush-garden",
-        "title": "Luv Khush Garden",
-        "description": "A garden musical fountain composed for evening crowds  jets, colour, and score timed in-house so the park becomes a civic stage after dusk.",
-        "video": "/assets/multimedia/bhopal-musical-clip.mp4",
-        "poster": "/assets/multimedia/bhopal-musical.webp",
-        "align": "right",
-        "gallery": [
-          {
-            "title": "Luv Khush Garden",
-            "src": "/assets/multimedia/luv-kush-garden.webp"
-          }
-        ]
-      }
-    ],
-    "gallery": [
-      {
-        "title": "Bhopal Musical",
-        "src": "/assets/multimedia/bhopal-musical.webp"
-      },
-      {
-        "title": "Birsa Munda Memorial Park",
-        "src": "/assets/multimedia/birsa-munda-memorial-park.webp"
-      },
-      {
-        "title": "HUB",
-        "src": "/assets/multimedia/hub-07.webp"
-      },
-      {
-        "title": "JK Temple",
-        "src": "/assets/multimedia/jk-temple.webp"
-      },
-      {
-        "title": "Luv Kush Garden",
-        "src": "/assets/multimedia/luv-kush-garden.webp"
-      },
-      {
-        "title": "NDMC",
-        "src": "/assets/multimedia/ndmc-image-9.webp"
-      },
-      {
-        "title": "PCMC",
-        "src": "/assets/multimedia/pcmc-1.webp"
-      },
-      {
-        "title": "Statue of Unity Fountain",
-        "src": "/assets/multimedia/statue-of-unity-fountain.webp"
-      }
-    ]
+    "projects": MULTIMEDIA_PROJECTS,
+    "gallery": MULTIMEDIA_PROJECTS.flatMap((project) => project.gallery)
   },
   "waterworks-others": {
     "slug": "waterworks-others",

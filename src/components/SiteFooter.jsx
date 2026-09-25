@@ -119,7 +119,7 @@ export default function SiteFooter() {
         <span>
           &copy; {new Date().getFullYear()} {SITE.legalName}
         </span>
-        <span className="site-footer__tagline-line">{SITE.tagline}</span>
+        <span className="site-footer__tagline-line">Sculpting water since 1989</span>
         <button type="button" className="site-footer__top" onClick={scrollTop}>
           Back to top <span aria-hidden="true">&uarr;</span>
         </button>

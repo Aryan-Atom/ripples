@@ -62,48 +62,55 @@ export default function MultimediaProjectCards({ projects }) {
       aria-label="Multimedia projects"
     >
       <div className="worldwide-showcase__slides">
-        {projects.map((project) => (
-          <article className="worldwide-showcase__slide" key={project.id} aria-label={project.title}>
-            <div className="worldwide-showcase__slide-inner">
-              <div
-                className="multimedia-project"
-                role="button"
-                tabIndex={0}
-                onClick={() => {
-                  const items = project.gallery
-                  if (!items?.length) return
-                  setOpen({ items, index: 0 })
-                }}
-                onKeyDown={(event) => {
-                  if (event.key !== 'Enter' && event.key !== ' ') return
-                  event.preventDefault()
-                  event.currentTarget.click()
-                }}
-                aria-label={`View photos of ${project.title}`}
-              >
-                <div className="worldwide-showcase__composition">
-                  <div className="worldwide-showcase__frame">
-                    <CardVideo
-                      className="worldwide-showcase__video"
-                      src={project.video}
-                      poster={project.poster}
-                    />
-                  </div>
+        {projects.map((project) => {
+          const openGallery = () => {
+            const items = project.gallery
+            if (!items?.length) return
+            setOpen({ items, index: 0 })
+          }
 
-                  <div
-                    className={`worldwide-showcase__panel worldwide-showcase__panel--${project.align || 'right'}`}
-                  >
-                    <div className="worldwide-showcase__card">
-                      <h3 className="worldwide-showcase__card-title">{project.title}</h3>
-                      <p className="worldwide-showcase__card-body">{project.description}</p>
-                      <span className="worldwide-showcase__card-rule" aria-hidden="true" />
+          return (
+            <article className="worldwide-showcase__slide" key={project.id} aria-label={project.title}>
+              <div className="worldwide-showcase__slide-inner">
+                <div className="multimedia-project">
+                  <div className="worldwide-showcase__composition">
+                    <div className="worldwide-showcase__frame">
+                      <CardVideo
+                        className="worldwide-showcase__video"
+                        src={project.video}
+                        poster={project.poster}
+                      />
+                    </div>
+
+                    <div
+                      className={`worldwide-showcase__panel worldwide-showcase__panel--${project.align || 'right'}`}
+                    >
+                      <div className="worldwide-showcase__card">
+                        {project.index ? (
+                          <span className="worldwide-showcase__card-index">{project.index}</span>
+                        ) : null}
+                        <h3 className="worldwide-showcase__card-title">{project.title}</h3>
+                        <p className="worldwide-showcase__card-body">{project.description}</p>
+                        {project.gallery?.length ? (
+                          <button
+                            type="button"
+                            className="worldwide-showcase__card-more"
+                            onClick={openGallery}
+                          >
+                            View more
+                            <span aria-hidden="true">→</span>
+                          </button>
+                        ) : (
+                          <span className="worldwide-showcase__card-rule" aria-hidden="true" />
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          )
+        })}
       </div>
 
       <GalleryLightbox

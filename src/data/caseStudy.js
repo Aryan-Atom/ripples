@@ -211,8 +211,8 @@ export const WOW_GOA_STUDY = {
 
   brief: {
     eyebrow: 'The brief',
-    titleLines: ["India's largest", 'rock pool.'],
-    titleEm: 'rock pool.',
+    titleLines: ["India's largest", 'Rock pool.'],
+    titleEm: 'Rock pool.',
     body: 'How it was built  a modular engineering case study in scale, precision, and execution.',
     image: {
       src: wgoaSlide(1),
@@ -234,8 +234,8 @@ export const WOW_GOA_STUDY = {
 
   design: {
     eyebrow: 'Off-site fabrication',
-    titleLines: ['Made to', 'travel.'],
-    titleEm: 'travel.',
+    titleLines: ['Made to', 'Travel.'],
+    titleEm: 'Travel.',
     body: 'Core pool sections were manufactured and tested at real scale in a controlled factory environment to ensure precision, strength, and consistency.',
     note: 'Factory-built modules, signed off in Noida before they ever left the floor.',
     images: [
@@ -331,8 +331,8 @@ export const WOW_GOA_STUDY = {
 
   assembly: {
     eyebrow: 'Structural assembly',
-    titleLines: ['Joined on', 'the hill.'],
-    titleEm: 'the hill.',
+    titleLines: ['Joined on', 'The hill.'],
+    titleEm: 'The hill.',
     body: 'Modules were positioned, aligned, and joined on-site to form the primary structure with engineering-grade accuracy. Zero on-site civil construction  a lighter, safer set on sensitive coastal ground.',
     completion:
       'The pool was fully assembled, tested, and commissioned  delivering a large-scale, durable aquatic structure.',

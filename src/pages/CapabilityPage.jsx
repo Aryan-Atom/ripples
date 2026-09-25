@@ -208,7 +208,7 @@ export default function CapabilityPage({ slug: slugProp }) {
         )}
 
         {isMultimedia && page.projects?.length > 0 && (
-          <MultimediaProjectCards projects={page.projects} gallery={page.gallery} />
+          <MultimediaProjectCards projects={page.projects} />
         )}
 
         {isArchitectural && page.gallery?.length > 0 && (

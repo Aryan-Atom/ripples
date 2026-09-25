@@ -54,7 +54,7 @@ export default function JourneyTimeline() {
           <BlueprintGrid className="journey-timeline__grid" particleCount={10} />
           <div className="journey-timeline__stage">
             <FadeUp as="p" className="r-label journey-timeline__eyebrow">
-              35 years of innovation
+              37 years of innovation
             </FadeUp>
             <FadeUp as="h2" className="journey-timeline__heading" delay={0.06}>
               A line through <em>time.</em>

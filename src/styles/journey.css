@@ -859,10 +859,19 @@
 }
 
 .journey-stats__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-height: 3.35em;
   font-size: var(--text-xs);
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  line-height: 1.45;
   color: var(--color-text-muted);
+}
+
+.journey-stats__label span {
+  display: block;
 }
 
 /* ── Philosophy ── */

@@ -26,6 +26,10 @@ function CardVideo({ src, poster, className }) {
     }
   }, [src])
 
+  if (!src) {
+    return poster ? <img className={className} src={poster} alt="" /> : null
+  }
+
   return (
     <video
       ref={ref}
@@ -42,7 +46,7 @@ function CardVideo({ src, poster, className }) {
 }
 
 /** Video project cards  click opens photos with arrow navigation. */
-export default function MultimediaProjectCards({ projects, gallery }) {
+export default function MultimediaProjectCards({ projects }) {
   const [open, setOpen] = useState(null)
 
   const close = useCallback(() => setOpen(null), [])
@@ -66,11 +70,9 @@ export default function MultimediaProjectCards({ projects, gallery }) {
                 role="button"
                 tabIndex={0}
                 onClick={() => {
-                  const items = gallery?.length ? gallery : project.gallery
+                  const items = project.gallery
                   if (!items?.length) return
-                  const featured = project.gallery?.[0]?.src
-                  const start = featured ? items.findIndex((item) => item.src === featured) : 0
-                  setOpen({ items, index: start >= 0 ? start : 0 })
+                  setOpen({ items, index: 0 })
                 }}
                 onKeyDown={(event) => {
                   if (event.key !== 'Enter' && event.key !== ' ') return

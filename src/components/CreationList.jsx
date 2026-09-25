@@ -238,7 +238,7 @@ export default function CreationList({ items, groups }) {
         ? createPortal(preview, document.body)
         : null}
 
-      <FadeUp stagger={0.1} y={36}>
+      <FadeUp className="creation-list__stack" stagger={0.1} y={36}>
         {sections.map((section, sectionIndex) => {
           const offset = sections
             .slice(0, sectionIndex)
@@ -284,10 +284,21 @@ export default function CreationList({ items, groups }) {
                           <span className="creation-row__index">
                             {String(i + 1).padStart(2, '0')}
                           </span>
-                          <h3 className="creation-row__title">{item.title}</h3>
+                          <h3 className="creation-row__title">
+                            {(item.titleLines ?? [item.title]).map((line, lineIndex) => (
+                              <span key={line}>
+                                {lineIndex > 0 ? <br /> : null}
+                                {line}
+                              </span>
+                            ))}
+                          </h3>
                         </div>
                         <p className="creation-row__summary">{item.summary}</p>
-                        <span className="creation-row__place">{item.location}</span>
+                        <span className="creation-row__place">
+                          {(item.locationLines ?? [item.location]).map((line) => (
+                            <span key={line}>{line}</span>
+                          ))}
+                        </span>
                         {categoryLabel ? (
                           <div className="creation-row__category-cell">
                             {section.to ? (

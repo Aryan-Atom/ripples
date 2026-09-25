@@ -25,10 +25,10 @@ export default function Stats() {
       <div className="mx-auto max-w-7xl">
         <RuleTitle>India&apos;s Largest Fountain Manufacturer</RuleTitle>
         <div className="mt-14 grid grid-cols-2 gap-10 md:grid-cols-4">
-          <Stat value={35} suffix="+" label="Years" />
-          <Stat value={170} suffix="+" label="Employees" />
-          <Stat value="ISO 9001:2015" label="Certified" isText />
-          <Stat value={1000} suffix="+" label="Projects" />
+          <Stat value={37} suffix="+" label="Years" />
+          <Stat value={212} suffix="+" label="Experts on company payroll" />
+          <Stat value={30} suffix="+" label="Project locations worldwide" />
+          <Stat value={2400} suffix="+" label="Projects executed" />
         </div>
       </div>
       <div className="mx-auto mt-16 max-w-7xl">

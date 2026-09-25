@@ -1,92 +1,42 @@
 import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { gsap, prefersReducedMotion } from '../motion/gsap'
-import { safeSplitText, showElement } from '../motion/safeSplitText'
-import { attachScrollReveal, whenFontsReady } from '../motion/scrollReveal'
 import { SITE } from '../data/site'
+import { COLOR_LOGO } from '../data/assets.js'
 import { FOOTER_EXPLORE_LINKS } from '../data/capabilities'
 import FadeUp from '../motion/FadeUp'
+import { gsap, prefersReducedMotion } from '../motion/gsap'
+import { attachScrollReveal, createRevealTimeline } from '../motion/scrollReveal'
 
 export default function SiteFooter() {
   const markRef = useRef(null)
-  const markTagRef = useRef(null)
-  const markWrapRef = useRef(null)
+  const brandRef = useRef(null)
 
   useLayoutEffect(() => {
-    const el = markRef.current
-    const tag = markTagRef.current
-    const wrap = markWrapRef.current
-    if (!el) return undefined
+    const wrap = markRef.current
+    const brand = brandRef.current
+    if (!wrap || !brand) return undefined
 
     if (prefersReducedMotion()) {
-      wrap?.classList.add('is-armed')
-      showElement(el)
-      showElement(tag)
+      gsap.set(brand, { clearProps: 'all' })
       return undefined
     }
 
-    let split
-    let tagSplit
-    let scrollTrigger
-    let cancelled = false
+    const tl = createRevealTimeline(brand, {
+      y: 0,
+      duration: 1.15,
+      delay: 0.04,
+      ease: 'power4.out',
+      fromProps: { yPercent: 55, scale: 0.94 },
+      toProps: { scale: 1 },
+    })
+    if (!tl) return undefined
 
-    // Keep mark invisible until chars sit under the mask.
-    gsap.set(el, { autoAlpha: 0 })
-    if (tag) gsap.set(tag, { autoAlpha: 0 })
-    wrap?.classList.remove('is-armed')
-
-    const run = () => {
-      if (cancelled) return
-      split = safeSplitText(el, { type: 'chars', mask: 'chars', charsClass: 'footer-mark-char' })
-      tagSplit = tag
-        ? safeSplitText(tag, { type: 'chars', mask: 'chars', charsClass: 'footer-mark-char' })
-        : null
-      if (!split?.chars?.length) {
-        wrap?.classList.add('is-armed')
-        showElement(el)
-        showElement(tag)
-        return
-      }
-
-      gsap.set(split.chars, { yPercent: 110 })
-      if (tagSplit?.chars?.length) gsap.set(tagSplit.chars, { yPercent: 110 })
-      wrap?.classList.add('is-armed')
-      showElement(el)
-      showElement(tag)
-
-      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } })
-      tl.to(split.chars, {
-        yPercent: 0,
-        duration: 1.1,
-        stagger: 0.045,
-        delay: 0.12,
-      })
-      if (tagSplit?.chars?.length) {
-        tl.to(
-          tagSplit.chars,
-          {
-            yPercent: 0,
-            duration: 1.1,
-            stagger: 0.04,
-          },
-          0.28,
-        )
-      }
-
-      scrollTrigger = attachScrollReveal(tl, el, { start: 'top 92%' })
-    }
-
-    const cancelFonts = whenFontsReady(run)
+    const reveal = attachScrollReveal(tl, wrap, { start: 'top 92%' })
 
     return () => {
-      cancelled = true
-      cancelFonts()
-      scrollTrigger?.kill()
-      split?.revert?.()
-      tagSplit?.revert?.()
-      wrap?.classList.remove('is-armed')
-      showElement(el)
-      showElement(tag)
+      reveal?.kill()
+      tl.kill()
+      gsap.set(brand, { clearProps: 'all' })
     }
   }, [])
 
@@ -156,11 +106,13 @@ export default function SiteFooter() {
         </FadeUp>
       </div>
 
-      <div className="site-footer__mark" ref={markWrapRef} aria-hidden="true">
-        <span className="site-footer__mark-lockup">
-          <span ref={markRef} className="r-brand site-footer__mark-word">Ripples</span>
-          <span ref={markTagRef} className="site-footer__mark-tag">water technology</span>
-        </span>
+      <div className="site-footer__mark" ref={markRef}>
+        <img
+          ref={brandRef}
+          src={COLOR_LOGO}
+          alt="Ripples water technology"
+          className="site-footer__mark-brand"
+        />
       </div>
 
       <div className="site-footer__bottom r-container">

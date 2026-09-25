@@ -96,9 +96,13 @@ export default function Practice() {
               </SplitLines>
               <FadeUp className="practice-capabilities__stats" stagger={0.09} delay={0.15}>
                 {HOME_STATS.map((stat) => (
-                  <div className="home-intro__stat" key={stat.label}>
+                  <div className="home-intro__stat" key={stat.value}>
                     <StatCounter value={stat.value} className="home-intro__stat-value" />
-                    <span className="home-intro__stat-label">{stat.label}</span>
+                    <span className="home-intro__stat-label">
+                      {stat.lines.map((line) => (
+                        <span key={line}>{line}</span>
+                      ))}
+                    </span>
                   </div>
                 ))}
               </FadeUp>

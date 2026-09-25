@@ -27,14 +27,14 @@ function pauseVideo(video) {
  * Case Study only. No GSAP pin  a short sticky scroller (one extra viewport).
  * Precision → Alignment → Execution, then the final video follows on a normal scroll.
  */
-function CaseStudyPinnedInstall() {
-  const { installation } = CASE_STUDY
+function CaseStudyPinnedInstall({ study = CASE_STUDY }) {
+  const { installation } = study
   const sectionRef = useRef(null)
   const mediaRef = useRef(null)
   const copyRef = useRef(null)
   const videoRef = useRef(null)
   const linesRef = useRef([])
-  const [mediaReady, setMediaReady] = useState(false)
+  const [mediaReady, setMediaReady] = useState(!installation.video)
 
   useLayoutEffect(() => {
     const section = sectionRef.current
@@ -136,23 +136,25 @@ function CaseStudyPinnedInstall() {
             loading="eager"
             fetchPriority="high"
           />
-          <LazyVideo
-            ref={videoRef}
-            className={`cs-finale-install__video${mediaReady ? ' is-ready' : ''}`}
-            src={installation.video}
-            poster={installation.poster}
-            autoPlay={false}
-            muted
-            loop
-            playsInline
-            eager
-            maxConcurrent={0}
-            rootMargin="100% 0px"
-            onReady={(video) => {
-              setMediaReady(true)
-              playVideo(video)
-            }}
-          />
+          {installation.video ? (
+            <LazyVideo
+              ref={videoRef}
+              className={`cs-finale-install__video${mediaReady ? ' is-ready' : ''}`}
+              src={installation.video}
+              poster={installation.poster}
+              autoPlay={false}
+              muted
+              loop
+              playsInline
+              eager
+              maxConcurrent={0}
+              rootMargin="100% 0px"
+              onReady={(video) => {
+                setMediaReady(true)
+                playVideo(video)
+              }}
+            />
+          ) : null}
           <div className="cs-finale-install__veil" aria-hidden="true" />
         </div>
 
@@ -180,11 +182,11 @@ function CaseStudyPinnedInstall() {
 }
 
 /** Precision/Execution → final output, Case Study only. */
-export default function CaseStudyFinale() {
+export default function CaseStudyFinale({ study = CASE_STUDY }) {
   return (
     <div className="cs-finale">
-      <CaseStudyPinnedInstall />
-      <CaseStudyResult />
+      <CaseStudyPinnedInstall study={study} />
+      <CaseStudyResult study={study} />
     </div>
   )
 }

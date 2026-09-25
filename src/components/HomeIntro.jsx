@@ -25,9 +25,13 @@ export default function HomeIntro() {
 
           <div className="home-intro__stats">
             {HOME_STATS.map((stat) => (
-              <FadeUp className="home-intro__stat" key={stat.label} y={28}>
+              <FadeUp className="home-intro__stat" key={stat.value} y={28}>
                 <StatCounter value={stat.value} className="home-intro__stat-value" />
-                <span className="home-intro__stat-label">{stat.label}</span>
+                <span className="home-intro__stat-label">
+                  {stat.lines.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </span>
               </FadeUp>
             ))}
           </div>

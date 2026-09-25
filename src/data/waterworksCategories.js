@@ -9,7 +9,6 @@ function multimediaProject({ id, title, folder, description, media }) {
     description,
     video: resolved.video,
     poster: resolved.poster,
-    align: 'right',
     gallery: resolved.gallery.map((item) => ({ ...item, title })),
   }
 }
@@ -116,7 +115,11 @@ const MULTIMEDIA_PROJECTS = [
     description:
       'Tata Steel Jamshedpur  day and night. A programmable water performance built to hold presence from daylight jets to after-dark light.',
   }),
-]
+].map((project, i) => ({
+  ...project,
+  index: String(i + 1).padStart(2, '0'),
+  align: i % 2 === 0 ? 'right' : 'left',
+}))
 
 export const WATERWORKS_CATEGORIES = withRemoteAssets([
   {

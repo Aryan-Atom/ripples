@@ -1195,6 +1195,10 @@
   color: var(--color-accent);
 }
 
+.wgoa-title em::first-letter {
+  text-transform: uppercase;
+}
+
 .wgoa-title--center {
   text-align: center;
 }

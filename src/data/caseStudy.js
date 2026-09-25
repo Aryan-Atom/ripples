@@ -8,6 +8,10 @@ export function csAsset(file) {
   return asset(`${CS_ASSETS}/${file}`)
 }
 
+function wgoaSlide(n) {
+  return asset(`case-study/W-Goa/Slideshow ${n}.webp`)
+}
+
 export const CASE_STUDY_CHOICES = [
   {
     id: 'nehru-garden',
@@ -25,9 +29,10 @@ export const CASE_STUDY_CHOICES = [
     eyebrow: 'Case Study',
     titleLines: ['A coastal night', 'asks for a', 'Show.'],
     titleEm: 'Show.',
-    video: csAsset('Intro.mp4'),
-    poster: csAsset('before-03.webp'),
-    place: 'Wow Goa',
+    video: '',
+    poster: wgoaSlide(1),
+    slides: [1, 2, 5, 4, 6, 3].map(wgoaSlide),
+    place: 'W-Goa',
   },
 ]
 
@@ -198,4 +203,200 @@ export const CASE_STUDY = {
     title: 'Have a lake, lobby, or plaza in mind?',
     primary: { label: 'Start a project', to: '/contact' },
   },
+}
+
+/** W Goa prefabricated rock pool  same chapter shape as Nehru Garden. */
+export const WOW_GOA_STUDY = {
+  hero: CASE_STUDY_CHOICES[1],
+
+  brief: {
+    eyebrow: 'The brief',
+    titleLines: ["India's largest", 'rock pool.'],
+    titleEm: 'rock pool.',
+    body: 'How it was built  a modular engineering case study in scale, precision, and execution.',
+    image: {
+      src: wgoaSlide(1),
+      alt: 'Night aerial of the finished rock pool at W Goa',
+    },
+  },
+
+  before: {
+    eyebrow: 'From pit to pool',
+    intro:
+      'An existing hillside pit was carefully assessed and prepared to accommodate a large-scale prefabricated pool system, aligned to the site’s natural form and structural constraints.',
+    images: [
+      {
+        src: wgoaSlide(3),
+        alt: 'Hillside pit at W Goa before the prefabricated pool',
+      },
+    ],
+  },
+
+  design: {
+    eyebrow: 'Off-site fabrication',
+    titleLines: ['Made to', 'travel.'],
+    titleEm: 'travel.',
+    body: 'Core pool sections were manufactured and tested at real scale in a controlled factory environment to ensure precision, strength, and consistency.',
+    note: 'Factory-built modules, signed off in Noida before they ever left the floor.',
+    images: [
+      {
+        src: wgoaSlide(5),
+        title: 'Daylight form',
+        alt: 'Finished W Goa rock pool in daylight above the beach',
+      },
+      {
+        src: wgoaSlide(2),
+        title: 'Evening set',
+        alt: 'W Goa rock pool at dusk with the coastal bar',
+      },
+    ],
+  },
+
+  engineering: {
+    act: { id: 'engineering', roman: 'III', label: 'Design' },
+    titleLines: ['Drawn until', 'it can hold.'],
+    titleEm: 'hold.',
+    body: 'Modular geometry, joints, and coastal loads share one drawing set. What leaves the board is already a machine  thirty-two modules ready for the road to Goa.',
+    slides: [
+      {
+        src: wgoaSlide(3),
+        type: 'image',
+        alt: 'Hillside pit prepared for the prefabricated pool',
+      },
+      {
+        src: wgoaSlide(5),
+        type: 'image',
+        alt: 'Finished W Goa rock pool in daylight',
+      },
+      {
+        src: wgoaSlide(1),
+        type: 'image',
+        alt: 'Night aerial of the finished W Goa rock pool',
+      },
+    ],
+    labels: [
+      { text: 'Modular Analysis', x: 12, y: 18 },
+      { text: 'Factory Test', x: 68, y: 14 },
+      { text: 'Joint Mapping', x: 78, y: 48 },
+      { text: 'Transport Plan', x: 18, y: 62 },
+      { text: 'Structural Integrity', x: 55, y: 78 },
+    ],
+  },
+
+  fabrication: {
+    eyebrow: 'Transport to site',
+    titleLines: ['By road.', 'To Goa.'],
+    titleEm: 'Goa.',
+    body: 'The structure was divided into 32 prefabricated modules and transported by road from Delhi NCR to Goa for secure, phase-wise handling.',
+    items: [
+      { src: wgoaSlide(3), caption: 'Site set', alt: 'Hillside pit before the modules arrived' },
+      { src: wgoaSlide(5), caption: 'Daylight form', alt: 'Finished pool in daylight' },
+      { src: wgoaSlide(2), caption: 'Evening set', alt: 'Pool and bar at dusk' },
+      { src: wgoaSlide(1), caption: 'Night form', alt: 'Night aerial of the finished pool' },
+    ],
+  },
+
+  construction: {
+    act: { id: 'construction', roman: 'II', label: 'Engineering' },
+    titleLines: ['Modules first.', 'Then rock.'],
+    titleEm: null,
+    body: null,
+    images: [
+      { src: wgoaSlide(3), alt: 'Hillside pit before the prefabricated pool' },
+      { src: wgoaSlide(5), alt: 'Finished rock pool in daylight' },
+      { src: wgoaSlide(4), alt: 'Finished rock pool at dusk, facing the sea' },
+      { src: wgoaSlide(1), alt: 'Night aerial of the finished rock pool' },
+    ],
+  },
+
+  visualization: {
+    eyebrow: 'Day and night',
+    titleLines: ['Seen by day.', 'Seen at night.'],
+    titleEm: 'night.',
+    body: 'Daylight water and night light as the same form  the pool agreed as landscape before the last module locked.',
+    poster: wgoaSlide(5),
+    modes: [
+      { id: 'day', label: 'Day', src: wgoaSlide(5) },
+      { id: 'night', label: 'Night', src: wgoaSlide(1) },
+    ],
+  },
+
+  process: [
+    { n: '01', label: 'Pit', href: '#wgoa-pit' },
+    { n: '02', label: 'Factory', href: '#wgoa-factory' },
+    { n: '03', label: 'Road', href: '#wgoa-road' },
+    { n: '04', label: 'Assembly', href: '#wgoa-assembly' },
+    { n: '05', label: 'Water', href: '#wgoa-compare' },
+  ],
+
+  assembly: {
+    eyebrow: 'Structural assembly',
+    titleLines: ['Joined on', 'the hill.'],
+    titleEm: 'the hill.',
+    body: 'Modules were positioned, aligned, and joined on-site to form the primary structure with engineering-grade accuracy. Zero on-site civil construction  a lighter, safer set on sensitive coastal ground.',
+    completion:
+      'The pool was fully assembled, tested, and commissioned  delivering a large-scale, durable aquatic structure.',
+    frames: [
+      {
+        src: wgoaSlide(3),
+        caption: 'The pit',
+        alt: 'Hillside pit before the prefabricated pool',
+      },
+      {
+        src: wgoaSlide(5),
+        caption: 'Daylight water',
+        alt: 'Finished rock pool in daylight',
+      },
+      {
+        src: wgoaSlide(4),
+        caption: 'Dusk',
+        alt: 'Finished rock pool at dusk, facing the sea',
+      },
+      {
+        src: wgoaSlide(6),
+        caption: 'Night water',
+        alt: 'Night view of the illuminated rock pool',
+      },
+    ],
+  },
+
+  installation: {
+    act: { id: 'installation', roman: 'V', label: 'Installation' },
+    title: 'On site',
+    lines: ['Precision.', 'Alignment.', 'Execution.'],
+    body: 'Modules were positioned, aligned, and joined on-site to form the primary structure with engineering-grade accuracy. Zero on-site civil construction  a lighter, safer set on sensitive coastal ground.',
+    video: '',
+    poster: wgoaSlide(4),
+  },
+
+  result: {
+    eyebrow: 'The result',
+    titleLines: ['Rock pool,', 'W Goa.'],
+    titleEm: 'W Goa.',
+    video: '',
+    poster: wgoaSlide(2),
+    image: {
+      src: wgoaSlide(4),
+      alt: 'Finished W Goa rock pool at dusk, facing the sea',
+    },
+    outcomes: [
+      'Zero on-site civil construction',
+      'Faster build timelines through prefabrication',
+      'Safer, scalable on-site execution',
+      'Lightweight modular structure suited for sensitive coastal terrain',
+      'Factory-built components reduced site impact and compliance risk',
+      'An engineered solution aligned with environmental and regulatory constraints',
+    ],
+  },
+
+  cta: {
+    eyebrow: 'Next',
+    title: 'Have a lake, lobby, or plaza in mind?',
+    primary: { label: 'Start a project', to: '/contact' },
+  },
+}
+
+export function getCaseStudy(slug) {
+  if (slug === 'wow-goa') return WOW_GOA_STUDY
+  return CASE_STUDY
 }

@@ -96,7 +96,7 @@ const MULTIMEDIA_PROJECTS = [
     id: 'tata-steel-jamshedpur',
     title: 'Tata Steel Jamshedpur',
     media: {
-      video: '',
+      video: '/assets/ripples-assets/TataSteel/TataSteel.mp4',
       poster: '/assets/ww-others/programmable-fountains/tata-steel-jamshedpur.webp',
       gallery: [
         {

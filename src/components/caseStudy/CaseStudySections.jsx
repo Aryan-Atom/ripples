@@ -8,8 +8,12 @@ import GalleryCollage from '../GalleryCollage.jsx'
 import { CASE_STUDY } from '../../data/caseStudy'
 import CaseStudyHeavyVideo from './CaseStudyHeavyVideo'
 
-export function CaseStudyBrief() {
-  const { brief } = CASE_STUDY
+function isVideoSrc(src) {
+  return typeof src === 'string' && /\.(mp4|webm|ogg)(\?|$)/i.test(src)
+}
+
+export function CaseStudyBrief({ study = CASE_STUDY }) {
+  const { brief } = study
   return (
     <SplitPanel
       id="brief"
@@ -38,8 +42,8 @@ export function CaseStudyBrief() {
   )
 }
 
-export function CaseStudyBefore() {
-  const { before } = CASE_STUDY
+export function CaseStudyBefore({ study = CASE_STUDY }) {
+  const { before } = study
   return (
     <JourneyChapter id="before" className="cs-before" aria-labelledby="cs-before-title">
       <div className="r-container">
@@ -49,7 +53,7 @@ export function CaseStudyBefore() {
         <FadeUp as="p" id="cs-before-title" className="cs-before__intro" y={18} delay={0.06}>
           {before.intro}
         </FadeUp>
-        <div className="cs-before__grid">
+        <div className={`cs-before__grid${before.images.length === 1 ? ' cs-before__grid--single' : ''}`}>
           {before.images.map((image, i) => (
             <FadeUp key={image.src} className="cs-before__cell" delay={0.08 + i * 0.05} y={24}>
               <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
@@ -61,8 +65,8 @@ export function CaseStudyBefore() {
   )
 }
 
-export function CaseStudyDesign() {
-  const { design } = CASE_STUDY
+export function CaseStudyDesign({ study = CASE_STUDY }) {
+  const { design } = study
   return (
     <SplitPanel
       id="design"
@@ -89,8 +93,8 @@ export function CaseStudyDesign() {
   )
 }
 
-export function CaseStudyFabrication() {
-  const { fabrication } = CASE_STUDY
+export function CaseStudyFabrication({ study = CASE_STUDY }) {
+  const { fabrication } = study
   return (
     <JourneyChapter
       id="fabrication"
@@ -126,8 +130,8 @@ export function CaseStudyFabrication() {
   )
 }
 
-export function CaseStudyVisualization() {
-  const { visualization } = CASE_STUDY
+export function CaseStudyVisualization({ study = CASE_STUDY }) {
+  const { visualization } = study
   const modes = visualization.modes
   const [modeId, setModeId] = useState('night')
   const stageRef = useRef(null)
@@ -185,22 +189,32 @@ export function CaseStudyVisualization() {
       ariaLabelledby="cs-viz-title"
       media={
         <div ref={stageRef} className="cs-visualization__stage">
-          {modes.map((mode) => (
-            <video
-              key={mode.id}
-              ref={(node) => {
-                videoRefs.current[mode.id] = node
-              }}
-              className={`cs-visualization__video${mode.id === modeId ? ' is-active' : ''}`}
-              src={mode.src}
-              poster={visualization.poster}
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-hidden={mode.id !== modeId}
-            />
-          ))}
+          {modes.map((mode) =>
+            isVideoSrc(mode.src) ? (
+              <video
+                key={mode.id}
+                ref={(node) => {
+                  videoRefs.current[mode.id] = node
+                }}
+                className={`cs-visualization__video${mode.id === modeId ? ' is-active' : ''}`}
+                src={mode.src}
+                poster={visualization.poster}
+                muted
+                loop
+                playsInline
+                preload="auto"
+                aria-hidden={mode.id !== modeId}
+              />
+            ) : (
+              <img
+                key={mode.id}
+                className={`cs-visualization__video${mode.id === modeId ? ' is-active' : ''}`}
+                src={mode.src}
+                alt=""
+                aria-hidden={mode.id !== modeId}
+              />
+            ),
+          )}
           <div className="cs-visualization__switch" role="group" aria-label="Day or night">
             {modes.map((mode) => (
               <button
@@ -234,8 +248,8 @@ export function CaseStudyVisualization() {
 }
 
 /** Full-bleed installation video  no GSAP pin, so it never overlaps Visualization. */
-export function CaseStudyInstallation() {
-  const { installation } = CASE_STUDY
+export function CaseStudyInstallation({ study = CASE_STUDY }) {
+  const { installation } = study
   const mediaRef = useRef(null)
   const videoRef = useRef(null)
   const [ready, setReady] = useState(false)
@@ -321,20 +335,32 @@ export function CaseStudyInstallation() {
   )
 }
 
-export function CaseStudyResult() {
-  const { result } = CASE_STUDY
+export function CaseStudyResult({ study = CASE_STUDY }) {
+  const { result } = study
 
   return (
     <JourneyChapter id="result" className="cs-result" aria-labelledby="cs-result-title">
-      <CaseStudyHeavyVideo
-        src={result.video}
-        poster={result.poster}
-        className="cs-result__media"
-        posterClassName="cs-result__poster"
-        videoClassName="cs-result__video"
-        veilClassName="cs-result__veil"
-        rootMargin="25% 0px"
-      />
+      {result.video ? (
+        <CaseStudyHeavyVideo
+          src={result.video}
+          poster={result.poster}
+          className="cs-result__media"
+          posterClassName="cs-result__poster"
+          videoClassName="cs-result__video"
+          veilClassName="cs-result__veil"
+          rootMargin="25% 0px"
+        />
+      ) : (
+        <div className="cs-result__media" aria-hidden="true">
+          <img
+            className="cs-result__poster"
+            src={result.image?.src || result.poster}
+            alt=""
+            decoding="async"
+          />
+          <div className="cs-result__veil" />
+        </div>
+      )}
       <div className="cs-result__inner r-container">
         <p className="r-label cs-result__eyebrow">{result.eyebrow}</p>
         <h2 id="cs-result-title" className="cs-result__title">
@@ -342,13 +368,20 @@ export function CaseStudyResult() {
             l === result.titleEm ? <em key={i}>{l}</em> : <span key={i}>{l} </span>,
           )}
         </h2>
+        {result.outcomes?.length ? (
+          <ul className="cs-result__outcomes">
+            {result.outcomes.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </JourneyChapter>
   )
 }
 
-export function CaseStudyFooterCta() {
-  const { cta } = CASE_STUDY
+export function CaseStudyFooterCta({ study = CASE_STUDY }) {
+  const { cta } = study
   return (
     <section className="cs-cta" aria-label="Start a project">
       <div className="r-container cs-cta__inner">

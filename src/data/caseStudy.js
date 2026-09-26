@@ -226,7 +226,7 @@ export const WOW_GOA_STUDY = {
       'An existing hillside pit was carefully assessed and prepared to accommodate a large-scale prefabricated pool system, aligned to the site’s natural form and structural constraints.',
     images: [
       {
-        src: wgoaSlide(3),
+        src: asset('FromPitToPool.jpg'),
         alt: 'Hillside pit at W Goa before the prefabricated pool',
       },
     ],
@@ -240,14 +240,8 @@ export const WOW_GOA_STUDY = {
     note: 'Factory-built modules, signed off in Noida before they ever left the floor.',
     images: [
       {
-        src: wgoaSlide(5),
-        title: 'Daylight form',
-        alt: 'Finished W Goa rock pool in daylight above the beach',
-      },
-      {
-        src: wgoaSlide(2),
-        title: 'Evening set',
-        alt: 'W Goa rock pool at dusk with the coastal bar',
+        src: asset('OffSiteFabricated.jpg'),
+        alt: 'Prefabricated pool shell assembled off-site before transport to W Goa',
       },
     ],
   },
@@ -322,11 +316,11 @@ export const WOW_GOA_STUDY = {
   },
 
   process: [
-    { n: '01', label: 'Pit', href: '#wgoa-pit' },
-    { n: '02', label: 'Factory', href: '#wgoa-factory' },
-    { n: '03', label: 'Road', href: '#wgoa-road' },
-    { n: '04', label: 'Assembly', href: '#wgoa-assembly' },
-    { n: '05', label: 'Water', href: '#wgoa-compare' },
+    { n: '01', label: 'From pit to pool', href: '#wgoa-pit' },
+    { n: '02', label: 'Off-site fabrication', href: '#wgoa-factory' },
+    { n: '03', label: 'Transport to site', href: '#wgoa-road' },
+    { n: '04', label: 'Structural assembly', href: '#wgoa-assembly' },
+    { n: '05', label: 'Completion', href: '#wgoa-result' },
   ],
 
   assembly: {
@@ -338,24 +332,9 @@ export const WOW_GOA_STUDY = {
       'The pool was fully assembled, tested, and commissioned  delivering a large-scale, durable aquatic structure.',
     frames: [
       {
-        src: wgoaSlide(3),
-        caption: 'The pit',
-        alt: 'Hillside pit before the prefabricated pool',
-      },
-      {
-        src: wgoaSlide(5),
-        caption: 'Daylight water',
-        alt: 'Finished rock pool in daylight',
-      },
-      {
-        src: wgoaSlide(4),
-        caption: 'Dusk',
-        alt: 'Finished rock pool at dusk, facing the sea',
-      },
-      {
-        src: wgoaSlide(6),
-        caption: 'Night water',
-        alt: 'Night view of the illuminated rock pool',
+        src: asset('StructuralAssembly.jpg'),
+        caption: 'On the hill',
+        alt: 'Prefabricated pool shell joined on site at W Goa',
       },
     ],
   },
@@ -374,10 +353,10 @@ export const WOW_GOA_STUDY = {
     titleLines: ['Rock pool,', 'W Goa.'],
     titleEm: 'W Goa.',
     video: '',
-    poster: wgoaSlide(2),
+    poster: asset('Final.jpg'),
     image: {
-      src: wgoaSlide(4),
-      alt: 'Finished W Goa rock pool at dusk, facing the sea',
+      src: asset('Final.jpg'),
+      alt: 'Finished rock pool at W Goa, filled and landscaped',
     },
     outcomes: [
       'Zero on-site civil construction',

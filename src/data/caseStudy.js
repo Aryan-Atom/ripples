@@ -71,8 +71,8 @@ export const CASE_STUDY = {
 
   design: {
     eyebrow: 'The design',
-    titleLines: ['Every fountain', 'starts as', 'a line.'],
-    titleEm: 'line.',
+    titleLines: ['Every fountain', 'starts as', 'a Line.'],
+    titleEm: 'Line.',
     body: 'Before water moves, geometry does. Site surveys, hand sketches, and the first nozzle grid drawn until the idea can carry pressure.',
     note: 'The signed musical fountain layout  nozzle families, pump loads, and jet heights locked before fabrication.',
     images: [
@@ -112,8 +112,8 @@ export const CASE_STUDY = {
   /** Kept engineering overlay  MediaReveal / JOURNEY_DESIGN shape */
   engineering: {
     act: { id: 'engineering', roman: 'III', label: 'Design' },
-    titleLines: ['Drawn until', 'it can hold.'],
-    titleEm: 'hold.',
+    titleLines: ['Drawn until', 'it can Hold.'],
+    titleEm: 'Hold.',
     body: 'Hydraulics, structure, and show control share one drawing set. What leaves the board is already a machine.',
     slides: [
       {
@@ -143,8 +143,8 @@ export const CASE_STUDY = {
 
   fabrication: {
     eyebrow: 'Fabrication',
-    titleLines: ['Made under', 'one roof.'],
-    titleEm: 'roof.',
+    titleLines: ['Made under', 'one Roof.'],
+    titleEm: 'Roof.',
     body: 'Nozzles, manifolds, and control racks are fabricated in Noida  then tested before they ever leave the floor.',
     items: [
       { src: csAsset('final-01.webp'), caption: 'Basin Works', alt: 'Section drawings for basin systems' },
@@ -170,8 +170,8 @@ export const CASE_STUDY = {
 
   visualization: {
     eyebrow: 'Visualization',
-    titleLines: ['Seen before', 'it was built.'],
-    titleEm: 'built.',
+    titleLines: ['Seen before', 'it was Built.'],
+    titleEm: 'Built.',
     body: 'Jet pattern and light sequence signed off in simulation  the show agreed before the first header hit the water.',
     poster: csAsset('before-02.webp'),
     modes: [
@@ -192,8 +192,8 @@ export const CASE_STUDY = {
 
   result: {
     eyebrow: 'The result',
-    titleLines: ['The final', 'show.'],
-    titleEm: 'show.',
+    titleLines: ['The final', 'Show.'],
+    titleEm: 'Show.',
     video: csAsset('final_video.mp4'),
     poster: csAsset('before-03.webp'),
   },
@@ -248,8 +248,8 @@ export const WOW_GOA_STUDY = {
 
   engineering: {
     act: { id: 'engineering', roman: 'III', label: 'Design' },
-    titleLines: ['Drawn until', 'it can hold.'],
-    titleEm: 'hold.',
+    titleLines: ['Drawn until', 'it can Hold.'],
+    titleEm: 'Hold.',
     body: 'Modular geometry, joints, and coastal loads share one drawing set. What leaves the board is already a machine  thirty-two modules ready for the road to Goa.',
     slides: [
       {
@@ -305,8 +305,8 @@ export const WOW_GOA_STUDY = {
 
   visualization: {
     eyebrow: 'Day and night',
-    titleLines: ['Seen by day.', 'Seen at night.'],
-    titleEm: 'night.',
+    titleLines: ['Seen by day.', 'Seen at Night.'],
+    titleEm: 'Night.',
     body: 'Daylight water and night light as the same form  the pool agreed as landscape before the last module locked.',
     poster: wgoaSlide(5),
     modes: [

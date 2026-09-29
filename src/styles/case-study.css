@@ -1342,37 +1342,6 @@
   color: rgba(255, 255, 255, 0.86);
 }
 
-.wgoa-index {
-  list-style: none;
-  display: grid;
-  gap: 0.55rem;
-  margin: 1.85rem 0 0;
-  padding: 1.15rem 0 0;
-  border-top: 1px solid rgba(180, 210, 225, 0.18);
-  max-width: 22rem;
-}
-
-.wgoa-index a {
-  display: flex;
-  align-items: baseline;
-  gap: 0.85rem;
-  color: rgba(255, 255, 255, 0.62);
-  text-decoration: none;
-  font-size: var(--text-xs);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-.wgoa-index a:hover {
-  color: #fff;
-}
-
-.wgoa-index__n {
-  color: var(--color-accent);
-  min-width: 1.4rem;
-}
-
 .wgoa-chapter {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(18rem, 0.82fr);
@@ -1467,19 +1436,9 @@
 }
 
 .wgoa-outcomes li {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: 0.7rem;
   font-size: var(--text-sm);
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.84);
-}
-
-.wgoa-outcomes li span {
-  color: var(--color-accent);
-  letter-spacing: 0.08em;
-  font-size: var(--text-xs);
-  padding-top: 0.15rem;
 }
 
 .wgoa-closer {

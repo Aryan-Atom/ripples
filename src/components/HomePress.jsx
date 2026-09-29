@@ -19,7 +19,7 @@ export default function HomePress() {
             Press &amp; media
           </FadeUp>
           <SplitLines as="h2" className="r-display">
-            Featured <em>in.</em>
+            Featured <em>In.</em>
           </SplitLines>
           <FadeUp as="p" className="r-body home-press__lead" delay={0.15}>
             Coverage from national and regional publications across India.

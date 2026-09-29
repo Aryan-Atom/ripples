@@ -2,8 +2,8 @@
 
 export const JOURNEY_HERO = {
   label: 'Case Study',
-  titleLines: ['37 years of', 'engineering', 'excellence'],
-  titleEm: 'excellence',
+  titleLines: ['37 years of', 'engineering', 'Excellence'],
+  titleEm: 'Excellence',
   lead: 'From the first line on paper to opening night  the evolution of Ripples Engineering, told as it was built.',
 }
 
@@ -18,15 +18,15 @@ export const JOURNEY_ACTS = [
 
 export const JOURNEY_BLUEPRINT = {
   act: JOURNEY_ACTS[0],
-  titleLines: ['Every fountain', 'starts as', 'a line.'],
-  titleEm: 'line.',
+  titleLines: ['Every fountain', 'starts as', 'a Line.'],
+  titleEm: 'Line.',
   body: 'Before water moves, geometry does. Site surveys, hand sketches, and the first nozzle grid drawn until the idea can carry pressure.',
 }
 
 export const JOURNEY_DESIGN = {
   act: JOURNEY_ACTS[1],
-  titleLines: ['Drawn until', 'it can hold.'],
-  titleEm: 'hold.',
+  titleLines: ['Drawn until', 'it can Hold.'],
+  titleEm: 'Hold.',
   body: 'Hydraulics, structure, and show control share one drawing set. What leaves the board is already a machine.',
   slides: [],
   labels: [
@@ -48,8 +48,8 @@ export const JOURNEY_CONSTRUCTION = {
 
 export const JOURNEY_MANUFACTURING = {
   act: JOURNEY_ACTS[3],
-  titleLines: ['Made under', 'one roof.'],
-  titleEm: 'roof.',
+  titleLines: ['Made under', 'one Roof.'],
+  titleEm: 'Roof.',
   body: 'Nozzles, manifolds, and control racks are fabricated in Noida  then tested before they ever leave the floor.',
   videos: [],
 }
@@ -65,8 +65,8 @@ export const JOURNEY_INSTALLATION = {
 
 export const JOURNEY_PERFORMANCE = {
   act: JOURNEY_ACTS[5],
-  titleLines: ['When water', 'becomes theatre.'],
-  titleEm: 'theatre.',
+  titleLines: ['When water', 'becomes Theatre.'],
+  titleEm: 'Theatre.',
   body: 'Music, light, and pressure choreographed as one system. The quiet work of thirty-five years, audible for a few minutes each night.',
   day: {
     src: '',

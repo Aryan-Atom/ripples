@@ -14,7 +14,7 @@ export default function HomeCta() {
               <h2 className="cta-card__title">
                 Ready to turn water
                 <br />
-                into a <em>spectacle?</em>
+                into a <em>Spectacle?</em>
               </h2>
               <p className="cta-card__text">
                 From the first nozzle drawing to opening night, Ripples designs, builds, and

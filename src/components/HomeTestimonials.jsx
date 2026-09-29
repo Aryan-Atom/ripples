@@ -13,7 +13,7 @@ export default function HomeTestimonials() {
             Testimonials
           </FadeUp>
           <SplitLines as="h2" className="r-display">
-            What clients <em>say.</em>
+            What clients <em>Say.</em>
           </SplitLines>
           <FadeUp as="p" className="r-body home-testimonials__lead" delay={0.15}>
             Municipalities, parks, and industrial campuses  in their own words.

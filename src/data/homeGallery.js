@@ -3,7 +3,7 @@ import { withRemoteAssets } from './assets.js'
 export const HOME_GALLERY = withRemoteAssets({
   label: 'In the field',
   title: 'Every project',
-  titleEm: 'a signature',
+  titleEm: 'A signature',
   body:
     'From civic plazas to landmark hotels  each installation is engineered, fabricated, and choreographed entirely in-house. Scroll through a few moments from the floor.',
   images: [

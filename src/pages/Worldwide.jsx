@@ -27,7 +27,7 @@ export default function Worldwide() {
           label="Events"
           title={
             <>
-              Events that move <em>water</em> and crowds.
+              Events that move <em>Water</em> and crowds.
             </>
           }
           lead="Landmark launches, civic unveilings, and industry showcases  each engineered for its climate, audience, and skyline."
@@ -39,7 +39,7 @@ export default function Worldwide() {
           label="Projects"
           title={
             <>
-              Projects delivered <em>worldwide.</em>
+              Projects delivered <em>Worldwide.</em>
             </>
           }
           lead="Permanent installations built for campuses, civic plazas, and destinations  starting with Abu Dhabi."
@@ -54,7 +54,7 @@ export default function Worldwide() {
               Where the water moves
             </FadeUp>
             <SplitLines as="h2" className="r-display worldwide-regions__title">
-              Six continents, <em>one workshop.</em>
+              Six continents, <em>One workshop.</em>
             </SplitLines>
 
             <div className="worldwide-regions__list">
@@ -81,7 +81,7 @@ export default function Worldwide() {
         <section className="worldwide-cta" aria-label="Start a project">
           <div className="r-container">
             <SplitLines as="p" className="practice-cta__line">
-              Your city could be <em>next.</em>
+              Your city could be <em>Next.</em>
             </SplitLines>
             <FadeUp delay={0.2}>
               <Link className="r-link" to="/contact">

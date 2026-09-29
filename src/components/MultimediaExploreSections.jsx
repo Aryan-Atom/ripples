@@ -102,11 +102,11 @@ export function PrefabExplore() {
             <FadeUp as="h3" className="r-display capability-section__title" y={20} delay={0.06}>
               {section.label === 'Prefab Pools' ? (
                 <>
-                  Prefab <em>pools</em>
+                  Prefab <em>Pools</em>
                 </>
               ) : (
                 <>
-                  Prefab <em>fountains</em>
+                  Prefab <em>Fountains</em>
                 </>
               )}
             </FadeUp>

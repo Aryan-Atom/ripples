@@ -56,7 +56,7 @@ export default function Practice() {
             <div className="practice-facility__caption">
               <p className="r-label">Noida, India</p>
               <p className="practice-facility__caption-line">
-                Where every <em>nozzle</em> is born
+                Where every <em>Nozzle</em> is born
               </p>
             </div>
           </FadeUp>
@@ -68,7 +68,7 @@ export default function Practice() {
               How a show is made
             </FadeUp>
             <SplitLines as="h2" className="r-display practice-process__title">
-              Five acts, <em>one hand.</em>
+              Five acts, <em>One hand.</em>
             </SplitLines>
 
             <ol className="practice-process__list">
@@ -92,7 +92,7 @@ export default function Practice() {
                 Capabilities
               </FadeUp>
               <SplitLines as="h2" className="r-display">
-                Everything water <em>can do.</em>
+                Everything water <em>Can do.</em>
               </SplitLines>
               <FadeUp className="practice-capabilities__stats" stagger={0.09} delay={0.15}>
                 {HOME_STATS.map((stat) => (
@@ -118,7 +118,7 @@ export default function Practice() {
         <section className="practice-cta" aria-label="Start a project">
           <div className="r-container">
             <SplitLines as="p" className="practice-cta__line">
-              The next <em>wonder</em> starts with a conversation.
+              The next <em>Wonder</em> starts with a conversation.
             </SplitLines>
             <FadeUp delay={0.2}>
               <Link className="r-link" to="/contact">

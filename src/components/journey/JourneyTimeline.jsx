@@ -57,7 +57,7 @@ export default function JourneyTimeline() {
               37 years of innovation
             </FadeUp>
             <FadeUp as="h2" className="journey-timeline__heading" delay={0.06}>
-              A line through <em>time.</em>
+              A line through <em>Time.</em>
             </FadeUp>
             <div className="journey-timeline__blueprint-wrap">
               <img

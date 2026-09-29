@@ -12,8 +12,8 @@ export default function HomeIntro() {
         </FadeUp>
 
         <SplitLines as="h2" className="home-intro__statement">
-          We design, engineer, and manufacture <em>water</em> that performs  every nozzle,
-          light, and note made <em>in-house.</em>
+          We design, engineer, and manufacture <em>Water</em> that performs  every nozzle,
+          light, and note made <em>In-house.</em>
         </SplitLines>
 
         <div className="home-intro__row">

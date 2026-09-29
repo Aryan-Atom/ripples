@@ -13,19 +13,10 @@ function Title({ id, lines, em, className }) {
   )
 }
 
-function ChapterNum({ n }) {
-  return (
-    <p className="wgoa-num">
-      <span>{n}</span>
-    </p>
-  )
-}
-
 function Chapter({
   id,
   as: Tag = 'section',
   align = 'image',
-  index,
   eyebrow,
   titleId,
   titleLines,
@@ -42,8 +33,7 @@ function Chapter({
       aria-labelledby={titleId}
     >
       <div className="wgoa-chapter__copy">
-        {index ? <ChapterNum n={index} /> : null}
-        {eyebrow && !index ? (
+        {eyebrow ? (
           <FadeUp as="p" className="r-label">
             {eyebrow}
           </FadeUp>
@@ -69,7 +59,7 @@ function Chapter({
 }
 
 function WGoaOpener({ study }) {
-  const { brief, process } = study
+  const { brief } = study
   return (
     <section className="wgoa-opener" aria-labelledby="wgoa-brief-title">
       <div className="wgoa-opener__media" aria-hidden="true">
@@ -86,18 +76,6 @@ function WGoaOpener({ study }) {
           em={brief.titleEm}
         />
         <p className="wgoa-opener__lead">{brief.body}</p>
-        {process?.length ? (
-          <ol className="wgoa-index">
-            {process.map((step) => (
-              <li key={step.n}>
-                <a href={step.href}>
-                  <span className="wgoa-index__n">{step.n}</span>
-                  {step.label}
-                </a>
-              </li>
-            ))}
-          </ol>
-        ) : null}
       </div>
     </section>
   )
@@ -109,10 +87,9 @@ function WGoaPit({ study }) {
     <Chapter
       id="wgoa-pit"
       align="image"
-      index="01"
       titleId="wgoa-pit-title"
-      titleLines={['From pit', 'to pool.']}
-      titleEm="to pool."
+      titleLines={['From pit', 'To pool.']}
+      titleEm="To pool."
       image={before.images[0]}
     >
       <FadeUp as="p" className="wgoa-copy" y={16} delay={0.08}>
@@ -128,7 +105,7 @@ function WGoaFactory({ study }) {
     <Chapter
       id="wgoa-factory"
       align="text"
-      index="02"
+      eyebrow={design.eyebrow}
       titleId="wgoa-factory-title"
       titleLines={design.titleLines}
       titleEm={design.titleEm}
@@ -151,7 +128,7 @@ function WGoaTransport({ study }) {
     <Chapter
       id="wgoa-road"
       align="image"
-      index="03"
+      eyebrow={fabrication.eyebrow}
       titleId="wgoa-road-title"
       titleLines={fabrication.titleLines}
       titleEm={fabrication.titleEm}
@@ -167,7 +144,7 @@ function WGoaAssembly({ study }) {
     <Chapter
       id="wgoa-assembly"
       align="text"
-      index="04"
+      eyebrow={assembly.eyebrow}
       titleId="wgoa-assembly-title"
       titleLines={assembly.titleLines}
       titleEm={assembly.titleEm}
@@ -185,7 +162,7 @@ function WGoaResult({ study }) {
       <Chapter
         as="div"
         align="image"
-        index="05"
+        eyebrow={result.eyebrow}
         titleId="wgoa-result-title"
         titleLines={result.titleLines}
         titleEm={result.titleEm}
@@ -195,7 +172,6 @@ function WGoaResult({ study }) {
           <ol className="wgoa-outcomes">
             {result.outcomes.map((item, i) => (
               <FadeUp as="li" key={item} delay={0.05 + i * 0.04} y={14}>
-                <span>{String(i + 1).padStart(2, '0')}</span>
                 {item}
               </FadeUp>
             ))}

@@ -13,7 +13,7 @@ export default function BrandTrail() {
             Trusted by
           </FadeUp>
           <SplitLines as="h2" className="r-display">
-            Institutions &amp; brands <em>that demand excellence</em>
+            Institutions &amp; brands <em>That demand excellence</em>
           </SplitLines>
         </div>
       </div>

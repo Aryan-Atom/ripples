@@ -150,8 +150,6 @@ h3 em,
 .practice-process__title em,
 .worldwide-hero__title em,
 .worldwide-showcase__title em,
-.journey-hero__title em,
-.journey-timeline__heading em,
 .cs-result__title em,
 .home-video__caption-line em {
   display: inline-block;
@@ -172,8 +170,6 @@ h3 em::first-letter,
 .practice-process__title em::first-letter,
 .worldwide-hero__title em::first-letter,
 .worldwide-showcase__title em::first-letter,
-.journey-hero__title em::first-letter,
-.journey-timeline__heading em::first-letter,
 .cs-result__title em::first-letter,
 .home-video__caption-line em::first-letter {
   text-transform: uppercase;

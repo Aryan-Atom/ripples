@@ -23,7 +23,7 @@ function warmImages(urls) {
 /**
  * WaterWorks categories:
  * Desktop  Meridian-style rows (title + body + tags always visible);
- *           hover expands image strip below; click opens gallery.
+ *           hover expands image strip below; only the CTA opens the gallery.
  * Mobile  vertical cards with cover image and CTA.
  */
 export default function CategoryExploreList({ categories }) {
@@ -130,7 +130,7 @@ export default function CategoryExploreList({ categories }) {
             onMouseEnter={() => openItem(cat.id)}
             onMouseLeave={() => closeItem(cat.id)}
           >
-            <Link className="ww-cat-item__hit" to={cat.to}>
+            <div className="ww-cat-item__hit">
               <div className="ww-cat-item__row">
                 <h3 className="ww-cat-item__title">{cat.label}</h3>
                 <p className="ww-cat-item__desc">{cat.description}</p>
@@ -141,9 +141,9 @@ export default function CategoryExploreList({ categories }) {
                     ))}
                   </ul>
                   {cat.place ? <p className="ww-cat-item__place">{cat.place}</p> : null}
-                  <span className="ww-cat-item__cta">
+                  <Link className="ww-cat-item__cta" to={cat.to}>
                     View more images <span aria-hidden="true">→</span>
-                  </span>
+                  </Link>
                 </div>
               </div>
 
@@ -162,7 +162,7 @@ export default function CategoryExploreList({ categories }) {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           </li>
         )
       })}

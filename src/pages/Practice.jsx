@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   PRACTICE_VALUES,
@@ -11,6 +12,49 @@ import SiteFooter from '../components/SiteFooter.jsx'
 import SplitLines from '../motion/SplitLines'
 import FadeUp from '../motion/FadeUp'
 import StatCounter from '../motion/StatCounter'
+
+const FACILITY_SLIDE_MS = 2000
+
+function FacilitySlideshow({ slides }) {
+  const rootRef = useRef(null)
+  const [index, setIndex] = useState(0)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.2 },
+    )
+    observer.observe(root)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!visible || slides.length < 2) return undefined
+    const id = window.setInterval(() => {
+      setIndex((current) => (current + 1) % slides.length)
+    }, FACILITY_SLIDE_MS)
+    return () => window.clearInterval(id)
+  }, [visible, slides.length])
+
+  return (
+    <div ref={rootRef} className="practice-facility__slides" aria-hidden="true">
+      {slides.map((src, i) => (
+        <img
+          key={src}
+          className={`practice-facility__slide${i === index ? ' is-active' : ''}`}
+          src={src}
+          alt=""
+          decoding="async"
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      ))}
+    </div>
+  )
+}
 
 export default function Practice() {
   return (
@@ -47,12 +91,7 @@ export default function Practice() {
 
         <section className="practice-facility" aria-label="The facility">
           <FadeUp className="practice-facility__frame" y={0}>
-            <img
-              src={PRACTICE_IMAGES.facility}
-              alt="Placeholder  Ripples manufacturing facility"
-              loading="lazy"
-              decoding="async"
-            />
+            <FacilitySlideshow slides={PRACTICE_IMAGES.facilitySlides} />
             <div className="practice-facility__caption">
               <p className="r-label">Noida, India</p>
               <p className="practice-facility__caption-line">

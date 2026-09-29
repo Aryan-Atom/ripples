@@ -381,9 +381,11 @@
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  text-decoration: none;
   color: var(--color-accent);
   opacity: 0;
   transform: translateY(6px);
+  pointer-events: none;
   transition:
     opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
@@ -393,13 +395,14 @@
 .ww-cat-item.is-open .ww-cat-item__cta {
   opacity: 1;
   transform: none;
+  pointer-events: auto;
 }
 
-.ww-cat-item.is-open .ww-cat-item__hit:hover .ww-cat-item__cta {
-  color: var(--color-text);
+.ww-cat-item__cta:hover {
+  color: #b7d7ea;
 }
 
-.ww-cat-item.is-open .ww-cat-item__hit:hover .ww-cat-item__cta span {
+.ww-cat-item__cta:hover span {
   transform: translateX(4px);
 }
 

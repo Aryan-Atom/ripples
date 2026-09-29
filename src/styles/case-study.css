@@ -1124,49 +1124,6 @@
   pointer-events: none;
 }
 
-/* ── Company journey stub ── */
-
-.journey-stub-hero {
-  position: relative;
-  padding-block: clamp(7rem, 16vh, 10rem) clamp(3rem, 6vw, 4.5rem);
-  overflow: hidden;
-}
-
-.journey-stub-hero__grid {
-  opacity: 0.7;
-}
-
-.journey-stub-hero__inner {
-  position: relative;
-  z-index: 1;
-  max-width: 40rem;
-}
-
-.journey-stub-hero__title {
-  margin: 0.85rem 0 0;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5.5vw, 4.25rem);
-  font-weight: 400;
-  line-height: 1.08;
-}
-
-.journey-stub-hero__title em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--color-accent);
-  font-weight: 400;
-}
-
-.journey-stub-hero__lead {
-  margin: 1.25rem 0 0;
-  max-width: 34rem;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
-  line-height: 1.55;
-  color: var(--color-text-soft);
-}
-
 /* ── W-Goa process journal (not the Nehru split-panel stack) ── */
 
 .wgoa-page .wgoa-study {

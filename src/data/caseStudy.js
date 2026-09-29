@@ -2,14 +2,18 @@
 
 import { asset } from './assets.js'
 
-export const CS_ASSETS = 'case-study'
+export const CS_ASSETS = 'Ripples Assets/CaseStudy/NehruGarden'
 
 export function csAsset(file) {
   return asset(`${CS_ASSETS}/${file}`)
 }
 
 function wgoaSlide(n) {
-  return asset(`case-study/W-Goa/Slideshow ${n}.webp`)
+  return asset(`Ripples Assets/CaseStudy/WGoa/Section 1/Slideshow ${n}.webp`)
+}
+
+function wgoaSection2(file) {
+  return asset(`Ripples Assets/CaseStudy/WGoa/Section 2/${file}`)
 }
 
 export const CASE_STUDY_CHOICES = [
@@ -226,7 +230,7 @@ export const WOW_GOA_STUDY = {
       'An existing hillside pit was carefully assessed and prepared to accommodate a large-scale prefabricated pool system, aligned to the site’s natural form and structural constraints.',
     images: [
       {
-        src: asset('FromPitToPool.jpg'),
+        src: wgoaSection2('FromPitToPool.jpg'),
         alt: 'Hillside pit at W Goa before the prefabricated pool',
       },
     ],
@@ -240,7 +244,7 @@ export const WOW_GOA_STUDY = {
     note: 'Factory-built modules, signed off in Noida before they ever left the floor.',
     images: [
       {
-        src: asset('OffSiteFabricated.jpg'),
+        src: wgoaSection2('OffSiteFabricated.jpg'),
         alt: 'Prefabricated pool shell assembled off-site before transport to W Goa',
       },
     ],
@@ -332,7 +336,7 @@ export const WOW_GOA_STUDY = {
       'The pool was fully assembled, tested, and commissioned  delivering a large-scale, durable aquatic structure.',
     frames: [
       {
-        src: asset('StructuralAssembly.jpg'),
+        src: wgoaSection2('StructuralAssembly.jpg'),
         caption: 'On the hill',
         alt: 'Prefabricated pool shell joined on site at W Goa',
       },
@@ -353,9 +357,9 @@ export const WOW_GOA_STUDY = {
     titleLines: ['Rock pool,', 'W Goa.'],
     titleEm: 'W Goa.',
     video: '',
-    poster: asset('Final.jpg'),
+    poster: wgoaSection2('Final.jpg'),
     image: {
-      src: asset('Final.jpg'),
+      src: wgoaSection2('Final.jpg'),
       alt: 'Finished rock pool at W Goa, filled and landscaped',
     },
     outcomes: [

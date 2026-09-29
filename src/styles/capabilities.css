@@ -1006,7 +1006,7 @@
 .gallery-lightbox {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 200;
   display: grid;
   place-items: center;
   padding: clamp(6.25rem, 12vw, 8rem) clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 4vw, 2.75rem);
@@ -1128,6 +1128,53 @@
   .gallery-collage__item {
     margin-bottom: 0.75rem;
     border-radius: 0.7rem;
+  }
+
+  /* Full-screen lightbox that clears the sticky nav and fits the viewport */
+  .gallery-lightbox,
+  .gallery-lightbox--nav {
+    padding: max(3.25rem, env(safe-area-inset-top, 0px)) 0.65rem
+      max(0.85rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .gallery-lightbox__close {
+    top: max(0.65rem, env(safe-area-inset-top, 0px));
+    right: 0.65rem;
+  }
+
+  .gallery-lightbox__nav {
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+
+  .gallery-lightbox__nav--prev {
+    left: 0.2rem;
+  }
+
+  .gallery-lightbox__nav--next {
+    right: 0.2rem;
+  }
+
+  .gallery-lightbox__frame {
+    width: min(100%, calc(100vw - 1.3rem));
+    max-width: min(100%, calc(100vw - 1.3rem));
+    max-height: calc(100dvh - 4.75rem);
+  }
+
+  .gallery-lightbox__frame img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: calc(100dvh - 6.75rem);
+    border-radius: 0.65rem;
+  }
+
+  .gallery-lightbox__caption {
+    flex-wrap: wrap;
+    gap: 0.45rem 0.65rem;
+    margin-top: 0.65rem;
+    padding-inline: 0.15rem;
+    font-size: 0.95rem;
   }
 }
 

@@ -373,6 +373,44 @@
   transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.ww-cat-item__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-accent);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ww-cat-item.is-open .ww-cat-item__cta {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.ww-cat-item__cta:hover {
+  color: #b7d7ea;
+}
+
+.ww-cat-item__cta:hover span {
+  transform: translateX(4px);
+}
+
+.ww-cat-item__cta span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .ww-cat-item__panel {
   display: grid;
   grid-template-rows: 0fr;

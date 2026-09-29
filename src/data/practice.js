@@ -1,9 +1,12 @@
 import { withRemoteAssets } from './assets.js'
 
 export const PRACTICE_IMAGES = withRemoteAssets({
-  facility: '/assets/home_1.webp',
-  studio: '/assets/home_2.webp',
-  detail: '/assets/home_3.webp',
+  facilitySlides: [
+    '/assets/home_1.webp',
+    '/assets/home_2.webp',
+    '/assets/home_3.webp',
+    '/assets/home_4.webp',
+  ],
 })
 
 export const PRACTICE_VALUES = [

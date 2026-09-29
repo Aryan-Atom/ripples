@@ -222,7 +222,7 @@ export default function CapabilityPage({ slug: slugProp }) {
                 Selected work
               </FadeUp>
               <FadeUp as="h2" className="r-display capability-section__title" y={24}>
-                Built as <em>form</em>
+                Built as <em>Form</em>
               </FadeUp>
             </div>
             <GalleryCollage items={page.gallery} label="Architectural collage" />

@@ -55,7 +55,7 @@ export default function SiteFooter() {
         <FadeUp className="site-footer__cta" y={36}>
           <p className="r-label">Next</p>
           <p className="site-footer__cta-line">
-            Have a <em>spectacle</em> in mind?
+            Have a <em>Spectacle</em> in mind?
           </p>
           <a className="site-footer__cta-mail" href={`mailto:${SITE.email.work}`}>
             {SITE.email.work}

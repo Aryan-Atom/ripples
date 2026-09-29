@@ -76,7 +76,7 @@ export default function HomeVideo() {
         <div className="home-video__caption" ref={captionRef}>
           <p className="r-label">Behind the curtain</p>
           <p className="home-video__caption-line">
-            The <em>engineering</em> beneath the spectacle
+            The <em>Engineering</em> beneath the spectacle
           </p>
         </div>
       </div>

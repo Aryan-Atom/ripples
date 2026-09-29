@@ -1043,18 +1043,34 @@
 .practice-facility__frame {
   position: relative;
   overflow: hidden;
+  height: clamp(28rem, 88vh, 56rem);
 }
 
-.practice-facility__frame img {
+.practice-facility__slides {
+  position: absolute;
+  inset: 0;
+}
+
+.practice-facility__slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: clamp(22rem, 72vh, 44rem);
+  height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.practice-facility__slide.is-active {
+  opacity: 1;
+  z-index: 1;
 }
 
 .practice-facility__frame::after {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, transparent 30%, rgba(0, 0, 0, 0.6) 100%);
   pointer-events: none;
 }
@@ -1063,7 +1079,7 @@
   position: absolute;
   left: var(--space-page-x);
   bottom: clamp(1.75rem, 4vw, 3rem);
-  z-index: 1;
+  z-index: 2;
 }
 
 .practice-facility__caption .r-label {

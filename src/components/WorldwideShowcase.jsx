@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const DEFAULT_TITLE = (
   <>
-    Events that move <em>water</em> and crowds.
+    Events that move <em>Water</em> and crowds.
   </>
 )
 

@@ -153,9 +153,9 @@ export const WATERWORKS_CATEGORIES = withRemoteAssets([
     ],
     "place": "Site-specific",
     "description": "Site-specific architectural fountains composed as built form. Basins, nozzles, and light are engineered for wind, climate, and daily use  so the water reads as architecture long after opening day.",
-    "cover": "/assets/architectural/aarohan-gurgaon.webp",
+    "cover": "/assets/architectural/country-inn-and-suites.webp",
     "previews": [
-      "/assets/architectural/aarohan-gurgaon.webp",
+      "/assets/architectural/country-inn-and-suites.webp",
       "/assets/architectural/abu-dhabi-airport.webp",
       "/assets/architectural/hyatt-hyderabad.webp"
     ]

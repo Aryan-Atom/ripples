@@ -2,14 +2,18 @@
 
 import { asset } from './assets.js'
 
-export const CS_ASSETS = 'case-study'
+export const CS_ASSETS = 'Ripples Assets/CaseStudy/NehruGarden'
 
 export function csAsset(file) {
   return asset(`${CS_ASSETS}/${file}`)
 }
 
 function wgoaSlide(n) {
-  return asset(`case-study/W-Goa/Slideshow ${n}.webp`)
+  return asset(`Ripples Assets/CaseStudy/WGoa/Section 1/Slideshow ${n}.webp`)
+}
+
+function wgoaSection2(file) {
+  return asset(`Ripples Assets/CaseStudy/WGoa/Section 2/${file}`)
 }
 
 export const CASE_STUDY_CHOICES = [
@@ -71,8 +75,8 @@ export const CASE_STUDY = {
 
   design: {
     eyebrow: 'The design',
-    titleLines: ['Every fountain', 'starts as', 'a line.'],
-    titleEm: 'line.',
+    titleLines: ['Every fountain', 'starts as', 'a Line.'],
+    titleEm: 'Line.',
     body: 'Before water moves, geometry does. Site surveys, hand sketches, and the first nozzle grid drawn until the idea can carry pressure.',
     note: 'The signed musical fountain layout  nozzle families, pump loads, and jet heights locked before fabrication.',
     images: [
@@ -112,8 +116,8 @@ export const CASE_STUDY = {
   /** Kept engineering overlay  MediaReveal / JOURNEY_DESIGN shape */
   engineering: {
     act: { id: 'engineering', roman: 'III', label: 'Design' },
-    titleLines: ['Drawn until', 'it can hold.'],
-    titleEm: 'hold.',
+    titleLines: ['Drawn until', 'it can Hold.'],
+    titleEm: 'Hold.',
     body: 'Hydraulics, structure, and show control share one drawing set. What leaves the board is already a machine.',
     slides: [
       {
@@ -143,8 +147,8 @@ export const CASE_STUDY = {
 
   fabrication: {
     eyebrow: 'Fabrication',
-    titleLines: ['Made under', 'one roof.'],
-    titleEm: 'roof.',
+    titleLines: ['Made under', 'one Roof.'],
+    titleEm: 'Roof.',
     body: 'Nozzles, manifolds, and control racks are fabricated in Noida  then tested before they ever leave the floor.',
     items: [
       { src: csAsset('final-01.webp'), caption: 'Basin Works', alt: 'Section drawings for basin systems' },
@@ -170,8 +174,8 @@ export const CASE_STUDY = {
 
   visualization: {
     eyebrow: 'Visualization',
-    titleLines: ['Seen before', 'it was built.'],
-    titleEm: 'built.',
+    titleLines: ['Seen before', 'it was Built.'],
+    titleEm: 'Built.',
     body: 'Jet pattern and light sequence signed off in simulation  the show agreed before the first header hit the water.',
     poster: csAsset('before-02.webp'),
     modes: [
@@ -192,8 +196,8 @@ export const CASE_STUDY = {
 
   result: {
     eyebrow: 'The result',
-    titleLines: ['The final', 'show.'],
-    titleEm: 'show.',
+    titleLines: ['The final', 'Show.'],
+    titleEm: 'Show.',
     video: csAsset('final_video.mp4'),
     poster: csAsset('before-03.webp'),
   },
@@ -226,7 +230,7 @@ export const WOW_GOA_STUDY = {
       'An existing hillside pit was carefully assessed and prepared to accommodate a large-scale prefabricated pool system, aligned to the site’s natural form and structural constraints.',
     images: [
       {
-        src: wgoaSlide(3),
+        src: wgoaSection2('FromPitToPool.jpg'),
         alt: 'Hillside pit at W Goa before the prefabricated pool',
       },
     ],
@@ -240,22 +244,16 @@ export const WOW_GOA_STUDY = {
     note: 'Factory-built modules, signed off in Noida before they ever left the floor.',
     images: [
       {
-        src: wgoaSlide(5),
-        title: 'Daylight form',
-        alt: 'Finished W Goa rock pool in daylight above the beach',
-      },
-      {
-        src: wgoaSlide(2),
-        title: 'Evening set',
-        alt: 'W Goa rock pool at dusk with the coastal bar',
+        src: wgoaSection2('OffSiteFabricated.jpg'),
+        alt: 'Prefabricated pool shell assembled off-site before transport to W Goa',
       },
     ],
   },
 
   engineering: {
     act: { id: 'engineering', roman: 'III', label: 'Design' },
-    titleLines: ['Drawn until', 'it can hold.'],
-    titleEm: 'hold.',
+    titleLines: ['Drawn until', 'it can Hold.'],
+    titleEm: 'Hold.',
     body: 'Modular geometry, joints, and coastal loads share one drawing set. What leaves the board is already a machine  thirty-two modules ready for the road to Goa.',
     slides: [
       {
@@ -311,8 +309,8 @@ export const WOW_GOA_STUDY = {
 
   visualization: {
     eyebrow: 'Day and night',
-    titleLines: ['Seen by day.', 'Seen at night.'],
-    titleEm: 'night.',
+    titleLines: ['Seen by day.', 'Seen at Night.'],
+    titleEm: 'Night.',
     body: 'Daylight water and night light as the same form  the pool agreed as landscape before the last module locked.',
     poster: wgoaSlide(5),
     modes: [
@@ -322,11 +320,11 @@ export const WOW_GOA_STUDY = {
   },
 
   process: [
-    { n: '01', label: 'Pit', href: '#wgoa-pit' },
-    { n: '02', label: 'Factory', href: '#wgoa-factory' },
-    { n: '03', label: 'Road', href: '#wgoa-road' },
-    { n: '04', label: 'Assembly', href: '#wgoa-assembly' },
-    { n: '05', label: 'Water', href: '#wgoa-compare' },
+    { n: '01', label: 'From pit to pool', href: '#wgoa-pit' },
+    { n: '02', label: 'Off-site fabrication', href: '#wgoa-factory' },
+    { n: '03', label: 'Transport to site', href: '#wgoa-road' },
+    { n: '04', label: 'Structural assembly', href: '#wgoa-assembly' },
+    { n: '05', label: 'Completion', href: '#wgoa-result' },
   ],
 
   assembly: {
@@ -338,24 +336,9 @@ export const WOW_GOA_STUDY = {
       'The pool was fully assembled, tested, and commissioned  delivering a large-scale, durable aquatic structure.',
     frames: [
       {
-        src: wgoaSlide(3),
-        caption: 'The pit',
-        alt: 'Hillside pit before the prefabricated pool',
-      },
-      {
-        src: wgoaSlide(5),
-        caption: 'Daylight water',
-        alt: 'Finished rock pool in daylight',
-      },
-      {
-        src: wgoaSlide(4),
-        caption: 'Dusk',
-        alt: 'Finished rock pool at dusk, facing the sea',
-      },
-      {
-        src: wgoaSlide(6),
-        caption: 'Night water',
-        alt: 'Night view of the illuminated rock pool',
+        src: wgoaSection2('StructuralAssembly.jpg'),
+        caption: 'On the hill',
+        alt: 'Prefabricated pool shell joined on site at W Goa',
       },
     ],
   },
@@ -374,10 +357,10 @@ export const WOW_GOA_STUDY = {
     titleLines: ['Rock pool,', 'W Goa.'],
     titleEm: 'W Goa.',
     video: '',
-    poster: wgoaSlide(2),
+    poster: wgoaSection2('Final.jpg'),
     image: {
-      src: wgoaSlide(4),
-      alt: 'Finished W Goa rock pool at dusk, facing the sea',
+      src: wgoaSection2('Final.jpg'),
+      alt: 'Finished rock pool at W Goa, filled and landscaped',
     },
     outcomes: [
       'Zero on-site civil construction',

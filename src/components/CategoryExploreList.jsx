@@ -8,10 +8,22 @@ const OPEN_DELAY_MS = 120
 /** Slightly longer close so the collapse eases out. */
 const CLOSE_DELAY_MS = 80
 
+const warmedSrcs = new Set()
+
+function warmImages(urls) {
+  urls?.forEach((src) => {
+    if (!src || warmedSrcs.has(src)) return
+    warmedSrcs.add(src)
+    const image = new Image()
+    image.decoding = 'async'
+    image.src = src
+  })
+}
+
 /**
  * WaterWorks categories:
  * Desktop  Meridian-style rows (title + body + tags always visible);
- *           hover expands image strip below; click opens gallery.
+ *           hover expands image strip below; only the CTA opens the gallery.
  * Mobile  vertical cards with cover image and CTA.
  */
 export default function CategoryExploreList({ categories }) {
@@ -38,7 +50,26 @@ export default function CategoryExploreList({ categories }) {
     [],
   )
 
+  useEffect(() => {
+    if (!categories?.length) return undefined
+
+    const warmAll = () => {
+      categories.forEach((category) => warmImages(category.previews))
+    }
+
+    const idleId = window.requestIdleCallback
+      ? window.requestIdleCallback(warmAll)
+      : window.setTimeout(warmAll, 500)
+
+    return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idleId)
+      else window.clearTimeout(idleId)
+    }
+  }, [categories])
+
   const openItem = (id) => {
+    const category = categories.find((item) => item.id === id)
+    warmImages(category?.previews)
     window.clearTimeout(closeTimerRef.current)
     window.clearTimeout(openTimerRef.current)
     openTimerRef.current = window.setTimeout(() => {
@@ -99,7 +130,7 @@ export default function CategoryExploreList({ categories }) {
             onMouseEnter={() => openItem(cat.id)}
             onMouseLeave={() => closeItem(cat.id)}
           >
-            <Link className="ww-cat-item__hit" to={cat.to}>
+            <div className="ww-cat-item__hit">
               <div className="ww-cat-item__row">
                 <h3 className="ww-cat-item__title">{cat.label}</h3>
                 <p className="ww-cat-item__desc">{cat.description}</p>
@@ -110,6 +141,9 @@ export default function CategoryExploreList({ categories }) {
                     ))}
                   </ul>
                   {cat.place ? <p className="ww-cat-item__place">{cat.place}</p> : null}
+                  <Link className="ww-cat-item__cta" to={cat.to}>
+                    View more images <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
               </div>
 
@@ -122,13 +156,13 @@ export default function CategoryExploreList({ categories }) {
                         key={src}
                         style={{ '--shot-i': index }}
                       >
-                        <img src={src} alt="" loading="lazy" decoding="async" />
+                        <img src={src} alt="" decoding="async" />
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           </li>
         )
       })}

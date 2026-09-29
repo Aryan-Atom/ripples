@@ -12,7 +12,6 @@ import CapabilityPage from './pages/CapabilityPage.jsx'
 
 const CaseStudy = lazy(() => import('./pages/CaseStudy.jsx'))
 const CaseStudyIndex = lazy(() => import('./pages/CaseStudyIndex.jsx'))
-const Journey = lazy(() => import('./pages/Journey.jsx'))
 
 /** Legacy capability URLs that still have working page data. */
 const LEGACY_CAPABILITY_PAGES = [
@@ -74,14 +73,7 @@ export default function App() {
               </Suspense>
             }
           />
-          <Route
-            path="/journey"
-            element={
-              <Suspense fallback={null}>
-                <Journey />
-              </Suspense>
-            }
-          />
+          <Route path="/journey" element={<Navigate to="/" replace />} />
           <Route path="/our-journey" element={<Navigate to="/case-study" replace />} />
           <Route path="/client-login" element={<ClientLogin />} />
           <Route path="/client-profile" element={<ClientProfile />} />

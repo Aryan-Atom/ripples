@@ -14,7 +14,7 @@ export default function HomeCreations() {
               Selected creations
             </FadeUp>
             <SplitLines as="h2" className="r-display">
-              Water, <em>staged.</em>
+              Water, <em>Staged.</em>
             </SplitLines>
           </div>
           <FadeUp delay={0.2}>

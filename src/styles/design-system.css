@@ -135,6 +135,46 @@
   color: var(--color-accent);
 }
 
+h1 em,
+h2 em,
+h3 em,
+.r-display em,
+.page-hero__title em,
+.cs-hero__title em,
+.wgoa-title em,
+.cta-card__title em,
+.site-footer__cta-line em,
+.home-intro__statement em,
+.practice-cta__line em,
+.practice-facility__caption-line em,
+.practice-process__title em,
+.worldwide-hero__title em,
+.worldwide-showcase__title em,
+.cs-result__title em,
+.home-video__caption-line em {
+  display: inline-block;
+}
+
+h1 em::first-letter,
+h2 em::first-letter,
+h3 em::first-letter,
+.r-display em::first-letter,
+.page-hero__title em::first-letter,
+.cs-hero__title em::first-letter,
+.wgoa-title em::first-letter,
+.cta-card__title em::first-letter,
+.site-footer__cta-line em::first-letter,
+.home-intro__statement em::first-letter,
+.practice-cta__line em::first-letter,
+.practice-facility__caption-line em::first-letter,
+.practice-process__title em::first-letter,
+.worldwide-hero__title em::first-letter,
+.worldwide-showcase__title em::first-letter,
+.cs-result__title em::first-letter,
+.home-video__caption-line em::first-letter {
+  text-transform: uppercase;
+}
+
 .r-brand {
   font-family: var(--font-brand);
   font-weight: 800;

@@ -266,7 +266,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.45rem;
+  gap: 0.55rem;
   padding-block: 0;
 }
 
@@ -277,38 +277,75 @@
 .creation-list--mobile .creation-row__place,
 .creation-list--mobile .creation-row__category-cell {
   width: auto;
+  max-width: 100%;
   padding-block: 0;
 }
 
 .creation-list--mobile .creation-row__project {
   display: flex;
-  align-items: baseline;
-  gap: 0.65rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
 }
 
 .creation-list--mobile .creation-row__index {
   font-size: 0.7rem;
+  letter-spacing: 0.14em;
 }
 
 .creation-list--mobile .creation-row__title {
-  font-size: clamp(1.28rem, 5.2vw, 1.65rem);
-  line-height: 1.08;
+  font-size: clamp(1.35rem, 5.4vw, 1.75rem);
+  line-height: 1.1;
   letter-spacing: -0.01em;
   min-height: 0;
+  text-transform: uppercase;
+}
+
+/* Keep title as one phrase on mobile: "Naya Raipur" */
+.creation-list--mobile .creation-row__title br {
+  display: none;
+}
+
+.creation-list--mobile .creation-row__title span + span::before {
+  content: ' ';
+}
+
+.creation-list--mobile .creation-row__summary {
+  display: none;
+}
+
+.creation-list--mobile .creation-row__place {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  min-height: 0;
+  margin-top: 0.15rem;
 }
 
 .creation-list--mobile .creation-row__place,
 .creation-list--mobile .creation-row__category {
-  font-size: 0.66rem;
-  letter-spacing: 0.12em;
-  line-height: 1.45;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
   white-space: normal;
 }
 
 .creation-list--mobile .creation-row__place span {
+  display: block;
   white-space: normal;
   overflow: visible;
   text-overflow: unset;
+}
+
+.creation-list--mobile .creation-row__category-cell {
+  margin-top: 0.35rem;
+}
+
+.creation-list--mobile .creation-row__category {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  white-space: normal;
 }
 
 .creation-group {
@@ -1674,14 +1711,38 @@
   }
 
   .creation-list--touch .creation-row__line {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
     padding-block: 0;
+  }
+
+  .creation-list--touch .creation-row__project {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .creation-list--touch .creation-row__title br {
+    display: none;
+  }
+
+  .creation-list--touch .creation-row__title span + span::before {
+    content: ' ';
   }
 
   .creation-list--touch .creation-row__place,
   .creation-list--touch .creation-row__category {
     grid-column: 1;
+  }
+
+  .creation-list--touch .creation-row__place {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
   }
 
   .home-creations__head {

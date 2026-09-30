@@ -133,6 +133,18 @@ export const CAPABILITY_PAGES = withRemoteAssets([
         "src": "/assets/architectural/aditya-world-city-noida.webp"
       },
       {
+        "title": "Al Barari, Dubai",
+        "src": "/assets/architectural/Al Barari - Dubai.webp"
+      },
+      {
+        "title": "Al Barshah Mall, Dubai",
+        "src": "/assets/architectural/Al Barshah Mall, Dubai.webp"
+      },
+      {
+        "title": "Al Bawadi, Dubai",
+        "src": "/assets/architectural/Al Bawadi - Dubai.webp"
+      },
+      {
         "title": "Ansal Township, Lucknow",
         "src": "/assets/architectural/ansal-township-lucknow.webp"
       },
@@ -141,32 +153,96 @@ export const CAPABILITY_PAGES = withRemoteAssets([
         "src": "/assets/architectural/apra-builders.webp"
       },
       {
+        "title": "ARA Farm",
+        "src": "/assets/architectural/ARA FARM (1).webp"
+      },
+      {
+        "title": "Artgate, Dubai",
+        "src": "/assets/architectural/Artgate, Dubai.webp"
+      },
+      {
         "title": "Asiana Hotel, Dubai",
         "src": "/assets/architectural/asiana-hotel-dubai.webp"
+      },
+      {
+        "title": "Bawadi Mall, Al Ain",
+        "src": "/assets/architectural/Bawadi Mall - Al Ain.webp"
+      },
+      {
+        "title": "Bharti Airtel H.O., Vasant Kunj",
+        "src": "/assets/architectural/Bharti Airtel H.O. V.Kunj Gurgaon.webp"
       },
       {
         "title": "Bombay Dyeing",
         "src": "/assets/architectural/bombay-dying.webp"
       },
       {
+        "title": "Centre Point, Mumbai",
+        "src": "/assets/architectural/Centre Point (Penninsula Land) Mumbai.webp"
+      },
+      {
+        "title": "Club Florence, Gurgaon",
+        "src": "/assets/architectural/Club Florence Gurgaon.webp"
+      },
+      {
         "title": "Country Inn & Suites",
         "src": "/assets/architectural/country-inn-and-suites.webp"
+      },
+      {
+        "title": "Cross River Mall, Noida",
+        "src": "/assets/architectural/Cross River Mall Noida.webp"
       },
       {
         "title": "Crowne Plaza Rohini",
         "src": "/assets/architectural/crowne-plaza-rohini.webp"
       },
       {
+        "title": "Delhi Metro Bhawan",
+        "src": "/assets/architectural/Delhi Metro Bhawan.webp"
+      },
+      {
+        "title": "Desert Palm Resort, Dubai",
+        "src": "/assets/architectural/Desert Palm Resort - Dubai.webp"
+      },
+      {
+        "title": "Dharampal Satyapal, Noida",
+        "src": "/assets/architectural/Dharampal Satyapal Noida.webp"
+      },
+      {
+        "title": "DLF Alameda, Gurgaon",
+        "src": "/assets/architectural/DLF Alameda Gurgaon.webp"
+      },
+      {
         "title": "DLF Princeton",
         "src": "/assets/architectural/dlf-prinston.webp"
       },
       {
+        "title": "Educomp, Gurgaon",
+        "src": "/assets/architectural/Educomp Sl. Gurgaon (4).webp"
+      },
+      {
+        "title": "Emaar Jaipur Green",
+        "src": "/assets/architectural/Emaar Jaipur Green.webp"
+      },
+      {
+        "title": "Emporio Mall, New Delhi",
+        "src": "/assets/architectural/Emporio Mall N Delhi.webp"
+      },
+      {
+        "title": "Essel Tower",
+        "src": "/assets/architectural/Essel Tower - Outside.webp"
+      },
+      {
         "title": "F1 Track, Greater Noida",
-        "src": "/assets/architectural/f1-track-g-noida.webp"
+        "src": "/assets/architectural/F1 Track G Noida.webp"
       },
       {
         "title": "Fortis, Gurgaon",
         "src": "/assets/architectural/fortis-gurgaon.webp"
+      },
+      {
+        "title": "Gantooth, Dubai",
+        "src": "/assets/architectural/Gantooth Dubai.webp"
       },
       {
         "title": "Golf Park",
@@ -177,6 +253,14 @@ export const CAPABILITY_PAGES = withRemoteAssets([
         "src": "/assets/architectural/harsha-dubai-1.webp"
       },
       {
+        "title": "Hotel Hometel, Mumbai",
+        "src": "/assets/architectural/Hotel Hometel Mumbai.webp"
+      },
+      {
+        "title": "Hotel Viceroy, Hyderabad",
+        "src": "/assets/architectural/Hotel Viceroy Hyderabad.webp"
+      },
+      {
         "title": "Radisson SAS, Dubai",
         "src": "/assets/architectural/hotel-radisson-sas-dubai.webp"
       },
@@ -185,12 +269,100 @@ export const CAPABILITY_PAGES = withRemoteAssets([
         "src": "/assets/architectural/hyatt-hyderabad.webp"
       },
       {
+        "title": "IBC Tech Park, Bangalore",
+        "src": "/assets/architectural/IBC Tech Park Bangalore.webp"
+      },
+      {
+        "title": "Indus Valley",
+        "src": "/assets/architectural/Indus Valley.webp"
+      },
+      {
         "title": "INS Karamba",
         "src": "/assets/architectural/ins-karamba.webp"
       },
       {
         "title": "IOCL Panipat",
         "src": "/assets/architectural/iocl-panipat.webp"
+      },
+      {
+        "title": "Living Style Mall",
+        "src": "/assets/architectural/Living Style Mall.webp"
+      },
+      {
+        "title": "M3M Urbana, Gurgaon",
+        "src": "/assets/architectural/M3M Urbana Gurgaon.webp"
+      },
+      {
+        "title": "MGF Palm Spring",
+        "src": "/assets/architectural/MGF Palm Spring (4).webp"
+      },
+      {
+        "title": "Neelkanth Mansion, Mumbai",
+        "src": "/assets/architectural/Neelkanth Mansion Mumbai (2).webp"
+      },
+      {
+        "title": "Parasvnath Exotica, Gurgaon",
+        "src": "/assets/architectural/Parasvnath Exotica Gurgaon.webp"
+      },
+      {
+        "title": "Park Hyatt, Goa",
+        "src": "/assets/architectural/Park Hyatt Goa.webp"
+      },
+      {
+        "title": "Pinnacle DLF",
+        "src": "/assets/architectural/Pinnacle DLF (2).webp"
+      },
+      {
+        "title": "Rise Residences, Noida",
+        "src": "/assets/architectural/Rise Residences Noida(4).webp"
+      },
+      {
+        "title": "RMZ, Bangalore",
+        "src": "/assets/architectural/RMZ Bangalore.webp"
+      },
+      {
+        "title": "SDA, Srinagar",
+        "src": "/assets/architectural/SDA Srinagar.webp"
+      },
+      {
+        "title": "Shangri-La Hotel, Abu Dhabi",
+        "src": "/assets/architectural/Shangrilla Hotel - Abu Dhabi.webp"
+      },
+      {
+        "title": "Supreme Industries, Mumbai",
+        "src": "/assets/architectural/SUPREME INDUSTRIES MUMBAI (1).webp"
+      },
+      {
+        "title": "Taj Vivanta, Surajkund",
+        "src": "/assets/architectural/Taj Vivanta Surajkund.webp"
+      },
+      {
+        "title": "TDI Township, Kundli",
+        "src": "/assets/architectural/TDI Township Kundli(2).webp"
+      },
+      {
+        "title": "The Ivy, Gurgaon",
+        "src": "/assets/architectural/THE IVY GURGAON.webp"
+      },
+      {
+        "title": "The Palm Springs, Gurgaon",
+        "src": "/assets/architectural/The Palm Springs Gurgaon(1).webp"
+      },
+      {
+        "title": "Trident, Gurgaon",
+        "src": "/assets/architectural/Trident Gurgaon.webp"
+      },
+      {
+        "title": "Uniworld SPA",
+        "src": "/assets/architectural/Uniworld SPA.webp"
+      },
+      {
+        "title": "Vardhman City Mall, Dwarka",
+        "src": "/assets/architectural/Vardhman City Mall, Dwarka.webp"
+      },
+      {
+        "title": "Water Curtain, Dubai",
+        "src": "/assets/architectural/Water Curtain, Dubai.webp"
       }
     ]
   },

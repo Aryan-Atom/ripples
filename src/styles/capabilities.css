@@ -1072,6 +1072,8 @@
   stroke-linejoin: round;
 }
 
+.gallery-lightbox__close:hover,
+.gallery-lightbox__close:focus-visible,
 .gallery-lightbox__nav:hover,
 .gallery-lightbox__nav:focus-visible {
   border-color: #fff;

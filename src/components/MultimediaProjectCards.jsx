@@ -64,8 +64,18 @@ export default function MultimediaProjectCards({ projects }) {
       <div className="worldwide-showcase__slides">
         {projects.map((project) => {
           const openGallery = () => {
-            const items = project.gallery
-            if (!items?.length) return
+            const photos = project.gallery || []
+            if (!project.video && !photos.length) return
+            const items = []
+            if (project.video) {
+              items.push({
+                type: 'video',
+                title: project.title,
+                src: project.video,
+                poster: project.poster || photos[0]?.src,
+              })
+            }
+            items.push(...photos)
             setOpen({ items, index: 0 })
           }
 
@@ -91,7 +101,7 @@ export default function MultimediaProjectCards({ projects }) {
                         ) : null}
                         <h3 className="worldwide-showcase__card-title">{project.title}</h3>
                         <p className="worldwide-showcase__card-body">{project.description}</p>
-                        {project.gallery?.length ? (
+                        {project.video || project.gallery?.length ? (
                           <button
                             type="button"
                             className="worldwide-showcase__card-more"

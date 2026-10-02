@@ -4,6 +4,7 @@ import SignupForm from '../components/SignupForm'
 import LoginForm from '../components/LoginForm'
 import PageHero from '../components/PageHero.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
+import FadeUp from '../motion/FadeUp'
 import { loadClientSession } from '../clientSession'
 
 export default function ClientLogin() {
@@ -19,6 +20,8 @@ export default function ClientLogin() {
       <div className="interior-page__atmosphere" aria-hidden="true" />
       <main className="interior-page__main">
         <PageHero
+          className="page-hero--client-login"
+          contentKey={mode}
           eyebrow="Client portal"
           title={
             mode === 'login' ? (
@@ -40,7 +43,7 @@ export default function ClientLogin() {
 
         <section className="client-access" aria-label="Client account">
           <div className="r-container client-access__inner">
-            <div className="client-access__panel">
+            <FadeUp className="client-access__panel" y={36} stagger={0.08}>
               <div className="client-access__tabs" role="tablist" aria-label="Account">
                 <button
                   type="button"
@@ -83,7 +86,7 @@ export default function ClientLogin() {
                   </>
                 )}
               </p>
-            </div>
+            </FadeUp>
           </div>
         </section>
       </main>

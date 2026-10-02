@@ -2,10 +2,13 @@ import { withRemoteAssets } from './assets.js'
 
 export const PRACTICE_IMAGES = withRemoteAssets({
   facilitySlides: [
-    '/assets/home_1.webp',
-    '/assets/home_2.webp',
-    '/assets/home_3.webp',
-    '/assets/home_4.webp',
+    'Ripples Assets/Practice/Section 1/practice1.webp',
+    'Ripples Assets/Practice/Section 1/practice2.webp',
+    'Ripples Assets/Practice/Section 1/practice3.webp',
+    'Ripples Assets/Practice/Section 1/practice4.webp',
+    'Ripples Assets/Practice/Section 1/practice5.webp',
+    'Ripples Assets/Practice/Section 1/practice6.webp',
+    'Ripples Assets/Practice/Section 1/practice7.webp',
   ],
 })
 

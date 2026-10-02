@@ -25,11 +25,11 @@ const LEGACY_PREFIX_HINTS = [
   [/^ripples-assets\//i, 'WaterWorks/Multimedia/Section 2'],
   [/^front-page\//i, 'WorldWide'],
   [/^events\//i, 'WorldWide'],
-  [/^home_\d\.webp$/i, 'Practice'],
   [/^company_intro\.mp4$/i, 'Homepage'],
   [/^video_engineering\.mp4$/i, 'Homepage'],
+  [/^WebsiteLogo\.mp4$/i, 'Gif'],
   [/^RipplesLogoAnimationWithMusic\.mp4$/i, 'Homepage'],
-  [/^(FromPitToPool|OffSiteFabricated|StructuralAssembly|Final|Completion)\.jpg$/i, 'CaseStudy/WGoa'],
+  [/^(FromPitToPool|OffSiteFabricated|StructuralAssembly|Final|Completion)\.(jpg|webp)$/i, 'CaseStudy/WGoa'],
 ]
 
 function normalizeKey(path) {
@@ -46,7 +46,7 @@ function scoreCandidate(candidate, hintParts, legacy) {
     if (part && lower.includes(part.toLowerCase())) score += 3
   }
   // Prefer gallery/detail sections when legacy had a category folder
-  if (/\/Section 2\//i.test(candidate) && /architectural|prefab|ww-others|multimedia/i.test(legacy)) {
+  if (/\/Section 2\//i.test(candidate) && /architectural|prefab|ww-others|multimedia|events|front-page|worldwide/i.test(legacy)) {
     score += 1
   }
   // Prefer preview Section 1 for cover/preview-style short paths without deep nesting
@@ -136,7 +136,7 @@ export function folderMedia(folder) {
   }
 }
 
-/** Walk data trees and swap `/assets/...` strings for manifest URLs. */
+/** Walk data trees and swap local/manifest asset paths for remote URLs. */
 export function withRemoteAssets(value) {
   if (Array.isArray(value)) return value.map(withRemoteAssets)
   if (value && typeof value === 'object') {
@@ -146,7 +146,10 @@ export function withRemoteAssets(value) {
     }
     return next
   }
-  if (typeof value === 'string' && value.startsWith('/assets/')) {
+  if (
+    typeof value === 'string' &&
+    (value.startsWith('/assets/') || value.startsWith('Ripples Assets/'))
+  ) {
     return asset(value)
   }
   return value

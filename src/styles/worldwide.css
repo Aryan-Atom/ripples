@@ -295,15 +295,17 @@
 .worldwide-showcase__slides {
   grid-column: 1 / -1;
   grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4.5vw, 3.25rem);
 }
 
 .worldwide-showcase__slide {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding-block: clamp(3rem, 8vh, 5rem);
+  min-height: auto;
+  padding-block: clamp(1.25rem, 3vw, 2rem);
   padding-inline: var(--space-page-x);
   background: transparent;
 }
@@ -442,7 +444,7 @@
 
 .worldwide-showcase--compact .worldwide-showcase__slide {
   min-height: auto;
-  padding-block: 0 clamp(3.5rem, 8vw, 5.5rem);
+  padding-block: clamp(1.25rem, 3vw, 2rem);
 }
 
 .worldwide-showcase--projects {

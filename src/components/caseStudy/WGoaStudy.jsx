@@ -123,7 +123,7 @@ function WGoaFactory({ study }) {
 
 function WGoaTransport({ study }) {
   const { fabrication } = study
-  const image = fabrication.items[2] || fabrication.items[0]
+  const image = fabrication.items?.[0]
   return (
     <Chapter
       id="wgoa-road"

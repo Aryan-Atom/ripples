@@ -3,6 +3,7 @@
 /* ── Auth (login / signup)  cardless, matches contact form ─────── */
 
 .client-access {
+  padding-top: clamp(1.5rem, 4vh, 3rem);
   padding-bottom: var(--space-section-y);
 }
 

@@ -1087,7 +1087,9 @@
   max-height: calc(100vh - clamp(8.5rem, 16vw, 11rem));
 }
 
-.gallery-lightbox__frame img {
+.gallery-lightbox__frame img,
+.gallery-lightbox__frame video,
+.gallery-lightbox__video {
   display: block;
   width: auto;
   height: auto;
@@ -1095,6 +1097,7 @@
   max-height: calc(100vh - clamp(11rem, 20vw, 14rem));
   border-radius: 0.85rem;
   object-fit: contain;
+  background: #000;
 }
 
 .gallery-lightbox__caption {
@@ -1163,7 +1166,9 @@
     max-height: calc(100dvh - 4.75rem);
   }
 
-  .gallery-lightbox__frame img {
+  .gallery-lightbox__frame img,
+  .gallery-lightbox__frame video,
+  .gallery-lightbox__video {
     width: 100%;
     max-width: 100%;
     height: auto;

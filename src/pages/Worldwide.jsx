@@ -4,7 +4,6 @@ import WorldwideHero from '../components/WorldwideHero.jsx'
 import WorldwideShowcase from '../components/WorldwideShowcase.jsx'
 import TextMarquee from '../components/TextMarquee.jsx'
 import {
-  WORLDWIDE_REGIONS,
   WORLDWIDE_CITIES,
   WORLDWIDE_EVENTS,
   WORLDWIDE_PROJECTS,
@@ -42,36 +41,11 @@ export default function Worldwide() {
               Projects delivered <em>Worldwide.</em>
             </>
           }
-          lead="Permanent installations built for campuses, civic plazas, and destinations  starting with Abu Dhabi."
+          lead="Permanent installations built for campuses, civic plazas, and destinations  across Abu Dhabi, Dubai, and beyond."
           ariaLabel="Worldwide projects"
           compact
           variant="projects"
         />
-
-        <section className="worldwide-regions" aria-label="Regional presence">
-          <div className="r-container">
-            <FadeUp as="p" className="r-label">
-              Where the water moves
-            </FadeUp>
-            <SplitLines as="h2" className="r-display worldwide-regions__title">
-              Six continents, <em>One workshop.</em>
-            </SplitLines>
-
-            <div className="worldwide-regions__list">
-              {WORLDWIDE_REGIONS.map((region, i) => (
-                <FadeUp className="worldwide-region" key={region.index} delay={i * 0.04}>
-                  <span className="worldwide-region__index">{region.index}</span>
-                  <h3 className="worldwide-region__name">{region.name}</h3>
-                  <div className="worldwide-region__detail">
-                    <span className="worldwide-region__countries">{region.countries}</span>
-                    <p className="worldwide-region__note">{region.note}</p>
-                  </div>
-                  <span className="worldwide-region__projects">{region.projects}</span>
-                </FadeUp>
-              ))}
-            </div>
-          </div>
-        </section>
 
         <div className="worldwide-cities" aria-hidden="true">
           <TextMarquee items={WORLDWIDE_CITIES.slice(0, 6)} />

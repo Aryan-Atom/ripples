@@ -71,10 +71,9 @@ export function CaseStudyDesign({ study = CASE_STUDY }) {
     <SplitPanel
       id="design"
       className="cs-design"
+      mediaSide="right"
       ariaLabelledby="cs-design-title"
-      media={
-        <GalleryCollage items={design.images} label="Design drawings collage" />
-      }
+      media={<GalleryCollage items={design.images} label="Design drawings collage" />}
     >
       <SectionHeading
         act={{ label: design.eyebrow }}
@@ -84,9 +83,21 @@ export function CaseStudyDesign({ study = CASE_STUDY }) {
         body={design.body}
         ruled
       />
+      {design.bodySecondary ? (
+        <FadeUp as="p" className="cs-design__note" delay={0.12}>
+          {design.bodySecondary}
+        </FadeUp>
+      ) : null}
       {design.note ? (
         <FadeUp as="p" className="cs-design__note" delay={0.18}>
           {design.note}
+        </FadeUp>
+      ) : null}
+      {design.labels?.length ? (
+        <FadeUp as="ul" className="cs-design__labels" delay={0.24}>
+          {design.labels.map((label) => (
+            <li key={label}>{label}</li>
+          ))}
         </FadeUp>
       ) : null}
     </SplitPanel>
@@ -95,38 +106,29 @@ export function CaseStudyDesign({ study = CASE_STUDY }) {
 
 export function CaseStudyFabrication({ study = CASE_STUDY }) {
   const { fabrication } = study
+  const collageItems = (fabrication.items || []).map((item) => ({
+    src: item.src,
+    title: item.title || item.caption,
+    alt: item.alt,
+  }))
+
   return (
-    <JourneyChapter
+    <SplitPanel
       id="fabrication"
-      className="cs-fabrication"
-      aria-labelledby="cs-fabrication-title"
+      className="cs-design cs-fabrication-panel"
+      mediaSide="right"
+      ariaLabelledby="cs-fabrication-title"
+      media={<GalleryCollage items={collageItems} label="Fabrication collage" />}
     >
-      <div className="r-container">
-        <SectionHeading
-          act={{ label: fabrication.eyebrow }}
-          titleId="cs-fabrication-title"
-          titleLines={fabrication.titleLines}
-          titleEm={fabrication.titleEm}
-          body={fabrication.body}
-          ruled
-        />
-        <div className="cs-fabrication__grid">
-          {fabrication.items.map((item, i) => (
-            <FadeUp
-              key={item.src}
-              className="cs-fabrication__card"
-              delay={i * 0.06}
-              y={28}
-            >
-              <div className="cs-fabrication__frame cs-sheet">
-                <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
-              </div>
-              <p className="r-label cs-fabrication__caption">{item.caption}</p>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </JourneyChapter>
+      <SectionHeading
+        act={{ label: fabrication.eyebrow }}
+        titleId="cs-fabrication-title"
+        titleLines={fabrication.titleLines}
+        titleEm={fabrication.titleEm}
+        body={fabrication.body}
+        ruled
+      />
+    </SplitPanel>
   )
 }
 
@@ -247,89 +249,38 @@ export function CaseStudyVisualization({ study = CASE_STUDY }) {
   )
 }
 
-/** Full-bleed installation video  no GSAP pin, so it never overlaps Visualization. */
+/** Installation gallery  same pattern as Before (label + italic intro + image row). */
 export function CaseStudyInstallation({ study = CASE_STUDY }) {
   const { installation } = study
-  const mediaRef = useRef(null)
-  const videoRef = useRef(null)
-  const [ready, setReady] = useState(false)
-  const [shouldLoad, setShouldLoad] = useState(false)
-
-  useEffect(() => {
-    const root = mediaRef.current
-    if (!root) return undefined
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true)
-          const video = videoRef.current
-          if (video) {
-            video.muted = true
-            video.playsInline = true
-            video.play().catch(() => {})
-          }
-        } else {
-          videoRef.current?.pause()
-        }
-      },
-      { rootMargin: '30% 0px', threshold: 0.12 },
-    )
-    observer.observe(root)
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video || !shouldLoad) return undefined
-
-    const onReady = () => {
-      setReady(true)
-      if (!video.paused) return
-      video.play().catch(() => {})
-    }
-
-    video.addEventListener('loadeddata', onReady)
-    video.addEventListener('canplay', onReady)
-    if (video.readyState >= 2) onReady()
-
-    return () => {
-      video.removeEventListener('loadeddata', onReady)
-      video.removeEventListener('canplay', onReady)
-    }
-  }, [shouldLoad])
+  const images = installation.images || []
+  const intro = installation.intro || installation.body
 
   return (
     <JourneyChapter
-      id="installation"
-      className="cs-installation"
+      id={installation.act?.id || 'installation'}
+      className="cs-before cs-installation-gallery"
       aria-labelledby="cs-install-title"
     >
-      <div ref={mediaRef} className="cs-installation__media" aria-hidden="true">
-        <img
-          className={`cs-installation__poster${ready ? ' is-faded' : ''}`}
-          src={installation.poster}
-          alt=""
-          decoding="async"
-        />
-        <video
-          ref={videoRef}
-          className={`cs-installation__video${ready ? ' is-ready' : ''}`}
-          src={shouldLoad ? installation.video : undefined}
-          poster={installation.poster}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        />
-        <div className="cs-installation__veil" />
-      </div>
-      <div className="cs-installation__inner r-container">
-        <p className="r-label cs-installation__eyebrow">{installation.act.label}</p>
-        <h2 id="cs-install-title" className="cs-installation__title">
-          {installation.title}
-        </h2>
-        <p className="cs-installation__body">{installation.body}</p>
+      <div className="r-container">
+        <FadeUp as="p" className="r-label">
+          {installation.act?.label || installation.eyebrow || 'Installation'}
+        </FadeUp>
+        {intro ? (
+          <FadeUp as="p" id="cs-install-title" className="cs-before__intro" y={18} delay={0.06}>
+            {intro}
+          </FadeUp>
+        ) : null}
+        {images.length > 0 ? (
+          <div
+            className={`cs-before__grid${images.length === 1 ? ' cs-before__grid--single' : ''}`}
+          >
+            {images.map((image, i) => (
+              <FadeUp key={image.src} className="cs-before__cell" delay={0.08 + i * 0.05} y={24}>
+                <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+              </FadeUp>
+            ))}
+          </div>
+        ) : null}
       </div>
     </JourneyChapter>
   )

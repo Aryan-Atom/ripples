@@ -91,7 +91,7 @@ export const WORLDWIDE_EVENTS = withRemoteAssets([
     index: '02',
     title: 'Guangzhou Event',
     description:
-      'Ripples Fountains showcased its expertise at a Guangzhou industry event, presenting innovative water features, precision engineering, and integrated lighting to an international trade audience.',
+      'A Global Showcase at a Guangzhou industry event, presenting innovative water features, precision engineering, and integrated lighting to an international trade audience.',
     video: '/assets/events/guangzhou-1.mp4',
     align: 'left',
   },
@@ -111,7 +111,7 @@ export const WORLDWIDE_PROJECTS = withRemoteAssets([
     index: '01',
     title: 'BRICS Summit',
     description:
-      'Ripples Fountains showcased its expertise at the BRICS Summit, presenting innovative water features, programmable jets, lighting, and music to an international audience.',
+      'Ripples Fountains at BRICS, presenting innovative water features, programmable jets, lighting, and music to an international audience.',
     poster: '/assets/events/BRICS3.webp',
     image: '/assets/events/BRICS3.webp',
     align: 'left',

@@ -172,10 +172,10 @@ export const WATERWORKS_CATEGORIES = withRemoteAssets([
     ],
     "place": "Workshop-built",
     "description": "Prefab pools, rock pools, and waterfalls manufactured in our workshop. Modules arrive ready to set  still custom in the finish, still built to Ripples tolerances.",
-    "cover": "/assets/prefab/Artboard1.webp",
+    "cover": "/assets/prefab/Artboard5.webp",
     "previews": [
-      "/assets/prefab/Artboard1.webp",
-      "/assets/prefab/custom-geyser-jets-with-streams.webp",
+      "/assets/prefab/custom-trickling-waterfall-hill-spring-school-mumbai-2.webp",
+      "/assets/prefab/Artboard5.webp",
       "/assets/prefab/prefab-rock-pool-w-goa.webp"
     ]
   },
@@ -392,6 +392,18 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
           {
             "title": "The Bay Club, Mumbai",
             "src": "/assets/ww-others/swimming-pools/the-bay-club-mumbai-3.webp"
+          },
+          {
+            "title": "Ireo Victory Valley Pool",
+            "src": "Ripples Assets/WaterWorks/Others/Section 2/swimming-pools/ireovictoryvalleypool1.webp"
+          },
+          {
+            "title": "Ireo Victory Valley Pool",
+            "src": "Ripples Assets/WaterWorks/Others/Section 2/swimming-pools/ireovictoryvalleypool2.webp"
+          },
+          {
+            "title": "Ireo Victory Valley Pool",
+            "src": "Ripples Assets/WaterWorks/Others/Section 2/swimming-pools/ireovictoryvalleypool3.webp"
           }
         ]
       },

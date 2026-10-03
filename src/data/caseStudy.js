@@ -335,7 +335,7 @@ export const WOW_GOA_STUDY = {
     poster: wgoaSlide(5),
     modes: [
       { id: 'day', label: 'Day', src: wgoaSlide(5) },
-      { id: 'night', label: 'Night', src: wgoaSlide(1) },
+      { id: 'night', label: 'Night', src: wgoaSlide(6) },
     ],
   },
 

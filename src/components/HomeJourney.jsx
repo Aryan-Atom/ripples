@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
 import FadeUp from '../motion/FadeUp'
 import SplitLines from '../motion/SplitLines'
@@ -8,13 +8,58 @@ import { asset } from '../data/assets.js'
 import { withBrand } from './Brand.jsx'
 
 const STEP_MS = 2600
+const VIDEO_START_YEAR = '1994'
+const VIDEO_MID_YEAR = '2006'
+const VIDEO_END_YEAR = '2022'
+
+const VIDEO_START_INDEX = JOURNEY_TIMELINE.findIndex((entry) => entry.year === VIDEO_START_YEAR)
+const VIDEO_MID_INDEX = JOURNEY_TIMELINE.findIndex((entry) => entry.year === VIDEO_MID_YEAR)
+const VIDEO_END_INDEX = JOURNEY_TIMELINE.findIndex((entry) => entry.year === VIDEO_END_YEAR)
 
 export default function HomeJourney() {
   const sectionRef = useRef(null)
   const progressRef = useRef(null)
+  const trackRef = useRef(null)
+  const itemRefs = useRef([])
   const [active, setActive] = useState(0)
   const [interactive, setInteractive] = useState(false)
+  const [videoRange, setVideoRange] = useState({ top: 0, height: 0 })
   const count = JOURNEY_TIMELINE.length
+
+  useLayoutEffect(() => {
+    const track = trackRef.current
+    if (!track) return undefined
+
+    const measure = () => {
+      const startEl = itemRefs.current[VIDEO_START_INDEX]
+      const midEl = itemRefs.current[VIDEO_MID_INDEX]
+      const endEl = itemRefs.current[VIDEO_END_INDEX]
+      if (!startEl || !midEl || !endEl) return
+
+      const trackTop = track.getBoundingClientRect().top
+      const startTop = startEl.getBoundingClientRect().top - trackTop
+      const midTop = midEl.getBoundingClientRect().top - trackTop
+      const endBottom = endEl.getBoundingClientRect().bottom - trackTop
+      // Begin halfway between 1994 and 2006
+      const bandTop = (startTop + midTop) / 2
+
+      setVideoRange({
+        top: Math.max(0, bandTop),
+        height: Math.max(0, endBottom - bandTop),
+      })
+    }
+
+    measure()
+
+    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null
+    observer?.observe(track)
+    window.addEventListener('resize', measure)
+
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener('resize', measure)
+    }
+  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -114,19 +159,28 @@ export default function HomeJourney() {
       </div>
 
       <div className="home-journey__grid">
-        <div className="home-journey__video">
-          <LazyVideo
-            className="home-journey__video-media"
-            src={asset('video_engineering.mp4')}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+        <div
+          className="home-journey__video-col"
+          style={
+            videoRange.height
+              ? { marginTop: videoRange.top, height: videoRange.height }
+              : undefined
+          }
+        >
+          <div className="home-journey__video">
+            <LazyVideo
+              className="home-journey__video-media"
+              src={asset('WebsiteLogo.mp4')}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          </div>
         </div>
 
         <div className="home-journey__timeline" aria-live="polite">
-          <div className="journey-timeline__track">
+          <div ref={trackRef} className="journey-timeline__track">
             <div className="journey-timeline__spine" aria-hidden="true">
               <div ref={progressRef} className="journey-timeline__progress" />
             </div>
@@ -135,6 +189,9 @@ export default function HomeJourney() {
               {JOURNEY_TIMELINE.map((entry, i) => (
                 <li
                   key={entry.year}
+                  ref={(el) => {
+                    itemRefs.current[i] = el
+                  }}
                   className={`journey-timeline__item${i % 2 === 0 ? ' is-left' : ' is-right'}${i <= active ? ' is-active' : ''}${i === active ? ' is-current' : ''}`}
                 >
                   <span className="journey-timeline__dot" aria-hidden="true" />

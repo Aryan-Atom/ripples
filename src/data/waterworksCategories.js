@@ -132,7 +132,7 @@ export const WATERWORKS_CATEGORIES = withRemoteAssets([
       "Light",
       "Music"
     ],
-    "place": "Worldwide",
+    "place": "Multimedia",
     "description": "Immersive fountain shows where water, light, and music move as one choreographed system. Built for plazas, lakes, and landmark nights  every effect engineered in-house so the performance holds its drama from opening surge to final fade.",
     "cover": "/assets/multimedia/bhopal-musical.webp",
     "previews": [
@@ -172,11 +172,11 @@ export const WATERWORKS_CATEGORIES = withRemoteAssets([
     ],
     "place": "Workshop-built",
     "description": "Prefab pools, rock pools, and waterfalls manufactured in our workshop. Modules arrive ready to set  still custom in the finish, still built to Ripples tolerances.",
-    "cover": "/assets/prefab/prefab-swimming-pool-w-goa.webp",
+    "cover": "/assets/prefab/Artboard1.webp",
     "previews": [
-      "/assets/prefab/prefab-swimming-pool-w-goa.webp",
-      "/assets/prefab/custom-geyser-jet-fountain-dmrc-hq-n-delhi.webp",
-      "/assets/prefab/mckinsey-gurgaon.webp"
+      "/assets/prefab/Artboard1.webp",
+      "/assets/prefab/custom-geyser-jets-with-streams.webp",
+      "/assets/prefab/prefab-rock-pool-w-goa.webp"
     ]
   },
   {
@@ -314,20 +314,8 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
             "src": "/assets/ww-others/programmable-fountains/jumping-jets-mall-noida.webp"
           },
           {
-            "title": "Jumping Jets, ZECO Haryana",
-            "src": "/assets/ww-others/programmable-fountains/jumping-jets-zeco-haryana.webp"
-          },
-          {
-            "title": "Orange County, Indirapuram",
-            "src": "/assets/ww-others/programmable-fountains/orange-county-indirapuram.webp"
-          },
-          {
             "title": "Private Residence, New Delhi",
             "src": "/assets/ww-others/programmable-fountains/private-residence-n-delhi.webp"
-          },
-          {
-            "title": "Private Residence, New Delhi",
-            "src": "/assets/ww-others/programmable-fountains/private-residence-n-delhi-2.webp"
           },
           {
             "title": "Programmed Fountain",
@@ -362,14 +350,6 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
         "titleEm": "Pools",
         "gallery": [
           {
-            "title": "Country Inn & Suites, Ajmer",
-            "src": "/assets/ww-others/swimming-pools/country-inn-and-suites-ajmer.webp"
-          },
-          {
-            "title": "Private Pool",
-            "src": "/assets/ww-others/swimming-pools/private-pool-img-0633.webp"
-          },
-          {
             "title": "Intercontinental, Goa",
             "src": "/assets/ww-others/swimming-pools/intercontinental-goa.webp"
           },
@@ -390,8 +370,8 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
             "src": "/assets/ww-others/swimming-pools/private-farm-n-delhi.webp"
           },
           {
-            "title": "Sapphire Heights, Mumbai and Kids Play Pool",
-            "src": "/assets/ww-others/swimming-pools/sapphire-heights-mumbai-swimming-pool-and-kids-play-pool.webp"
+            "title": "Private Pool",
+            "src": "/assets/ww-others/swimming-pools/private-pool-img-0633.webp"
           },
           {
             "title": "Taj Vivanta, Surajkund",
@@ -400,10 +380,6 @@ export const WATERWORKS_CATEGORY_PAGES = withRemoteAssets({
           {
             "title": "Taj Vivanta, Surajkund",
             "src": "/assets/ww-others/swimming-pools/taj-vivanta-surajkund.webp"
-          },
-          {
-            "title": "Taj Vivanta, Surajkund",
-            "src": "/assets/ww-others/swimming-pools/taj-vivanta-surajkund-2.webp"
           },
           {
             "title": "The Bay Club, Mumbai",

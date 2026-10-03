@@ -6,16 +6,24 @@ function stepIndex(index, length, direction) {
   return (index + direction + length) % length
 }
 
-/** Full-screen photo viewer. Esc / arrows / backdrop / ×. */
+function isVideoItem(item) {
+  if (!item) return false
+  if (item.type === 'video') return true
+  return /\.(mp4|webm|mov)(\?|$)/i.test(String(item.src || ''))
+}
+
+/** Full-screen media viewer. Esc / arrows / backdrop / ×. Supports images + video (with audio). */
 export default function GalleryLightbox({ items, index, onClose, onIndex }) {
   const current = index != null ? items?.[index] : null
   const onCloseRef = useRef(onClose)
   const onIndexRef = useRef(onIndex)
+  const videoRef = useRef(null)
   onCloseRef.current = onClose
   onIndexRef.current = onIndex
 
   const count = items?.length ?? 0
   const showArrows = count > 1
+  const showingVideo = isVideoItem(current)
 
   useEffect(() => {
     if (index == null || !current) return undefined
@@ -37,6 +45,21 @@ export default function GalleryLightbox({ items, index, onClose, onIndex }) {
     }
   }, [index, count, current])
 
+  useEffect(() => {
+    const video = videoRef.current
+    if (!showingVideo || !video) return undefined
+
+    video.muted = false
+    video.defaultMuted = false
+    video.removeAttribute('muted')
+    const play = video.play()
+    if (play?.catch) play.catch(() => {})
+
+    return () => {
+      video.pause()
+    }
+  }, [showingVideo, current?.src, index])
+
   if (index == null || !current) return null
 
   const go = (direction) => (event) => {
@@ -49,14 +72,14 @@ export default function GalleryLightbox({ items, index, onClose, onIndex }) {
       className={`gallery-lightbox${showArrows ? ' gallery-lightbox--nav' : ''}`}
       role="dialog"
       aria-modal="true"
-      aria-label={current.title || 'Photograph'}
+      aria-label={current.title || (showingVideo ? 'Video' : 'Photograph')}
       onClick={onClose}
     >
       <button
         type="button"
         className="gallery-lightbox__close"
         onClick={onClose}
-        aria-label="Close image"
+        aria-label="Close"
       >
         ×
       </button>
@@ -66,7 +89,7 @@ export default function GalleryLightbox({ items, index, onClose, onIndex }) {
           type="button"
           className="gallery-lightbox__nav gallery-lightbox__nav--prev"
           onClick={go(-1)}
-          aria-label="Previous image"
+          aria-label="Previous"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
@@ -75,7 +98,20 @@ export default function GalleryLightbox({ items, index, onClose, onIndex }) {
       )}
 
       <figure className="gallery-lightbox__frame" onClick={(event) => event.stopPropagation()}>
-        <img src={current.src} alt={current.title || ''} />
+        {showingVideo ? (
+          <video
+            key={current.src}
+            ref={videoRef}
+            className="gallery-lightbox__video"
+            src={current.src}
+            poster={current.poster || undefined}
+            controls
+            playsInline
+            preload="auto"
+          />
+        ) : (
+          <img src={current.src} alt={current.title || ''} />
+        )}
         <figcaption className="gallery-lightbox__caption">
           <span>
             {String(index + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
@@ -89,7 +125,7 @@ export default function GalleryLightbox({ items, index, onClose, onIndex }) {
           type="button"
           className="gallery-lightbox__nav gallery-lightbox__nav--next"
           onClick={go(1)}
-          aria-label="Next image"
+          aria-label="Next"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M9 5l7 7-7 7" />

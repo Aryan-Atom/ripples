@@ -108,264 +108,392 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "gallery": []
   },
   {
-    "slug": "architectural-fountains",
-    "label": "Architectural",
-    "eyebrow": "WaterWorks  Architectural",
-    "titleBefore": "Fountains as",
-    "titleEm": "Architecture",
-    "lead": "Site-specific architectural fountains  basins, nozzles, and light composed for plazas, campuses, and civic destinations.",
-    "body": "Form follows hydraulics. We design the silhouette and engineer the system so the water holds its line in wind, heat, and daily use  built in our workshop, installed as architecture.",
-    "gallery": [
-      {
-        "title": "Aarohan, Gurgaon",
-        "src": "/assets/architectural/aarohan-gurgaon.webp"
-      },
-      {
-        "title": "Abu Dhabi Airport",
-        "src": "/assets/architectural/abu-dhabi-airport.webp"
-      },
-      {
-        "title": "Adani Power Plant, Mundra",
-        "src": "/assets/architectural/adani-power-plant-mundra.webp"
-      },
-      {
-        "title": "Aditya World City, Noida",
-        "src": "/assets/architectural/aditya-world-city-noida.webp"
-      },
-      {
-        "title": "Al Barari, Dubai",
-        "src": "/assets/architectural/Al Barari - Dubai.webp"
-      },
-      {
-        "title": "Al Barshah Mall, Dubai",
-        "src": "/assets/architectural/Al Barshah Mall, Dubai.webp"
-      },
-      {
-        "title": "Al Bawadi, Dubai",
-        "src": "/assets/architectural/Al Bawadi - Dubai.webp"
-      },
-      {
-        "title": "Ansal Township, Lucknow",
-        "src": "/assets/architectural/ansal-township-lucknow.webp"
-      },
-      {
-        "title": "APRA Builders",
-        "src": "/assets/architectural/apra-builders.webp"
-      },
-      {
-        "title": "ARA Farm",
-        "src": "/assets/architectural/ARA FARM (1).webp"
-      },
-      {
-        "title": "Artgate, Dubai",
-        "src": "/assets/architectural/Artgate, Dubai.webp"
-      },
-      {
-        "title": "Asiana Hotel, Dubai",
-        "src": "/assets/architectural/asiana-hotel-dubai.webp"
-      },
-      {
-        "title": "Bawadi Mall, Al Ain",
-        "src": "/assets/architectural/Bawadi Mall - Al Ain.webp"
-      },
-      {
-        "title": "Bharti Airtel H.O., Vasant Kunj",
-        "src": "/assets/architectural/Bharti Airtel H.O. V.Kunj Gurgaon.webp"
-      },
-      {
-        "title": "Bombay Dyeing",
-        "src": "/assets/architectural/bombay-dying.webp"
-      },
-      {
-        "title": "Centre Point, Mumbai",
-        "src": "/assets/architectural/Centre Point (Penninsula Land) Mumbai.webp"
-      },
-      {
-        "title": "Club Florence, Gurgaon",
-        "src": "/assets/architectural/Club Florence Gurgaon.webp"
-      },
-      {
-        "title": "Country Inn & Suites",
-        "src": "/assets/architectural/country-inn-and-suites.webp"
-      },
-      {
-        "title": "Cross River Mall, Noida",
-        "src": "/assets/architectural/Cross River Mall Noida.webp"
-      },
-      {
-        "title": "Crowne Plaza Rohini",
-        "src": "/assets/architectural/crowne-plaza-rohini.webp"
-      },
-      {
-        "title": "Delhi Metro Bhawan",
-        "src": "/assets/architectural/Delhi Metro Bhawan.webp"
-      },
-      {
-        "title": "Desert Palm Resort, Dubai",
-        "src": "/assets/architectural/Desert Palm Resort - Dubai.webp"
-      },
-      {
-        "title": "Dharampal Satyapal, Noida",
-        "src": "/assets/architectural/Dharampal Satyapal Noida.webp"
-      },
-      {
-        "title": "DLF Alameda, Gurgaon",
-        "src": "/assets/architectural/DLF Alameda Gurgaon.webp"
-      },
-      {
-        "title": "DLF Princeton",
-        "src": "/assets/architectural/dlf-prinston.webp"
-      },
-      {
-        "title": "Educomp, Gurgaon",
-        "src": "/assets/architectural/Educomp Sl. Gurgaon (4).webp"
-      },
-      {
-        "title": "Emaar Jaipur Green",
-        "src": "/assets/architectural/Emaar Jaipur Green.webp"
-      },
-      {
-        "title": "Emporio Mall, New Delhi",
-        "src": "/assets/architectural/Emporio Mall N Delhi.webp"
-      },
-      {
-        "title": "Essel Tower",
-        "src": "/assets/architectural/Essel Tower - Outside.webp"
-      },
-      {
-        "title": "F1 Track, Greater Noida",
-        "src": "/assets/architectural/F1 Track G Noida.webp"
-      },
-      {
-        "title": "Fortis, Gurgaon",
-        "src": "/assets/architectural/fortis-gurgaon.webp"
-      },
-      {
-        "title": "Gantooth, Dubai",
-        "src": "/assets/architectural/Gantooth Dubai.webp"
-      },
-      {
-        "title": "Golf Park",
-        "src": "/assets/architectural/golf-park.webp"
-      },
-      {
-        "title": "Harsha, Dubai",
-        "src": "/assets/architectural/harsha-dubai-1.webp"
-      },
-      {
-        "title": "Hotel Hometel, Mumbai",
-        "src": "/assets/architectural/Hotel Hometel Mumbai.webp"
-      },
-      {
-        "title": "Hotel Viceroy, Hyderabad",
-        "src": "/assets/architectural/Hotel Viceroy Hyderabad.webp"
-      },
-      {
-        "title": "Radisson SAS, Dubai",
-        "src": "/assets/architectural/hotel-radisson-sas-dubai.webp"
-      },
-      {
-        "title": "Hyatt Hyderabad",
-        "src": "/assets/architectural/hyatt-hyderabad.webp"
-      },
-      {
-        "title": "IBC Tech Park, Bangalore",
-        "src": "/assets/architectural/IBC Tech Park Bangalore.webp"
-      },
-      {
-        "title": "Indus Valley",
-        "src": "/assets/architectural/Indus Valley.webp"
-      },
-      {
-        "title": "INS Karamba",
-        "src": "/assets/architectural/ins-karamba.webp"
-      },
-      {
-        "title": "IOCL Panipat",
-        "src": "/assets/architectural/iocl-panipat.webp"
-      },
-      {
-        "title": "Living Style Mall",
-        "src": "/assets/architectural/Living Style Mall.webp"
-      },
-      {
-        "title": "M3M Urbana, Gurgaon",
-        "src": "/assets/architectural/M3M Urbana Gurgaon.webp"
-      },
-      {
-        "title": "MGF Palm Spring",
-        "src": "/assets/architectural/MGF Palm Spring (4).webp"
-      },
-      {
-        "title": "Neelkanth Mansion, Mumbai",
-        "src": "/assets/architectural/Neelkanth Mansion Mumbai (2).webp"
-      },
-      {
-        "title": "Parasvnath Exotica, Gurgaon",
-        "src": "/assets/architectural/Parasvnath Exotica Gurgaon.webp"
-      },
-      {
-        "title": "Park Hyatt, Goa",
-        "src": "/assets/architectural/Park Hyatt Goa.webp"
-      },
-      {
-        "title": "Pinnacle DLF",
-        "src": "/assets/architectural/Pinnacle DLF (2).webp"
-      },
-      {
-        "title": "Rise Residences, Noida",
-        "src": "/assets/architectural/Rise Residences Noida(4).webp"
-      },
-      {
-        "title": "RMZ, Bangalore",
-        "src": "/assets/architectural/RMZ Bangalore.webp"
-      },
-      {
-        "title": "SDA, Srinagar",
-        "src": "/assets/architectural/SDA Srinagar.webp"
-      },
-      {
-        "title": "Shangri-La Hotel, Abu Dhabi",
-        "src": "/assets/architectural/Shangrilla Hotel - Abu Dhabi.webp"
-      },
-      {
-        "title": "Supreme Industries, Mumbai",
-        "src": "/assets/architectural/SUPREME INDUSTRIES MUMBAI (1).webp"
-      },
-      {
-        "title": "Taj Vivanta, Surajkund",
-        "src": "/assets/architectural/Taj Vivanta Surajkund.webp"
-      },
-      {
-        "title": "TDI Township, Kundli",
-        "src": "/assets/architectural/TDI Township Kundli(2).webp"
-      },
-      {
-        "title": "The Ivy, Gurgaon",
-        "src": "/assets/architectural/THE IVY GURGAON.webp"
-      },
-      {
-        "title": "The Palm Springs, Gurgaon",
-        "src": "/assets/architectural/The Palm Springs Gurgaon(1).webp"
-      },
-      {
-        "title": "Trident, Gurgaon",
-        "src": "/assets/architectural/Trident Gurgaon.webp"
-      },
-      {
-        "title": "Uniworld SPA",
-        "src": "/assets/architectural/Uniworld SPA.webp"
-      },
-      {
-        "title": "Vardhman City Mall, Dwarka",
-        "src": "/assets/architectural/Vardhman City Mall, Dwarka.webp"
-      },
-      {
-        "title": "Water Curtain, Dubai",
-        "src": "/assets/architectural/Water Curtain, Dubai.webp"
-      }
-    ]
-  },
+      "slug": "architectural-fountains",
+      "label": "Architectural Fountains",
+      "eyebrow": "WaterWorks  Architectural",
+      "titleBefore": "Water as",
+      "titleEm": "Architecture",
+      "lead": "Site-specific architectural fountains  basins, nozzles, and light composed for plazas, campuses, and civic destinations.",
+      "body": "Form follows hydraulics. We design the silhouette and engineer the system so the water holds its line in wind, heat, and daily use  built in our workshop, installed as architecture.",
+      "gallery": [
+        {
+          "title": "Aarohan Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/aarohan-gurgaon.webp"
+        },
+        {
+          "title": "Abu Dhabi Airport",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/abu-dhabi-airport.webp"
+        },
+        {
+          "title": "Adani Power Plant Mundra",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/adani-power-plant-mundra.webp"
+        },
+        {
+          "title": "Aditya World City Noida",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/aditya-world-city-noida.webp"
+        },
+        {
+          "title": "Al Barari - Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Al Barari - Dubai.webp"
+        },
+        {
+          "title": "Al Barshah Mall, Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Al Barshah Mall, Dubai.webp"
+        },
+        {
+          "title": "Al Bawadi - Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Al Bawadi - Dubai.webp"
+        },
+        {
+          "title": "Ansal Township Lucknow",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Ansal Township Lucknow.webp"
+        },
+        {
+          "title": "Ansal Township Lucknow",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/ansal-township-lucknow.webp"
+        },
+        {
+          "title": "Apra Builders",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/apra-builders.webp"
+        },
+        {
+          "title": "ARA FARM (1)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/ARA FARM (1).webp"
+        },
+        {
+          "title": "Artgate, Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Artgate, Dubai.webp"
+        },
+        {
+          "title": "Asiana Hotel Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/asiana-hotel-dubai.webp"
+        },
+        {
+          "title": "Bawadi Mall - Al Ain",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Bawadi Mall - Al Ain.webp"
+        },
+        {
+          "title": "Bharti Airtel H.O. V.Kunj Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Bharti Airtel H.O. V.Kunj Gurgaon.webp"
+        },
+        {
+          "title": "Bombay Dying",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/bombay-dying.webp"
+        },
+        {
+          "title": "Business Bay Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Business Bay Dubai.webp"
+        },
+        {
+          "title": "Centre Point (Penninsula Land) Mumbai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Centre Point (Penninsula Land) Mumbai.webp"
+        },
+        {
+          "title": "CHARISMA HOTEL BANGALORE",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/CHARISMA HOTEL BANGALORE.webp"
+        },
+        {
+          "title": "Club Florence Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Club Florence Gurgaon.webp"
+        },
+        {
+          "title": "Country Inn And Suites",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/country-inn-and-suites.webp"
+        },
+        {
+          "title": "Cross River Mall Noida",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Cross River Mall Noida.webp"
+        },
+        {
+          "title": "CROWNE PLAZA ROHINI (3)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/CROWNE PLAZA ROHINI (3).webp"
+        },
+        {
+          "title": "Crowne Plaza Rohini",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/crowne-plaza-rohini.webp"
+        },
+        {
+          "title": "Delhi Metro Bhawan",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Delhi Metro Bhawan.webp"
+        },
+        {
+          "title": "Desert Palm Resort - Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Desert Palm Resort - Dubai.webp"
+        },
+        {
+          "title": "Dharampal Satyapal Noida",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Dharampal Satyapal Noida.webp"
+        },
+        {
+          "title": "DLF Alameda Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/DLF Alameda Gurgaon.webp"
+        },
+        {
+          "title": "Dlf Prinston",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/dlf-prinston.webp"
+        },
+        {
+          "title": "Double Crown Fountain",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Double Crown Fountain.webp"
+        },
+        {
+          "title": "Educomp Sl. Gurgaon (4)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Educomp Sl. Gurgaon (4).webp"
+        },
+        {
+          "title": "Emaar Jaipur Green",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Emaar Jaipur Green.webp"
+        },
+        {
+          "title": "Emporio Mall N Delhi",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Emporio Mall N Delhi.webp"
+        },
+        {
+          "title": "Eros Nehru Place",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Eros Nehru Place.webp"
+        },
+        {
+          "title": "Essel Tower - Outside",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Essel Tower - Outside.webp"
+        },
+        {
+          "title": "F1 Track G Noida",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/F1 Track G Noida.webp"
+        },
+        {
+          "title": "Fortis Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/fortis-gurgaon.webp"
+        },
+        {
+          "title": "Gantooth Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Gantooth Dubai.webp"
+        },
+        {
+          "title": "Golf Park",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/golf-park.webp"
+        },
+        {
+          "title": "Half Dandelion",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Half Dandelion.webp"
+        },
+        {
+          "title": "Harsha Dubai 1",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/harsha-dubai-1.webp"
+        },
+        {
+          "title": "Hiranandani Chennai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Hiranandani Chennai.webp"
+        },
+        {
+          "title": "holiday inn mumbai (2)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/holiday inn mumbai (2).webp"
+        },
+        {
+          "title": "Hotel Hometel Mumbai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Hotel Hometel Mumbai.webp"
+        },
+        {
+          "title": "Hotel Viceroy Hyderabad",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Hotel Viceroy Hyderabad.webp"
+        },
+        {
+          "title": "Hotel Radisson Sas Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/hotel-radisson-sas-dubai.webp"
+        },
+        {
+          "title": "HT MEDIA Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/HT MEDIA Gurgaon.webp"
+        },
+        {
+          "title": "Hyatt Hyderabad",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/hyatt-hyderabad.webp"
+        },
+        {
+          "title": "IBC Tech Park Bangalore",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/IBC Tech Park Bangalore.webp"
+        },
+        {
+          "title": "Indus Valley",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Indus Valley.webp"
+        },
+        {
+          "title": "Ins Karamba",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/ins-karamba.webp"
+        },
+        {
+          "title": "Intercontinental Hotel Noida",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Intercontinental Hotel Noida.webp"
+        },
+        {
+          "title": "IOCL Panipat(1)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/IOCL Panipat(1).webp"
+        },
+        {
+          "title": "Iocl Panipat",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/iocl-panipat.webp"
+        },
+        {
+          "title": "JAMES HOTEL CHANDIGARH",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/JAMES HOTEL CHANDIGARH.webp"
+        },
+        {
+          "title": "Jaypee Palace Agra",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Jaypee Palace Agra.webp"
+        },
+        {
+          "title": "Jaypee Resort Greater Noida(1)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Jaypee Resort Greater Noida(1).webp"
+        },
+        {
+          "title": "JP Greens Noida",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/JP Greens Noida.webp"
+        },
+        {
+          "title": "Laburnum Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Laburnum Gurgaon.webp"
+        },
+        {
+          "title": "Living Style Mall",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Living Style Mall.webp"
+        },
+        {
+          "title": "Lodha One Mumbai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Lodha One Mumbai.webp"
+        },
+        {
+          "title": "M3M Sales Center Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/M3M Sales Center Gurgaon.webp"
+        },
+        {
+          "title": "M3M Urbana Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/M3M Urbana Gurgaon.webp"
+        },
+        {
+          "title": "Mawana Sugar. Shaheer Ass. Feb. 2009",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Mawana Sugar. Shaheer Ass. Feb. 2009.webp"
+        },
+        {
+          "title": "McKinsey Gurgaon(1)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/McKinsey Gurgaon(1).webp"
+        },
+        {
+          "title": "MGF Palm Spring (4)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/MGF Palm Spring (4).webp"
+        },
+        {
+          "title": "Moolchand Hospital N Delhi",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Moolchand Hospital N Delhi.webp"
+        },
+        {
+          "title": "National Museum N Delhi",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/National Museum N Delhi.webp"
+        },
+        {
+          "title": "NDMC HQ N Delhi",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/NDMC HQ N Delhi.webp"
+        },
+        {
+          "title": "Neelkanth Mansion Mumbai (2)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Neelkanth Mansion Mumbai (2).webp"
+        },
+        {
+          "title": "Orchard Residency Mumbai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Orchard Residency Mumbai.webp"
+        },
+        {
+          "title": "Parasvnath Exotica Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Parasvnath Exotica Gurgaon.webp"
+        },
+        {
+          "title": "Park Hyatt Goa",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Park Hyatt Goa.webp"
+        },
+        {
+          "title": "Pinnacle DLF (2)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Pinnacle DLF (2).webp"
+        },
+        {
+          "title": "Pinnacle Tower Claridges Surajkund (2)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Pinnacle Tower Claridges Surajkund (2).webp"
+        },
+        {
+          "title": "Private Farm N Delhi(5)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Private Farm N Delhi(5).webp"
+        },
+        {
+          "title": "Private Residence N Delhi(2)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Private Residence N Delhi(2).webp"
+        },
+        {
+          "title": "Radisson Blue N Delhi",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Radisson Blue N Delhi.webp"
+        },
+        {
+          "title": "Rise Residences Noida(4)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Rise Residences Noida(4).webp"
+        },
+        {
+          "title": "RMZ Bangalore",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/RMZ Bangalore.webp"
+        },
+        {
+          "title": "SDA Srinagar",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/SDA Srinagar.webp"
+        },
+        {
+          "title": "Shangrilla Hotel - Abu Dhabi",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Shangrilla Hotel - Abu Dhabi.webp"
+        },
+        {
+          "title": "SUPREME INDUSTRIES MUMBAI (1)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/SUPREME INDUSTRIES MUMBAI (1).webp"
+        },
+        {
+          "title": "Taj Vivanta Surajkund",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Taj Vivanta Surajkund.webp"
+        },
+        {
+          "title": "TDI Township Kundli(2)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/TDI Township Kundli(2).webp"
+        },
+        {
+          "title": "The Bella Vista Chandigarh",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/The Bella Vista Chandigarh.webp"
+        },
+        {
+          "title": "THE IVY GURGAON",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/THE IVY GURGAON.webp"
+        },
+        {
+          "title": "The Palm Springs Gurgaon(1)",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/The Palm Springs Gurgaon(1).webp"
+        },
+        {
+          "title": "Trident Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Trident Gurgaon.webp"
+        },
+        {
+          "title": "Unitech Harmony Gurgaon",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Unitech Harmony Gurgaon.webp"
+        },
+        {
+          "title": "Uniworld SPA",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Uniworld SPA.webp"
+        },
+        {
+          "title": "Vardhman City Mall, Dwarka",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Vardhman City Mall, Dwarka.webp"
+        },
+        {
+          "title": "Water Curtain, Dubai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Water Curtain, Dubai.webp"
+        },
+        {
+          "title": "Xansa Chennai",
+          "src": "Ripples Assets/WaterWorks/Architectural/Section 2/Xansa Chennai.webp"
+        }
+      ]
+    },
   {
     "slug": "floating-fountains",
     "label": "Floating Fountains",
@@ -410,8 +538,9 @@ export const CAPABILITY_PAGES = withRemoteAssets([
     "slug": "prefab-water-features",
     "label": "Prefabs",
     "eyebrow": "WaterWorks  Prefabs",
-    "titleBefore": "Factory-built",
+    "titleBefore": "Factory",
     "titleEm": "Water",
+    "titleMid": "Built",
     "lead": "Prefab pools and waterfalls from the Ripples workshop  precision-built modules that install faster without losing the finish of a custom system.",
     "body": "Every prefab piece is manufactured under one roof: swimming pools, rock pools, sheet and trickling waterfalls, geyser jets. Workshop control means tighter tolerances, cleaner edges, and site schedules that stay on track.",
     "gallery": [],
@@ -441,8 +570,16 @@ export const CAPABILITY_PAGES = withRemoteAssets([
             "src": "/assets/prefab/prefab-rock-pool-w-goa-2.webp"
           },
           {
-            "title": "Custom SGRP Pool with SS Columns, Dubai",
-            "src": "/assets/prefab/custom-sgrp-pool-with-ss-columns-dubai.webp"
+            "title": "Ireo Victory Valley Pool",
+            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/IreoVictoryValleyPool1.webp"
+          },
+          {
+            "title": "Ireo Victory Valley Pool",
+            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/IreoVictoryValleyPool2.webp"
+          },
+          {
+            "title": "Ireo Victory Valley Pool",
+            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/IreoVictoryValleyPool3.webp"
           }
         ]
       },
@@ -451,12 +588,12 @@ export const CAPABILITY_PAGES = withRemoteAssets([
         "label": "Prefab Fountains",
         "gallery": [
           {
-            "title": "Custom Geyser Jet Fountain, DMRC HQ, New Delhi",
-            "src": "/assets/prefab/custom-geyser-jet-fountain-dmrc-hq-n-delhi.webp"
-          },
-          {
             "title": "Custom Geyser Jets with Streams",
             "src": "/assets/prefab/custom-geyser-jets-with-streams.webp"
+          },
+          {
+            "title": "Custom SGRP Pool with SS Columns, Dubai",
+            "src": "/assets/prefab/custom-sgrp-pool-with-ss-columns-dubai.webp"
           },
           {
             "title": "Custom SGRP Trickling Waterfall, TDI Township, Kundli",
@@ -476,7 +613,11 @@ export const CAPABILITY_PAGES = withRemoteAssets([
           },
           {
             "title": "McKinsey Gurgaon",
-            "src": "/assets/prefab/mckinsey-gurgaon.webp"
+            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/mckinsey-gurgaon.webp"
+          },
+          {
+            "title": "McKinsey",
+            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/Artboard5.webp"
           },
           {
             "title": "Private Client Gurgaon",

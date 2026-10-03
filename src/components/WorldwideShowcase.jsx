@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { WORLDWIDE_EVENTS } from '../data/worldwide'
 import { prefersReducedMotion } from '../motion/gsap'
 import { attachScrollReveal, createRevealTimeline } from '../motion/scrollReveal'
+import GalleryLightbox from './GalleryLightbox.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -34,7 +35,13 @@ export default function WorldwideShowcase({
   const videoRefs = useRef([])
 
   const [activeIndex, setActiveIndex] = useState(0)
+  const [lightbox, setLightbox] = useState(null)
   const showProgress = items.length > 1
+
+  const closeLightbox = useCallback(() => setLightbox(null), [])
+  const setLightboxIndex = useCallback((next) => {
+    setLightbox((prev) => (prev ? { ...prev, index: next } : prev))
+  }, [])
 
   useEffect(() => {
     const slides = slideRefs.current.filter(Boolean)
@@ -117,58 +124,81 @@ export default function WorldwideShowcase({
         )}
 
         <div className="worldwide-showcase__slides">
-          {items.map((event, i) => (
-            <article
-              key={event.index || event.title}
-              ref={(el) => {
-                slideRefs.current[i] = el
-              }}
-              className="worldwide-showcase__slide"
-              aria-label={event.title}
-            >
-              <div className="worldwide-showcase__slide-inner">
-                <div className="worldwide-showcase__composition">
-                  <div className="worldwide-showcase__frame">
-                    {isVideoSrc(event.video) ? (
-                      <video
-                        ref={(el) => {
-                          videoRefs.current[i] = el
-                        }}
-                        className="worldwide-showcase__video"
-                        src={event.video}
-                        poster={event.poster}
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                      />
-                    ) : (
-                      <img
-                        className="worldwide-showcase__video"
-                        src={event.image || event.poster || event.video}
-                        alt=""
-                      />
-                    )}
-                  </div>
+          {items.map((event, i) => {
+            const gallery = event.gallery || []
+            const hasMore = gallery.length > 0
 
-                  <div
-                    className={`worldwide-showcase__panel worldwide-showcase__panel--${event.align}`}
-                  >
-                    <div className="worldwide-showcase__card">
-                      {event.index ? (
-                        <span className="worldwide-showcase__card-index">{event.index}</span>
-                      ) : null}
-                      <h3 className="worldwide-showcase__card-title">{event.title}</h3>
-                      <p className="worldwide-showcase__card-body">{event.description}</p>
-                      <span className="worldwide-showcase__card-rule" aria-hidden="true" />
+            return (
+              <article
+                key={event.index || event.title}
+                ref={(el) => {
+                  slideRefs.current[i] = el
+                }}
+                className="worldwide-showcase__slide"
+                aria-label={event.title}
+              >
+                <div className="worldwide-showcase__slide-inner">
+                  <div className="worldwide-showcase__composition">
+                    <div className="worldwide-showcase__frame">
+                      {isVideoSrc(event.video) ? (
+                        <video
+                          ref={(el) => {
+                            videoRefs.current[i] = el
+                          }}
+                          className="worldwide-showcase__video"
+                          src={event.video}
+                          poster={event.poster}
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                        />
+                      ) : (
+                        <img
+                          className="worldwide-showcase__video"
+                          src={event.image || event.poster || event.video}
+                          alt=""
+                        />
+                      )}
+                    </div>
+
+                    <div
+                      className={`worldwide-showcase__panel worldwide-showcase__panel--${event.align}`}
+                    >
+                      <div className="worldwide-showcase__card">
+                        {event.index ? (
+                          <span className="worldwide-showcase__card-index">{event.index}</span>
+                        ) : null}
+                        <h3 className="worldwide-showcase__card-title">{event.title}</h3>
+                        <p className="worldwide-showcase__card-body">{event.description}</p>
+                        {hasMore ? (
+                          <button
+                            type="button"
+                            className="worldwide-showcase__card-more"
+                            onClick={() => setLightbox({ items: gallery, index: 0 })}
+                          >
+                            View more
+                            <span aria-hidden="true">→</span>
+                          </button>
+                        ) : (
+                          <span className="worldwide-showcase__card-rule" aria-hidden="true" />
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
         </div>
       </div>
+
+      <GalleryLightbox
+        items={lightbox?.items}
+        index={lightbox?.index ?? null}
+        onClose={closeLightbox}
+        onIndex={setLightboxIndex}
+      />
     </section>
   )
 }

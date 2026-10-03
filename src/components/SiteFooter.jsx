@@ -7,6 +7,22 @@ import FadeUp from '../motion/FadeUp'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
 import { attachScrollReveal, createRevealTimeline } from '../motion/scrollReveal'
 
+function AddressLink({ address }) {
+  return (
+    <a
+      className="site-footer__map-link"
+      href={address.mapsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${address.label} on Google Maps`}
+    >
+      {address.lines.map((line) => (
+        <span key={line}>{line}</span>
+      ))}
+    </a>
+  )
+}
+
 export default function SiteFooter() {
   const markRef = useRef(null)
   const brandRef = useRef(null)
@@ -71,6 +87,7 @@ export default function SiteFooter() {
               <span>{SITE.tagline}</span>
               <a href={`mailto:${SITE.email.info}`}>{SITE.email.info}</a>
               <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>
+              <span className="site-footer__hours">{SITE.hours}</span>
             </nav>
           </div>
           <div className="site-footer__col">
@@ -84,12 +101,10 @@ export default function SiteFooter() {
             </nav>
           </div>
           <div className="site-footer__col">
-            <h4>Offices</h4>
+            <h4>Office</h4>
             {offices.map((address) => (
               <nav aria-label={address.label} key={address.label}>
-                {address.lines.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
+                <AddressLink address={address} />
               </nav>
             ))}
           </div>
@@ -97,9 +112,7 @@ export default function SiteFooter() {
             <div className="site-footer__col">
               <h4>Factory</h4>
               <nav aria-label={factory.label}>
-                {factory.lines.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
+                <AddressLink address={factory} />
               </nav>
             </div>
           )}

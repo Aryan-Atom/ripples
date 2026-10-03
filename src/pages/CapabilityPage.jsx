@@ -128,11 +128,21 @@ export default function CapabilityPage({ slug: slugProp }) {
       <main className="interior-page__main">
         <PageHero
           contentKey={page.slug}
+          className={isPrefab ? 'page-hero--prefab' : undefined}
           eyebrow={page.eyebrow}
           title={
-            <>
-              {page.titleBefore} <em>{page.titleEm}</em>
-            </>
+            isPrefab ? (
+              <>
+                <span className="page-hero__line">{page.titleBefore}</span>
+                <span className="page-hero__line">
+                  {page.titleMid} <em>{page.titleEm}</em>
+                </span>
+              </>
+            ) : (
+              <>
+                {page.titleBefore} <em>{page.titleEm}</em>
+              </>
+            )
           }
           lead={page.lead}
         />

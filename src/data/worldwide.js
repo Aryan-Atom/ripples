@@ -83,38 +83,179 @@ export const WORLDWIDE_EVENTS = withRemoteAssets([
     index: '01',
     title: 'Dubai Event',
     description:
-      'A live fountain demonstration at a Dubai industry event  programmable jets, light, and music shown as they run, from opening cue to the last fade.',
+      'An exhibition at a Dubai industry event showcasing Ripples Fountains, with programmable jets, lighting, and music brought together in a dynamic presentation.',
     video: '/assets/events/dubai-event-final-out-12-12.mp4',
     align: 'right',
   },
   {
     index: '02',
-    title: 'Guangzhou Exhibition',
+    title: 'Guangzhou Event',
     description:
-      'Ripples on the floor in Guangzhou  a working water feature staged for the trade audience, from nozzle precision to choreographed light.',
+      'Ripples Fountains showcased its expertise at a Guangzhou industry event, presenting innovative water features, precision engineering, and integrated lighting to an international trade audience.',
     video: '/assets/events/guangzhou-1.mp4',
     align: 'left',
   },
   {
     index: '03',
-    title: 'IAAPA Expo 2025',
+    title: 'Shanghai Event',
     description:
-      'Live demonstration at IAAPA Expo 2025  Ripples engineering on display, from programmable choreography to field-ready control systems.',
+      'Ripples Fountains showcased its engineering expertise at IAAPA Expo 2025, presenting innovative water features, programmable choreography, and advanced control systems to an international audience.',
     video: '/assets/events/iaapa-2025.mp4',
     align: 'right',
   },
 ])
 
-/** Landmark project cards  start with ADNOC; more videos can slot in later. */
+/** Landmark project cards — permanent installations with optional photo galleries. */
 export const WORLDWIDE_PROJECTS = withRemoteAssets([
   {
     index: '01',
+    title: 'BRICS Summit',
+    description:
+      'Ripples Fountains showcased its expertise at the BRICS Summit, presenting innovative water features, programmable jets, lighting, and music to an international audience.',
+    poster: '/assets/events/BRICS3.webp',
+    image: '/assets/events/BRICS3.webp',
+    align: 'left',
+    gallery: [
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS1.webp',
+      },
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS2.webp',
+      },
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS3.webp',
+      },
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS4.webp',
+      },
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS5.webp',
+      },
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS6.webp',
+      },
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS7.webp',
+      },
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS8.webp',
+      },
+      {
+        title: 'BRICS Summit',
+        src: '/assets/events/BRICS9.webp',
+      },
+    ],
+  },
+  {
+    index: '02',
     title: 'ADNOC Abu Dhabi',
     description:
       'A landmark campus fountain for ADNOC  choreographed jets and light composed for the desert skyline.',
     poster: '/assets/front-page/adnoc-abu-dhabi.webp',
     image: '/assets/front-page/adnoc-abu-dhabi.webp',
     align: 'right',
+  },
+  {
+    index: '03',
+    title: 'Global Village Musical Fountain, Dubai',
+    description:
+      'A festival-scale musical fountain for Global Village  jets, light, and score timed for nightly crowds.',
+    poster:
+      '/assets/events/GlobalVillageDubai7.webp',
+    image:
+      '/assets/events/GlobalVillageDubai7.webp',
+    align: 'left',
+    gallery: [
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai1.webp',
+      },
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai2.webp',
+      },
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai3.webp',
+      },
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai4.webp',
+      },
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai5.webp',
+      },
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai6.webp',
+      },
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai7.webp',
+      },
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai8.webp',
+      },
+      {
+        title: 'Global Village Musical Fountain, Dubai',
+        src: '/assets/events/GlobalVillageDubai9.webp',
+      },
+    ],
+  },
+  {
+    index: '04',
+    title: 'Zayed International Airport',
+    description:
+      'Architectural water for Zayed International Airport  calm geometry and precise jets at the terminal approach.',
+    poster:
+      '/assets/events/Zayed2.webp',
+    image:
+      '/assets/events/Zayed2.webp',
+    align: 'right',
+    gallery: [
+      {
+        title: 'Zayed International Airport',
+        src: '/assets/events/Zayed1.webp',
+      },
+      {
+        title: 'Zayed International Airport',
+        src: '/assets/events/Zayed2.webp',
+      },
+      {
+        title: 'Zayed International Airport',
+        src: '/assets/events/Zayed3.webp',
+      },
+      {
+        title: 'Zayed International Airport',
+        src: '/assets/events/Zayed4.webp',
+      },
+      {
+        title: 'Zayed International Airport',
+        src: '/assets/events/Zayed5.webp',
+      },
+      {
+        title: 'Zayed International Airport',
+        src: '/assets/events/Zayed6.webp',
+      },
+      {
+        title: 'Zayed International Airport',
+        src: '/assets/events/Zayed7.webp',
+      },
+      {
+        title: 'Zayed International Airport',
+        src: '/assets/events/Zayed8.webp',
+      },
+    ],
   },
 ])
 

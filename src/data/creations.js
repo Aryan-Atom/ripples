@@ -1,11 +1,14 @@
 import { asset, withRemoteAssets } from './assets.js'
 
-/** Local placeholder images  swap for real project photography later. */
+/** Facility / workshop stills used as creation placeholders. */
 const PLACEHOLDER_IMAGES = [
-  asset('home_1.webp'),
-  asset('home_2.webp'),
-  asset('home_3.webp'),
-  asset('home_4.webp'),
+  asset('Ripples Assets/Practice/Section 1/practice1.webp'),
+  asset('Ripples Assets/Practice/Section 1/practice2.webp'),
+  asset('Ripples Assets/Practice/Section 1/practice3.webp'),
+  asset('Ripples Assets/Practice/Section 1/practice4.webp'),
+  asset('Ripples Assets/Practice/Section 1/practice5.webp'),
+  asset('Ripples Assets/Practice/Section 1/practice6.webp'),
+  asset('Ripples Assets/Practice/Section 1/practice7.webp'),
 ]
 
 const img = (index) => PLACEHOLDER_IMAGES[index % PLACEHOLDER_IMAGES.length]
@@ -183,15 +186,15 @@ export const FEATURED_CREATION_GROUPS = withRemoteAssets([
     to: '/waterworks/others',
     items: [
       {
-        id: 'm3m-golf-estate-gurgaon',
-        title: 'M3M Golf Estate Gurgaon',
-        titleLines: ['M3M Golf', 'Estate'],
-        location: 'Gurgaon, India',
-        locationLines: ['Gurgaon', 'India'],
+        id: 'adnoc-abu-dhabi',
+        title: 'ADNOC Abu Dhabi',
+        titleLines: ['ADNOC', 'Abu Dhabi'],
+        location: 'Abu Dhabi, UAE',
+        locationLines: ['Abu Dhabi', 'UAE'],
         category: 'Others',
         summary:
-          'A floating fountain for M3M Golf Estate  open-water jets engineered for estate scale, wind, and a long civic duty cycle.',
-        image: '/assets/ripples-assets/Homepage/M3M Golf Estate Gurgaon.webp',
+          'A landmark campus fountain for ADNOC  choreographed jets and light composed for the desert skyline.',
+        image: '/assets/ww-others/floating-fountains/adnoc-abu-dhabi.webp',
       },
     ],
   },

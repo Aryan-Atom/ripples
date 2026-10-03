@@ -9,7 +9,7 @@ export function csAsset(file) {
 }
 
 function wgoaSlide(n) {
-  return asset(`Ripples Assets/CaseStudy/WGoa/Section 1/Slideshow ${n}.webp`)
+  return asset(`Ripples Assets/CaseStudy/WGoa/Section 1/Slideshow${n}.webp`)
 }
 
 function wgoaSection2(file) {
@@ -78,71 +78,48 @@ export const CASE_STUDY = {
     titleLines: ['Every fountain', 'starts as', 'a Line.'],
     titleEm: 'Line.',
     body: 'Before water moves, geometry does. Site surveys, hand sketches, and the first nozzle grid drawn until the idea can carry pressure.',
+    bodySecondary:
+      'Hydraulics, structure, and show control share one drawing set. What leaves the board is already a machine.',
     note: 'The signed musical fountain layout  nozzle families, pump loads, and jet heights locked before fabrication.',
+    labels: [
+      'Material Analysis',
+      'Hydraulic Design',
+      'Pressure Mapping',
+      'Flow Simulation',
+      'Structural Integrity',
+    ],
     images: [
       {
-        src: csAsset('sketch-01.webp'),
-        title: 'Site sketch',
-        alt: 'Hand-annotated Nehru Garden pool layout sketch',
+        src: csAsset('design1.webp'),
+        title: 'Shop drawing',
+        alt: 'Nehru Garden musical fountain shop drawing on the desk',
       },
       {
-        src: csAsset('approved-02.webp'),
-        title: 'Pool layout 1:100',
-        alt: 'Approved Nehru Garden musical fountain layout plan',
+        src: csAsset('design2.webp'),
+        title: 'Section set',
+        alt: 'Fountain section drawings on paper and laptop',
       },
       {
-        src: csAsset('approved-01.webp'),
-        title: 'Hydraulic layout',
-        alt: 'Approved hydraulic layout with elevations',
+        src: csAsset('design3.webp'),
+        title: 'Detail sheet',
+        alt: 'Technical fountain detail sheet with reference photos',
       },
       {
-        src: csAsset('final-01.webp'),
-        title: 'Basin works',
-        alt: 'Section drawings for basin systems',
-      },
-      {
-        src: csAsset('final-02.webp'),
-        title: 'Field systems',
-        alt: 'Plan and elevation for field jets',
-      },
-      {
-        src: csAsset('final-03.webp'),
-        title: 'Assembly',
-        alt: 'Assembly and detailing sheet',
+        src: csAsset('design4.webp'),
+        title: 'Arrangement plan',
+        alt: 'Fountain and boat feature general arrangement plan',
       },
     ],
   },
 
-  /** Kept engineering overlay  MediaReveal / JOURNEY_DESIGN shape */
+  /** Design / engineering copy for Nehru Garden split panel. */
   engineering: {
     act: { id: 'engineering', roman: 'III', label: 'Design' },
     titleLines: ['Drawn until', 'it can Hold.'],
     titleEm: 'Hold.',
     body: 'Hydraulics, structure, and show control share one drawing set. What leaves the board is already a machine.',
-    slides: [
-      {
-        src: csAsset('before-03.webp'),
-        type: 'image',
-        alt: 'Tiled circular basin during engineering review',
-      },
-      {
-        src: csAsset('final-01.webp'),
-        type: 'image',
-        alt: 'Musical fountain section and effect references',
-      },
-      {
-        src: csAsset('approved-01.webp'),
-        type: 'image',
-        alt: 'Approved hydraulic layout with elevations',
-      },
-    ],
-    labels: [
-      { text: 'Material Analysis', x: 12, y: 18 },
-      { text: 'Hydraulic Design', x: 68, y: 14 },
-      { text: 'Pressure Mapping', x: 78, y: 48 },
-      { text: 'Flow Simulation', x: 18, y: 62 },
-      { text: 'Structural Integrity', x: 55, y: 78 },
-    ],
+    slides: [],
+    labels: [],
   },
 
   fabrication: {
@@ -151,10 +128,30 @@ export const CASE_STUDY = {
     titleEm: 'Roof.',
     body: 'Nozzles, manifolds, and control racks are fabricated in Noida  then tested before they ever leave the floor.',
     items: [
-      { src: csAsset('final-01.webp'), caption: 'Basin Works', alt: 'Section drawings for basin systems' },
-      { src: csAsset('final-02.webp'), caption: 'Field Systems', alt: 'Plan and elevation for field jets' },
-      { src: csAsset('final-03.webp'), caption: 'Assembly', alt: 'Assembly and detailing sheet' },
-      { src: csAsset('final-04.webp'), caption: 'Commissioning Prep', alt: 'Commissioning reference drawing' },
+      {
+        src: csAsset('fatorycasestudy1.webp'),
+        caption: 'Shop floor',
+        title: 'Shop floor',
+        alt: 'Fabrication shop floor for Nehru Garden fountain components',
+      },
+      {
+        src: csAsset('fatorycasestudy2.webp'),
+        caption: 'Assembly',
+        title: 'Assembly',
+        alt: 'Manifold and nozzle assembly on the Noida fabrication floor',
+      },
+      {
+        src: csAsset('fatorycasestudy3.webp'),
+        caption: 'Testing',
+        title: 'Testing',
+        alt: 'Control rack and fittings tested before leaving the factory',
+      },
+      {
+        src: csAsset('fatorycasestudy4.webp'),
+        caption: 'Ready to ship',
+        title: 'Ready to ship',
+        alt: 'Fabricated fountain components prepared for site delivery',
+      },
     ],
   },
 
@@ -184,14 +181,36 @@ export const CASE_STUDY = {
     ],
   },
 
-  /** Kept installation / Precision chapter */
+  /** Site installation gallery (Before-section pattern) */
   installation: {
     act: { id: 'installation', roman: 'V', label: 'Installation' },
-    title: 'On site',
-    lines: ['Precision.', 'Alignment.', 'Execution.'],
-    body: 'Every nozzle finds its mark. Tolerance is not a slogan  it is the difference between a spray and a show.',
-    video: csAsset('installation.mp4'),
-    poster: csAsset('before-03.webp'),
+    intro: 'Every nozzle finds its mark. Tolerance is not a slogan  it is the difference between a spray and a show.',
+    images: [
+      {
+        src: csAsset('site1.webp'),
+        alt: 'Site installation at Nehru Garden',
+      },
+      {
+        src: csAsset('site2.webp'),
+        alt: 'Header and nozzle placement on site',
+      },
+      {
+        src: csAsset('site3.webp'),
+        alt: 'Basin works during fountain installation',
+      },
+      {
+        src: csAsset('site4.webp'),
+        alt: 'On-site alignment and fitting',
+      },
+      {
+        src: csAsset('site5.webp'),
+        alt: 'Installation progress at Nehru Garden',
+      },
+      {
+        src: csAsset('site6.webp'),
+        alt: 'Finished site installation at Nehru Garden',
+      },
+    ],
   },
 
   result: {
@@ -230,7 +249,7 @@ export const WOW_GOA_STUDY = {
       'An existing hillside pit was carefully assessed and prepared to accommodate a large-scale prefabricated pool system, aligned to the site’s natural form and structural constraints.',
     images: [
       {
-        src: wgoaSection2('FromPitToPool.jpg'),
+        src: wgoaSection2('FromPitToPool.webp'),
         alt: 'Hillside pit at W Goa before the prefabricated pool',
       },
     ],
@@ -244,7 +263,7 @@ export const WOW_GOA_STUDY = {
     note: 'Factory-built modules, signed off in Noida before they ever left the floor.',
     images: [
       {
-        src: wgoaSection2('OffSiteFabricated.jpg'),
+        src: wgoaSection2('OffSiteFabricated.webp'),
         alt: 'Prefabricated pool shell assembled off-site before transport to W Goa',
       },
     ],
@@ -287,10 +306,11 @@ export const WOW_GOA_STUDY = {
     titleEm: 'Goa.',
     body: 'The structure was divided into 32 prefabricated modules and transported by road from Delhi NCR to Goa for secure, phase-wise handling.',
     items: [
-      { src: wgoaSlide(3), caption: 'Site set', alt: 'Hillside pit before the modules arrived' },
-      { src: wgoaSlide(5), caption: 'Daylight form', alt: 'Finished pool in daylight' },
-      { src: wgoaSlide(2), caption: 'Evening set', alt: 'Pool and bar at dusk' },
-      { src: wgoaSlide(1), caption: 'Night form', alt: 'Night aerial of the finished pool' },
+      {
+        src: wgoaSection2('Completion.webp'),
+        caption: 'Ready to ship',
+        alt: 'Prefabricated pool modules completed and staged for transport to W Goa',
+      },
     ],
   },
 
@@ -336,7 +356,7 @@ export const WOW_GOA_STUDY = {
       'The pool was fully assembled, tested, and commissioned  delivering a large-scale, durable aquatic structure.',
     frames: [
       {
-        src: wgoaSection2('StructuralAssembly.jpg'),
+        src: wgoaSection2('StructuralAssembly.webp'),
         caption: 'On the hill',
         alt: 'Prefabricated pool shell joined on site at W Goa',
       },

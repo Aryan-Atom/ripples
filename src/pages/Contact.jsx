@@ -7,9 +7,9 @@ import FadeUp from '../motion/FadeUp'
 const PROJECT_TYPES = [
   'Musical fountain',
   'Interactive fountain',
-  'Lake / dam show',
+  'Lake / River show',
   'Architectural feature',
-  'Maintenance / retrofit',
+  'Maintenance / Retrofit',
   'Something else',
 ]
 
@@ -41,7 +41,7 @@ export default function Contact() {
           lead="Tell us about the site, the scale, and the feeling you want water to create. We'll take it from there."
         />
 
-        <section className="contact-body" aria-label="Contact details and form">
+        <section className="contact-body" aria-label="Contact form">
           <div className="r-container contact-body__inner">
             <FadeUp as="form" className="contact-form" onSubmit={submit} stagger={0.07}>
               <label className="contact-field">
@@ -87,27 +87,6 @@ export default function Contact() {
               <button type="submit" className="cta-card__btn contact-form__submit">
                 Send the brief <span aria-hidden="true">&rarr;</span>
               </button>
-            </FadeUp>
-
-            <FadeUp className="contact-details" stagger={0.09} delay={0.15}>
-              <div className="contact-details__block">
-                <h4>Write</h4>
-                <a href={`mailto:${SITE.email.work}`}>{SITE.email.work}</a>
-                <a href={`mailto:${SITE.email.info}`}>{SITE.email.info}</a>
-              </div>
-              <div className="contact-details__block">
-                <h4>Call</h4>
-                <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>
-                <span>{SITE.hours}</span>
-              </div>
-              {SITE.addresses.map((address) => (
-                <div className="contact-details__block" key={address.label}>
-                  <h4>{address.label}</h4>
-                  {address.lines.map((line) => (
-                    <span key={line}>{line}</span>
-                  ))}
-                </div>
-              ))}
             </FadeUp>
           </div>
         </section>

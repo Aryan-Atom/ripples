@@ -9,7 +9,6 @@ import {
 } from '../components/caseStudy/CaseStudySections'
 import CaseStudyFinale from '../components/caseStudy/CaseStudyFinale'
 import WGoaStudy from '../components/caseStudy/WGoaStudy'
-import MediaReveal from '../components/journey/MediaReveal'
 import ConstructionGallery from '../components/journey/ConstructionGallery'
 import JourneyFooter from '../components/journey/JourneyFooter'
 import { CASE_STUDY_CHOICES, getCaseStudy } from '../data/caseStudy'
@@ -38,10 +37,9 @@ export default function CaseStudy() {
           <>
             <CaseStudyBrief study={study} />
             <CaseStudyBefore study={study} />
-            <CaseStudyDesign study={study} />
-            <MediaReveal data={study.engineering} labelsAside />
+            {study.design?.images?.length > 0 ? <CaseStudyDesign study={study} /> : null}
             <CaseStudyVisualization study={study} />
-            <CaseStudyFabrication study={study} />
+            {study.fabrication?.items?.length > 0 ? <CaseStudyFabrication study={study} /> : null}
             <ConstructionGallery data={study.construction} />
             <CaseStudyFinale study={study} />
             <CaseStudyFooterCta study={study} />

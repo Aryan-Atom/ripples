@@ -206,8 +206,7 @@
   }
 
   .worldwide-hero__globe-stat {
-    top: clamp(4.5rem, 12vh, 5.5rem);
-    right: var(--space-page-x);
+    display: none;
   }
 
   .worldwide-hero__globe-stat-value {

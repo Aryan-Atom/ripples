@@ -36,7 +36,6 @@ export default function WorldwideShowcase({
 
   const [activeIndex, setActiveIndex] = useState(0)
   const [lightbox, setLightbox] = useState(null)
-  const showProgress = items.length > 1
 
   const closeLightbox = useCallback(() => setLightbox(null), [])
   const setLightboxIndex = useCallback((next) => {
@@ -111,18 +110,6 @@ export default function WorldwideShowcase({
       </div>
 
       <div className="worldwide-showcase__scroll" ref={wrapRef}>
-        {showProgress && (
-          <nav className="worldwide-showcase__progress" aria-label="Showcase progress">
-            {items.map((event, i) => (
-              <span
-                key={event.index}
-                className={`worldwide-showcase__dot${i === activeIndex ? ' is-active' : ''}`}
-                aria-current={i === activeIndex ? 'step' : undefined}
-              />
-            ))}
-          </nav>
-        )}
-
         <div className="worldwide-showcase__slides">
           {items.map((event, i) => {
             const gallery = event.gallery || []

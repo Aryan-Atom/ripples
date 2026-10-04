@@ -65,13 +65,14 @@ export default function MultimediaProjectCards({ projects }) {
         {projects.map((project) => {
           const openGallery = () => {
             const photos = project.gallery || []
-            if (!project.video && !photos.length) return
+            const lightboxVideo = project.videoCompressed || project.video
+            if (!lightboxVideo && !photos.length) return
             const items = []
-            if (project.video) {
+            if (lightboxVideo) {
               items.push({
                 type: 'video',
                 title: project.title,
-                src: project.video,
+                src: lightboxVideo,
                 poster: project.poster || photos[0]?.src,
               })
             }

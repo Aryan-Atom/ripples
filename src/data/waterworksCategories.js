@@ -8,6 +8,7 @@ function multimediaProject({ id, title, folder, description, media }) {
     title,
     description,
     video: resolved.video,
+    videoCompressed: resolved.videoCompressed || resolved.video,
     poster: resolved.poster,
     gallery: resolved.gallery.map((item) => ({ ...item, title })),
   }
@@ -96,6 +97,7 @@ const MULTIMEDIA_PROJECTS = [
     title: 'Tata Steel Jamshedpur',
     media: {
       video: '/assets/ripples-assets/TataSteel/TataSteel.mp4',
+      videoCompressed: 'Ripples Assets/WaterWorks/Multimedia/Section 2/TataSteel/TataSteel_compressed.mp4',
       poster: '/assets/ww-others/programmable-fountains/tata-steel-jamshedpur.webp',
       gallery: [
         {

@@ -568,18 +568,6 @@ export const CAPABILITY_PAGES = withRemoteAssets([
           {
             "title": "Prefab Rock Pool, W Goa",
             "src": "/assets/prefab/prefab-rock-pool-w-goa-2.webp"
-          },
-          {
-            "title": "Ireo Victory Valley Pool",
-            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/IreoVictoryValleyPool1.webp"
-          },
-          {
-            "title": "Ireo Victory Valley Pool",
-            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/IreoVictoryValleyPool2.webp"
-          },
-          {
-            "title": "Ireo Victory Valley Pool",
-            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/IreoVictoryValleyPool3.webp"
           }
         ]
       },
@@ -617,7 +605,7 @@ export const CAPABILITY_PAGES = withRemoteAssets([
           },
           {
             "title": "McKinsey",
-            "src": "Ripples Assets/WaterWorks/Prefabs/Section 2/Artboard5.webp"
+            "src": "/assets/prefab/Artboard1.webp"
           },
           {
             "title": "Private Client Gurgaon",

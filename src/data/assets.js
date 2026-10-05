@@ -117,17 +117,21 @@ export const WHITE_LOGO = asset('Ripples Assets/Navbar&Footer/PNG BG Removed Whi
 /**
  * Collect multimedia project video + .webp stills from
  * Ripples Assets/WaterWorks/Multimedia/Section 2/{folder}/
+ * `video` = full file for the card poster; `videoCompressed` = lightbox first slide.
  */
 export function folderMedia(folder) {
   const prefix = `Ripples Assets/WaterWorks/Multimedia/Section 2/${folder}/`
   const keys = MANIFEST_KEYS.filter((key) => key.startsWith(prefix))
-  const videoKey = keys.find((key) => /\.mp4$/i.test(key))
+  const mp4Keys = keys.filter((key) => /\.mp4$/i.test(key))
+  const videoKey = mp4Keys.find((key) => !/_compressed\.mp4$/i.test(key))
+  const compressedKey = mp4Keys.find((key) => /_compressed\.mp4$/i.test(key))
   const imageKeys = keys
     .filter((key) => /\.webp$/i.test(key))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
 
   return {
     video: videoKey ? asset(videoKey) : '',
+    videoCompressed: compressedKey ? asset(compressedKey) : videoKey ? asset(videoKey) : '',
     poster: imageKeys[0] ? asset(imageKeys[0]) : '',
     gallery: imageKeys.map((key) => ({
       title: folder,

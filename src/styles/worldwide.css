@@ -448,6 +448,7 @@
 
 .worldwide-showcase--projects {
   box-shadow: inset 0 1px 0 var(--color-border);
+  padding-bottom: clamp(3rem, 7vw, 5.5rem);
 }
 
 .worldwide-showcase--projects .worldwide-showcase__header {
@@ -456,6 +457,33 @@
 
 .worldwide-showcase--projects .worldwide-showcase__title {
   max-width: 16ch;
+}
+
+.worldwide-collage {
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(3rem, 7vw, 5.5rem);
+}
+
+.worldwide-collage__intro.multimedia-gallery-block {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.worldwide-collage__title {
+  max-width: 16ch;
+  margin: 0;
+  line-height: 1.12;
+}
+
+.worldwide-collage__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+.worldwide-collage .gallery-collage-fade {
+  margin-top: clamp(3.25rem, 8vw, 6.5rem);
 }
 
 @media (max-width: 768px) {

@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import LazyVideo from './LazyVideo.jsx'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
-import { asset } from '../data/assets.js'
+import { COMPANY_INTRO_VIDEO } from '../data/assets.js'
 
 export default function HomeVideo() {
   const frameRef = useRef(null)
@@ -66,7 +66,7 @@ export default function HomeVideo() {
       <div className="home-video__frame" ref={frameRef}>
         <LazyVideo
           className="home-video__media"
-          src={asset('company_intro.mp4')}
+          src={COMPANY_INTRO_VIDEO}
           autoPlay
           muted
           loop

@@ -111,8 +111,13 @@ export function asset(path) {
 /** Official color wordmark (footer, hero lockup). */
 export const COLOR_LOGO = asset('Ripples Assets/Navbar&Footer/RipplesLogo(Color).webp')
 
-/** White wordmark for dark / glass surfaces (navbar). */
-export const WHITE_LOGO = asset('Ripples Assets/Navbar&Footer/PNG BG Removed White Only.webp')
+/** White wordmark for dark / glass surfaces (navbar). Local until remote asset is stable. */
+export const WHITE_LOGO = '/assets/PNG BG Removed White Only.webp'
+
+/** Homepage videos — local until remote assets are stable. */
+export const COMPANY_INTRO_VIDEO = '/assets/company_intro.mp4'
+export const WEBSITE_LOGO_VIDEO = '/assets/WebsiteLogo.mp4'
+export const LOGO_ANIMATION_VIDEO = '/assets/RipplesLogoAnimationWithMusic.mp4'
 
 /**
  * Collect multimedia project video + .webp stills from
@@ -138,6 +143,25 @@ export function folderMedia(folder) {
       src: asset(key),
     })),
   }
+}
+
+function titleFromBasename(name) {
+  return String(name)
+    .replace(/\.[^.]+$/, '')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/([A-Za-z])(\d+)/g, '$1 $2')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+/** Collect .webp stills under a manifest folder prefix into collage items. */
+export function sectionGallery(prefix) {
+  return MANIFEST_KEYS.filter((key) => key.startsWith(prefix) && /\.webp$/i.test(key))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+    .map((key) => ({
+      title: titleFromBasename(key.split('/').pop()),
+      src: asset(key),
+    }))
 }
 
 /** Walk data trees and swap local/manifest asset paths for remote URLs. */

@@ -1,5 +1,5 @@
 /** Regions where Ripples has delivered fountain experiences. */
-import { withRemoteAssets } from './assets.js'
+import { sectionGallery, withRemoteAssets } from './assets.js'
 
 export const WORLDWIDE_PRESENCE = [
   { lat: 52.52, lng: 13.405, label: 'Europe' },
@@ -99,7 +99,7 @@ export const WORLDWIDE_EVENTS = withRemoteAssets([
     index: '03',
     title: 'Shanghai Event',
     description:
-      'Ripples Fountains showcased its engineering expertise at IAAPA Expo 2025, presenting innovative water features, programmable choreography, and advanced control systems to an international audience.',
+      'Ripples Fountains showcased its engineering expertise at IAAPA Expo, presenting innovative water features, programmable choreography, and advanced control systems to an international audience.',
     video: '/assets/events/iaapa-2025.mp4',
     align: 'right',
   },
@@ -258,6 +258,9 @@ export const WORLDWIDE_PROJECTS = withRemoteAssets([
     ],
   },
 ])
+
+/** Section 3 stills — collage below the projects showcase. */
+export const WORLDWIDE_COLLAGE = sectionGallery('Ripples Assets/Worldwide/Section 3/')
 
 export const WORLDWIDE_CITIES = [
   'New Delhi',

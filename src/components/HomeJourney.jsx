@@ -4,7 +4,7 @@ import FadeUp from '../motion/FadeUp'
 import SplitLines from '../motion/SplitLines'
 import LazyVideo from './LazyVideo.jsx'
 import { JOURNEY_TIMELINE } from '../data/journey'
-import { asset } from '../data/assets.js'
+import { WEBSITE_LOGO_VIDEO } from '../data/assets.js'
 import { withBrand } from './Brand.jsx'
 
 const STEP_MS = 2600
@@ -170,7 +170,7 @@ export default function HomeJourney() {
           <div className="home-journey__video">
             <LazyVideo
               className="home-journey__video-media"
-              src={asset('WebsiteLogo.mp4')}
+              src={WEBSITE_LOGO_VIDEO}
               autoPlay
               muted
               loop

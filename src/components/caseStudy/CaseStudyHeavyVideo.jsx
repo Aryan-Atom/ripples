@@ -88,8 +88,14 @@ export default function CaseStudyHeavyVideo({
       document.addEventListener('touchend', resume, { once: true, passive: true })
     }
 
+    const onVis = () => {
+      if (document.visibilityState === 'visible') resume()
+      else video.pause()
+    }
+
     video.addEventListener('loadeddata', onReady)
     video.addEventListener('canplay', onReady)
+    document.addEventListener('visibilitychange', onVis)
 
     // Call play() immediately. Safari and iOS do not fire canplay until
     // playback is requested, so waiting for that event deadlocks autoplay.
@@ -110,6 +116,7 @@ export default function CaseStudyHeavyVideo({
       cancelled = true
       video.removeEventListener('loadeddata', onReady)
       video.removeEventListener('canplay', onReady)
+      document.removeEventListener('visibilitychange', onVis)
       document.removeEventListener('pointerdown', resume)
       document.removeEventListener('touchend', resume)
     }

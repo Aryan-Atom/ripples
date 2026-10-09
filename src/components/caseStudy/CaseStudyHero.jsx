@@ -109,12 +109,10 @@ export default function CaseStudyHero({
       ) : (
         <CaseStudyHeavyVideo
           src={hero.video}
-          poster={hero.poster}
           className="cs-hero__media"
-          posterClassName="cs-hero__poster"
           videoClassName="cs-hero__video"
           veilClassName="cs-hero__veil"
-          rootMargin="10% 0px"
+          rootMargin="0px 0px 100% 0px"
         />
       )}
       {placeLinks ? <div className="cs-hero__frost" aria-hidden="true" /> : null}

@@ -57,7 +57,7 @@ export default function PageHero({ eyebrow, title, lead, children, className, co
     <header className={"page-hero" + (className ? ` ${className}` : '')} key={refreshKey}>
       <div className="page-hero__inner r-container">
         {eyebrow && (
-          <FadeUp as="p" className="page-hero__eyebrow r-label" key={`eyebrow-${refreshKey}`}>
+          <FadeUp as="p" className="page-hero__eyebrow r-label" immediate key={`eyebrow-${refreshKey}`}>
             {eyebrow}
           </FadeUp>
         )}
@@ -65,7 +65,7 @@ export default function PageHero({ eyebrow, title, lead, children, className, co
           {title}
         </h1>
         {lead && (
-          <FadeUp as="p" className="page-hero__lead" delay={0.5} y={28} key={`lead-${refreshKey}`}>
+          <FadeUp as="p" className="page-hero__lead" immediate delay={0.45} y={20} key={`lead-${refreshKey}`}>
             {lead}
           </FadeUp>
         )}

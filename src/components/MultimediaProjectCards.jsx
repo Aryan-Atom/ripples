@@ -1,51 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import GalleryLightbox from './GalleryLightbox.jsx'
+import LazyVideo, { PREV_SECTION_ROOT_MARGIN } from './LazyVideo.jsx'
 
-function CardVideo({ src, poster, className }) {
-  const ref = useRef(null)
+/** Prefetch the first few cards so the multimedia page starts ready. */
+const EAGER_COUNT = 3
 
-  useEffect(() => {
-    const video = ref.current
-    if (!video) return undefined
-
-    video.muted = true
-    video.defaultMuted = true
-    video.setAttribute('muted', '')
-    video.setAttribute('playsinline', '')
-
-    const play = () => {
-      video.muted = true
-      video.play().catch(() => {})
-    }
-
-    video.addEventListener('canplay', play)
-    play()
-
-    return () => {
-      video.removeEventListener('canplay', play)
-    }
-  }, [src])
-
-  if (!src) {
-    return poster ? <img className={className} src={poster} alt="" /> : null
-  }
-
-  return (
-    <video
-      ref={ref}
-      className={className}
-      src={src}
-      poster={poster}
-      muted
-      loop
-      playsInline
-      autoPlay
-      preload="auto"
-    />
-  )
-}
-
-/** Video project cards  click opens photos with arrow navigation. */
+/** Video project cards — click opens photos with arrow navigation. */
 export default function MultimediaProjectCards({ projects }) {
   const [open, setOpen] = useState(null)
 
@@ -62,7 +22,7 @@ export default function MultimediaProjectCards({ projects }) {
       aria-label="Multimedia projects"
     >
       <div className="worldwide-showcase__slides">
-        {projects.map((project) => {
+        {projects.map((project, i) => {
           const openGallery = () => {
             const photos = project.gallery || []
             const lightboxVideo = project.videoCompressed || project.video
@@ -86,11 +46,28 @@ export default function MultimediaProjectCards({ projects }) {
                 <div className="multimedia-project">
                   <div className="worldwide-showcase__composition">
                     <div className="worldwide-showcase__frame">
-                      <CardVideo
-                        className="worldwide-showcase__video"
-                        src={project.video}
-                        poster={project.poster}
-                      />
+                      {project.video ? (
+                        <LazyVideo
+                          className="worldwide-showcase__video"
+                          src={project.video}
+                          poster={project.poster}
+                          prefetch={i < EAGER_COUNT}
+                          rootMargin={PREV_SECTION_ROOT_MARGIN}
+                          maxConcurrent={2}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        />
+                      ) : project.poster ? (
+                        <img
+                          className="worldwide-showcase__video"
+                          src={project.poster}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : null}
                     </div>
 
                     <div

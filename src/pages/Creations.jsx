@@ -14,10 +14,14 @@ export default function Creations() {
       <main className="interior-page__main">
         {water && (
           <PageHero
+            className="page-hero--stacked"
             eyebrow={water.eyebrow}
             title={
               <>
-                <span className="multimedia-explore__title-main">Water that</span> <em>Belongs</em>
+                <span className="page-hero__line">Water</span>
+                <span className="page-hero__line">
+                  That <em>Belongs</em>
+                </span>
               </>
             }
             lead={water.lead}

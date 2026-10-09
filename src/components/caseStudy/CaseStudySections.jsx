@@ -173,7 +173,7 @@ export function CaseStudyVisualization({ study = CASE_STUDY }) {
           })
         }
       },
-      { threshold: 0.15 },
+      { rootMargin: '0px 0px 100% 0px', threshold: 0.01 },
     )
     observer.observe(stage)
 

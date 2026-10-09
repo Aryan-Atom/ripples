@@ -30,7 +30,15 @@
 /* Page hero */
 
 .page-hero {
-  padding-block: clamp(9rem, 22vh, 13rem) clamp(2rem, 5vw, 4rem);
+  /* First viewport = title + lead only; page content reveals on scroll (mobile + desktop) */
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding-block: clamp(8.5rem, 18vh, 11rem) clamp(3rem, 8vh, 5rem);
   /* allow animated masks and descenders to be visible */
   overflow: visible;
 }
@@ -52,25 +60,10 @@
   padding-bottom: 0.6rem;
 }
 
-/* Keep Practice and Client Login page heroes consistent with the WaterWorks (default) page-hero spacing */
 .page-hero.page-hero--practice .page-hero__title,
-.page-hero.page-hero--client-login .page-hero__title {
-  padding-bottom: 0.6rem; /* match .page-hero__title */
-}
-.page-hero.page-hero--practice,
-.page-hero.page-hero--client-login {
-  padding-block: clamp(9rem, 22vh, 13rem); /* match .page-hero */
-}
-
-/* First viewport = heading only; form reveals on scroll (same rhythm as Contact) */
-.page-hero.page-hero--client-login {
-  min-height: 88vh;
-  min-height: 88svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-  padding-bottom: clamp(3rem, 8vh, 5rem);
+.page-hero.page-hero--client-login .page-hero__title,
+.page-hero.page-hero--contact .page-hero__title {
+  padding-bottom: 0.6rem;
 }
 
 .page-hero__title em {
@@ -85,19 +78,22 @@
 }
 
 /* Prefabs: "Factory" / "Built Water" on two lines */
-.page-hero--prefab .page-hero__title {
+.page-hero--prefab .page-hero__title,
+.page-hero--stacked .page-hero__title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.02em;
 }
 
-.page-hero--prefab .page-hero__line {
+.page-hero--prefab .page-hero__line,
+.page-hero--stacked .page-hero__line {
   display: block;
   max-width: 100%;
 }
 
-.page-hero--prefab .page-hero__title em {
+.page-hero--prefab .page-hero__title em,
+.page-hero--stacked .page-hero__title em {
   padding-left: 0.08em;
 }
 
@@ -698,6 +694,12 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out, ease);
+}
+
+.home-journey__video-media.is-ready {
+  opacity: 1;
 }
 
 .home-journey__timeline {
@@ -795,9 +797,14 @@
     width: 100%;
     max-width: none;
     max-height: none;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     height: auto;
     min-height: 0;
+  }
+
+  .home-journey__video-media {
+    object-fit: contain;
+    object-position: center;
   }
 
   .home-journey__timeline {
@@ -1825,9 +1832,17 @@
   }
 }
 
+@media (max-width: 768px) {
+  .page-hero {
+    justify-content: center;
+    padding-block: clamp(6.5rem, 14vh, 8rem) clamp(2.5rem, 6vh, 4rem);
+  }
+}
+
 @media (max-width: 520px) {
   .page-hero {
-    padding-top: clamp(7.5rem, 20vh, 9rem);
+    justify-content: center;
+    padding-block: clamp(5.5rem, 12vh, 7rem) clamp(2rem, 5vh, 3.5rem);
   }
 
   .site-footer__bottom {

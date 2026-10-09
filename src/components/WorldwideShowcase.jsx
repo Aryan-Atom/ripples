@@ -66,7 +66,13 @@ export default function WorldwideShowcase({
   useEffect(() => {
     videoRefs.current.forEach((video, i) => {
       if (!video) return
-      if (i === activeIndex) {
+      // Keep current + next clip sourced so the upcoming slide is warm.
+      const shouldSource = i < 3 || i <= activeIndex + 1
+      if (shouldSource && video.dataset.src && !video.getAttribute('src')) {
+        video.src = video.dataset.src
+        video.load()
+      }
+      if (i === activeIndex && video.getAttribute('src')) {
         video.play().catch(() => {})
       } else {
         video.pause()
@@ -131,14 +137,20 @@ export default function WorldwideShowcase({
                         <video
                           ref={(el) => {
                             videoRefs.current[i] = el
+                            if (el && !el.dataset.src) {
+                              el.dataset.src = event.video
+                              // First 3 warm up immediately; later slides wait for approach.
+                              if (i < 3) {
+                                el.src = event.video
+                              }
+                            }
                           }}
                           className="worldwide-showcase__video"
-                          src={event.video}
                           poster={event.poster}
                           muted
                           loop
                           playsInline
-                          preload="metadata"
+                          preload={i < 3 ? 'auto' : 'none'}
                         />
                       ) : (
                         <img

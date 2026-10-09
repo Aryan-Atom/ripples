@@ -11,9 +11,19 @@
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   display: grid;
   align-items: end;
   overflow: hidden;
+}
+
+/* Index cards: lock each choice to one mobile viewport so the next story doesn't peek. */
+.case-study-index .cs-hero {
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 100dvh;
+  box-sizing: border-box;
 }
 
 .cs-hero__media {
@@ -229,6 +239,28 @@
 .case-study-index .cs-hero__title {
   max-width: 48rem;
   font-size: clamp(2.35rem, 5.6vw, 4.35rem);
+}
+
+@media (max-width: 720px) {
+  .case-study-index .cs-hero {
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  .case-study-index .cs-hero__inner {
+    padding-block: clamp(5.25rem, 12vh, 6.5rem) clamp(1.25rem, 3.5vh, 1.75rem);
+  }
+
+  .case-study-index .cs-hero__title {
+    font-size: clamp(2.1rem, 9vw, 2.85rem);
+  }
+
+  .case-study-index .cs-hero__place,
+  .case-study-index .cs-hero__places {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+  }
 }
 
 /* Shared fill media in split panels */

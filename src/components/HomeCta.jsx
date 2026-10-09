@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import LazyVideo from './LazyVideo.jsx'
+import LazyVideo, { PREV_SECTION_ROOT_MARGIN } from './LazyVideo.jsx'
 import FadeUp from '../motion/FadeUp'
 import { LOGO_ANIMATION_VIDEO } from '../data/assets.js'
 
@@ -37,6 +37,7 @@ export default function HomeCta() {
               <LazyVideo
                 className="cta-video-card__video"
                 src={LOGO_ANIMATION_VIDEO}
+                rootMargin={PREV_SECTION_ROOT_MARGIN}
                 autoPlay
                 muted
                 loop

@@ -3,6 +3,9 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 're
 const activePlayers = new Set()
 const DEFAULT_MAX_CONCURRENT = 0
 
+/** One viewport ahead so the current section's video is ready while the user is still on the previous one. */
+export const PREV_SECTION_ROOT_MARGIN = '0px 0px 100% 0px'
+
 function tryPlay(video, maxConcurrent) {
   if (!video) return
 
@@ -37,15 +40,17 @@ const LazyVideo = forwardRef(function LazyVideo(
     autoPlay,
     loadDelay = 0,
     maxConcurrent = DEFAULT_MAX_CONCURRENT,
-    rootMargin = '32px 0px',
+    rootMargin = PREV_SECTION_ROOT_MARGIN,
     eager = false,
+    /** Start fetching immediately; playback still waits for visibility. */
+    prefetch = false,
     onReady,
     ...props
   },
   ref,
 ) {
   const videoRef = useRef(null)
-  const [shouldLoad, setShouldLoad] = useState(eager)
+  const [shouldLoad, setShouldLoad] = useState(eager || prefetch)
   const isVisibleRef = useRef(eager)
   const loadTimerRef = useRef(null)
   const onReadyRef = useRef(onReady)
@@ -66,9 +71,11 @@ const LazyVideo = forwardRef(function LazyVideo(
       }
     }
 
+    if (eager || prefetch) {
+      setShouldLoad(true)
+    }
     if (eager) {
       isVisibleRef.current = true
-      setShouldLoad(true)
     }
 
     const observer = new IntersectionObserver(
@@ -101,7 +108,7 @@ const LazyVideo = forwardRef(function LazyVideo(
       if (loadTimerRef.current) window.clearTimeout(loadTimerRef.current)
       stopPlay(video)
     }
-  }, [autoPlay, loadDelay, maxConcurrent, shouldLoad, rootMargin, eager])
+  }, [autoPlay, loadDelay, maxConcurrent, shouldLoad, rootMargin, eager, prefetch])
 
   useEffect(() => {
     const video = videoRef.current
@@ -129,7 +136,7 @@ const LazyVideo = forwardRef(function LazyVideo(
       ref={videoRef}
       className={className}
       src={shouldLoad ? src : undefined}
-      preload={shouldLoad || eager ? 'auto' : 'none'}
+      preload={shouldLoad || eager || prefetch ? 'auto' : 'none'}
       autoPlay={false}
       {...props}
     />

@@ -5,9 +5,9 @@ export const DEFAULT_FRAME_SEQUENCE = {
   prefix: 'frame-',
   padLength: 4,
   startIndex: 1,
-  priorityCount: 24,
+  priorityCount: 16,
   stride: 10,
-  maxConcurrent: 10,
+  maxConcurrent: 8,
   maxDpr: 2,
   maxCacheSize: Infinity,
 }

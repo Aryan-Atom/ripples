@@ -1,7 +1,10 @@
-node_modules
-dist
-.DS_Store
+DS_Store
 *.local
-
 # Event showcase videos  add locally in public/events/ (too large for GitHub)
 public/events/*.mp4
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.wrangler/

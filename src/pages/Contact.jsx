@@ -32,6 +32,7 @@ export default function Contact() {
       <div className="interior-page__atmosphere" aria-hidden="true" />
       <main className="interior-page__main">
         <PageHero
+          className="page-hero--contact"
           eyebrow="Contact"
           title={
             <>

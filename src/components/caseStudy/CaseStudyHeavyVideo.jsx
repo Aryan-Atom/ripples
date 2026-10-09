@@ -26,7 +26,7 @@ export default function CaseStudyHeavyVideo({
   posterClassName,
   videoClassName,
   veilClassName,
-  rootMargin = '20% 0px',
+  rootMargin = '0px 0px 100% 0px',
 }) {
   const rootRef = useRef(null)
   const videoRef = useRef(null)
@@ -124,17 +124,18 @@ export default function CaseStudyHeavyVideo({
 
   return (
     <div ref={rootRef} className={className} aria-hidden="true">
-      <img
-        className={`${posterClassName}${ready ? ' is-faded' : ''}`}
-        src={poster}
-        alt=""
-        decoding="async"
-      />
+      {poster && posterClassName ? (
+        <img
+          className={`${posterClassName}${ready ? ' is-faded' : ''}`}
+          src={poster}
+          alt=""
+          decoding="async"
+        />
+      ) : null}
       <video
         ref={setVideoNode}
-        className={`${videoClassName}${ready ? ' is-ready' : ''}`}
+        className={`${videoClassName}${poster ? (ready ? ' is-ready' : '') : ' is-ready'}`}
         src={active ? src : undefined}
-        poster={poster}
         muted
         loop
         playsInline

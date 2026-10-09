@@ -26,7 +26,18 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100svh;
+  height: 100dvh;
   overflow: hidden;
+}
+
+/* After the pin releases, keep the hero from painting over page content. */
+.hva--passed {
+  pointer-events: none;
+}
+
+.hva--passed .hva-pin {
+  visibility: hidden;
 }
 
 .hva-media {
@@ -37,6 +48,24 @@
   contain: strict;
 }
 
+.hva-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.hva-poster.is-ready {
+  opacity: 0;
+}
+
 .hva-canvas {
   position: absolute;
   inset: 0;
@@ -44,37 +73,25 @@
   height: 100%;
   display: block;
   transform: translateZ(0);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.hva-canvas.is-ready {
+  opacity: 1;
 }
 
 .hva-vignette {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: radial-gradient(
     ellipse at center,
     transparent 35%,
     rgba(5, 5, 5, 0.75) 100%
   );
   pointer-events: none;
-}
-
-.hva-bg-load {
-  position: absolute;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  z-index: 3;
-  width: 2rem;
-  height: 2px;
-  background: rgba(245, 242, 235, 0.12);
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hva-bg-load-bar {
-  width: 100%;
-  height: 100%;
-  background: rgba(200, 255, 77, 0.45);
-  transform-origin: left center;
-  transform: scaleX(0);
 }
 
 .hva-overlay {

@@ -12,6 +12,8 @@ export default function FadeUp({
   duration = 0.75,
   stagger = 0,
   start = REVEAL_START,
+  /** Play on mount (hero copy) instead of waiting for scroll. */
+  immediate = false,
   ...rest
 }) {
   const ref = useRef(null)
@@ -30,6 +32,14 @@ export default function FadeUp({
     const tl = createRevealTimeline(targets, { y, duration, stagger, delay })
     if (!tl) return undefined
 
+    if (immediate) {
+      tl.play(0)
+      return () => {
+        tl.kill()
+        gsap.set(gsap.utils.toArray(targets), { clearProps: 'all' })
+      }
+    }
+
     const reveal = attachScrollReveal(tl, el, { start })
 
     return () => {
@@ -41,7 +51,7 @@ export default function FadeUp({
       tl.kill()
       gsap.set(gsap.utils.toArray(targets), { clearProps: 'all' })
     }
-  }, [delay, y, duration, stagger, start])
+  }, [delay, y, duration, stagger, start, immediate])
 
   return (
     <Tag ref={ref} className={className} {...rest}>
@@ -49,4 +59,3 @@ export default function FadeUp({
     </Tag>
   )
 }
-

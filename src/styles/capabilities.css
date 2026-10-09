@@ -246,19 +246,8 @@
 }
 
 @media (max-width: 720px) {
-  .waterworks-page .page-hero__title,
-  .multimedia-page .page-hero__title,
-  .waterworks-page .page-hero__title.multimedia-explore__title,
-  .multimedia-page .page-hero__title.multimedia-explore__title {
-    font-size: clamp(1.85rem, 9vw, 2.65rem);
-    line-height: 1.14;
-    letter-spacing: -0.02em;
-  }
-
   .waterworks-page .page-hero__lead,
   .multimedia-page .page-hero__lead {
-    font-size: var(--text-sm);
-    line-height: 1.65;
     max-width: 100%;
   }
 
@@ -1072,13 +1061,21 @@
   stroke-linejoin: round;
 }
 
-.gallery-lightbox__close:hover,
 .gallery-lightbox__close:focus-visible,
-.gallery-lightbox__nav:hover,
 .gallery-lightbox__nav:focus-visible {
   border-color: #fff;
   background: #fff;
   color: #060c16;
+}
+
+/* Hover invert only on fine pointers — mobile keeps :hover stuck after tap. */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-lightbox__close:hover,
+  .gallery-lightbox__nav:hover {
+    border-color: #fff;
+    background: #fff;
+    color: #060c16;
+  }
 }
 
 .gallery-lightbox__frame {

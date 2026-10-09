@@ -13,12 +13,15 @@ import HomeCta from '../components/HomeCta.jsx'
 import HomeJourney from '../components/HomeJourney.jsx'
 
 const FRAME_COUNT = 241
+const HERO_POSTER = '/frames/frame-0001.webp'
 
 export default function Home() {
   return (
     <div className="home-page">
       <HeroVideoAnimation
         frames={{ frameCount: FRAME_COUNT }}
+        posterSrc={HERO_POSTER}
+        showLoader={false}
         showProgressBar={false}
         scrollLength="+=210%"
       >

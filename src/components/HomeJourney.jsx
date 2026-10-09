@@ -2,10 +2,10 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
 import FadeUp from '../motion/FadeUp'
 import SplitLines from '../motion/SplitLines'
-import LazyVideo from './LazyVideo.jsx'
+import LazyVideo, { PREV_SECTION_ROOT_MARGIN } from './LazyVideo.jsx'
+import { withBrand } from './Brand.jsx'
 import { JOURNEY_TIMELINE } from '../data/journey'
 import { WEBSITE_LOGO_VIDEO } from '../data/assets.js'
-import { withBrand } from './Brand.jsx'
 
 const STEP_MS = 2600
 const VIDEO_START_YEAR = '1994'
@@ -24,6 +24,7 @@ export default function HomeJourney() {
   const [active, setActive] = useState(0)
   const [interactive, setInteractive] = useState(false)
   const [videoRange, setVideoRange] = useState({ top: 0, height: 0 })
+  const [videoReady, setVideoReady] = useState(false)
   const count = JOURNEY_TIMELINE.length
 
   useLayoutEffect(() => {
@@ -169,12 +170,14 @@ export default function HomeJourney() {
         >
           <div className="home-journey__video">
             <LazyVideo
-              className="home-journey__video-media"
+              className={`home-journey__video-media${videoReady ? ' is-ready' : ''}`}
               src={WEBSITE_LOGO_VIDEO}
+              rootMargin={PREV_SECTION_ROOT_MARGIN}
               autoPlay
               muted
               loop
               playsInline
+              onReady={() => setVideoReady(true)}
             />
           </div>
         </div>

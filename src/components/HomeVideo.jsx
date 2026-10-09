@@ -1,11 +1,12 @@
-import { useLayoutEffect, useRef } from 'react'
-import LazyVideo from './LazyVideo.jsx'
+import { useLayoutEffect, useRef, useState } from 'react'
+import LazyVideo, { PREV_SECTION_ROOT_MARGIN } from './LazyVideo.jsx'
 import { gsap, prefersReducedMotion } from '../motion/gsap'
 import { COMPANY_INTRO_VIDEO } from '../data/assets.js'
 
 export default function HomeVideo() {
   const frameRef = useRef(null)
   const captionRef = useRef(null)
+  const [ready, setReady] = useState(false)
 
   useLayoutEffect(() => {
     const frame = frameRef.current
@@ -65,12 +66,14 @@ export default function HomeVideo() {
     <section className="home-video home-section" aria-label="Engineering showcase">
       <div className="home-video__frame" ref={frameRef}>
         <LazyVideo
-          className="home-video__media"
+          className={`home-video__media${ready ? ' is-ready' : ''}`}
           src={COMPANY_INTRO_VIDEO}
+          rootMargin={PREV_SECTION_ROOT_MARGIN}
           autoPlay
           muted
           loop
           playsInline
+          onReady={() => setReady(true)}
         />
         <div className="home-video__scrim" aria-hidden="true" />
         <div className="home-video__caption" ref={captionRef}>

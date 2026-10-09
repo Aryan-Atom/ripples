@@ -15,7 +15,11 @@ export function getAdaptiveProfile() {
 
   if (!mobile) {
     return {
-      frames: { maxCacheSize: Infinity },
+      frames: {
+        maxCacheSize: Infinity,
+        priorityCount: 16,
+        maxConcurrent: 8,
+      },
       useLenis: true,
       scroll: {},
     }
@@ -26,7 +30,7 @@ export function getAdaptiveProfile() {
       maxDpr: isIOS() ? 1 : 1.25,
       maxConcurrent: 2,
       maxCacheSize: 36,
-      priorityCount: 18,
+      priorityCount: 12,
       stride: 12,
     },
     useLenis: false,

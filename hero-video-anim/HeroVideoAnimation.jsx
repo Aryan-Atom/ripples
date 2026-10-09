@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useScrollFrameSequence } from './scroll-frames'
+import { buildFramePath, useScrollFrameSequence } from './scroll-frames'
 import { LenisProvider, useLenis } from './lenis'
 import { DEFAULT_FRAMES, DEFAULT_SCROLL } from './defaults'
 import { getAdaptiveProfile, isCoarsePointer } from './device'
@@ -25,6 +25,8 @@ function HeroVideoAnimationInner({
   showProgressBar = true,
   showHint = true,
   showVignette = true,
+  /** Static first-frame image shown instantly while the sequence boots. */
+  posterSrc,
   className = '',
   id = 'hero-video-anim',
   children,
@@ -40,17 +42,19 @@ function HeroVideoAnimationInner({
   }
 
   const frameOptions = { ...DEFAULT_FRAMES, ...frames }
+  const resolvedPoster = posterSrc || buildFramePath(0, frameOptions)
 
   const {
     canvasRef,
     setProgress,
     loadProgress,
     isReady,
-    isFullyLoaded,
     error,
   } = useScrollFrameSequence(frameOptions)
 
   const loading = !isReady
+  // With a poster, skip the opaque full-screen loader so first paint is immediate.
+  const showBlockingLoader = showLoader && loading && !resolvedPoster
 
   useEffect(() => {
     const lenis = lenisRef?.current
@@ -74,6 +78,8 @@ function HeroVideoAnimationInner({
 
     let gsapCtx
 
+    const coarse = isCoarsePointer()
+
     gsapCtx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -82,7 +88,10 @@ function HeroVideoAnimationInner({
           end: scrollLength,
           scrub,
           pin: true,
-          anticipatePin: 1,
+          // Parent overflow-x can break fixed pin on mobile and leave the
+          // last hero frame sitting on top of the next section.
+          pinReparent: coarse,
+          anticipatePin: coarse ? 0 : 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             setProgress(self.progress)
@@ -90,6 +99,12 @@ function HeroVideoAnimationInner({
             if (progress) {
               progress.style.transform = `scaleX(${self.progress})`
             }
+          },
+          onLeave: () => {
+            root?.classList.add('hva--passed')
+          },
+          onEnterBack: () => {
+            root?.classList.remove('hva--passed')
           },
         },
       })
@@ -136,7 +151,7 @@ function HeroVideoAnimationInner({
 
   return (
     <div className={`hva ${className}`.trim()} id={id} ref={rootRef}>
-      {showLoader && loading && (
+      {showBlockingLoader && (
         <div className="hva-loader" aria-live="polite">
           <div className="hva-loader-track">
             <div
@@ -157,16 +172,21 @@ function HeroVideoAnimationInner({
 
       <section className="hva-pin" ref={pinRef}>
         <div className="hva-media">
-          <canvas ref={canvasRef} className="hva-canvas" aria-hidden="true" />
+          {resolvedPoster ? (
+            <img
+              className={`hva-poster${isReady ? ' is-ready' : ''}`}
+              src={resolvedPoster}
+              alt=""
+              decoding="async"
+              fetchPriority="high"
+            />
+          ) : null}
+          <canvas
+            ref={canvasRef}
+            className={`hva-canvas${isReady ? ' is-ready' : ''}`}
+            aria-hidden="true"
+          />
           {showVignette && <div className="hva-vignette" aria-hidden="true" />}
-          {!isFullyLoaded && isReady && (
-            <div className="hva-bg-load" aria-hidden="true">
-              <div
-                className="hva-bg-load-bar"
-                style={{ transform: `scaleX(${loadProgress})` }}
-              />
-            </div>
-          )}
         </div>
 
         <div className="hva-overlay">
@@ -199,6 +219,7 @@ export default function HeroVideoAnimation({
   lenisOptions,
   scrollLength: scrollLengthProp,
   scrub: scrubProp,
+  posterSrc,
   ...props
 }) {
   const profile = getAdaptiveProfile()
@@ -213,6 +234,7 @@ export default function HeroVideoAnimation({
         frames={mergedFrames}
         scrollLength={scrollLength}
         scrub={scrub}
+        posterSrc={posterSrc}
         {...props}
       />
     )
@@ -224,6 +246,7 @@ export default function HeroVideoAnimation({
         frames={mergedFrames}
         scrollLength={scrollLength}
         scrub={scrub}
+        posterSrc={posterSrc}
         {...props}
       />
     </LenisProvider>

@@ -62,9 +62,21 @@ export default function GalleryLightbox({ items, index, onClose, onIndex }) {
 
   if (index == null || !current) return null
 
+  const blurTap = (event) => {
+    // Mobile WebKit keeps :hover / focus paint after tap — clear it.
+    event.currentTarget?.blur?.()
+  }
+
   const go = (direction) => (event) => {
     event.stopPropagation()
+    blurTap(event)
     onIndex(stepIndex(index, count, direction))
+  }
+
+  const handleClose = (event) => {
+    event.stopPropagation()
+    blurTap(event)
+    onClose()
   }
 
   return createPortal(
@@ -78,7 +90,7 @@ export default function GalleryLightbox({ items, index, onClose, onIndex }) {
       <button
         type="button"
         className="gallery-lightbox__close"
-        onClick={onClose}
+        onClick={handleClose}
         aria-label="Close"
       >
         ×

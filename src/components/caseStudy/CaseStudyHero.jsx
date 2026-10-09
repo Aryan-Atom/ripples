@@ -55,6 +55,8 @@ export default function CaseStudyHero({
   links,
   titleId = 'cs-hero-title',
   titleAs = 'h1',
+  /** Above-the-fold openers should start muted autoplay immediately. */
+  eagerVideo = false,
 }) {
   const TitleTag = titleAs
   const placeLinks = links ?? (to ? [{ to, place: hero.place }] : null)
@@ -113,6 +115,7 @@ export default function CaseStudyHero({
           videoClassName="cs-hero__video"
           veilClassName="cs-hero__veil"
           rootMargin="0px 0px 100% 0px"
+          eager={eagerVideo}
         />
       )}
       {placeLinks ? <div className="cs-hero__frost" aria-hidden="true" /> : null}

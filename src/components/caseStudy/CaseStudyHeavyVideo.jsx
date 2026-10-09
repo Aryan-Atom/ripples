@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 function armInlinePlayback(video) {
+  if (!video) return
   video.muted = true
   video.defaultMuted = true
   video.playsInline = true
@@ -10,14 +11,15 @@ function armInlinePlayback(video) {
 }
 
 function playSafe(video) {
-  if (!video?.src) return Promise.resolve()
+  if (!video) return Promise.resolve()
   armInlinePlayback(video)
+  if (!video.getAttribute('src') && !video.src) return Promise.resolve()
   return video.play()
 }
 
 /**
- * Case Study only  large Intro / final clips.
- * Attach src on first view, play while visible, pause when off-screen.
+ * Case Study only — large Intro / final clips.
+ * Attach src on first view (or immediately when eager), play while visible.
  */
 export default function CaseStudyHeavyVideo({
   src,
@@ -27,12 +29,14 @@ export default function CaseStudyHeavyVideo({
   videoClassName,
   veilClassName,
   rootMargin = '0px 0px 100% 0px',
+  /** Start loading + playing on mount (above-the-fold openers). */
+  eager = false,
 }) {
   const rootRef = useRef(null)
   const videoRef = useRef(null)
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState(eager)
   const [ready, setReady] = useState(false)
-  const visibleRef = useRef(false)
+  const visibleRef = useRef(eager)
 
   const setVideoNode = useCallback((node) => {
     videoRef.current = node
@@ -61,14 +65,16 @@ export default function CaseStudyHeavyVideo({
 
     // WebKit often skips the first IntersectionObserver callback until scroll.
     const rect = root.getBoundingClientRect()
-    if (rect.bottom > 0 && rect.top < window.innerHeight) sync(true)
+    if (eager || (rect.bottom > 0 && rect.top < window.innerHeight)) {
+      sync(true)
+    }
 
     return () => observer.disconnect()
-  }, [rootMargin])
+  }, [rootMargin, eager])
 
   useEffect(() => {
     const video = videoRef.current
-    if (!video || !active) return undefined
+    if (!video || !active || !src) return undefined
 
     let cancelled = false
 
@@ -80,7 +86,7 @@ export default function CaseStudyHeavyVideo({
     const onReady = () => {
       if (cancelled) return
       setReady(true)
-      if (visibleRef.current && video.paused) resume()
+      if (visibleRef.current) resume()
     }
 
     const onBlocked = () => {
@@ -122,9 +128,11 @@ export default function CaseStudyHeavyVideo({
     }
   }, [active, src])
 
+  const showPoster = Boolean(poster && posterClassName)
+
   return (
     <div ref={rootRef} className={className} aria-hidden="true">
-      {poster && posterClassName ? (
+      {showPoster ? (
         <img
           className={`${posterClassName}${ready ? ' is-faded' : ''}`}
           src={poster}
@@ -134,7 +142,7 @@ export default function CaseStudyHeavyVideo({
       ) : null}
       <video
         ref={setVideoNode}
-        className={`${videoClassName}${poster ? (ready ? ' is-ready' : '') : ' is-ready'}`}
+        className={`${videoClassName}${showPoster ? (ready ? ' is-ready' : '') : ' is-ready'}`}
         src={active ? src : undefined}
         muted
         loop

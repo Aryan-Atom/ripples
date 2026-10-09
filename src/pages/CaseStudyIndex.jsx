@@ -14,6 +14,7 @@ export default function CaseStudyIndex() {
             to={hero.to}
             titleId={`cs-choice-${hero.id}`}
             titleAs={index === 0 ? 'h1' : 'h2'}
+            eagerVideo={index === 0}
           />
         ))}
       </main>

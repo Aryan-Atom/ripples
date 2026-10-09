@@ -1,18 +1,70 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import GalleryLightbox from './GalleryLightbox.jsx'
 import LazyVideo, { PREV_SECTION_ROOT_MARGIN } from './LazyVideo.jsx'
 
-/** Prefetch the first few cards so the multimedia page starts ready. */
-const EAGER_COUNT = 3
+/** First wave on page open; later waves unlock as the user approaches. */
+const BATCH = 3
+
+function ProjectVideo({ src, poster, className, eager, unlocked }) {
+  if (!src || !unlocked) {
+    return poster ? (
+      <img className={className} src={poster} alt="" loading="lazy" decoding="async" />
+    ) : null
+  }
+
+  return (
+    <LazyVideo
+      className={className}
+      src={src}
+      poster={poster}
+      eager={eager}
+      prefetch={eager}
+      rootMargin={PREV_SECTION_ROOT_MARGIN}
+      autoPlay
+      muted
+      loop
+      playsInline
+    />
+  )
+}
 
 /** Video project cards — click opens photos with arrow navigation. */
 export default function MultimediaProjectCards({ projects }) {
   const [open, setOpen] = useState(null)
+  const [unlockedCount, setUnlockedCount] = useState(BATCH)
+  const slideRefs = useRef([])
 
   const close = useCallback(() => setOpen(null), [])
   const setIndex = useCallback((next) => {
     setOpen((prev) => (prev ? { ...prev, index: next } : prev))
   }, [])
+
+  // Unlock the next batch when a slide near the frontier enters (previous-section margin).
+  useEffect(() => {
+    if (!projects?.length) return undefined
+
+    const observers = []
+
+    projects.forEach((_, i) => {
+      const el = slideRefs.current[i]
+      if (!el) return
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return
+          // Approaching slide i → keep at least this batch + the next batch warm.
+          const need = Math.ceil((i + 1) / BATCH) * BATCH + BATCH
+          setUnlockedCount((prev) => Math.max(prev, Math.min(need, projects.length)))
+        },
+        { rootMargin: PREV_SECTION_ROOT_MARGIN, threshold: 0.01 },
+      )
+
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((observer) => observer.disconnect())
+  }, [projects])
 
   if (!projects?.length) return null
 
@@ -23,6 +75,9 @@ export default function MultimediaProjectCards({ projects }) {
     >
       <div className="worldwide-showcase__slides">
         {projects.map((project, i) => {
+          const unlocked = i < unlockedCount
+          const eager = i < BATCH
+
           const openGallery = () => {
             const photos = project.gallery || []
             const lightboxVideo = project.videoCompressed || project.video
@@ -41,33 +96,25 @@ export default function MultimediaProjectCards({ projects }) {
           }
 
           return (
-            <article className="worldwide-showcase__slide" key={project.id} aria-label={project.title}>
+            <article
+              className="worldwide-showcase__slide"
+              key={project.id}
+              aria-label={project.title}
+              ref={(el) => {
+                slideRefs.current[i] = el
+              }}
+            >
               <div className="worldwide-showcase__slide-inner">
                 <div className="multimedia-project">
                   <div className="worldwide-showcase__composition">
                     <div className="worldwide-showcase__frame">
-                      {project.video ? (
-                        <LazyVideo
-                          className="worldwide-showcase__video"
-                          src={project.video}
-                          poster={project.poster}
-                          prefetch={i < EAGER_COUNT}
-                          rootMargin={PREV_SECTION_ROOT_MARGIN}
-                          maxConcurrent={2}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                        />
-                      ) : project.poster ? (
-                        <img
-                          className="worldwide-showcase__video"
-                          src={project.poster}
-                          alt=""
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      ) : null}
+                      <ProjectVideo
+                        className="worldwide-showcase__video"
+                        src={project.video}
+                        poster={project.poster}
+                        eager={eager}
+                        unlocked={unlocked}
+                      />
                     </div>
 
                     <div

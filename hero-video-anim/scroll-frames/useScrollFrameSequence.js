@@ -121,9 +121,16 @@ export function useScrollFrameSequence(userOptions = {}) {
     [frameCount],
   )
 
+  const forceRedraw = useCallback(() => {
+    rendererRef.current?.forceRedraw()
+    const targetIndex = Math.round(progressRef.current * (frameCount - 1))
+    loaderRef.current?.prioritize(targetIndex)
+  }, [frameCount])
+
   return {
     canvasRef,
     setProgress,
+    forceRedraw,
     loadProgress,
     isReady,
     isFullyLoaded,

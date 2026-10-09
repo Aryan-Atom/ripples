@@ -31,13 +31,11 @@
   overflow: hidden;
 }
 
-/* After the pin releases, keep the hero from painting over page content. */
+/* After the pin releases, keep the hero from intercepting input.
+   Do not use visibility:hidden — it breaks canvas redraw on mobile
+   when scrolling back into the hero. */
 .hva--passed {
   pointer-events: none;
-}
-
-.hva--passed .hva-pin {
-  visibility: hidden;
 }
 
 .hva-media {

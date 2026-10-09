@@ -7,7 +7,9 @@
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-bg);
-  overflow-x: hidden;
+  /* clip avoids creating a scroll containing block that breaks GSAP pin /
+     canvas redraw on mobile reverse-scroll (overflow:hidden + pinReparent). */
+  overflow-x: clip;
 }
 
 .home-page__below {

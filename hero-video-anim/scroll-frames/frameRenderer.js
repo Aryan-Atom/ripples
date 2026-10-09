@@ -41,11 +41,13 @@ export function createScrollFrameRenderer(canvas, getFrames, options = {}) {
 
   const draw = (index) => {
     const frames = getFrames()
-    const frame = frames?.[index]
+    const resolved = frames?.[index] ? index : findNearestLoadedFrame(frames, index)
+    const frame = frames?.[resolved]
     if (!frame) return
 
-    if (index === renderedIndex) return
-    renderedIndex = index
+    if (resolved === renderedIndex) return
+    renderedIndex = resolved
+    currentIndex = resolved
 
     const scale = Math.max(displayW / frame.width, displayH / frame.height)
     const dw = frame.width * scale

@@ -28,10 +28,11 @@ export function getAdaptiveProfile() {
   return {
     frames: {
       maxDpr: isIOS() ? 1 : 1.25,
-      maxConcurrent: 2,
-      maxCacheSize: 36,
-      priorityCount: 12,
-      stride: 12,
+      maxConcurrent: 3,
+      // Keep more frames warm so reverse scroll doesn't flash empty bg + copy.
+      maxCacheSize: 64,
+      priorityCount: 16,
+      stride: 10,
     },
     useLenis: false,
     scroll: { scrub: 0.12 },

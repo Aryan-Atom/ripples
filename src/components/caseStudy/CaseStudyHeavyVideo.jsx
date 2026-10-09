@@ -1,25 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-
-function armInlinePlayback(video) {
-  if (!video) return
-  video.muted = true
-  video.defaultMuted = true
-  video.playsInline = true
-  video.setAttribute('muted', '')
-  video.setAttribute('playsinline', '')
-  video.setAttribute('webkit-playsinline', 'true')
-}
-
-function playSafe(video) {
-  if (!video) return Promise.resolve()
-  armInlinePlayback(video)
-  if (!video.getAttribute('src') && !video.src) return Promise.resolve()
-  return video.play()
-}
+import {
+  armAutoplayGestureRetry,
+  armInlinePlayback,
+  playSafe,
+} from '../../utils/videoAutoplay.js'
 
 /**
  * Case Study only — large Intro / final clips.
- * Attach src on first view (or immediately when eager), play while visible.
+ * Same load + muted autoplay behavior on mobile and desktop.
  */
 export default function CaseStudyHeavyVideo({
   src,
@@ -29,7 +17,6 @@ export default function CaseStudyHeavyVideo({
   videoClassName,
   veilClassName,
   rootMargin = '0px 0px 100% 0px',
-  /** Start loading + playing on mount (above-the-fold openers). */
   eager = false,
 }) {
   const rootRef = useRef(null)
@@ -40,7 +27,14 @@ export default function CaseStudyHeavyVideo({
 
   const setVideoNode = useCallback((node) => {
     videoRef.current = node
-    if (node) armInlinePlayback(node)
+    if (node) {
+      armInlinePlayback(node)
+      node.dataset.autoplayIntent = '1'
+    }
+  }, [])
+
+  useEffect(() => {
+    armAutoplayGestureRetry()
   }, [])
 
   useEffect(() => {
@@ -49,11 +43,16 @@ export default function CaseStudyHeavyVideo({
 
     const sync = (inView) => {
       visibleRef.current = inView
+      const video = videoRef.current
       if (inView) {
         setActive(true)
-        playSafe(videoRef.current).catch(() => {})
-      } else {
-        videoRef.current?.pause()
+        if (video) {
+          video.dataset.shouldPlay = '1'
+          playSafe(video).catch(() => {})
+        }
+      } else if (video) {
+        video.dataset.shouldPlay = '0'
+        video.pause()
       }
     }
 
@@ -63,7 +62,6 @@ export default function CaseStudyHeavyVideo({
     )
     observer.observe(root)
 
-    // WebKit often skips the first IntersectionObserver callback until scroll.
     const rect = root.getBoundingClientRect()
     if (eager || (rect.bottom > 0 && rect.top < window.innerHeight)) {
       sync(true)
@@ -80,6 +78,7 @@ export default function CaseStudyHeavyVideo({
 
     const resume = () => {
       if (cancelled || !visibleRef.current) return
+      video.dataset.shouldPlay = '1'
       playSafe(video).catch(() => {})
     }
 
@@ -99,12 +98,13 @@ export default function CaseStudyHeavyVideo({
       else video.pause()
     }
 
+    armInlinePlayback(video)
+    video.dataset.autoplayIntent = '1'
     video.addEventListener('loadeddata', onReady)
     video.addEventListener('canplay', onReady)
+    video.addEventListener('loadedmetadata', onReady)
     document.addEventListener('visibilitychange', onVis)
 
-    // Call play() immediately. Safari and iOS do not fire canplay until
-    // playback is requested, so waiting for that event deadlocks autoplay.
     if (visibleRef.current) {
       playSafe(video).then(
         () => {
@@ -122,6 +122,7 @@ export default function CaseStudyHeavyVideo({
       cancelled = true
       video.removeEventListener('loadeddata', onReady)
       video.removeEventListener('canplay', onReady)
+      video.removeEventListener('loadedmetadata', onReady)
       document.removeEventListener('visibilitychange', onVis)
       document.removeEventListener('pointerdown', resume)
       document.removeEventListener('touchend', resume)

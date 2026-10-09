@@ -1,4 +1,9 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import {
+  armAutoplayGestureRetry,
+  armInlinePlayback,
+  playSafe,
+} from '../utils/videoAutoplay.js'
 
 const activePlayers = new Set()
 const DEFAULT_MAX_CONCURRENT = 0
@@ -6,23 +11,16 @@ const DEFAULT_MAX_CONCURRENT = 0
 /** One viewport ahead so the current section's video is ready while the user is still on the previous one. */
 export const PREV_SECTION_ROOT_MARGIN = '0px 0px 100% 0px'
 
-function armInlinePlayback(video) {
-  if (!video) return
-  video.muted = true
-  video.defaultMuted = true
-  video.playsInline = true
-  video.setAttribute('muted', '')
-  video.setAttribute('playsinline', '')
-  video.setAttribute('webkit-playsinline', 'true')
-}
-
 function tryPlay(video, maxConcurrent) {
-  if (!video?.src) return
+  if (!video?.src && !video?.getAttribute('src')) return
 
   armInlinePlayback(video)
+  video.dataset.autoplayIntent = '1'
+  video.dataset.shouldPlay = '1'
+  armAutoplayGestureRetry()
 
   if (!maxConcurrent) {
-    video.play().catch(() => {})
+    playSafe(video).catch(() => {})
     return
   }
 
@@ -32,36 +30,40 @@ function tryPlay(video, maxConcurrent) {
     const oldest = activePlayers.values().next().value
     if (oldest && oldest !== video) {
       activePlayers.delete(oldest)
+      oldest.dataset.shouldPlay = '0'
       oldest.pause()
     }
   }
 
-  video.play().catch(() => {})
+  playSafe(video).catch(() => {})
 }
 
 function stopPlay(video) {
   if (!video) return
   activePlayers.delete(video)
+  video.dataset.shouldPlay = '0'
   video.pause()
+}
+
+function parseBottomExpand(rootMargin, vh) {
+  const parts = String(rootMargin || '0px')
+    .trim()
+    .split(/\s+/)
+  let bottomExpand = '0px'
+  if (parts.length === 1) bottomExpand = parts[0]
+  else if (parts.length === 2) bottomExpand = parts[0]
+  else if (parts.length >= 3) bottomExpand = parts[2]
+
+  return /%$/.test(bottomExpand)
+    ? (parseFloat(bottomExpand) / 100) * vh
+    : parseFloat(bottomExpand) || 0
 }
 
 function isInExpandedViewport(el, rootMargin) {
   if (!el) return false
   const rect = el.getBoundingClientRect()
   const vh = window.innerHeight || 0
-  // Parse "top right bottom left" or "vertical horizontal" — we only need bottom expansion.
-  const parts = String(rootMargin || '0px')
-    .trim()
-    .split(/\s+/)
-  let bottomExpand = 0
-  if (parts.length === 1) bottomExpand = parts[0]
-  else if (parts.length === 2) bottomExpand = parts[0]
-  else if (parts.length >= 3) bottomExpand = parts[2]
-
-  const bottomPx = /%$/.test(bottomExpand)
-    ? (parseFloat(bottomExpand) / 100) * vh
-    : parseFloat(bottomExpand) || 0
-
+  const bottomPx = parseBottomExpand(rootMargin, vh)
   return rect.bottom > 0 && rect.top < vh + bottomPx
 }
 
@@ -74,9 +76,10 @@ const LazyVideo = forwardRef(function LazyVideo(
     maxConcurrent = DEFAULT_MAX_CONCURRENT,
     rootMargin = PREV_SECTION_ROOT_MARGIN,
     eager = false,
-    /** Start fetching immediately; playback still waits for visibility (unless eager). */
     prefetch = false,
     onReady,
+    muted: _muted,
+    playsInline: _playsInline,
     ...props
   },
   ref,
@@ -95,6 +98,9 @@ const LazyVideo = forwardRef(function LazyVideo(
   useEffect(() => {
     const video = videoRef.current
     if (!video) return undefined
+
+    // Observe the frame when the video is absolutely positioned (common on mobile).
+    const observeEl = video.parentElement || video
 
     const syncPlayback = () => {
       if (!video.getAttribute('src') && !video.src) return
@@ -135,11 +141,9 @@ const LazyVideo = forwardRef(function LazyVideo(
       { rootMargin, threshold: [0, 0.01, 0.15, 0.4] },
     )
 
-    observer.observe(video)
+    observer.observe(observeEl)
 
-    // Seed visibility: eager clips start playing; others use layout + rootMargin.
-    // WebKit often skips the first IO callback until scroll.
-    if (eager || isInExpandedViewport(video, rootMargin)) {
+    if (eager || isInExpandedViewport(observeEl, rootMargin)) {
       markVisible(true)
     }
 
@@ -155,6 +159,7 @@ const LazyVideo = forwardRef(function LazyVideo(
     if (!video || !shouldLoad || !src) return undefined
 
     armInlinePlayback(video)
+    video.dataset.autoplayIntent = '1'
 
     const handleReady = () => {
       onReadyRef.current?.(video)
@@ -165,8 +170,8 @@ const LazyVideo = forwardRef(function LazyVideo(
 
     video.addEventListener('loadeddata', handleReady)
     video.addEventListener('canplay', handleReady)
+    video.addEventListener('loadedmetadata', handleReady)
 
-    // Request play immediately so Safari unlocks media events.
     if ((isVisibleRef.current || eager) && autoPlay) {
       tryPlay(video, maxConcurrent)
     }
@@ -175,6 +180,7 @@ const LazyVideo = forwardRef(function LazyVideo(
     return () => {
       video.removeEventListener('loadeddata', handleReady)
       video.removeEventListener('canplay', handleReady)
+      video.removeEventListener('loadedmetadata', handleReady)
     }
   }, [shouldLoad, src, autoPlay, maxConcurrent, eager])
 
@@ -184,12 +190,10 @@ const LazyVideo = forwardRef(function LazyVideo(
       className={className}
       src={shouldLoad ? src : undefined}
       preload={shouldLoad || eager || prefetch ? 'auto' : 'none'}
-      autoPlay={false}
-      playsInline
-      muted
+      autoPlay={Boolean(autoPlay)}
       {...props}
-      // Keep muted last so callers can't accidentally unmute and block autoplay.
       muted
+      playsInline
     />
   )
 })

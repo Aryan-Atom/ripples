@@ -7,6 +7,7 @@ import SplitPanel from '../journey/SplitPanel'
 import GalleryCollage from '../GalleryCollage.jsx'
 import { CASE_STUDY } from '../../data/caseStudy'
 import CaseStudyHeavyVideo from './CaseStudyHeavyVideo'
+import { armAutoplayGestureRetry, armInlinePlayback, playSafe } from '../../utils/videoAutoplay.js'
 
 function isVideoSrc(src) {
   return typeof src === 'string' && /\.(mp4|webm|ogg)(\?|$)/i.test(src)
@@ -144,16 +145,16 @@ export function CaseStudyVisualization({ study = CASE_STUDY }) {
     const stage = stageRef.current
     if (!stage) return undefined
 
+    armAutoplayGestureRetry()
+
     const ensurePlaying = () => {
       modes.forEach((mode) => {
         const video = videoRefs.current[mode.id]
         if (!video) return
-        video.muted = true
-        video.defaultMuted = true
-        video.playsInline = true
-        if (video.paused) {
-          video.play().catch(() => {})
-        }
+        armInlinePlayback(video)
+        video.dataset.autoplayIntent = '1'
+        video.dataset.shouldPlay = '1'
+        if (video.paused) playSafe(video).catch(() => {})
       })
     }
 
@@ -169,7 +170,10 @@ export function CaseStudyVisualization({ study = CASE_STUDY }) {
         if (entry.isIntersecting) ensurePlaying()
         else {
           modes.forEach((mode) => {
-            videoRefs.current[mode.id]?.pause()
+            const video = videoRefs.current[mode.id]
+            if (!video) return
+            video.dataset.shouldPlay = '0'
+            video.pause()
           })
         }
       },
@@ -299,7 +303,7 @@ export function CaseStudyResult({ study = CASE_STUDY }) {
           posterClassName="cs-result__poster"
           videoClassName="cs-result__video"
           veilClassName="cs-result__veil"
-          rootMargin="25% 0px"
+          rootMargin="0px 0px 100% 0px"
         />
       ) : (
         <div className="cs-result__media" aria-hidden="true">

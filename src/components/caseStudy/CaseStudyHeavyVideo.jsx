@@ -1,23 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-
-function armInlinePlayback(video) {
-  video.muted = true
-  video.defaultMuted = true
-  video.playsInline = true
-  video.setAttribute('muted', '')
-  video.setAttribute('playsinline', '')
-  video.setAttribute('webkit-playsinline', 'true')
-}
-
-function playSafe(video) {
-  if (!video?.src) return Promise.resolve()
-  armInlinePlayback(video)
-  return video.play()
-}
+import {
+  armAutoplayGestureRetry,
+  armInlinePlayback,
+  playSafe,
+} from '../../utils/videoAutoplay.js'
 
 /**
- * Case Study only  large Intro / final clips.
- * Attach src on first view, play while visible, pause when off-screen.
+ * Case Study only — large Intro / final clips.
+ * Same load + muted autoplay behavior on mobile and desktop.
  */
 export default function CaseStudyHeavyVideo({
   src,
@@ -27,16 +17,24 @@ export default function CaseStudyHeavyVideo({
   videoClassName,
   veilClassName,
   rootMargin = '0px 0px 100% 0px',
+  eager = false,
 }) {
   const rootRef = useRef(null)
   const videoRef = useRef(null)
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState(eager)
   const [ready, setReady] = useState(false)
-  const visibleRef = useRef(false)
+  const visibleRef = useRef(eager)
 
   const setVideoNode = useCallback((node) => {
     videoRef.current = node
-    if (node) armInlinePlayback(node)
+    if (node) {
+      armInlinePlayback(node)
+      node.dataset.autoplayIntent = '1'
+    }
+  }, [])
+
+  useEffect(() => {
+    armAutoplayGestureRetry()
   }, [])
 
   useEffect(() => {
@@ -45,11 +43,16 @@ export default function CaseStudyHeavyVideo({
 
     const sync = (inView) => {
       visibleRef.current = inView
+      const video = videoRef.current
       if (inView) {
         setActive(true)
-        playSafe(videoRef.current).catch(() => {})
-      } else {
-        videoRef.current?.pause()
+        if (video) {
+          video.dataset.shouldPlay = '1'
+          playSafe(video).catch(() => {})
+        }
+      } else if (video) {
+        video.dataset.shouldPlay = '0'
+        video.pause()
       }
     }
 
@@ -59,28 +62,30 @@ export default function CaseStudyHeavyVideo({
     )
     observer.observe(root)
 
-    // WebKit often skips the first IntersectionObserver callback until scroll.
     const rect = root.getBoundingClientRect()
-    if (rect.bottom > 0 && rect.top < window.innerHeight) sync(true)
+    if (eager || (rect.bottom > 0 && rect.top < window.innerHeight)) {
+      sync(true)
+    }
 
     return () => observer.disconnect()
-  }, [rootMargin])
+  }, [rootMargin, eager])
 
   useEffect(() => {
     const video = videoRef.current
-    if (!video || !active) return undefined
+    if (!video || !active || !src) return undefined
 
     let cancelled = false
 
     const resume = () => {
       if (cancelled || !visibleRef.current) return
+      video.dataset.shouldPlay = '1'
       playSafe(video).catch(() => {})
     }
 
     const onReady = () => {
       if (cancelled) return
       setReady(true)
-      if (visibleRef.current && video.paused) resume()
+      if (visibleRef.current) resume()
     }
 
     const onBlocked = () => {
@@ -93,12 +98,13 @@ export default function CaseStudyHeavyVideo({
       else video.pause()
     }
 
+    armInlinePlayback(video)
+    video.dataset.autoplayIntent = '1'
     video.addEventListener('loadeddata', onReady)
     video.addEventListener('canplay', onReady)
+    video.addEventListener('loadedmetadata', onReady)
     document.addEventListener('visibilitychange', onVis)
 
-    // Call play() immediately. Safari and iOS do not fire canplay until
-    // playback is requested, so waiting for that event deadlocks autoplay.
     if (visibleRef.current) {
       playSafe(video).then(
         () => {
@@ -116,15 +122,18 @@ export default function CaseStudyHeavyVideo({
       cancelled = true
       video.removeEventListener('loadeddata', onReady)
       video.removeEventListener('canplay', onReady)
+      video.removeEventListener('loadedmetadata', onReady)
       document.removeEventListener('visibilitychange', onVis)
       document.removeEventListener('pointerdown', resume)
       document.removeEventListener('touchend', resume)
     }
   }, [active, src])
 
+  const showPoster = Boolean(poster && posterClassName)
+
   return (
     <div ref={rootRef} className={className} aria-hidden="true">
-      {poster && posterClassName ? (
+      {showPoster ? (
         <img
           className={`${posterClassName}${ready ? ' is-faded' : ''}`}
           src={poster}
@@ -134,7 +143,7 @@ export default function CaseStudyHeavyVideo({
       ) : null}
       <video
         ref={setVideoNode}
-        className={`${videoClassName}${poster ? (ready ? ' is-ready' : '') : ' is-ready'}`}
+        className={`${videoClassName}${showPoster ? (ready ? ' is-ready' : '') : ' is-ready'}`}
         src={active ? src : undefined}
         muted
         loop

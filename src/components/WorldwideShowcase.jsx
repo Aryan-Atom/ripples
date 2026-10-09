@@ -5,6 +5,7 @@ import { WORLDWIDE_EVENTS } from '../data/worldwide'
 import { prefersReducedMotion } from '../motion/gsap'
 import { attachScrollReveal, createRevealTimeline } from '../motion/scrollReveal'
 import GalleryLightbox from './GalleryLightbox.jsx'
+import { armAutoplayGestureRetry, armInlinePlayback, playSafe } from '../utils/videoAutoplay.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -64,17 +65,25 @@ export default function WorldwideShowcase({
   }, [items])
 
   useEffect(() => {
+    armAutoplayGestureRetry()
+  }, [])
+
+  useEffect(() => {
     videoRefs.current.forEach((video, i) => {
       if (!video) return
+      armInlinePlayback(video)
+      video.dataset.autoplayIntent = '1'
       // Keep current + next clip sourced so the upcoming slide is warm.
       const shouldSource = i < 3 || i <= activeIndex + 1
       if (shouldSource && video.dataset.src && !video.getAttribute('src')) {
         video.src = video.dataset.src
         video.load()
       }
-      if (i === activeIndex && video.getAttribute('src')) {
-        video.play().catch(() => {})
+      if (i === activeIndex && (video.getAttribute('src') || video.src)) {
+        video.dataset.shouldPlay = '1'
+        playSafe(video).catch(() => {})
       } else {
+        video.dataset.shouldPlay = '0'
         video.pause()
       }
     })

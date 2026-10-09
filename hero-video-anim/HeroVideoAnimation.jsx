@@ -47,6 +47,7 @@ function HeroVideoAnimationInner({
   const {
     canvasRef,
     setProgress,
+    forceRedraw,
     loadProgress,
     isReady,
     error,
@@ -88,9 +89,8 @@ function HeroVideoAnimationInner({
           end: scrollLength,
           scrub,
           pin: true,
-          // Parent overflow-x can break fixed pin on mobile and leave the
-          // last hero frame sitting on top of the next section.
-          pinReparent: coarse,
+          // Never pinReparent: moving a canvas in the DOM clears its bitmap
+          // and breaks reverse-scrub frames on mobile.
           anticipatePin: coarse ? 0 : 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
@@ -105,6 +105,10 @@ function HeroVideoAnimationInner({
           },
           onEnterBack: () => {
             root?.classList.remove('hva--passed')
+            // Re-paint immediately so reverse scroll shows frames, not empty bg + copy.
+            forceRedraw()
+            setProgress(1)
+            scrollNotifierRef.current?.notify(1)
           },
         },
       })
@@ -140,6 +144,7 @@ function HeroVideoAnimationInner({
   }, [
     isReady,
     setProgress,
+    forceRedraw,
     scrollLength,
     scrub,
     scaleFrom,

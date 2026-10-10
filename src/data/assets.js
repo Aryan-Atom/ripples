@@ -119,6 +119,9 @@ export const COMPANY_INTRO_VIDEO = '/assets/company_intro.mp4'
 export const WEBSITE_LOGO_VIDEO = '/assets/WebsiteLogo.mp4'
 export const LOGO_ANIMATION_VIDEO = '/assets/RipplesLogoAnimationWithMusic.mp4'
 
+/** Nehru Garden case-study opener — local until remote/CDN path is finalized. */
+export const NEHRU_GARDEN_INTRO_VIDEO = '/assets/NehruGarden_Intro.mp4'
+
 /**
  * Collect multimedia project video + .webp stills from
  * Ripples Assets/WaterWorks/Multimedia/Section 2/{folder}/

@@ -94,9 +94,7 @@
 /* Typography */
 
 .r-label {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
+  display: block;
   width: fit-content;
   max-width: 100%;
   margin-bottom: 1.15rem;
@@ -105,15 +103,6 @@
   letter-spacing: 0.34em;
   text-transform: uppercase;
   color: var(--color-accent);
-}
-
-.r-label::after {
-  content: '';
-  width: 2.25rem;
-  height: 1px;
-  flex-shrink: 0;
-  background: var(--color-accent);
-  opacity: 0.75;
 }
 
 .r-display {

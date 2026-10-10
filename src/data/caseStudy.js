@@ -1,6 +1,6 @@
 /** Nehru Garden case study  media resolved through the Supabase asset manifest. */
 
-import { asset } from './assets.js'
+import { asset, NEHRU_GARDEN_INTRO_VIDEO } from './assets.js'
 
 export const CS_ASSETS = 'Ripples Assets/CaseStudy/NehruGarden'
 
@@ -23,7 +23,7 @@ export const CASE_STUDY_CHOICES = [
     eyebrow: 'Case Study',
     titleLines: ['A lake garden', 'asks for a', 'Show.'],
     titleEm: 'Show.',
-    video: csAsset('Intro.mp4'),
+    video: NEHRU_GARDEN_INTRO_VIDEO,
     poster: csAsset('before-03.webp'),
     place: 'Nehru Garden, Udaipur',
   },
